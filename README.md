@@ -13,3 +13,4 @@
 - [Ykoh](https://github.com/kohyounghwan/libft#Contents)
 - [moon9ua/42_seoul](https://github.com/moon9ua/42_seoul)
 - [lina0322/42seoul_cursus](https://github.com/lina0322/42seoul_cursus)
+- [JaeSeoKim/42cursus](https://github.com/JaeSeoKim/42cursus)
