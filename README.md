@@ -9,7 +9,7 @@
 | 1      | get_next_line | C        | ???                            | not open     |
 
 
-## .md that I benchmarked
+## .md that I benchmarking
 - [Ykoh](https://github.com/kohyounghwan/libft#Contents)
 - [moon9ua/42_seoul](https://github.com/moon9ua/42_seoul)
 - [lina0322/42seoul_cursus](https://github.com/lina0322/42seoul_cursus)
