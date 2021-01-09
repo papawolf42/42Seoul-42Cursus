@@ -6,13 +6,15 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/02 03:55:29 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/09 20:55:45 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include "libft.h"
+# include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
@@ -51,7 +53,7 @@ typedef enum
 
 typedef struct	s_fmt
 {
-	char		*str;
+	const char	*str;
 	va_list		ap;
 	char		flag[6];
 	int			wid;
@@ -62,4 +64,37 @@ typedef struct	s_fmt
 	int			rtn;
 }				t_fmt;
 
+/*
+** printf.c
+*/
+
+void			ft_reset_fmt(t_fmt *fmt);
+void			ft_initialize_fmt(t_fmt *fmt, const char *format);
+int				ft_print_iterative(t_fmt *fmt);
+int				ft_printf(const char *format, ...);
+int				main(void);
+
+/*
+** iterative
+*/
+
+int				ft_print_nonformat(t_fmt *fmt);
+int				ft_parse_format(t_fmt *fmt);
+int				ft_print_process(t_fmt *fmt);
+int				ft_print_format(t_fmt *fmt);
+
+/*
+** parce.c
+*/
+
+int				ft_parse_flag(t_fmt *fmt);
+
+/*
+** spec_s.c
+*/
+
+int				ft_print_s(t_fmt *fmt);
+
+
 #endif
+
