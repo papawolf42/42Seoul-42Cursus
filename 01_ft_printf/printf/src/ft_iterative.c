@@ -6,11 +6,11 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 15:36:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/09 19:51:34 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/09 21:20:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
 int		ft_print_nonformat(t_fmt *fmt)
 {

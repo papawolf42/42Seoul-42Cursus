@@ -6,11 +6,11 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 17:27:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/09 19:55:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/09 21:20:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
 void	ft_reset_fmt(t_fmt *fmt)
 {

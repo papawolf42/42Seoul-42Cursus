@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/09 17:00:44 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/09 21:19:29 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ RFLAGS  := -rf
 # =========================
 
 DIR_LIBFT   := libft
-DIR_PRINTF  := ft_printf
+DIR_PRINTF  := printf
 
 LIB_LIBFT   := libft.a
 LIB_PRINTF  := printf.a
