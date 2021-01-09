@@ -6,59 +6,108 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2020/12/09 14:39:30 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/09 17:00:44 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# What really want to make
+#	libft.a - Makefile
+#	----------------------------------------
+#	Refer to : https://github.com/google/honggfuzz/blob/master/Makefile
+#	Refer to : https://github.com/JaeSeoKim/42cursus/blob/master/01_ft_printf/Makefile
 
-LIB_PRINTF := libftprintf.a
-LIB_LIBFT := libft.a
+# =========================
+# what we want to make
+# =========================
 
-# Directory
+NAME        := libftprintf.a
+#
+# =========================
+# implicit rule
+# =========================
 
-DIR_PRINTF := ft_printf
-DIR_LIBFT := libft
+CC      := gcc
+CFLAGS  :=
+CFLAGS  += -Wall
+CFLAGS  += -Wextra
+#CFLAGS  += -Werror
 
-# implicit Rules
+AR      := ar
+ARFLAGS := -rcs
 
-AR := ar
-ARFLAGS := -rcu
+RM      := rm
+RFLAGS  := -rf
 
-RM := rm -rf
+# =========================
+# path
+# =========================
 
-$(LIB_PRINTF) : $(DIR_LIBFT)/$(LIB_LIBFT) $(DIR_PRINTF)/$(LIB_PRINTF)
-	$(MAKE) -C $(DIR_LIBFT)
-	cp $(DIR_LIBFT)/$(LIB_LIBFT) $(DIR_PRINTF)
-	$(MAKE) -C $(DIR_PRINTF)
-	cp $(DIR_PRINTF)/$(LIB_PRINTF) $(LIB_PRINTF)
+DIR_LIBFT   := libft
+DIR_PRINTF  := ft_printf
 
-.PHONY : \
-	all clean fclean re \
-	clean_$(DIR_LIBFT) clean_$(DIR_PRINTF) \
-	fclean_$(DIR_LIBFT) fclean_$(DIR_PRINTF) \
+LIB_LIBFT   := libft.a
+LIB_PRINTF  := printf.a
 
-all : $(LIB_PRINTF)
+NAME_LIBFT  := $(DIR_LIBFT)/$(LIB_LIBFT)
+NAME_PRINTF := $(DIR_PRINTF)/$(LIB_PRINTF)
 
-clean : clean_$(DIR_LIBFT) clean_$(DIR_PRINTF)
+# =========================
+# ANSI/VT100
+# =========================
 
-clean_$(DIR_LIBFT) :
-	$(MAKE) -C $(DIR_LIBFT) clean
+LF      := \n
+CR      := \r
+ESC     := \e
 
-clean_$(DIR_PRINTF) :
-	$(MAKE) -C $(DIR_PRINTF) clean
+ER      := $(ESC)[1K
+CRLF    := $(CR)$(LF)
+ERCR    := $(ER)$(CR)
 
-fclean : clean fclean_$(DIR_LIBFT) fclean_$(DIR_PRINTF)
-	$(RM) $(LIB_PRINTF)
+# =========================
+# rules
+# =========================
 
-fclean_$(DIR_LIBFT) :
-	$(MAKE) -C $(DIR_LIBFT) fclean
+.PHONY: all clean fclean re
 
-fclean_$(DIR_PRINTF) :
-	$(MAKE) -C $(DIR_PRINTF) fclean
+all : $(NAME)
+
+clean :
+	@$(MAKE) clean -C $(DIR_LIBFT)
+	@$(MAKE) clean -C $(DIR_PRINTF)
+	@$(RM) $(RFLAGS) *.o
+
+fclean :
+	@$(MAKE) fclean -C $(DIR_LIBFT)
+	@$(MAKE) fclean -C $(DIR_PRINTF)
+	@$(RM) $(RFLAGS) $(NAME) $(LIB_LIBFT) $(LIB_PRINTF)
+	@$(RM) $(RFLAGS) $(NAME) $(LIB_LIBFT) $(LIB_PRINTF)
+	@$(RM) $(RFLAGS) *.o __.SYMDEF\ SORTED $(LIB_LIBFT) $(LIB_PRINTF)
+	@printf "[$(NAME)] ✔️  Cleaned all !!\n"
 
 re : fclean all
 
+$(NAME) : $(NAME_LIBFT) $(NAME_PRINTF)
+	@cp $(NAME_LIBFT) $(LIB_LIBFT) && $(AR) -x $(LIB_LIBFT)
+	@cp $(NAME_PRINTF) $(LIB_PRINTF) && $(AR) -x $(LIB_PRINTF)
+	@$(AR) $(ARFLAGS) $(NAME) *.o
+	@$(RM) $(RFLAGS) *.o __.SYMDEF\ SORTED $(LIB_LIBFT) $(LIB_PRINTF)
+	@printf "[$(NAME)] ✔️  Make complete !!\n"
 
+.PHONY : test
 
+TEST = test
 
+$(TEST) :
+	@$(MAKE) -s all -C $(DIR_LIBFT)
+	@$(MAKE) -s all -C $(DIR_PRINTF)
+	@cp $(NAME_LIBFT) $(LIB_LIBFT) && $(AR) -x $(LIB_LIBFT)
+	@cp $(NAME_PRINTF) $(LIB_PRINTF) && $(AR) -x $(LIB_PRINTF)
+	@$(CC) -g $(CFLAGS) $(DIR_LIBFT)/obj/*.o $(DIR_PRINTF)/obj/*.o main.c -o $(TEST) -I $(DIR_PRINTF)/include -I$(DIR_LIBFT)/include
+	@$(AR) $(ARFLAGS) $(NAME) *.o
+	@$(RM) $(RFLAGS) *.o __.SYMDEF\ SORTED $(LIB_LIBFT) $(LIB_PRINTF)
+	@printf "[$(NAME)] ✔️  Make complete !!\n"
+
+$(NAME_LIBFT) :
+	@$(MAKE) -s all -C $(DIR_LIBFT)
+
+$(NAME_PRINTF) :
+	@$(MAKE) -s all -C $(DIR_PRINTF)
