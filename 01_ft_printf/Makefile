@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/09 21:19:29 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/10 00:30:57 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,12 +96,12 @@ $(NAME) : $(NAME_LIBFT) $(NAME_PRINTF)
 
 TEST = test
 
-$(TEST) :
+$(TEST) : main.c
 	@$(MAKE) -s all -C $(DIR_LIBFT)
 	@$(MAKE) -s all -C $(DIR_PRINTF)
 	@cp $(NAME_LIBFT) $(LIB_LIBFT) && $(AR) -x $(LIB_LIBFT)
 	@cp $(NAME_PRINTF) $(LIB_PRINTF) && $(AR) -x $(LIB_PRINTF)
-	@$(CC) -g $(CFLAGS) $(DIR_LIBFT)/obj/*.o $(DIR_PRINTF)/obj/*.o main.c -o $(TEST) -I $(DIR_PRINTF)/include -I$(DIR_LIBFT)/include
+	$(CC) -g $(CFLAGS) $(DIR_LIBFT)/obj/*.o $(DIR_PRINTF)/obj/*.o main.c -o $(TEST) -I $(DIR_PRINTF)/include -I$(DIR_LIBFT)/include
 	@$(AR) $(ARFLAGS) $(NAME) *.o
 	@$(RM) $(RFLAGS) *.o __.SYMDEF\ SORTED $(LIB_LIBFT) $(LIB_PRINTF)
 	@printf "[$(NAME)] ✔️  Make complete !!\n"

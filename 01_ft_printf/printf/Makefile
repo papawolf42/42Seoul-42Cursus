@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/09 21:20:05 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/09 22:50:25 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,9 @@ DIR_LIBFT_INC := ../libft/include
 
 SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_printf.c \
+	iterative.c \
 	parse.c \
+	utils.c \
 	spec_s.c \
 )
 
@@ -132,6 +134,7 @@ $(DIR_OBJ)/%.o : %.c
 # DO NOT DELETE
 
 obj/ft_printf.o: src/ft_printf.c include/printf.h ../libft/include/libft.h
+obj/iterative.o: src/iterative.c include/printf.h ../libft/include/libft.h
 obj/parse.o: src/parse.c include/printf.h ../libft/include/libft.h
 obj/spec_s.o: src/spec_s.c include/printf.h ../libft/include/libft.h
 

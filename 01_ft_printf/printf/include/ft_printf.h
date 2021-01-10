@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                        :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/09 20:55:45 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/11 00:31:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@
 
 typedef enum
 {
-	minus,
-	plus,
-	space,
-	hash,
-	zero,
-	star
+	minus, // 0
+	plus,  // 1
+	space, // 2
+	hash,  // 3
+	zero,  // 4
+	star,  // 5
+	dot    // 6
 }	t_flg;
 
 typedef enum
@@ -55,7 +56,7 @@ typedef struct	s_fmt
 {
 	const char	*str;
 	va_list		ap;
-	char		flag[6];
+	char		flag[7];
 	int			wid;
 	int			prec;
 	int			len;
@@ -70,6 +71,7 @@ typedef struct	s_fmt
 
 void			ft_reset_fmt(t_fmt *fmt);
 void			ft_initialize_fmt(t_fmt *fmt, const char *format);
+void			ft_info_fmt(t_fmt *fmt);
 int				ft_print_iterative(t_fmt *fmt);
 int				ft_printf(const char *format, ...);
 int				main(void);
@@ -87,7 +89,29 @@ int				ft_print_format(t_fmt *fmt);
 ** parce.c
 */
 
+int				ft_parse_nbr(t_fmt *fmt, t_flg flg);
 int				ft_parse_flag(t_fmt *fmt);
+int				ft_parse_prec(t_fmt *fmt);
+int				ft_parse_len(t_fmt *fmt);
+int				ft_parse_spec(t_fmt *fmt);
+
+/*
+** parce2.c
+*/
+
+/*
+** process.c
+*/
+
+int				ft_
+
+
+/*
+** utils.c
+*/
+
+int				ft_count_digit(int nbr);
+int				ft_abs(int nbr);
 
 /*
 ** spec_s.c
