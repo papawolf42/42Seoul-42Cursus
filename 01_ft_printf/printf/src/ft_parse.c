@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/10 23:14:17 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 01:13:27 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int			ft_parse_nbr(t_fmt *fmt, t_flg flg)
 	if (fmt->flag[star] >= 1)
 	{
 		if ((temp = va_arg(fmt->ap, int)) < 0)
+		{
 			fmt->flag[dot] = 0;
+			fmt->flag[minus] = 1;
+			fmt->wid = -1 * temp;
+		}
 		else if (flg == !dot)
 			fmt->wid = temp;
 		else if (flg == dot)
@@ -92,6 +96,5 @@ int			ft_parse_spec(t_fmt *fmt)
 	if (fmt->spec == 0)
 		return (ERROR);
 	fmt->str++;
-	ft_info_fmt(fmt);
 	return (0);
 }

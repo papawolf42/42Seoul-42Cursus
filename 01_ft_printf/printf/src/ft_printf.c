@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 17:27:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/11 00:31:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/11 22:08:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_reset_fmt(t_fmt *fmt)
 	ft_bzero(fmt->buff, 21);
 	fmt->wid = 0;
 	fmt->prec = 0;
+	fmt->size = 0;
 	fmt->len = 0;
 }
 
@@ -44,7 +45,7 @@ printf("\n\n==========\n info fmt\n==========\n");
 	printf("fmt->wid : %d\n", fmt->wid);
 	printf("fmt->prec : %d\n", fmt->prec);
 	printf("fmt->len : %d\n", fmt->len);
-	printf("fmt->len : %d\n", fmt->len);
+	printf("fmt->size : %d\n", fmt->size);
 	printf("fmt->spec : %c\n", fmt->spec);
 	printf("fmt->buff : %s\n", fmt->buff);
 	printf("fmt->rtn : %d\n", fmt->rtn);
@@ -53,14 +54,16 @@ printf("==========\n end\n==========\n");
 
 int		ft_print_iterative(t_fmt *fmt)
 {
-	if (ft_print_nonformat(fmt) == ERROR)
-		return (ERROR);
-	if (ft_parse_format(fmt) == ERROR)
-		return (ERROR);
-	if (ft_print_process(fmt) == ERROR)
-		return (ERROR);
-//	if (ft_print_format(fmt) == ERROR)
-//		return (ERROR);
+	while (*fmt->str != '\0')
+	{
+		if (ft_print_nonformat(fmt) == ERROR)
+			return (ERROR);
+		ft_reset_fmt(fmt);
+		if (ft_parse_format(fmt) == ERROR)
+			return (ERROR);
+		if (ft_print_format(fmt) == ERROR)
+			return (ERROR);
+	}
 	return (0);
 }
 
