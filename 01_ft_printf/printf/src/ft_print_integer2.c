@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 18:52:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 19:10:11 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int			ft_get_out(t_fmt *fmt, t_blk *blk)
 		fmt->rtn += write(1, "+", blk->plus);
 		fmt->rtn += write(1, "-", blk->minus);
 		fmt->rtn += write(1, " ", blk->space);
-		fmt->rtn += write(1, "0", blk->prec);
+		while (blk->prec--)
+			fmt->rtn += write(1, "0", 1);
 		fmt->rtn += write(1, blk->buff, blk->nbr);
 		fmt->rtn += write(1, " ", blk->rpad);
 	return (0);
@@ -58,8 +59,8 @@ int			ft_get_out(t_fmt *fmt, t_blk *blk)
 int			ft_get_index(t_fmt *fmt, t_blk *blk)
 {
 	ft_itoa_custom(fmt, blk);
-	fmt->size = ft_max(blk->nbr, ft_max(fmt->wid, fmt->prec));
 	blk->prec = ft_max(0, fmt->prec - blk->nbr);
+	fmt->size = ft_max(blk->nbr, ft_max(fmt->wid, fmt->prec));
 	if (fmt->flag[minus] == 0)
 		blk->lpad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
 	if (fmt->flag[minus] > 0)
