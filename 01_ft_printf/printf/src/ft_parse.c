@@ -6,11 +6,38 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 01:13:27 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 16:08:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+/*
+int			ft_parse_nbr_onestar(t_fmt *fmt, t_flg flg)
+{
+}
+
+int			ft_parse_nbr_nonestar(t_flg *fmt, t_flg flg)
+{
+}
+*/
+
+int			ft_atoi_parse_star(t_fmt *fmt)
+{
+	ullint		result;
+	int			sign;
+
+	result = 0;
+	sign = 1;
+	while ((9 <= *fmt->str && *fmt->str <= 13) || *fmt->str == ' ')
+		fmt->str++;
+	if (*fmt->str == '+' || *fmt->str == '-')
+		if (*(fmt->str++) == '-')
+			sign = -1;
+	while ('0' <= *fmt->str && *fmt->str <= '9')
+		result = result * 10 + *(fmt->str++) - '0';
+	return (sign * result);
+}
 
 int			ft_parse_nbr(t_fmt *fmt, t_flg flg)
 {
@@ -31,7 +58,7 @@ int			ft_parse_nbr(t_fmt *fmt, t_flg flg)
 		fmt->flag[star] = 0;
 		return (0);
 	}
-	fmt->str += ft_count_digit(temp = ft_atoi(fmt->str));
+	temp = ft_atoi_parse_star(fmt);
 	if (temp < 0)
 	{
 		fmt->wid = -1 * temp;

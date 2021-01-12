@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 01:06:23 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 15:13:09 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int			ft_get_out(t_fmt *fmt, t_blk *blk)
 	char	*letter;
 
 	head = 0;
-	if (!(fmt->out = (char *)ft_calloc(sizeof(char), fmt->size)))
-		return (ERROR);
 	letter = fmt->flag[minus] == 0 && fmt->flag[zero] > 0 ? "0" : " ";
 	while (blk->lpad--)
 		write(1, letter, 1);

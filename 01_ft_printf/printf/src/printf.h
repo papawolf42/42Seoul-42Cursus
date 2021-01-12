@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 01:14:39 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 15:58:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ int				ft_print_format(t_fmt *fmt);
 /*
 ** parce.c
 */
+
+int				ft_atoi_parse_star(t_fmt *fmt);
 
 int				ft_parse_nbr(t_fmt *fmt, t_flg flg);
 int				ft_parse_flag(t_fmt *fmt);
