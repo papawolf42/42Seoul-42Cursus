@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 18:00:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 18:12:12 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
 	blk->nbr = ft_count_digit(temp);
 	if (blk->minus == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
 		blk->plus = 1;
-	if (fmt->flag[space] > 0 && fmt->flag[plus] == 0)
+	if (blk->minus == 0 && fmt->flag[space] > 0 && fmt->flag[plus] == 0)
 		blk->space = 1;
 	i = blk->nbr;
 	while (temp >= 1)
