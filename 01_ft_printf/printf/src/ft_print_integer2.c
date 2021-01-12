@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 18:12:12 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 18:52:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ int			ft_get_index(t_fmt *fmt, t_blk *blk)
 	fmt->size = ft_max(blk->nbr, ft_max(fmt->wid, fmt->prec));
 	blk->prec = ft_max(0, fmt->prec - blk->nbr);
 	if (fmt->flag[minus] == 0)
-		blk->lpad = ft_max(0, fmt->size - blk->pre - blk->nbr);
+		blk->lpad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
 	if (fmt->flag[minus] > 0)
-		blk->rpad = ft_max(0, fmt->size - blk->pre - blk->nbr);
+		blk->rpad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
 	if(ft_get_out(fmt, blk) == ERROR)
 		return (ERROR);
 	return (0);
