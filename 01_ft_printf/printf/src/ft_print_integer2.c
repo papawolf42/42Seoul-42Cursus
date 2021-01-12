@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 19:10:11 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/13 02:02:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
 {
-	llint		temp;
+	t_llint		temp;
 	int			i;
 
 	temp = va_arg(fmt->ap, int);

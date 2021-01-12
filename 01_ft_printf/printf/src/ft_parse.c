@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 18:24:25 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/13 02:23:28 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,29 @@
 int			ft_parse_nbr_onestar(t_fmt *fmt, t_flg flg)
 {
 }
-
-int			ft_parse_nbr_nonestar(t_flg *fmt, t_flg flg)
-{
-}
 */
+
+int			ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg)
+{
+	int		nbr;
+
+	nbr = ft_atoi_parse_star(fmt);
+	if (nbr < 0)
+	{
+		fmt->flag[dot] = 0;
+		fmt->flag[minus] += flg == !dot ? 1 : 0;
+		fmt->wid = flg == !dot ? -1 * nbr : fmt->wid;
+	}
+	else if (flg == !dot)
+		fmt->wid = nbr;
+	else if (flg == dot)
+		fmt->prec = nbr;
+	return (0);
+}
 
 int			ft_atoi_parse_star(t_fmt *fmt)
 {
-	ullint		result;
+	int			result;
 	int			sign;
 
 	result = 0;
@@ -41,34 +55,25 @@ int			ft_atoi_parse_star(t_fmt *fmt)
 
 int			ft_parse_nbr(t_fmt *fmt, t_flg flg)
 {
-	int		temp;
+	int			nbr;
 
 	if (fmt->flag[star] >= 1)
 	{
-		if ((temp = va_arg(fmt->ap, int)) < 0 && fmt->wid == 0)
+		if ((nbr = va_arg(fmt->ap, int)) < 0 && fmt->wid == 0)
 		{
 			fmt->flag[dot] = 0;
-			fmt->flag[minus] = 1;
-			fmt->wid = -1 * temp;
+			fmt->flag[minus] += flg == !dot ? 1 : 0;
+			fmt->wid = flg == !dot ? -1 * nbr : fmt->wid;
 		}
 		else if (flg == !dot)
-			fmt->wid = temp;
+			fmt->wid = nbr;
 		else if (flg == dot)
-			fmt->prec = temp;
+			fmt->prec = nbr;
 		fmt->flag[star] = 0;
 		return (0);
 	}
-	temp = ft_atoi_parse_star(fmt);
-	if (temp < 0)
-	{
-		fmt->wid = -1 * temp;
-		fmt->flag[dot] = 0;
-		fmt->flag[minus] += 1;
-	}
-	else if (flg == !dot)
-		fmt->wid = temp;
-	else if (flg == dot)
-		fmt->prec = temp;
+	if(ft_parse_nbr_nonestar(fmt, flg) == ERROR)
+		return (ERROR);
 	return (0);
 }
 

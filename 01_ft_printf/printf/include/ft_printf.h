@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 15:58:33 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/13 02:00:08 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,15 @@
 # define ERROR -1
 
 /*
-** datatype macro
+** typedef
 */
 
-# define llint long long int
-# define ullint unsigned long long int
+typedef long long int			t_llint;
+typedef unsigned long long int	t_ullint;
+typedef long int				t_lint;
+typedef unsigned long int		t_ulint;
+typedef short int				t_sint;
+typedef unsigned short int		t_usint;
 
 /*
 **  '-' : 좌측 정렬
@@ -115,6 +119,7 @@ int				ft_print_format(t_fmt *fmt);
 ** parce.c
 */
 
+int				ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg);
 int				ft_atoi_parse_star(t_fmt *fmt);
 
 int				ft_parse_nbr(t_fmt *fmt, t_flg flg);
@@ -148,7 +153,7 @@ int				ft_print_integer(t_fmt *fmt);
 ** utils.c
 */
 
-int				ft_count_digit(llint nbr);
+int				ft_count_digit(t_llint nbr);
 int				ft_abs(int nbr);
 int				ft_max(int a, int b);
 

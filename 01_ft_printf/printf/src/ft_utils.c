@@ -6,15 +6,15 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 22:44:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 01:02:59 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/13 02:03:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int			ft_count_digit(llint nbr)
+int			ft_count_digit(t_llint nbr)
 {
-	ullint	base;
+	t_ullint	base;
 	int		sign;
 	int		digit;
 	
@@ -28,7 +28,7 @@ int			ft_count_digit(llint nbr)
 		nbr *= -1;
 		sign++;
 	}
-	while ((ullint)nbr >= base)
+	while ((t_ullint)nbr >= base)
 	{
 		base *= 10;
 		digit++;
