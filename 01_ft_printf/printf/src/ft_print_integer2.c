@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/12 17:44:22 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/12 18:00:08 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
 		blk->minus = 1;
 	}
 	blk->nbr = ft_count_digit(temp);
-	if (fmt->flag[minus] == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
+	if (blk->minus == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
 		blk->plus = 1;
 	if (fmt->flag[space] > 0 && fmt->flag[plus] == 0)
 		blk->space = 1;
@@ -45,20 +45,13 @@ int			ft_get_out(t_fmt *fmt, t_blk *blk)
 
 	head = 0;
 	letter = fmt->flag[minus] == 0 && fmt->flag[zero] > 0 ? "0" : " ";
-	while (blk->lpad--)
-		write(1, letter, 1);
-	while (blk->plus--)
-		write(1, "+", 1);
-	while (blk->minus--)
-		write(1, "-", 1);
-	while (blk->space--)
-		write(1, " ", 1);
-	while (blk->prec--)
-		write(1, "0", 1);
-	write(1, blk->buff, blk->nbr);
-	while (blk->rpad--)
-		write(1, " ", 1);
-	fmt->rtn += fmt->size;
+		fmt->rtn += write(1, letter, blk->lpad);
+		fmt->rtn += write(1, "+", blk->plus);
+		fmt->rtn += write(1, "-", blk->minus);
+		fmt->rtn += write(1, " ", blk->space);
+		fmt->rtn += write(1, "0", blk->prec);
+		fmt->rtn += write(1, blk->buff, blk->nbr);
+		fmt->rtn += write(1, " ", blk->rpad);
 	return (0);
 }
 
