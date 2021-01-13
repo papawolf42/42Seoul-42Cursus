@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/13 15:39:11 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/13 23:55:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct	s_fmt
 }				t_fmt;
 
 /*
-** (left padding)(pre : prefix or sign or space)(precision)(number)(right padding)
+** (left padding)(pre : prefix or sign or space)(zero)(precision)(number)(right padding)
 */
 
 typedef struct	s_blk
@@ -88,6 +88,7 @@ typedef struct	s_blk
 	int			rpad;
 	int			nbr;
 	int			prec;
+	int			zero;
 	int			space;
 	int			minus;
 	int			plus;
@@ -162,6 +163,4 @@ int				ft_max(int a, int b);
 
 int				ft_print_s(t_fmt *fmt);
 
-
 #endif
-
