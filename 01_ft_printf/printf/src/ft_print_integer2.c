@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/13 15:38:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/13 16:01:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ int			ft_get_out(t_fmt *fmt, t_blk *blk)
 	char	*letter;
 
 	head = 0;
-	letter = fmt->flag[minus] == 0 && fmt->flag[zero] > 0 ? "0" : " ";
-		fmt->rtn += write(1, letter, blk->lpad);
+	letter = fmt->flag[zero] && !blk->minus ? "0" : " ";
+		while (blk->lpad--)
+			fmt->rtn += write(1, letter, 1);
 		fmt->rtn += write(1, "+", blk->plus);
 		fmt->rtn += write(1, "-", blk->minus);
 		fmt->rtn += write(1, " ", blk->space);
 		while (blk->prec--)
 			fmt->rtn += write(1, "0", 1);
 		fmt->rtn += write(1, blk->buff, blk->nbr);
-		fmt->rtn += write(1, " ", blk->rpad);
+		while (blk->rpad--)
+			fmt->rtn += write(1, " ", 1);
 	return (0);
 }
 
