@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/14 02:43:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 13:20:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ typedef struct	s_fmt
 	int			len;
 	int			size;
 	char		spec;
+	t_llint		nbr;
 	char		buff[21];
-	char		*out;
 	int			rtn;
 }				t_fmt;
 
