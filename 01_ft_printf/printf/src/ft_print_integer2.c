@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/14 18:43:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 18:53:51 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
 {
+	t_llint		nbr;
 	int			i;
 
-	fmt->nbr = va_arg(fmt->ap, int);
-	if (fmt->nbr < 0 && (fmt->nbr *= -1))
+	nbr = va_arg(fmt->ap, int);
+	fmt->nbr = nbr;
+	if (nbr < 0 && (nbr *= -1))
 		blk->minus = 1;
-	blk->nbr = ft_count_digit(fmt->nbr);
+	blk->nbr = ft_count_digit(nbr);
 	if (blk->minus == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
 		blk->plus = 1;
 	if (blk->minus == 0 && fmt->flag[space] > 0 && fmt->flag[plus] == 0)
 		blk->space = 1;
 	i = blk->nbr;
-	if (fmt->nbr == 0)
+	if (nbr == 0)
 		blk->buff[0] = '0';
-	while (fmt->nbr >= 1)
+	while (nbr >= 1)
 	{
-		blk->buff[--i] = fmt->nbr % 10 + '0';
-		fmt->nbr /= 10;
+		blk->buff[--i] = nbr % 10 + '0';
+		nbr /= 10;
 	}
 	//ft_get_prefix
 	blk->pre = blk->prefix + blk->plus + blk->minus + blk->space;
