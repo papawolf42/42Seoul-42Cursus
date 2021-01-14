@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/14 12:28:51 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 12:46:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ int			ft_get_index(t_fmt *fmt, t_blk *blk)
 	{
 		if (!fmt->flag[zero]) // "0" flag X
 			blk->lpad = blk->pad;
-		if (fmt->flag[zero]) // "0" flag O, prec not exist
+		if (fmt->flag[zero] && fmt->flag[dot]) // "0" flag O , prec exist
+			blk->lpad = blk->pad;
+		if (fmt->flag[zero] && !fmt->flag[dot]) // "0" flag O, prec not exist
 			blk->zero = blk->pad;
 	}
 	else if (fmt->flag[minus]) // left aligned
