@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 22:44:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/13 02:03:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 13:00:27 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			ft_count_digit(t_llint nbr)
 	sign = 0;
 	digit = 0;
 	if (nbr == 0)
-		return (0);
+		return (1);
 	if (nbr < 0)
 	{
 		nbr *= -1;
