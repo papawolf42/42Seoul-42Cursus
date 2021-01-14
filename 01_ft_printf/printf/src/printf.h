@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/13 23:55:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 02:43:57 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct	s_fmt
 typedef struct	s_blk
 {
 	char		buff[33];
+	int			pad;
 	int			rpad;
 	int			nbr;
 	int			prec;
