@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/14 18:33:06 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 19:36:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg)
 	nbr = ft_atoi_parse_star(fmt);
 	if (nbr < 0)
 	{
+		fmt->flag[dot] += flg == dot ? 1 : 0;
 		fmt->flag[minus] += flg == !dot ? 1 : fmt->flag[minus];
 		fmt->wid = flg == !dot ? -1 * nbr : fmt->wid;
 	}
@@ -60,6 +61,7 @@ int			ft_parse_nbr(t_fmt *fmt, t_flg flg)
 	{
 		if ((nbr = va_arg(fmt->ap, int)) < 0)
 		{
+			fmt->flag[dot] = flg == dot ? 0 : fmt->flag[dot];
 			fmt->flag[minus] += flg == !dot ? 1 : fmt->flag[minus];
 			fmt->wid = flg == !dot ? -1 * nbr : fmt->wid;
 		}
