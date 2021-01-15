@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/13 02:00:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/14 13:20:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,21 +73,23 @@ typedef struct	s_fmt
 	int			len;
 	int			size;
 	char		spec;
+	t_llint		nbr;
 	char		buff[21];
-	char		*out;
 	int			rtn;
 }				t_fmt;
 
 /*
-** (left padding)(pre : prefix or sign or space)(precision)(number)(right padding)
+** (left padding)(pre : prefix or sign or space)(zero)(precision)(number)(right padding)
 */
 
 typedef struct	s_blk
 {
 	char		buff[33];
+	int			pad;
 	int			rpad;
 	int			nbr;
 	int			prec;
+	int			zero;
 	int			space;
 	int			minus;
 	int			plus;
@@ -146,7 +148,6 @@ int				ft_itoa_costom(t_fmt *fmt, t_blk *blk);
 int				ft_get_out(t_fmt *fmt, t_blk *blk);
 int				ft_get_index(t_fmt *fmt, t_blk *blk);
 int				ft_print_decimal(t_fmt *fmt, t_blk *blk);
-void			ft_initialize_blk(t_blk *blk);
 int				ft_print_integer(t_fmt *fmt);
 
 /*
@@ -163,6 +164,4 @@ int				ft_max(int a, int b);
 
 int				ft_print_s(t_fmt *fmt);
 
-
 #endif
-
