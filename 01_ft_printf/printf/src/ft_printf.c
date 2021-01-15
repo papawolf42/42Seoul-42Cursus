@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 17:27:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/11 22:08:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/16 03:39:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ const char	*format2; // MUST DELETE
 
 void	ft_reset_fmt(t_fmt *fmt)
 {
-	ft_bzero(fmt->flag, 6);
+	ft_bzero(fmt->flag, 7);
 	fmt->spec = 0;
 	ft_bzero(fmt->buff, 21);
 	fmt->wid = 0;
