@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/14 19:35:07 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/16 04:10:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,16 @@ int			ft_get_index(t_fmt *fmt, t_blk *blk)
 	blk->nbr = fmt->nbr == 0 && fmt->flag[dot] && fmt->prec == 0 ? 0 : blk->nbr;
 	fmt->size = ft_max(blk->nbr + blk->prec, ft_max(fmt->wid, fmt->prec));
 	blk->pad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
-	if (!fmt->flag[minus]) // right aligned
+	if (!fmt->flag[minus])
 	{
-		if (!fmt->flag[zero]) // "0" flag X
+		if (!fmt->flag[zero])
 			blk->lpad = blk->pad;
-		else if (fmt->flag[zero] && !fmt->flag[dot]) // "0" flag O , prec exist
+		else if (fmt->flag[zero] && !fmt->flag[dot])
 			blk->zero = blk->pad;
-		else if (fmt->flag[zero] && fmt->flag[dot]) // "0" flag O , prec exist
+		else if (fmt->flag[zero] && fmt->flag[dot])
 			blk->lpad = blk->pad;
-		//else if (fmt->flag[zero] ) // "0" flag O, prec not exist
-		//	blk->zero = blk->pad;
 	}
-	else if (fmt->flag[minus]) // left aligned
+	else if (fmt->flag[minus])
 	{
 		blk->rpad = blk->pad;
 	}
