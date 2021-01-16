@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/16 15:25:22 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/16 22:48:07 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,26 @@ int			ft_parse_len(t_fmt *fmt)
 {
 	while (ft_strchr("lh", *fmt->str) && *fmt->str)
 	{
-		if (*fmt->str == 'l' && *(fmt->str + 1) != 'l' && fmt->str += 1)
+		if (*fmt->str == 'l' && *(fmt->str + 1) != 'l')
+		{
 			fmt->len = 'l';
-		else if (*fmt->str == 'l' && *(fmt->str + 1) == 'l' && fmt->str += 2)
+			fmt->str += 1;
+		}
+		else if (*fmt->str == 'l' && *(fmt->str + 1) == 'l')
+		{
 			fmt->len = 'L';
-		else if (*fmt->str == 'h' && *(fmt->str + 1) != 'h' && fmt->str += 1)
+			fmt->str += 2;
+		}
+		else if (*fmt->str == 'h' && *(fmt->str + 1) != 'h')
+		{
 			fmt->len = 'h';
-		else if (*fmt->str == 'h' && *(fmt->str + 1) == 'h' && fmt->str += 2)
+			fmt->str += 1;
+		}
+		else if (*fmt->str == 'h' && *(fmt->str + 1) == 'h')
+		{
 			fmt->len = 'H';
+			fmt->str += 2;
+		}
 	}
 	return (0);
 }

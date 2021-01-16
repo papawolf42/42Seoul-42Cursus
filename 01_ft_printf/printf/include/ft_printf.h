@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/16 15:22:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/16 22:39:42 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int				ft_print_format(t_fmt *fmt);
 ** ft_print_integer.c
 */
 
+void			ft_get_integer(t_fmt *fmt);
 int				ft_itoa_costom(t_fmt *fmt, t_blk *blk);
 int				ft_get_out(t_fmt *fmt, t_blk *blk);
 int				ft_get_index(t_fmt *fmt, t_blk *blk);
