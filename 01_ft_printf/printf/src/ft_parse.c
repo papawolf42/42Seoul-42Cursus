@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/14 19:36:17 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/16 15:25:22 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,21 @@ int			ft_parse_prec(t_fmt *fmt)
 	return (0);
 }
 
-/*
 int			ft_parse_len(t_fmt *fmt)
 {
+	while (ft_strchr("lh", *fmt->str) && *fmt->str)
+	{
+		if (*fmt->str == 'l' && *(fmt->str + 1) != 'l' && fmt->str += 1)
+			fmt->len = 'l';
+		else if (*fmt->str == 'l' && *(fmt->str + 1) == 'l' && fmt->str += 2)
+			fmt->len = 'L';
+		else if (*fmt->str == 'h' && *(fmt->str + 1) != 'h' && fmt->str += 1)
+			fmt->len = 'h';
+		else if (*fmt->str == 'h' && *(fmt->str + 1) == 'h' && fmt->str += 2)
+			fmt->len = 'H';
+	}
 	return (0);
 }
-*/
 
 int			ft_parse_spec(t_fmt *fmt)
 {

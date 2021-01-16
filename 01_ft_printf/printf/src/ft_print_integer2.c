@@ -6,11 +6,13 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/16 04:10:43 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/16 15:32:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+t_llint		
 
 void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
 {
@@ -87,6 +89,7 @@ int			ft_get_index(t_fmt *fmt, t_blk *blk)
 
 int			ft_print_decimal(t_fmt *fmt, t_blk *blk)
 {
+	ft_get_integer(t_fmt *fmt);
 	ft_get_index(fmt, blk);
 	return (0);
 }
