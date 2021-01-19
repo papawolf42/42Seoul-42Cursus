@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_integer.c                                 :+:      :+:    :+:   */
+/*   print_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/16 23:03:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 12:52:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void		ft_get_integer(t_fmt *fmt)
+void		ft_len_id(t_fmt *fmt)
 {
 	if (fmt->len == 0 || fmt->len == 'h' || fmt->len == 'H')
 		fmt->nbr = va_arg(fmt->ap, int);
@@ -28,7 +28,7 @@ void		ft_get_integer(t_fmt *fmt)
 		fmt->nbr = (char)fmt->nbr;
 }
 
-void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
+void		ft_itoa_id(t_fmt *fmt, t_blk *blk)
 {
 	t_llint		nbr;
 	int			i;
@@ -49,7 +49,7 @@ void		ft_itoa_custom(t_fmt *fmt, t_blk *blk)
 	blk->pre = blk->prefix + blk->plus + blk->minus + blk->space;
 }
 
-int			ft_get_index(t_fmt *fmt, t_blk *blk)
+int			ft_decide_block_id(t_fmt *fmt, t_blk *blk)
 {
 	blk->prec = ft_max(0, fmt->prec - blk->nbr);
 	blk->nbr = fmt->nbr == 0 && fmt->flag[dot] && fmt->prec == 0 ? 0 : blk->nbr;
@@ -69,7 +69,7 @@ int			ft_get_index(t_fmt *fmt, t_blk *blk)
 	return (0);
 }
 
-int			ft_get_out(t_fmt *fmt, t_blk *blk)
+int			ft_write_id(t_fmt *fmt, t_blk *blk)
 {
 	int		head;
 	char	*letter;
@@ -93,30 +93,10 @@ int			ft_get_out(t_fmt *fmt, t_blk *blk)
 
 int			ft_print_decimal(t_fmt *fmt, t_blk *blk)
 {
-	ft_get_integer(fmt);
-	ft_itoa_custom(fmt, blk);
-	ft_get_index(fmt, blk);
-	if(ft_get_out(fmt, blk) == ERROR)
+	ft_len_id(fmt);
+	ft_itoa_id(fmt, blk);
+	ft_decide_block_id(fmt, blk);
+	if(ft_write_id(fmt, blk) == ERROR)
 		return (ERROR);
-	return (0);
-}
-
-int			ft_print_integer(t_fmt *fmt)
-{
-	t_blk		blk;
-
-	ft_bzero(&blk, sizeof(blk));
-	if (fmt->spec == 'd' || fmt->spec == 'i')
-		if (ft_print_decimal(fmt, &blk) == ERROR)
-			return (ERROR);
-	// if (fmt->spec == 'u')
-	// 	if (ft_print_unsigned(fmt) == ERROR)
-	// 		return (ERROR);
-	// if (fmt->spec == 'o')
-	// 	if (ft_print_octal(fmt) == ERROR)
-	// 		return (ERROR);
-	// if (fmt->spec == 'x' || fmt->spec == 'X')
-	// 	if (ft_print_hexadecimal(fmt) == ERROR)
-	// 		return (ERROR);
 	return (0);
 }
