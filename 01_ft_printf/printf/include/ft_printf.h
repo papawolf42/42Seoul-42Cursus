@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
+/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 13:19:10 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 19:11:57 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@
 */
 
 typedef long long int			t_llint;
-typedef unsigned long long int	t_ullint;
 typedef long int				t_lint;
-typedef unsigned long int		t_ulint;
 typedef short int				t_sint;
+typedef int						t_int;
+typedef	char					t_char;
+
+typedef unsigned long long int	t_ullint;
+typedef unsigned long int		t_ulint;
 typedef unsigned short int		t_usint;
+typedef unsigned int			t_uint;
+typedef	unsigned char			t_uchar;
 
 /*
 **  '-' : 좌측 정렬
@@ -138,24 +143,33 @@ int				ft_parse_spec(t_fmt *fmt);
 /*
 ** print_integer.c
 */
-
+void			ft_len_signed(t_fmt *fmt);
+void			ft_len_unsigned(t_fmt *fmt);
+int				ft_write_integer(t_fmt *fmt, t_blk *blk);
 int				ft_print_integer(t_fmt *fmt);
 
 /*
 ** print_id.c
 */
 
-void			ft_len_id(t_fmt *fmt);
 void			ft_itoa_id(t_fmt *fmt, t_blk *blk);
 int				ft_decide_block_id(t_fmt *fmt, t_blk *blk);
-int				ft_write_id(t_fmt *fmt, t_blk *blk);
 int				ft_print_decimal(t_fmt *fmt, t_blk *blk);
+
+/*
+** print_u.c
+*/
+
+void			ft_itoa_u(t_fmt *fmt, t_blk *blk);
+int				ft_decide_block_u(t_fmt *fmt, t_blk *blk);
+int				ft_print_unsigned(t_fmt *fmt, t_blk *blk);
 
 /*
 ** utils.c
 */
 
 int				ft_count_digit(t_llint nbr);
+int				ft_count_digit_u(t_ullint nbr);
 int				ft_abs(int nbr);
 int				ft_max(int a, int b);
 
