@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/11 02:10:40 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/19 13:28:26 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,14 +49,16 @@ DIR_LIBFT_INC := ../libft/include
 # source files
 # =========================
 
+#SRCS := $(wildcard $(DIR_SRC)/*.c)
+
 SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_printf.c \
 	iterative.c \
 	parse.c \
-	print.c \
-	ft_print_integer.c \
-	utils.c \
+	print_id.c \
+	print_integer.c \
 	spec_s.c \
+	utils.c \
 )
 
 # =========================
@@ -134,11 +136,11 @@ $(DIR_OBJ)/%.o : %.c
 .SUFFIXES:
 
 # DO NOT DELETE
-#
+
 obj/ft_printf.o: src/ft_printf.c include/printf.h ../libft/include/libft.h
 obj/iterative.o: src/iterative.c include/printf.h ../libft/include/libft.h
 obj/parse.o: src/parse.c include/printf.h ../libft/include/libft.h
-obj/print.o: src/print.c include/printf.h ../libft/include/libft.h
-obj/ft_print_integer.o: src/ft_print_integer.c include/printf.h
-obj/utils.o: src/utils.c include/printf.h ../libft/include/libft.h
+obj/print_id.o: src/print_id.c include/printf.h ../libft/include/libft.h
+obj/print_integer.o: src/print_integer.c include/printf.h ../libft/include/libft.h
 obj/spec_s.o: src/spec_s.c include/printf.h ../libft/include/libft.h
+obj/utils.o: src/utils.c include/printf.h ../libft/include/libft.h
