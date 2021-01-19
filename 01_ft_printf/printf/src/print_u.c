@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 19:12:04 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 20:50:28 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		ft_itoa_u(t_fmt *fmt, t_blk *blk)
 	int			i;
 
 	unbr = fmt->unbr;
-	blk->nbr = ft_count_digit_u(unbr);
+	blk->nbr = ft_count_digit_u(unbr, fmt->spec);
 	if (blk->minus == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
 		blk->plus = 1;
 	if (blk->minus == 0 && fmt->flag[space] > 0 && fmt->flag[plus] == 0)

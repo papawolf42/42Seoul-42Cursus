@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 19:24:07 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 20:48:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ int				ft_print_unsigned(t_fmt *fmt, t_blk *blk);
 */
 
 int				ft_count_digit(t_llint nbr);
-int				ft_count_digit_u(t_ullint nbr);
+int				ft_count_digit_u(t_ullint nbr, char cbase);
 int				ft_abs(int nbr);
 int				ft_max(int a, int b);
 

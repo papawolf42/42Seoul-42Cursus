@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 22:44:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 18:53:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 20:54:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int			ft_count_digit(t_llint nbr)
 {
-	t_ullint	base;
-	int		sign;
-	int		digit;
-	
-	base = 1;
-	sign = 0;
+	int			digit;
+	t_ullint	multi;
+	int			sign;
+
 	digit = 0;
+	multi = 1;
+	sign = 0;
 	if (nbr == 0)
 		return (1);
 	if (nbr < 0)
@@ -28,24 +28,38 @@ int			ft_count_digit(t_llint nbr)
 		nbr *= -1;
 		sign++;
 	}
-	while ((t_ullint)nbr >= base)
+	while ((t_ullint)nbr >= multi)
 	{
-		base *= 10;
+		multi *= 10;
 		digit++;
 	}
 	return (sign + digit);
 }
 
-int			ft_count_digit_u(t_ullint nbr)
+int			ft_count_digit_u(t_ullint nbr, char cbase)
 {
-	int		digit;
+	int			digit;
+	t_ullint	multi;
+	t_uint		base;
 
 	digit = 0;
+	multi = 1;
+	if (cbase == 'u')
+		base = 10;
+	else if (cbase == 'o')
+		base = 8;
+	else if (cbase == 'x' || cbase == 'X')
+		base = 16;
 	if (nbr == 0)
 		return (1);
-	while ((t_ullint)nbr >= 1)
+	if (nbr >= base)
 	{
-		nbr /= 10;
+		nbr /= base;
+		digit++;
+	}
+	while (nbr >= multi)
+	{
+		multi *= base;
 		digit++;
 	}
 	return (digit);
