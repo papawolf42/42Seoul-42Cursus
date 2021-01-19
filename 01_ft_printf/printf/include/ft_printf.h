@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 19:11:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 19:24:07 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdlib.h>
 
 # define ERROR -1
+# define CHARSET_OCTA = "01234567"
+# define CHARSET_LOWER_HEXA = "0123456789abcdef"
+# define CHARSET_UPPER_HEXA = "0123456789ABCDEF"
 
 /*
 ** typedef
