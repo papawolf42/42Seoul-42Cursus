@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/16 22:39:42 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 12:36:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,6 @@ int				ft_parse_spec(t_fmt *fmt);
 /*
 ** parce2.c
 */
-
-/*
-** print.c
-*/
-
-int				ft_print_format(t_fmt *fmt);
 
 /*
 ** ft_print_integer.c
