@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/20 19:07:51 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/22 00:23:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int				ft_write_integer(t_fmt *fmt, t_blk *blk);
 int				ft_print_integer(t_fmt *fmt);
 
 /*
-** print_diuxX.c
+** print_integer2.c
 */
 
 int         	ft_base_unsigned(t_fmt *fmt);

@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/20 17:56:16 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/20 23:17:52 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,8 +55,8 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_printf.c \
 	iterative.c \
 	parse.c \
-	print_diuxX.c \
 	print_integer.c \
+	print_integer2.c \
 	spec_s.c \
 	utils.c \
 )
@@ -140,7 +140,7 @@ $(DIR_OBJ)/%.o : %.c
 obj/ft_printf.o: src/ft_printf.c include/printf.h ../libft/include/libft.h
 obj/iterative.o: src/iterative.c include/printf.h ../libft/include/libft.h
 obj/parse.o: src/parse.c include/printf.h ../libft/include/libft.h
-obj/print_diuxX.o: src/print_diuxX.c include/printf.h ../libft/include/libft.h
 obj/print_integer.o: src/print_integer.c include/printf.h ../libft/include/libft.h
+obj/print_integer2.o: src/print_integer2.c include/printf.h ../libft/include/libft.h
 obj/spec_s.o: src/spec_s.c include/printf.h ../libft/include/libft.h
 obj/utils.o: src/utils.c include/printf.h ../libft/include/libft.h
