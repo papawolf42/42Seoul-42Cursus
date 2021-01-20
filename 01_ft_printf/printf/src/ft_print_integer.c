@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/20 15:47:53 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/20 19:50:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ void		ft_len_unsigned(t_fmt *fmt)
 		fmt->unbr = (t_uchar)fmt->unbr;
 }
 
+int			ft_decide_block(t_fmt *fmt, t_blk *blk)
+{
+	blk->prec = ft_max(0, fmt->prec - blk->nbr);
+	fmt->size = ft_max(blk->nbr + blk->prec, ft_max(fmt->wid, fmt->prec));
+	blk->pad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
+	if (!fmt->flag[minus])
+	{
+		if (!fmt->flag[zero])
+			blk->lpad = blk->pad;
+		else if (fmt->flag[zero] && !fmt->flag[dot])
+			blk->zero = blk->pad;
+		else if (fmt->flag[zero] && fmt->flag[dot])
+			blk->lpad = blk->pad;
+	}
+	else if (fmt->flag[minus])
+		blk->rpad = blk->pad;
+	return (0);
+}
+
 int			ft_write_integer(t_fmt *fmt, t_blk *blk)
 {
 	int		head;
@@ -53,6 +72,7 @@ int			ft_write_integer(t_fmt *fmt, t_blk *blk)
 	letter = fmt->flag[zero] && !blk->minus ? "0" : " ";
 		while (blk->lpad--)
 			fmt->rtn += write(1, " ", 1);
+		fmt->rtn += write(1, "0x", blk->prefix);
 		fmt->rtn += write(1, "+", blk->plus);
 		fmt->rtn += write(1, "-", blk->minus);
 		fmt->rtn += write(1, " ", blk->space);
@@ -72,16 +92,22 @@ int			ft_print_integer(t_fmt *fmt)
 
 	ft_bzero(&blk, sizeof(blk));
 	if (fmt->spec == 'd' || fmt->spec == 'i')
-		if (ft_print_decimal(fmt, &blk) == ERROR)
+	{
+		ft_len_signed(fmt);
+		ft_itoa_signed(fmt, &blk);
+		ft_decide_block(fmt, &blk);
+		if(ft_write_integer(fmt, &blk) == ERROR)
 			return (ERROR);
-	if (fmt->spec == 'u')
-		if (ft_print_unsigned(fmt, &blk) == ERROR)
+	}
+	if (fmt->spec == 'u' || fmt->spec == 'o' ||
+		fmt->spec == 'x' || fmt->spec == 'X')
+	{
+		ft_len_unsigned(fmt);
+		ft_base_unsigned(fmt);
+		ft_itoa_unsigned(fmt, &blk);
+		ft_decide_block(fmt, &blk);
+		if(ft_write_integer(fmt, &blk) == ERROR)
 			return (ERROR);
-	if (fmt->spec == 'o')
-		if (ft_print_octal(fmt, &blk) == ERROR)
-			return (ERROR);
-	if (fmt->spec == 'x' || fmt->spec == 'X')
-		if (ft_print_hexadecimal(fmt, &blk) == ERROR)
-			return (ERROR);
+	}
 	return (0);
 }

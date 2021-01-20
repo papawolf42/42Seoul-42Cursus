@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/20 17:10:23 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/20 19:07:51 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <stdlib.h>
 
 # define ERROR -1
+# define CHARSET_DECI "0123456789"
 # define CHARSET_OCTA "01234567"
-# define CHARSET_LOWER_HEXA "0123456789abcdef"
-# define CHARSET_UPPER_HEXA "0123456789ABCDEF"
+# define CHARSET_HEXA_L "0123456789abcdef"
+# define CHARSET_HEXA_U "0123456789ABCDEF"
 
 /*
 ** typedef
@@ -83,6 +84,8 @@ typedef struct	s_fmt
 	char		spec;
 	t_llint		nbr;
 	t_ullint	unbr;
+	int			base;
+	char		*cbase;
 	char		buff[21];
 	int			rtn;
 }				t_fmt;
@@ -146,42 +149,22 @@ int				ft_parse_spec(t_fmt *fmt);
 /*
 ** print_integer.c
 */
+
 void			ft_len_signed(t_fmt *fmt);
 void			ft_len_unsigned(t_fmt *fmt);
+int				ft_decide_block(t_fmt *fmt, t_blk *blk);
 int				ft_write_integer(t_fmt *fmt, t_blk *blk);
 int				ft_print_integer(t_fmt *fmt);
 
 /*
-** print_id.c
+** print_diuxX.c
 */
 
-void			ft_itoa_id(t_fmt *fmt, t_blk *blk);
-int				ft_decide_block_id(t_fmt *fmt, t_blk *blk);
-int				ft_print_decimal(t_fmt *fmt, t_blk *blk);
-
-/*
-** print_u.c
-*/
-
-void			ft_itoa_u(t_fmt *fmt, t_blk *blk);
-int				ft_decide_block_u(t_fmt *fmt, t_blk *blk);
-int				ft_print_unsigned(t_fmt *fmt, t_blk *blk);
-
-/*
-** print_o.c
-*/
-
-void			ft_itoa_o(t_fmt *fmt, t_blk *blk);
-int				ft_decide_block_o(t_fmt *fmt, t_blk *blk);
-int				ft_print_octal(t_fmt *fmt, t_blk *blk);
-
-/*
-** print_xX.c
-*/
-
-void			ft_itoa_xX(t_fmt *fmt, t_blk *blk);
-int				ft_decide_block_xX(t_fmt *fmt, t_blk *blk);
-int				ft_print_hexadecimal(t_fmt *fmt, t_blk *blk);
+int         	ft_base_unsigned(t_fmt *fmt);
+int				ft_count_digit_signed(t_llint nbr);
+int				ft_count_digit_unsigned(t_ullint nbr, t_ullint base);
+void			ft_itoa_signed(t_fmt *fmt, t_blk *blk);
+void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 
 /*
 ** utils.c
