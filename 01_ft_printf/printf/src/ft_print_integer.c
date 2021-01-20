@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/20 19:50:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/20 23:11:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,22 @@ int			ft_decide_block(t_fmt *fmt, t_blk *blk)
 
 int			ft_write_integer(t_fmt *fmt, t_blk *blk)
 {
-	int		head;
-	char	*letter;
-
-	head = 0;
-	letter = fmt->flag[zero] && !blk->minus ? "0" : " ";
-		while (blk->lpad--)
-			fmt->rtn += write(1, " ", 1);
+	while (blk->lpad--)
+		fmt->rtn += write(1, " ", 1);
+	if (fmt->spec == 'x')
 		fmt->rtn += write(1, "0x", blk->prefix);
-		fmt->rtn += write(1, "+", blk->plus);
-		fmt->rtn += write(1, "-", blk->minus);
-		fmt->rtn += write(1, " ", blk->space);
-		while (blk->zero--)
-			fmt->rtn += write(1, "0", 1);
-		while (blk->prec--)
-			fmt->rtn += write(1, "0", 1);
-		fmt->rtn += write(1, blk->buff, blk->nbr);
-		while (blk->rpad--)
-			fmt->rtn += write(1, " ", 1);
+	else
+		fmt->rtn += write(1, "0X", blk->prefix);
+	fmt->rtn += write(1, "+", blk->plus);
+	fmt->rtn += write(1, "-", blk->minus);
+	fmt->rtn += write(1, " ", blk->space);
+	while (blk->zero--)
+		fmt->rtn += write(1, "0", 1);
+	while (blk->prec--)
+		fmt->rtn += write(1, "0", 1);
+	fmt->rtn += write(1, blk->buff, blk->nbr);
+	while (blk->rpad--)
+		fmt->rtn += write(1, " ", 1);
 	return (0);
 }
 
@@ -96,7 +94,7 @@ int			ft_print_integer(t_fmt *fmt)
 		ft_len_signed(fmt);
 		ft_itoa_signed(fmt, &blk);
 		ft_decide_block(fmt, &blk);
-		if(ft_write_integer(fmt, &blk) == ERROR)
+		if (ft_write_integer(fmt, &blk) == ERROR)
 			return (ERROR);
 	}
 	if (fmt->spec == 'u' || fmt->spec == 'o' ||
@@ -106,7 +104,7 @@ int			ft_print_integer(t_fmt *fmt)
 		ft_base_unsigned(fmt);
 		ft_itoa_unsigned(fmt, &blk);
 		ft_decide_block(fmt, &blk);
-		if(ft_write_integer(fmt, &blk) == ERROR)
+		if (ft_write_integer(fmt, &blk) == ERROR)
 			return (ERROR);
 	}
 	return (0);

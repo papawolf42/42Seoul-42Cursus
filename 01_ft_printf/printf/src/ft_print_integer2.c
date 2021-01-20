@@ -6,30 +6,30 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/20 19:50:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/20 23:09:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int         ft_base_unsigned(t_fmt *fmt)
+int			ft_base_unsigned(t_fmt *fmt)
 {
-    if (fmt->spec == 'u')
+	if (fmt->spec == 'u')
 	{
 		fmt->base = 10;
 		fmt->cbase = CHARSET_DECI;
 	}
-    else if (fmt->spec == 'o')
+	else if (fmt->spec == 'o')
 	{
 		fmt->base = 8;
 		fmt->cbase = CHARSET_OCTA;
 	}
-    else if (fmt->spec == 'x' || fmt->spec == 'X')
+	else if (fmt->spec == 'x' || fmt->spec == 'X')
 	{
 		fmt->base = 16;
 		fmt->cbase = fmt->spec == 'x' ? CHARSET_HEXA_L : CHARSET_HEXA_U;
 	}
-    return (1);
+	return (1);
 }
 
 int			ft_count_digit_signed(t_llint nbr)
@@ -87,7 +87,7 @@ void		ft_itoa_signed(t_fmt *fmt, t_blk *blk)
 	if (nbr < 0 && (nbr *= -1))
 		blk->minus = 1;
 	blk->nbr = ft_count_digit_signed(nbr);
-	if (blk->minus == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
+	if (blk->minus == 0 && fmt->flag[plus] > 0)
 		blk->plus = 1;
 	if (blk->minus == 0 && fmt->flag[space] > 0 && fmt->flag[plus] == 0)
 		blk->space = 1;
@@ -103,25 +103,25 @@ void		ft_itoa_signed(t_fmt *fmt, t_blk *blk)
 void		ft_itoa_unsigned(t_fmt *fmt, t_blk *blk)
 {
 	t_ullint		unbr;
-	int			    i;
+	int				i;
 
 	unbr = fmt->unbr;
 	blk->nbr = ft_count_digit_unsigned(unbr, fmt->base);
-	if (blk->minus == 0 && fmt->flag[plus] > 0 && fmt->flag[space] == 0)
+	if (fmt->flag[plus] > 0)
 		blk->plus = 1;
-	if (blk->minus == 0 && fmt->flag[space] > 0 && fmt->flag[plus] == 0)
+	if (fmt->flag[space] > 0 && fmt->flag[plus] == 0)
 		blk->space = 1;
 	if (unbr == 0)
 		blk->buff[0] = '0';
 	i = blk->nbr;
 	while (unbr >= 1 && (blk->buff[--i] = fmt->cbase[unbr % fmt->base]))
 		unbr /= fmt->base;
-    if (fmt->spec == 'u' && fmt->flag[hash])
-        blk->prefix = 0;
-    else if (fmt->spec == 'o' && fmt->flag[hash])
-        blk->prefix = 1;
-    else if ((fmt->spec == 'x' || fmt->spec == 'X') && fmt->flag[hash])
-        blk->prefix = 2;
+	if (fmt->spec == 'u' && fmt->flag[hash])
+		blk->prefix = 0;
+	else if (fmt->spec == 'o' && fmt->flag[hash])
+		blk->prefix = 1;
+	else if (fmt->flag[hash] && fmt->unbr != 0)
+		blk->prefix = 2;
 	blk->pre = blk->prefix + blk->minus + blk->plus + blk->space;
-	blk->nbr = fmt->unbr == 0 && fmt->flag[dot] && fmt->prec == 0 ? 0 : blk->nbr;
+	blk->nbr = !fmt->unbr && fmt->flag[dot] && fmt->prec == 0 ? 0 : blk->nbr;
 }
