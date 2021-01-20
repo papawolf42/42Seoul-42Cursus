@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/19 15:13:55 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/19 22:36:54 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	parse.c \
 	print_id.c \
 	print_u.c \
+	print_o.c \
 	print_integer.c \
 	spec_s.c \
 	utils.c \
@@ -143,6 +144,7 @@ obj/iterative.o: src/iterative.c include/printf.h ../libft/include/libft.h
 obj/parse.o: src/parse.c include/printf.h ../libft/include/libft.h
 obj/print_id.o: src/print_id.c include/printf.h ../libft/include/libft.h
 obj/print_u.o: src/print_u.c include/printf.h ../libft/include/libft.h
+obj/print_o.o: src/print_o.c include/printf.h ../libft/include/libft.h
 obj/print_integer.o: src/print_integer.c include/printf.h ../libft/include/libft.h
 obj/spec_s.o: src/spec_s.c include/printf.h ../libft/include/libft.h
 obj/utils.o: src/utils.c include/printf.h ../libft/include/libft.h

@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 19:12:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 22:34:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int			ft_print_integer(t_fmt *fmt)
 	if (fmt->spec == 'u')
 		if (ft_print_unsigned(fmt, &blk) == ERROR)
 			return (ERROR);
-	// if (fmt->spec == 'o')
-	// 	if (ft_print_octal(fmt) == ERROR)
-	// 		return (ERROR);
+	if (fmt->spec == 'o')
+		if (ft_print_octal(fmt, &blk) == ERROR)
+			return (ERROR);
 	// if (fmt->spec == 'x' || fmt->spec == 'X')
 	// 	if (ft_print_hexadecimal(fmt) == ERROR)
 	// 		return (ERROR);

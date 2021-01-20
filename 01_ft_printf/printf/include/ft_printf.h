@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 20:48:20 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/19 22:39:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <stdlib.h>
 
 # define ERROR -1
-# define CHARSET_OCTA = "01234567"
-# define CHARSET_LOWER_HEXA = "0123456789abcdef"
-# define CHARSET_UPPER_HEXA = "0123456789ABCDEF"
+# define CHARSET_OCTA "01234567"
+# define CHARSET_LOWER_HEXA "0123456789abcdef"
+# define CHARSET_UPPER_HEXA "0123456789ABCDEF"
 
 /*
 ** typedef
@@ -166,6 +166,14 @@ int				ft_print_decimal(t_fmt *fmt, t_blk *blk);
 void			ft_itoa_u(t_fmt *fmt, t_blk *blk);
 int				ft_decide_block_u(t_fmt *fmt, t_blk *blk);
 int				ft_print_unsigned(t_fmt *fmt, t_blk *blk);
+
+/*
+** print_o.c
+*/
+
+void			ft_itoa_o(t_fmt *fmt, t_blk *blk);
+int				ft_decide_block_o(t_fmt *fmt, t_blk *blk);
+int				ft_print_octal(t_fmt *fmt, t_blk *blk);
 
 /*
 ** utils.c
