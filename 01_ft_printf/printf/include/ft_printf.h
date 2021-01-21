@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -111,7 +111,7 @@ typedef struct	s_blk
 }				t_blk;
 
 /*
-** printf.c
+** ft_printf.c
 */
 
 void			ft_reset_fmt(t_fmt *fmt);
@@ -122,7 +122,7 @@ int				ft_printf(const char *format, ...);
 int				main(void);
 
 /*
-** iterative
+** ft_iterative
 */
 
 int				ft_print_nonformat(t_fmt *fmt);
@@ -130,7 +130,7 @@ int				ft_parse_format(t_fmt *fmt);
 int				ft_print_format(t_fmt *fmt);
 
 /*
-** parce.c
+** ft_parce.c
 */
 
 int				ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg);
@@ -143,11 +143,11 @@ int				ft_parse_len(t_fmt *fmt);
 int				ft_parse_spec(t_fmt *fmt);
 
 /*
-** parce2.c
+** ft_parce2.c
 */
 
 /*
-** print_integer.c
+** ft_print_integer.c
 */
 
 void			ft_len_signed(t_fmt *fmt);
@@ -157,7 +157,7 @@ int				ft_write_integer(t_fmt *fmt, t_blk *blk);
 int				ft_print_integer(t_fmt *fmt);
 
 /*
-** print_integer2.c
+** ft_print_integer2.c
 */
 
 int         	ft_base_unsigned(t_fmt *fmt);
@@ -166,8 +166,9 @@ int				ft_count_digit_unsigned(t_ullint nbr, t_ullint base);
 void			ft_itoa_signed(t_fmt *fmt, t_blk *blk);
 void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 
+
 /*
-** utils.c
+** ft_utils.c
 */
 
 int				ft_count_digit(t_llint nbr);

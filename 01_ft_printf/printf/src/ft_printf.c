@@ -6,11 +6,11 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/01 17:27:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/20 17:52:55 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/22 01:19:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 const char	*format2; // MUST DELETE
 

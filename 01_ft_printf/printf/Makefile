@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/20 23:17:52 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/22 01:50:42 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,16 +49,17 @@ DIR_LIBFT_INC := ../libft/include
 # source files
 # =========================
 
-#SRCS := $(wildcard $(DIR_SRC)/*.c)
+# SRCS := $(wildcard $(DIR_SRC)/*.c)
 
 SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_printf.c \
-	iterative.c \
-	parse.c \
-	print_integer.c \
-	print_integer2.c \
+	ft_iterative.c \
+	ft_parse.c \
+	ft_print_integer.c \
+	ft_print_integer2.c \
+	ft_print_letter.c \
+	ft_utils.c \
 	spec_s.c \
-	utils.c \
 )
 
 # =========================
@@ -137,10 +138,11 @@ $(DIR_OBJ)/%.o : %.c
 
 # DO NOT DELETE
 
-obj/ft_printf.o: src/ft_printf.c include/printf.h ../libft/include/libft.h
-obj/iterative.o: src/iterative.c include/printf.h ../libft/include/libft.h
-obj/parse.o: src/parse.c include/printf.h ../libft/include/libft.h
-obj/print_integer.o: src/print_integer.c include/printf.h ../libft/include/libft.h
-obj/print_integer2.o: src/print_integer2.c include/printf.h ../libft/include/libft.h
-obj/spec_s.o: src/spec_s.c include/printf.h ../libft/include/libft.h
-obj/utils.o: src/utils.c include/printf.h ../libft/include/libft.h
+obj/ft_iterative.o: src/ft_iterative.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_parse.o: src/ft_parse.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_print_integer.o: src/ft_print_integer.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_print_integer2.o: src/ft_print_integer2.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_print_letter.o: src/ft_print_letter.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_printf.o: src/ft_printf.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_utils.o: src/ft_utils.c include/ft_printf.h ../libft/include/libft.h
+obj/spec_s.o: src/spec_s.c include/ft_printf.h ../libft/include/libft.h

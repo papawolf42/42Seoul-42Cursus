@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterative.c                                        :+:      :+:    :+:   */
+/*   ft_iterative.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 15:36:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/19 12:37:07 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/22 01:19:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 int		ft_print_nonformat(t_fmt *fmt)
 {
@@ -45,19 +45,21 @@ int		ft_print_format(t_fmt *fmt)
 		if(ft_print_integer(fmt) == ERROR)
 			return (ERROR);
 	/*
-	if (fmt->spec == 'f' || fmt->spec == 'e' || fmt->spec == 'g')
+	else if (fmt->spec == 'f' || fmt->spec == 'e' || fmt->spec == 'g')
 		if (ft_print_float(fmt) == ERROR)
 			return (ERROR);
-	if (fmt->spec == 'c' || fmt->spec == 's')
+			*/
+	else if (fmt->spec == 'c' || fmt->spec == 's')
 		if (ft_print_letter(fmt) == ERROR)
 			return (ERROR);
-	if (fmt->spec == 'p')
+			/*
+	else if (fmt->spec == 'p')
 		if (ft_print_address(fmt) == ERROR)
 			return (ERROR);
-	if (fmt->spec == 'n')
+	else if (fmt->spec == 'n')
 		if (ft_print_count(fmt) == ERROR)
 			return (ERROR);
-	if (fmt->spec == '%')
+	else if (fmt->spec == '%')
 		if (ft_print_percent(fmt) == ERROR)
 			return (ERROR);
 	*/
