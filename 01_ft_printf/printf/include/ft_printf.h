@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 00:23:47 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/22 05:47:25 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define CHARSET_OCTA "01234567"
 # define CHARSET_HEXA_L "0123456789abcdef"
 # define CHARSET_HEXA_U "0123456789ABCDEF"
+# define CHARSET_NULL "(null)"
 
 /*
 ** typedef
@@ -166,15 +167,22 @@ int				ft_count_digit_unsigned(t_ullint nbr, t_ullint base);
 void			ft_itoa_signed(t_fmt *fmt, t_blk *blk);
 void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 
+/*
+** ft_print_letter.c
+*/
+
+int				ft_print_string(t_fmt *fmt);
+int				ft_print_character(t_fmt *fmt);
+int				ft_print_letter(t_fmt *fmt);
+
 
 /*
 ** ft_utils.c
 */
 
-int				ft_count_digit(t_llint nbr);
-int				ft_count_digit_u(t_ullint nbr, char cbase);
 int				ft_abs(int nbr);
 int				ft_max(int a, int b);
+int				ft_min(int a, int b);
 
 /*
 ** spec_s.c
