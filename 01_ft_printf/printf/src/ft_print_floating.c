@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/29 16:03:29 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 06:27:55 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head)
 		return ;
 	if (head == big->idx_nul - 1)
 		big->out[head] = (big->out[head - 1] - '0') & 1 ? '6' : '4';
-	if (big->out[head] - '0' >= 5)
+	if (big->out[head] >= '5')
 		up = 1;
 	big->out[head] = '\0';
 	while (up == 1 && --head >= 0 && (big->out[head] += 1))
@@ -179,16 +179,30 @@ void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head)
 	}
 }
 
-void			ft_write_float(t_big *big, t_fmt *fmt)
+void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk)
+{
+	while (blk->lpad--)
+		fmt->rtn += write(1, " ", 1);
+	if (fmt->spec == 'x')
+		fmt->rtn += write(1, "0x", blk->prefix);
+	else
+		fmt->rtn += write(1, "0X", blk->prefix);
+	fmt->rtn += write(1, "+", blk->plus);
+	fmt->rtn += write(1, "-", blk->minus);
+	fmt->rtn += write(1, " ", blk->space);
+	while (blk->zero--)
+		fmt->rtn += write(1, "0", 1);
+	while (blk->prec--)
+		fmt->rtn += write(1, "0", 1);
+	ft_write_flt(big, fmt);
+	while (blk->rpad--)
+		fmt->rtn += write(1, " ", 1);
+}
+
+void			ft_write_flt(t_big *big, t_fmt *fmt)
 {
 	int			i;
 
-	// i = 1;
-	// if (big->out[0] != '0')
-	// {
-	// 	i = 0;
-
-	// }
 	i = (big->out[0] == '0');
 	if (big->idx_pnt == 1)
 		fmt->rtn += write(1, "0", 1);
@@ -208,6 +222,7 @@ int				ft_print_floating(t_fmt *fmt)
 {
 	t_dbl		dbl;
 	t_big		big;
+	t_blk		blk;
 
 	dbl.val = va_arg(fmt->ap, double);
 	ft_bzero(&big, sizeof(big));
@@ -219,10 +234,24 @@ int				ft_print_floating(t_fmt *fmt)
 	// feg 판단
 	ft_get_output(&big, big.len_i, big.len_f);
 	ft_round_up(&big, fmt, 0, 0);
-	// 플레그와 너비, 정밀도 결정
-	// ft_decide_block();
-	// 출력
-	ft_write_float(&big, fmt);
+	ft_bzero(&blk, sizeof(blk));
+	ft_decide_block_nbr(&big, fmt, &blk, dbl.s_dbl.sign);
+	ft_decide_block(fmt, &blk);
+	ft_write_floating(&big, fmt, &blk);
 	// 할당 해제.
 	return (0);
+}
+
+// (round : 1)(integer)(point)(fraction)(more precision)
+
+void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
+{
+	blk->nbr += big->out[0] != '0' ? 1 : 0;
+	blk->nbr += big->idx_pnt == 1 ? 1 : 0;
+	blk->nbr += big->len_i;
+	blk->nbr += fmt->prec > 0 ? 1 : 0;
+	blk->nbr += fmt->prec;
+	blk->minus += sign;
+	blk->plus += (!sign && fmt->flag[plus]);
+	blk->pre = blk->plus + blk->minus + blk->space;
 }

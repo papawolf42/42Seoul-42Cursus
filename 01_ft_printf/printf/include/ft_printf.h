@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/28 11:50:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 06:15:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct	s_fmt
 
 /*
 ** (left padding)(pre : prefix or sign or space)(zero)(precision)(number)(right padding)
+**                            (round : 1)(integer)(point)(fraction)(more precision)
 */
 
 typedef struct	s_blk
@@ -220,7 +221,11 @@ void			ft_get_fraction(t_big *big);
 
 void			ft_get_output(t_big *big, int len_i, int len_f);
 void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head);
-void			ft_write_float(t_big *big, t_fmt *fmt);
+
+void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign);
+
+void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
+void			ft_write_flt(t_big *big, t_fmt *fmt);
 
 int				ft_print_floating(t_fmt *fmt);
 
