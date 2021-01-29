@@ -6,19 +6,19 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 01:19:17 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/22 22:42:52 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-int			ft_parse_nbr_onestar(t_fmt *fmt, t_flg flg)
+int			ft_parse_nbr_onestar(t_fmt *fmt, e_flg flg)
 {
 }
 */
 
-int			ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg)
+int			ft_parse_nbr_nonestar(t_fmt *fmt, e_flg flg)
 {
 	int		nbr;
 
@@ -53,7 +53,7 @@ int			ft_atoi_parse_star(t_fmt *fmt)
 	return (sign * result);
 }
 
-int			ft_parse_nbr(t_fmt *fmt, t_flg flg)
+int			ft_parse_nbr(t_fmt *fmt, e_flg flg)
 {
 	int			nbr;
 

@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 15:36:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 01:57:27 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/22 23:28:45 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ int		ft_print_format(t_fmt *fmt)
 		if (ft_print_letter(fmt) == ERROR)
 			return (ERROR);
 	}
-	/*
 	else if (fmt->spec == 'f' || fmt->spec == 'e' || fmt->spec == 'g')
-		if (ft_print_float(fmt) == ERROR)
+	{
+		if (ft_print_floating(fmt) == ERROR)
 			return (ERROR);
+	}
+			/*
 	else if (fmt->spec == 'p')
 		if (ft_print_address(fmt) == ERROR)
 			return (ERROR);

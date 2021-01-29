@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 05:47:25 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/28 11:50:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
+# include <time.h>
 
 # define ERROR -1
 # define CHARSET_DECI "0123456789"
@@ -63,7 +64,7 @@ typedef enum
 	zero,  // 4
 	star,  // 5
 	dot    // 6
-}	t_flg;
+}	e_flg;
 
 typedef enum
 {
@@ -71,7 +72,7 @@ typedef enum
 	ll,
 	h,
 	hh
-}	t_len;
+}	e_len;
 
 typedef struct	s_fmt
 {
@@ -112,6 +113,34 @@ typedef struct	s_blk
 }				t_blk;
 
 /*
+** sturct for floating point
+*/
+
+typedef union	u_dbl
+{
+	double		val;
+	struct
+	{
+		size_t	mtsa : 52;
+		size_t	expo : 11;
+		size_t	sign : 1;
+	}			s_dbl;
+}				t_dbl;
+
+typedef struct	s_big
+{
+	char		mtsa[54];
+	int			expo;
+	char		intg[309];
+	char		frac[1077];
+	char		out[1385];
+	int			len_i;
+	int			len_f;
+	int			idx_pnt;
+	int			idx_nul;
+}				t_big;
+
+/*
 ** ft_printf.c
 */
 
@@ -134,10 +163,10 @@ int				ft_print_format(t_fmt *fmt);
 ** ft_parce.c
 */
 
-int				ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg);
+int				ft_parse_nbr_nonestar(t_fmt *fmt, e_flg flg);
 int				ft_atoi_parse_star(t_fmt *fmt);
 
-int				ft_parse_nbr(t_fmt *fmt, t_flg flg);
+int				ft_parse_nbr(t_fmt *fmt, e_flg flg);
 int				ft_parse_flag(t_fmt *fmt);
 int				ft_parse_prec(t_fmt *fmt);
 int				ft_parse_len(t_fmt *fmt);
@@ -175,6 +204,25 @@ int				ft_print_string(t_fmt *fmt);
 int				ft_print_character(t_fmt *fmt);
 int				ft_print_letter(t_fmt *fmt);
 
+/*
+** ft_print_floating.c
+*/
+
+void			ft_get_52_bit(size_t mantissa, t_big *big);
+
+int				ft_make_intg_dp(char intg_dp[][309], int max, int expo);
+void			ft_sum_intg_dp(t_big *big, char intg_dp[][309], int limit, int toggle);
+void			ft_get_integer(t_big *big);
+
+int				ft_make_frac_dp(char frac_dp[][1077], int max, int expo);
+void			ft_sum_frac_dp(t_big *big, char frac_dp[][1077], int limit, int toggle);
+void			ft_get_fraction(t_big *big);
+
+void			ft_get_output(t_big *big, int len_i, int len_f);
+void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head);
+void			ft_write_float(t_big *big, t_fmt *fmt);
+
+int				ft_print_floating(t_fmt *fmt);
 
 /*
 ** ft_utils.c

@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/06 01:26:55 by gunkim            #+#    #+#              #
-#    Updated: 2021/01/22 01:50:42 by gunkim           ###   ########.fr        #
+#    Updated: 2021/01/22 23:29:39 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_print_integer.c \
 	ft_print_integer2.c \
 	ft_print_letter.c \
+	ft_print_floating.c \
 	ft_utils.c \
 	spec_s.c \
 )
@@ -143,6 +144,7 @@ obj/ft_parse.o: src/ft_parse.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_integer.o: src/ft_print_integer.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_integer2.o: src/ft_print_integer2.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_letter.o: src/ft_print_letter.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_print_floating.o: src/ft_print_floating.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_printf.o: src/ft_printf.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_utils.o: src/ft_utils.c include/ft_printf.h ../libft/include/libft.h
 obj/spec_s.o: src/spec_s.c include/ft_printf.h ../libft/include/libft.h
