@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 06:27:55 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 09:21:09 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,9 +208,9 @@ void			ft_write_flt(t_big *big, t_fmt *fmt)
 		fmt->rtn += write(1, "0", 1);
 	while (i < big->idx_pnt)
 		fmt->rtn += write(1, big->out + i++, 1);
+	fmt->rtn += fmt->prec > 0 || fmt->flag[hash] > 0 ? write(1, ".", 1) : 0;
 	if (fmt->prec > 0)
 	{
-		fmt->rtn += write(1, ".", 1);
 		while (i < big->idx_pnt + fmt->prec && i < big->idx_nul)
 			fmt->rtn += write(1, big->out + i++, 1);
 		while (i++ < big->idx_pnt + fmt->prec)
@@ -249,9 +249,10 @@ void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
 	blk->nbr += big->out[0] != '0' ? 1 : 0;
 	blk->nbr += big->idx_pnt == 1 ? 1 : 0;
 	blk->nbr += big->len_i;
-	blk->nbr += fmt->prec > 0 ? 1 : 0;
+	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
 	blk->nbr += fmt->prec;
 	blk->minus += sign;
 	blk->plus += (!sign && fmt->flag[plus]);
+	blk->space += fmt->flag[space] ? 1 : 0;
 	blk->pre = blk->plus + blk->minus + blk->space;
 }
