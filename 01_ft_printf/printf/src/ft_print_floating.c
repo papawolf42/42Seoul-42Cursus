@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 09:35:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 19:04:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void			ft_sum_frac_dp(t_big *big, char frac_dp[][1077], int i, int k)
 void			ft_get_fraction(t_big *big)
 {
 	static int	exist_max;
-	static char	frac_dp[1073][1077] = {"5", };
+	static char	frac_dp[1075][1077] = {"5", };
 
 	if (exist_max < -1 * big->expo + 51)
 		exist_max = ft_make_frac_dp(frac_dp, exist_max, -1 * big->expo + 51);
@@ -204,7 +204,7 @@ void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk)
 void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
 {
 	blk->nbr += big->out[0] != '0' ? 1 : 0;
-	blk->nbr += big->idx_pnt == 1 ? 1 : 0;
+	blk->nbr += big->idx_pnt == 1 && big->out[0] == '0' ? 1 : 0;
 	blk->nbr += big->len_i;
 	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
 	blk->nbr += fmt->prec;
@@ -236,7 +236,7 @@ void			ft_write_flt(t_big *big, t_fmt *fmt)
 	int			i;
 
 	i = (big->out[0] == '0');
-	if (big->idx_pnt == 1)
+	if (big->idx_pnt == 1 && big->out[0] == '0')
 		fmt->rtn += write(1, "0", 1);
 	while (i < big->idx_pnt)
 		fmt->rtn += write(1, big->out + i++, 1);
