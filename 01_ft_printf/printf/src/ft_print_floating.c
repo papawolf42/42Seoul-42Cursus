@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 09:21:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 09:35:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,38 @@ void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk)
 		fmt->rtn += write(1, " ", 1);
 }
 
+// (round : 1)(integer)(point)(fraction)(more precision)
+
+void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
+{
+	blk->nbr += big->out[0] != '0' ? 1 : 0;
+	blk->nbr += big->idx_pnt == 1 ? 1 : 0;
+	blk->nbr += big->len_i;
+	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
+	blk->nbr += fmt->prec;
+	blk->minus += sign;
+	blk->plus += (!sign && fmt->flag[plus]);
+	blk->space += fmt->flag[space] ? 1 : 0;
+	blk->pre = blk->plus + blk->minus + blk->space;
+}
+
+int			ft_decide_block_floating(t_fmt *fmt, t_blk *blk)
+{
+	blk->prec = ft_max(0, fmt->prec - blk->nbr);
+	fmt->size = ft_max(blk->nbr + blk->prec, ft_max(fmt->wid, fmt->prec));
+	blk->pad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
+	if (!fmt->flag[minus])
+	{
+		if (!fmt->flag[zero])
+			blk->lpad = blk->pad;
+		else if (fmt->flag[zero])
+			blk->zero = blk->pad;
+	}
+	else if (fmt->flag[minus])
+		blk->rpad = blk->pad;
+	return (0);
+}
+
 void			ft_write_flt(t_big *big, t_fmt *fmt)
 {
 	int			i;
@@ -236,23 +268,8 @@ int				ft_print_floating(t_fmt *fmt)
 	ft_round_up(&big, fmt, 0, 0);
 	ft_bzero(&blk, sizeof(blk));
 	ft_decide_block_nbr(&big, fmt, &blk, dbl.s_dbl.sign);
-	ft_decide_block(fmt, &blk);
+	ft_decide_block_floating(fmt, &blk);
 	ft_write_floating(&big, fmt, &blk);
 	// 할당 해제.
 	return (0);
-}
-
-// (round : 1)(integer)(point)(fraction)(more precision)
-
-void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
-{
-	blk->nbr += big->out[0] != '0' ? 1 : 0;
-	blk->nbr += big->idx_pnt == 1 ? 1 : 0;
-	blk->nbr += big->len_i;
-	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
-	blk->nbr += fmt->prec;
-	blk->minus += sign;
-	blk->plus += (!sign && fmt->flag[plus]);
-	blk->space += fmt->flag[space] ? 1 : 0;
-	blk->pre = blk->plus + blk->minus + blk->space;
 }

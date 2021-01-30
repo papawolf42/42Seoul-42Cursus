@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 06:15:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 09:30:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,7 @@ void			ft_get_output(t_big *big, int len_i, int len_f);
 void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head);
 
 void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign);
+int				ft_decide_block_floating(t_fmt *fmt, t_blk *blk);
 
 void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
 void			ft_write_flt(t_big *big, t_fmt *fmt);
