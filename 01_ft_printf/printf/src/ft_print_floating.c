@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 19:04:59 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/30 19:35:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
 	blk->nbr += fmt->prec;
 	blk->minus += sign;
 	blk->plus += (!sign && fmt->flag[plus]);
-	blk->space += fmt->flag[space] ? 1 : 0;
+	blk->space += (!sign && fmt->flag[space]) ? 1 : 0;
 	blk->pre = blk->plus + blk->minus + blk->space;
 }
 
