@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 06:10:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/31 20:05:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ int			ft_print_character(t_fmt *fmt)
 	return (0);
 }
 
-int			ft_print_string(t_fmt *fmt)
+int			ft_print_string(t_fmt *fmt, char *s)
 {
-	char	*s;
 	int		out;
 	int		lpad;
 	int		rpad;
 
-	s = va_arg(fmt->ap, char *);
 	if (s == NULL)
 		s = CHARSET_NULL;
 	out = fmt->flag[dot] ? ft_min(ft_strlen(s), fmt->prec) : ft_strlen(s);
@@ -58,7 +56,7 @@ int			ft_print_letter(t_fmt *fmt)
 		if (ft_print_character(fmt) == ERROR)
 			return (ERROR);
 	if (fmt->spec == 's')
-		if (ft_print_string(fmt) == ERROR)
+		if (ft_print_string(fmt, va_arg(fmt->ap, char *)) == ERROR)
 			return (ERROR);
 	return (0);
 }

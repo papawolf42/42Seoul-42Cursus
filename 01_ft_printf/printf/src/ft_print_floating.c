@@ -6,20 +6,44 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 19:35:17 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/31 20:49:46 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_get_52_bit(size_t mantissa, t_big *big)
+void			ft_get_52_bit(t_dbl *dbl, t_big *big)
 {
-	int			i;
+	int				i;
+	const size_t	mantissa = dbl->s_dbl.mtsa;
 
 	big->mtsa[52] = '1';
 	i = 52;
 	while (i--)
 		big->mtsa[i] = (((mantissa >> i) & 1) > 0) + '0';
+}
+
+int				ft_is_inf_or_nan(t_fmt *fmt, t_dbl *dbl, t_big *big, int expo)
+{
+	if (expo == 1024 && dbl->s_dbl.mtsa != 0)
+	{
+		ft_print_string(fmt, "nan");
+		return (1);
+	}
+	else if (expo == 1024 && dbl->s_dbl.mtsa == 0)
+	{
+		if (dbl->s_dbl.sign)
+			ft_print_string(fmt, "-inf");
+		else if (fmt->flag[plus])
+			ft_print_string(fmt, "+inf");
+		else if (fmt->flag[space])
+			ft_print_string(fmt, " inf");
+		else
+			ft_print_string(fmt, "inf");
+		return (1);
+	}
+	big->len_f = 0;
+	return (0);
 }
 
 int				ft_make_intg_dp(char intg_dp[][309], int max, int expo)
@@ -156,10 +180,6 @@ void			ft_get_output(t_big *big, int len_i, int len_f)
 	big->idx_nul = idx + 1;
 }
 
-// f가 따로 들어오지 않으면, prec은 6
-// 정밀도가 0으로 취급하는 것 -> 음수의 정밀도, .만 찍힌 경우, .0
-// %.-1f, %.f, %.0f
-
 void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head)
 {
 	fmt->prec = (fmt->prec == 0 && fmt->flag[dot] == 0) ? 6 : fmt->prec;
@@ -201,7 +221,7 @@ void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk)
 
 // (round : 1)(integer)(point)(fraction)(more precision)
 
-void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
+void			ft_decide_block_nbr(t_fmt *fmt, t_big *big, t_blk *blk, int sign)
 {
 	blk->nbr += big->out[0] != '0' ? 1 : 0;
 	blk->nbr += big->idx_pnt == 1 && big->out[0] == '0' ? 1 : 0;
@@ -210,7 +230,7 @@ void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign)
 	blk->nbr += fmt->prec;
 	blk->minus += sign;
 	blk->plus += (!sign && fmt->flag[plus]);
-	blk->space += (!sign && fmt->flag[space]) ? 1 : 0;
+	blk->space += (!blk->plus && !blk->minus && fmt->flag[space]) ? 1 : 0;
 	blk->pre = blk->plus + blk->minus + blk->space;
 }
 
@@ -258,18 +278,17 @@ int				ft_print_floating(t_fmt *fmt)
 
 	dbl.val = va_arg(fmt->ap, double);
 	ft_bzero(&big, sizeof(big));
+	ft_bzero(&blk, sizeof(blk));
 	big.expo = dbl.s_dbl.expo - 1023;
-	// (추후 구현) 수렴, 발산 판단
-	ft_get_52_bit(dbl.s_dbl.mtsa, &big);
+	if (ft_is_inf_or_nan(fmt, &dbl, &big, big.expo))
+		return (0);
+	ft_get_52_bit(&dbl, &big);
 	ft_get_integer(&big);
 	ft_get_fraction(&big);
-	// feg 판단
 	ft_get_output(&big, big.len_i, big.len_f);
 	ft_round_up(&big, fmt, 0, 0);
-	ft_bzero(&blk, sizeof(blk));
-	ft_decide_block_nbr(&big, fmt, &blk, dbl.s_dbl.sign);
+	ft_decide_block_nbr(fmt, &big, &blk, dbl.s_dbl.sign);
 	ft_decide_block_floating(fmt, &blk);
 	ft_write_floating(&big, fmt, &blk);
-	// 할당 해제.
 	return (0);
 }

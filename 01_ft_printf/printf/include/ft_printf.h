@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/30 17:58:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/01/31 20:07:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 ** ft_print_letter.c
 */
 
-int				ft_print_string(t_fmt *fmt);
+int				ft_print_string(t_fmt *fmt, char *s);
 int				ft_print_character(t_fmt *fmt);
 int				ft_print_letter(t_fmt *fmt);
 
@@ -209,7 +209,8 @@ int				ft_print_letter(t_fmt *fmt);
 ** ft_print_floating.c
 */
 
-void			ft_get_52_bit(size_t mantissa, t_big *big);
+void			ft_get_52_bit(t_dbl *dbl, t_big *big);
+int				ft_is_inf_or_nan(t_fmt *fmt, t_dbl *dbl, t_big *big, int expo);
 
 int				ft_make_intg_dp(char intg_dp[][309], int max, int expo);
 void			ft_sum_intg_dp(t_big *big, char intg_dp[][309], int limit, int toggle);
@@ -222,7 +223,7 @@ void			ft_get_fraction(t_big *big);
 void			ft_get_output(t_big *big, int len_i, int len_f);
 void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head);
 
-void			ft_decide_block_nbr(t_big *big, t_fmt *fmt, t_blk *blk, int sign);
+void			ft_decide_block_nbr(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
 int				ft_decide_block_floating(t_fmt *fmt, t_blk *blk);
 
 void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
