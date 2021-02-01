@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/01 12:34:55 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/01 22:02:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,7 @@ int				ft_zerolen(char *str)
 	return (i);
 }
 
-void			ft_round_up_first_e(t_big *big, t_fmt *fmt, int up, int head)
+void			ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head)
 {
 	fmt->prec = (fmt->prec == 0 && fmt->flag[dot] == 0) ? 6 : fmt->prec;
 	big->idx_pnt_e = big->iszero ? 1 : ft_zerolen(big->out) + 1;
@@ -311,6 +311,11 @@ void			ft_round_up_first_e(t_big *big, t_fmt *fmt, int up, int head)
 		up = 0;
 		if (big->out[head] > '9' && (big->out[head] = '0'))
 			up = 1;
+	}
+	if (big->idx_pnt_e - 2 >= 0 && big->out[big->idx_pnt_e - 2] == '1')
+	{
+		big->idx_pnt_e--;
+		big->int_e++;
 	}
 }
 
@@ -333,10 +338,10 @@ void			ft_make_e_part(t_big *big)
 		big->out_e[3] = nbr % 10 + '0';
 	else
 	{
-		i = 1;
+		i = digit + 1;
 		while (digit--)
 		{
-			big->out_e[++i]= nbr % 10 + '0';
+			big->out_e[i--]= nbr % 10 + '0';
 			nbr /= 10;
 		}
 	}
@@ -345,9 +350,8 @@ void			ft_make_e_part(t_big *big)
 
 void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign)
 {
-	blk->nbr += fmt->prec + 2;
-	// blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
-	// blk->nbr += fmt->prec;
+	blk->nbr += fmt->prec + 1;
+	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
 	blk->nbr += big->len_e;
 	big->out[0] = big->out[0]; // delete
 	blk->minus += sign;
@@ -362,7 +366,7 @@ void			ft_write_e(t_big *big, t_fmt *fmt)
 
 	i = big->idx_pnt_e - 1;
 	fmt->rtn += write(1, big->out + i++, 1);
-	fmt->rtn += fmt->prec ? write(1, ".", 1) : 0;
+	fmt->rtn += fmt->prec || fmt->flag[hash] ? write(1, ".", 1) : 0;
 	if (fmt->prec > 0)
 	{
 		while (i < big->idx_pnt_e + fmt->prec && i < big->idx_nul)
@@ -375,7 +379,7 @@ void			ft_write_e(t_big *big, t_fmt *fmt)
 
 int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk)
 {
-	ft_round_up_first_e(big, fmt, 0, 0);
+	ft_rount_up_e(big, fmt, 0, 0);
 	ft_make_e_part(big);
 	ft_decide_block_e(fmt, big, blk, dbl->s_dbl.sign);
 	ft_decide_block_floating(fmt, blk);
@@ -402,7 +406,7 @@ int				ft_print_floating(t_fmt *fmt)
 	// if (fmt->spec == g)
 	// 	{
 	// 		ft_branch_to_fe();
-	// 	}
+	//	}
 	if (fmt->spec == 'f')
 		ft_print_f(fmt, &dbl, &big, &blk);
 	else if (fmt->spec == 'e')

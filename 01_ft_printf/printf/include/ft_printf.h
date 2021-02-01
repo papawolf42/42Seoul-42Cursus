@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/01 12:34:20 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/01 22:02:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,9 +238,11 @@ int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 
 /* %e */
 
+void			ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head);
 void			ft_make_e_part(t_big *big);
-int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
+void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
 void			ft_write_e(t_big *big, t_fmt *fmt);
+int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 int				ft_print_floating(t_fmt *fmt);
 
 /*
