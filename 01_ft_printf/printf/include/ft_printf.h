@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/31 20:07:20 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/01 12:34:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef union	u_dbl
 
 typedef struct	s_big
 {
+	char		iszero;
 	char		mtsa[54];
 	int			expo;
 	char		intg[309];
@@ -139,6 +140,10 @@ typedef struct	s_big
 	int			len_f;
 	int			idx_pnt;
 	int			idx_nul;
+	char		out_e[6];
+	int			idx_pnt_e;
+	int			int_e;
+	int			len_e;
 }				t_big;
 
 /*
@@ -221,14 +226,21 @@ void			ft_sum_frac_dp(t_big *big, char frac_dp[][1077], int limit, int toggle);
 void			ft_get_fraction(t_big *big);
 
 void			ft_get_output(t_big *big, int len_i, int len_f);
-void			ft_round_up(t_big *big, t_fmt *fmt, int up, int head);
 
+/* %f */
+
+void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head);
 void			ft_decide_block_nbr(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
 int				ft_decide_block_floating(t_fmt *fmt, t_blk *blk);
-
 void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
-void			ft_write_flt(t_big *big, t_fmt *fmt);
+void			ft_write_f(t_big *big, t_fmt *fmt);
+int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 
+/* %e */
+
+void			ft_make_e_part(t_big *big);
+int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
+void			ft_write_e(t_big *big, t_fmt *fmt);
 int				ft_print_floating(t_fmt *fmt);
 
 /*
