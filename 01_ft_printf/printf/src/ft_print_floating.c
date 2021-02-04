@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 11:41:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 16:44:26 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head)
 	}
 }
 
-void			ft_get_info_g(t_big *big, t_fmt *fmt)
+void			ft_trailing_zero_f(t_big *big, t_fmt *fmt)
 {
 	int			head;
 
@@ -296,7 +296,7 @@ int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk)
 {
 	ft_round_up_f(big, fmt, 0, 0);
 	if (big->is_g)
-		ft_get_info_g(big, fmt);
+		ft_trailing_zero_f(big, fmt);
 	ft_decide_block_nbr(fmt, big, blk, dbl->s_dbl.sign);
 	ft_decide_block_floating(fmt, blk);
 	ft_write_floating(big, fmt, blk);
@@ -369,6 +369,21 @@ void			ft_make_e_part(t_big *big)
 	big->len_e = ft_strlen(big->out_e);
 }
 
+void			ft_trailing_zero_e(t_big *big, t_fmt *fmt)
+{
+	int			head;
+
+	big->idx_g = fmt->prec;
+	head = big->idx_pnt_e + fmt->prec - 1;
+	while (head >= 0 && (big->out[head] == '\0'))
+		head--;
+	while (head >= 0 && (big->out[head] == '0'))
+		head--;
+	fmt->prec = ft_max(0, head - big->idx_pnt_e + 1);
+	if (big->idx_pnt == 1 && fmt->prec < 1)
+		fmt->prec = 0;
+}
+
 void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign)
 {
 	blk->nbr += fmt->prec + 1;
@@ -402,6 +417,8 @@ int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk)
 {
 	ft_rount_up_e(big, fmt, 0, 0);
 	ft_make_e_part(big);
+	if (big->is_g)
+		ft_trailing_zero_e(big, fmt);
 	ft_decide_block_e(fmt, big, blk, dbl->s_dbl.sign);
 	ft_decide_block_floating(fmt, blk);
 	ft_write_floating(big, fmt, blk);
@@ -445,6 +462,7 @@ void			ft_redirect_to_fe(t_fmt *fmt, t_big *big)
 	big->is_g = 1;
 	p = fmt->flag[dot] && fmt->prec == 0 ? 1 : fmt->prec;
 	p = p == 0 ? 6 : p;
+	fmt_temp.prec = fmt_temp.prec < 1 ? 0 : p - 1;
 	x = ft_rount_up_e(&big_temp, &fmt_temp, 0, 0);
 	if (p > x && x >= -4)
 	{
