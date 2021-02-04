@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/01 22:02:37 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 11:41:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void			ft_get_52_bit(t_dbl *dbl, t_big *big)
 	int				i;
 	const size_t	mantissa = dbl->s_dbl.mtsa;
 
-	big->iszero = mantissa == 0 && dbl->s_dbl.expo == 0 ? 1 : 0;
-	big->mtsa[52] = big->iszero ? '0' : '1';
+	big->is_zero = mantissa == 0 && dbl->s_dbl.expo == 0 ? 1 : 0;
+	big->mtsa[52] = big->is_zero ? '0' : '1';
 	i = 52;
 	while (i--)
 		big->mtsa[i] = (((mantissa >> i) & 1) > 0) + '0';
@@ -200,6 +200,21 @@ void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head)
 	}
 }
 
+void			ft_get_info_g(t_big *big, t_fmt *fmt)
+{
+	int			head;
+
+	big->idx_g = fmt->prec;
+	head = big->idx_pnt + fmt->prec - 1;
+	while (head >= 0 && (big->out[head] == '\0'))
+		head--;
+	while (head >= 0 && (big->out[head] == '0'))
+		head--;
+	fmt->prec = ft_max(0, head - big->idx_pnt + 1);
+	if (big->idx_pnt == 1 && fmt->prec < 1)
+		fmt->prec = 0;
+}
+
 void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk)
 {
 	while (blk->lpad--)
@@ -228,17 +243,18 @@ void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk)
 void			ft_decide_block_nbr(t_fmt *fmt, t_big *big, t_blk *blk, int sign)
 {
 	blk->nbr += big->out[0] != '0' ? 1 : 0;
-	blk->nbr += big->idx_pnt == 1 && big->out[0] == '0' ? 1 : 0;
 	blk->nbr += big->len_i;
+	blk->nbr += big->idx_pnt == 1 && big->out[0] == '0' ? 1 : 0;
 	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
-	blk->nbr += fmt->prec;
+	blk->nbr += fmt->flag[hash] ? 0 : fmt->prec;
+	blk->nbr += fmt->flag[hash] ? big->idx_g : 0;
 	blk->minus += sign;
 	blk->plus += (!sign && fmt->flag[plus]);
 	blk->space += (!blk->plus && !blk->minus && fmt->flag[space]) ? 1 : 0;
 	blk->pre = blk->plus + blk->minus + blk->space;
 }
 
-int			ft_decide_block_floating(t_fmt *fmt, t_blk *blk)
+int				ft_decide_block_floating(t_fmt *fmt, t_blk *blk)
 {
 	blk->prec = ft_max(0, fmt->prec - blk->nbr);
 	fmt->size = ft_max(blk->nbr + blk->prec, ft_max(fmt->wid, fmt->prec));
@@ -265,11 +281,13 @@ void			ft_write_f(t_big *big, t_fmt *fmt)
 	while (i < big->idx_pnt)
 		fmt->rtn += write(1, big->out + i++, 1);
 	fmt->rtn += fmt->prec > 0 || fmt->flag[hash] > 0 ? write(1, ".", 1) : 0;
-	if (fmt->prec > 0)
+	if (fmt->prec || big->idx_g)
 	{
 		while (i < big->idx_pnt + fmt->prec && i < big->idx_nul)
 			fmt->rtn += write(1, big->out + i++, 1);
-		while (i++ < big->idx_pnt + fmt->prec)
+		while (big->is_g && fmt->flag[hash] && i++ < big->idx_pnt + big->idx_g)
+			fmt->rtn += write(1, "0", 1);
+		while (!big->is_g && i++ < big->idx_pnt + fmt->prec)
 			fmt->rtn += write(1, "0", 1);
 	}
 }
@@ -277,6 +295,8 @@ void			ft_write_f(t_big *big, t_fmt *fmt)
 int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk)
 {
 	ft_round_up_f(big, fmt, 0, 0);
+	if (big->is_g)
+		ft_get_info_g(big, fmt);
 	ft_decide_block_nbr(fmt, big, blk, dbl->s_dbl.sign);
 	ft_decide_block_floating(fmt, blk);
 	ft_write_floating(big, fmt, blk);
@@ -293,14 +313,14 @@ int				ft_zerolen(char *str)
 	return (i);
 }
 
-void			ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head)
+int				ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head)
 {
 	fmt->prec = (fmt->prec == 0 && fmt->flag[dot] == 0) ? 6 : fmt->prec;
-	big->idx_pnt_e = big->iszero ? 1 : ft_zerolen(big->out) + 1;
+	big->idx_pnt_e = big->is_zero ? 1 : ft_zerolen(big->out) + 1;
 	big->int_e = big->idx_pnt - big->idx_pnt_e;
 	head = big->idx_pnt_e + fmt->prec;
 	if (head >= big->idx_nul)
-		return ;
+		return (big->int_e);
 	if (head == big->idx_nul - 1)
 		big->out[head] = (big->out[head - 1] - '0') & 1 ? '6' : '4';
 	if (big->out[head] >= '5')
@@ -317,6 +337,7 @@ void			ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head)
 		big->idx_pnt_e--;
 		big->int_e++;
 	}
+	return (big->int_e);
 }
 
 void			ft_make_e_part(t_big *big)
@@ -403,13 +424,38 @@ int				ft_print_floating(t_fmt *fmt)
 	ft_get_integer(&big);
 	ft_get_fraction(&big);
 	ft_get_output(&big, big.len_i, big.len_f);
-	// if (fmt->spec == g)
-	// 	{
-	// 		ft_branch_to_fe();
-	//	}
+	if (fmt->spec == 'g')
+		ft_redirect_to_fe(fmt, &big);
 	if (fmt->spec == 'f')
 		ft_print_f(fmt, &dbl, &big, &blk);
 	else if (fmt->spec == 'e')
 		ft_print_e(fmt, &dbl, &big, &blk);
 	return (0);
+}
+
+void			ft_redirect_to_fe(t_fmt *fmt, t_big *big)
+{
+	int			p;
+	int			x;
+	t_big		big_temp;
+	t_fmt		fmt_temp;
+
+	big_temp = *big;
+	fmt_temp = *fmt;
+	big->is_g = 1;
+	p = fmt->flag[dot] && fmt->prec == 0 ? 1 : fmt->prec;
+	p = p == 0 ? 6 : p;
+	x = ft_rount_up_e(&big_temp, &fmt_temp, 0, 0);
+	if (p > x && x >= -4)
+	{
+		fmt->spec = 'f';
+		fmt->prec = p - (x + 1);
+		return ;
+	}
+	else
+	{
+		fmt->spec = 'e';
+		fmt->prec = p - 1;
+		return ;
+	}
 }

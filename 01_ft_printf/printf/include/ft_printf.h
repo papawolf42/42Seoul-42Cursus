@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/01 22:02:03 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/03 21:04:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,8 @@ typedef union	u_dbl
 
 typedef struct	s_big
 {
-	char		iszero;
+	char		is_zero;
+	char		is_g;
 	char		mtsa[54];
 	int			expo;
 	char		intg[309];
@@ -140,6 +141,7 @@ typedef struct	s_big
 	int			len_f;
 	int			idx_pnt;
 	int			idx_nul;
+	int			idx_g;
 	char		out_e[6];
 	int			idx_pnt_e;
 	int			int_e;
@@ -227,6 +229,12 @@ void			ft_get_fraction(t_big *big);
 
 void			ft_get_output(t_big *big, int len_i, int len_f);
 
+/*
+** %g
+*/
+
+void			ft_redirect_to_fe(t_fmt *fmt, t_big *big);
+
 /* %f */
 
 void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head);
@@ -238,7 +246,7 @@ int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 
 /* %e */
 
-void			ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head);
+int				ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head);
 void			ft_make_e_part(t_big *big);
 void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
 void			ft_write_e(t_big *big, t_fmt *fmt);
