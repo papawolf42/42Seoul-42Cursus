@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 01:19:18 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:11:44 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ int			ft_write_integer(t_fmt *fmt, t_blk *blk)
 {
 	while (blk->lpad--)
 		fmt->rtn += write(1, " ", 1);
-	if (fmt->spec == 'x')
-		fmt->rtn += write(1, "0x", blk->prefix);
-	else
+	if (fmt->spec == 'X')
 		fmt->rtn += write(1, "0X", blk->prefix);
+	else
+		fmt->rtn += write(1, "0x", blk->prefix);
 	fmt->rtn += write(1, "+", blk->plus);
 	fmt->rtn += write(1, "-", blk->minus);
 	fmt->rtn += write(1, " ", blk->space);
@@ -98,9 +98,12 @@ int			ft_print_integer(t_fmt *fmt)
 			return (ERROR);
 	}
 	if (fmt->spec == 'u' || fmt->spec == 'o' ||
-		fmt->spec == 'x' || fmt->spec == 'X')
+		fmt->spec == 'x' || fmt->spec == 'X' || fmt->spec == 'p')
 	{
-		ft_len_unsigned(fmt);
+		if (fmt->spec == 'p')
+			fmt->unbr = (t_ullint)va_arg(fmt->ap, void *);
+		else
+			ft_len_unsigned(fmt);
 		ft_base_unsigned(fmt);
 		ft_itoa_unsigned(fmt, &blk);
 		ft_decide_block(fmt, &blk);

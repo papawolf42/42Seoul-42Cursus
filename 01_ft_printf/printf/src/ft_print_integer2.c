@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 01:19:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:10:48 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int			ft_base_unsigned(t_fmt *fmt)
 		fmt->base = 8;
 		fmt->cbase = CHARSET_OCTA;
 	}
-	else if (fmt->spec == 'x' || fmt->spec == 'X')
+	else if (fmt->spec == 'x' || fmt->spec == 'X' || fmt->spec == 'p')
 	{
 		fmt->base = 16;
-		fmt->cbase = fmt->spec == 'x' ? CHARSET_HEXA_L : CHARSET_HEXA_U;
+		fmt->cbase = fmt->spec == 'X' ? CHARSET_HEXA_U : CHARSET_HEXA_L;
 	}
 	return (1);
 }
@@ -120,7 +120,7 @@ void		ft_itoa_unsigned(t_fmt *fmt, t_blk *blk)
 		blk->prefix = 0;
 	else if (fmt->spec == 'o' && fmt->flag[hash])
 		blk->prefix = 1;
-	else if (fmt->flag[hash] && fmt->unbr != 0)
+	else if ((fmt->flag[hash] && fmt->unbr != 0) || fmt->spec == 'p')
 		blk->prefix = 2;
 	blk->pre = blk->prefix + blk->minus + blk->plus + blk->space;
 	blk->nbr = !fmt->unbr && fmt->flag[dot] && fmt->prec == 0 ? 0 : blk->nbr;

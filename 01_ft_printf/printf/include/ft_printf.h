@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 12:13:39 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 18:51:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,13 @@ void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
 void			ft_write_e(t_big *big, t_fmt *fmt);
 int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 int				ft_print_floating(t_fmt *fmt);
+
+/*
+** %p
+*/
+
+int				ft_print_address(t_fmt *fmt);
+
 
 /*
 ** ft_utils.c
