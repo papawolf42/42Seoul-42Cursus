@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 18:51:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 19:29:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,7 @@ int				ft_print_floating(t_fmt *fmt);
 */
 
 int				ft_print_address(t_fmt *fmt);
+int				ft_print_percent(t_fmt *fmt);
 
 
 /*
