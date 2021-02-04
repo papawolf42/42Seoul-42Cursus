@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 16:44:26 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/04 17:56:25 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,8 +246,7 @@ void			ft_decide_block_nbr(t_fmt *fmt, t_big *big, t_blk *blk, int sign)
 	blk->nbr += big->len_i;
 	blk->nbr += big->idx_pnt == 1 && big->out[0] == '0' ? 1 : 0;
 	blk->nbr += fmt->prec || fmt->flag[hash] ? 1 : 0;
-	blk->nbr += fmt->flag[hash] ? 0 : fmt->prec;
-	blk->nbr += fmt->flag[hash] ? big->idx_g : 0;
+	blk->nbr += fmt->flag[hash] && big->is_g ? big->idx_g : fmt->prec;
 	blk->minus += sign;
 	blk->plus += (!sign && fmt->flag[plus]);
 	blk->space += (!blk->plus && !blk->minus && fmt->flag[space]) ? 1 : 0;
@@ -403,11 +402,13 @@ void			ft_write_e(t_big *big, t_fmt *fmt)
 	i = big->idx_pnt_e - 1;
 	fmt->rtn += write(1, big->out + i++, 1);
 	fmt->rtn += fmt->prec || fmt->flag[hash] ? write(1, ".", 1) : 0;
-	if (fmt->prec > 0)
+	if (fmt->prec || big->idx_g)
 	{
 		while (i < big->idx_pnt_e + fmt->prec && i < big->idx_nul)
 			fmt->rtn += write(1, big->out + i++, 1);
-		while (i++ < big->idx_pnt_e + fmt->prec)
+		while (big->is_g && fmt->flag[hash] && i++ < big->idx_pnt_e + big->idx_g)
+			fmt->rtn += write(1, "0", 1);
+		while (!big->is_g && i++ < big->idx_pnt_e + fmt->prec)
 			fmt->rtn += write(1, "0", 1);
 	}
 	fmt->rtn += write(1, big->out_e, ft_strlen(big->out_e));
