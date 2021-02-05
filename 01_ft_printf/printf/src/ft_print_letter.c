@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/31 20:05:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/05 10:42:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_print_character(t_fmt *fmt)
 
 	c = (char)va_arg(fmt->ap, int);
 	fmt->size = ft_max(1, fmt->wid);
-	lpad = fmt->flag[minus] ? 0 : fmt->size - 1;
+	lpad = !fmt->flag[minus] ? fmt->size - 1 : 0;
 	rpad = fmt->flag[minus] ? fmt->size - 1 : 0;
 	while (lpad--)
 		fmt->rtn += write(1, " ", 1);
@@ -34,16 +34,20 @@ int			ft_print_string(t_fmt *fmt, char *s)
 {
 	int		out;
 	int		lpad;
+	int		zpad;
 	int		rpad;
 
 	if (s == NULL)
 		s = CHARSET_NULL;
 	out = fmt->flag[dot] ? ft_min(ft_strlen(s), fmt->prec) : ft_strlen(s);
 	fmt->size = ft_max(out, fmt->wid);
-	lpad = fmt->flag[minus] ? 0 : fmt->size - out;
+	lpad = !fmt->flag[minus] && !fmt->flag[zero] ? fmt->size - out : 0;
+	zpad = !fmt->flag[minus] && fmt->flag[zero] ? fmt->size - out : 0;
 	rpad = fmt->flag[minus] ? fmt->size - out : 0;
 	while (lpad--)
 		fmt->rtn += write(1, " ", 1);
+	while (zpad--)
+		fmt->rtn += write(1, "0", 1);
 	fmt->rtn += write(1, s, out);
 	while (rpad--)
 		fmt->rtn += write(1, " ", 1);
