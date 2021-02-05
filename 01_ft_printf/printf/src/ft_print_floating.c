@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 17:56:25 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/05 11:12:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int				ft_is_inf_or_nan(t_fmt *fmt, t_dbl *dbl, t_big *big, int expo)
 {
 	if (expo == 1024 && dbl->s_dbl.mtsa != 0)
 	{
+		fmt->flag[zero] = 0;
 		ft_print_string(fmt, "nan");
 		return (1);
 	}
 	else if (expo == 1024 && dbl->s_dbl.mtsa == 0)
 	{
+		fmt->flag[zero] = 0;
 		if (dbl->s_dbl.sign)
 			ft_print_string(fmt, "-inf");
 		else if (fmt->flag[plus])
