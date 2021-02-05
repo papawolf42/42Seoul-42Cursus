@@ -6,17 +6,11 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/01/22 22:42:52 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/05 17:15:35 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-/*
-int			ft_parse_nbr_onestar(t_fmt *fmt, e_flg flg)
-{
-}
-*/
 
 int			ft_parse_nbr_nonestar(t_fmt *fmt, e_flg flg)
 {
@@ -143,9 +137,23 @@ int			ft_parse_len(t_fmt *fmt)
 	return (0);
 }
 
+char		ft_strchr_notpnt(const char *s, int c)
+{
+	size_t		len;
+
+	len = 14;
+	while (len--)
+	{
+		if (*s == c)
+			return (c);
+		s++;
+	}
+	return (0);
+}
+
 int			ft_parse_spec(t_fmt *fmt)
 {
-	fmt->spec = *ft_strchr("diuoxXfegcspn%", *fmt->str);
+	fmt->spec = ft_strchr_notpnt("diuoxXfegcspn%", *fmt->str);
 	if (fmt->spec == 0)
 		return (ERROR);
 	fmt->str++;

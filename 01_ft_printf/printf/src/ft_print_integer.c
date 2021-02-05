@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 19:11:44 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/05 15:01:35 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ void		ft_len_unsigned(t_fmt *fmt)
 int			ft_decide_block(t_fmt *fmt, t_blk *blk)
 {
 	blk->prec = ft_max(0, fmt->prec - blk->nbr);
+	if (blk->prefix == 1 && blk->prec)
+	{
+		blk->prefix--;
+		blk->pre--;
+	}
 	fmt->size = ft_max(blk->nbr + blk->prec, ft_max(fmt->wid, fmt->prec));
 	blk->pad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
 	if (!fmt->flag[minus])

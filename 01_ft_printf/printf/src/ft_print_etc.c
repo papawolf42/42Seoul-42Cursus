@@ -6,13 +6,13 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 18:31:14 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 19:46:06 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/05 15:45:27 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_print_address(t_fmt *fmt)
+int				ft_print_address(t_fmt *fmt)
 {
 	fmt->flag[hash] = 1;
 	if (ft_print_integer(fmt) == ERROR)
@@ -20,7 +20,22 @@ int			ft_print_address(t_fmt *fmt)
 	return (0);
 }
 
-int			ft_print_percent(t_fmt *fmt)
+int				ft_print_count(t_fmt *fmt)
+{
+	if (fmt->len == 0)
+		*(va_arg(fmt->ap, t_int *)) = fmt->rtn;
+	else if (fmt->len == 'l')
+		*(va_arg(fmt->ap, t_lint *)) = fmt->rtn;
+	else if (fmt->len == 'L')
+		*(va_arg(fmt->ap, t_llint *)) = fmt->rtn;
+	else if (fmt->len == 'h')
+		*(va_arg(fmt->ap, t_int *)) = (t_sint)fmt->rtn;
+	else if (fmt->len == 'H')
+		*(va_arg(fmt->ap, t_int *)) = (t_char)fmt->rtn;
+	return (1);
+}
+
+int				ft_print_percent(t_fmt *fmt)
 {
 	char	c;
 	int		lpad;
@@ -39,5 +54,25 @@ int			ft_print_percent(t_fmt *fmt)
 	fmt->rtn += write(1, &c, 1);
 	while (rpad--)
 		fmt->rtn += write(1, " ", 1);
+	return (0);
+}
+
+int				ft_print_etc(t_fmt *fmt)
+{
+	if (fmt->spec == 'p')
+	{
+		if (ft_print_address(fmt) == ERROR)
+			return (ERROR);
+	}
+	else if (fmt->spec == 'n')
+	{
+		if (ft_print_count(fmt) == ERROR)
+			return (ERROR);
+	}
+	else if (fmt->spec == '%')
+	{
+		if (ft_print_percent(fmt) == ERROR)
+			return (ERROR);
+	}
 	return (0);
 }

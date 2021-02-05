@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/04 19:29:13 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/05 17:11:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,7 @@ int				ft_print_format(t_fmt *fmt);
 
 int				ft_parse_nbr_nonestar(t_fmt *fmt, e_flg flg);
 int				ft_atoi_parse_star(t_fmt *fmt);
+char			ft_strchr_notpnt(const char *s, int c);
 
 int				ft_parse_nbr(t_fmt *fmt, e_flg flg);
 int				ft_parse_flag(t_fmt *fmt);
@@ -260,7 +261,9 @@ int				ft_print_floating(t_fmt *fmt);
 */
 
 int				ft_print_address(t_fmt *fmt);
+int				ft_print_count(t_fmt *fmt);
 int				ft_print_percent(t_fmt *fmt);
+int				ft_print_etc(t_fmt *fmt);
 
 
 /*
