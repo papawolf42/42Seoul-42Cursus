@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/05 17:11:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 01:01:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +209,15 @@ void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 ** ft_print_letter.c
 */
 
-int				ft_print_string(t_fmt *fmt, char *s);
+void			ft_print_character_unicode(t_fmt *fmt, char *wc, int *len);
 int				ft_print_character(t_fmt *fmt);
+int				ft_print_string(t_fmt *fmt, char *s);
 int				ft_print_letter(t_fmt *fmt);
+
+
+int				ft_encoding_utf8(char *utf8, wchar_t s);
+int				ft_print_unicode(t_fmt *fmt, wchar_t **s, t_uint *len);
+int				ft_print_string_unicode(t_fmt *fmt, wchar_t *s, int lpad, int rpad);
 
 /*
 ** ft_print_floating.c
@@ -236,7 +242,9 @@ void			ft_get_output(t_big *big, int len_i, int len_f);
 
 void			ft_redirect_to_fe(t_fmt *fmt, t_big *big);
 
-/* %f */
+/*
+** %f
+*/
 
 void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head);
 void			ft_trailing_zero_f(t_big *big, t_fmt *fmt);
@@ -246,7 +254,9 @@ void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
 void			ft_write_f(t_big *big, t_fmt *fmt);
 int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 
-/* %e */
+/*
+** %e
+*/
 
 int				ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head);
 void			ft_make_e_part(t_big *big);

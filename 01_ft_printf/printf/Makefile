@@ -58,6 +58,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_print_integer.c \
 	ft_print_integer2.c \
 	ft_print_letter.c \
+	ft_print_unicode.c \
 	ft_print_floating.c \
 	ft_print_etc.c \
 	ft_utils.c \
@@ -145,6 +146,7 @@ obj/ft_parse.o: src/ft_parse.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_integer.o: src/ft_print_integer.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_integer2.o: src/ft_print_integer2.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_letter.o: src/ft_print_letter.c include/ft_printf.h ../libft/include/libft.h
+obj/ft_print_unicode.o: src/ft_print_unicode.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_floating.o: src/ft_print_floating.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_print_etc.o: src/ft_print_etc.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_printf.o: src/ft_printf.c include/ft_printf.h ../libft/include/libft.h

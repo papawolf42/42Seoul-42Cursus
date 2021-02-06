@@ -6,48 +6,20 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/06 20:15:23 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 00:29:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_encoding_utf8(wchar_t lc, char *wc)
-{
-	int			len;
-
-	if (lc < 0x000080 && (len = 1))
-		wc[0] = lc;
-	else if (lc < 0x000800 && (len = 2))
-	{
-		wc[0] = 0b11000000 | (lc >> 0x06);
-		wc[1] = 0b10000000 | (lc >> 0x00 & 0b00111111);
-	}
-	else if (lc < 0x010000 && (len = 3))
-	{
-		wc[0] = 0b11100000 | (lc >> 0x0c);
-		wc[1] = 0b10000000 | (lc >> 0x06 & 0b00111111);
-		wc[2] = 0b10000000 | (lc >> 0x00 & 0b00111111);
-	}
-	else if (lc < 0x200000 && (len = 4))
-	{
-		wc[0] = 0b11110000 | (lc >> 0x12);
-		wc[1] = 0b10000000 | (lc >> 0x0c & 0b00111111);
-		wc[2] = 0b10000000 | (lc >> 0x06 & 0b00111111);
-		wc[3] = 0b10000000 | (lc >> 0x00 & 0b00111111);
-	}
-	return (len);
-}
-
 void		ft_print_character_unicode(t_fmt *fmt, char *wc, int *len)
 {
-	wchar_t		lc;
+	wchar_t		uni;
 	
-	lc = va_arg(fmt->ap, wchar_t);
+	uni = va_arg(fmt->ap, wchar_t);
 	ft_bzero(wc, 5);
-	*len = ft_encoding_utf8(lc, wc);
+	*len = ft_encoding_utf8(wc, uni);
 }
-
 
 int			ft_print_character(t_fmt *fmt)
 {
@@ -102,7 +74,17 @@ int			ft_print_letter(t_fmt *fmt)
 		if (ft_print_character(fmt) == ERROR)
 			return (ERROR);
 	if (fmt->spec == 's')
-		if (ft_print_string(fmt, va_arg(fmt->ap, char *)) == ERROR)
-			return (ERROR);
+	{
+		if (fmt->len == 'l')
+		{
+			if (ft_print_string_unicode(fmt, va_arg(fmt->ap, wchar_t *), 0, 0) == ERROR)
+				return (ERROR);
+		}
+		else
+		{
+			if (ft_print_string(fmt, va_arg(fmt->ap, char *)) == ERROR)
+				return (ERROR);
+		}
+	}
 	return (0);
 }
