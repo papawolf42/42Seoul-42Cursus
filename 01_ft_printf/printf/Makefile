@@ -136,7 +136,7 @@ $(NAME) : $(DIR_OBJ) $(OBJS)
 
 $(DIR_OBJ) :
 	@mkdir -p $(DIR_OBJ)
-	@printf "$(LF)[$(NAME)] 📁 Created directory $(DIR_OBJ)"
+	@printf "[$(NAME)] 📁 Created directory $(DIR_OBJ)$(LF)"
 
 $(DIR_OBJ)/%.o : %.c
 	@$(CC) -g $(CFLAGS) -c $< -o $@ -I $(DIR_INC) -I $(DIR_LIBFT_INC)
