@@ -67,7 +67,6 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	ft_print_floating_e.c \
 	ft_print_etc.c \
 	ft_utils.c \
-	spec_s.c \
 )
 
 # =========================
@@ -161,4 +160,3 @@ obj/ft_print_floating_e.o: src/ft_print_floating_e.c include/ft_printf.h ../libf
 obj/ft_print_etc.o: src/ft_print_etc.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_printf.o: src/ft_printf.c include/ft_printf.h ../libft/include/libft.h
 obj/ft_utils.o: src/ft_utils.c include/ft_printf.h ../libft/include/libft.h
-obj/spec_s.o: src/spec_s.c include/ft_printf.h ../libft/include/libft.h
