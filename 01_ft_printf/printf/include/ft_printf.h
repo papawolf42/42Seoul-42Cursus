@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 12:17:00 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 12:47:34 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,17 @@ typedef unsigned int			t_uint;
 typedef	unsigned char			t_uchar;
 
 /*
-**  '-' : 좌측 정렬
-**  '+' : 숫자에 대해 부호를 붙임
-**  ' ' : 부호가 붙지 않는다면, 값 이전에 공백을 출력
-**  '#' : o, x, X 지정자와 함께 쓰이면, 8진수 표현과 16진수 표현을 나타냄 ex) 42 = 032 = 0x2a
-**        a, A, e, E, f, F, g, G 지정자와 함께 쓰이면 소수점 뒤로 값이 따라오지 않더라도,
-**        출력에 소수점 출력을 강제합니다.
-**        default는 소수점 이하의 수가 없다면, 소수점이 출력되지 않습니다.
-**  '0' : 왼쪽 공간을 0으로 채웁니다. (너비 지정자와 함께 쓰임)
-**  '*' : 너비가 지정되지 않고, 추가적인 정수의 가변인자를 받어 너비를 지정합니다.
+**  '-' : left-justify
+**  '+' : Forces to preceed the result with a plus or minus sign
+**  ' ' : a blank space is inserted before the value.
+**  '#' : Used with o, x or X specifiers the value is preceeded with
+**        0, 0x or 0X respectively for values different than zero.
+**        ex) 42 = 032 = 0x2a
+**        Used with a, A, e, E, f, F, g or G it forces the written output
+**        to contain a decimal point even if no more digits follow.
+**  '0' : Left-pads the number with zeroes (0) instead of spaces
+**  '*' : as an additional integer value argument preceding the argument
+**        that has to be formatted.
 */
 
 typedef enum	e_flg
