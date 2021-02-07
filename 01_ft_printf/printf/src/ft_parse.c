@@ -6,72 +6,13 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 20:55:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/05 17:15:35 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 01:51:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_parse_nbr_nonestar(t_fmt *fmt, e_flg flg)
-{
-	int		nbr;
-
-	nbr = ft_atoi_parse_star(fmt);
-	if (nbr < 0)
-	{
-		fmt->flag[dot] += flg == dot ? 1 : 0;
-		fmt->flag[minus] += flg == !dot ? 1 : fmt->flag[minus];
-		fmt->wid = flg == !dot ? -1 * nbr : fmt->wid;
-	}
-	else if (flg == !dot)
-		fmt->wid = nbr;
-	else if (flg == dot)
-		fmt->prec = nbr;
-	return (0);
-}
-
-int			ft_atoi_parse_star(t_fmt *fmt)
-{
-	int			result;
-	int			sign;
-
-	result = 0;
-	sign = 1;
-	while ((9 <= *fmt->str && *fmt->str <= 13) || *fmt->str == ' ')
-		fmt->str++;
-	if (*fmt->str == '+' || *fmt->str == '-')
-		if (*(fmt->str++) == '-')
-			sign = -1;
-	while ('0' <= *fmt->str && *fmt->str <= '9')
-		result = result * 10 + *(fmt->str++) - '0';
-	return (sign * result);
-}
-
-int			ft_parse_nbr(t_fmt *fmt, e_flg flg)
-{
-	int			nbr;
-
-	if (fmt->flag[star] >= 1)
-	{
-		if ((nbr = va_arg(fmt->ap, int)) < 0)
-		{
-			fmt->flag[dot] = flg == dot ? 0 : fmt->flag[dot];
-			fmt->flag[minus] += flg == !dot ? 1 : fmt->flag[minus];
-			fmt->wid = flg == !dot ? -1 * nbr : fmt->wid;
-		}
-		else if (flg == !dot)
-			fmt->wid = nbr;
-		else if (flg == dot)
-			fmt->prec = nbr;
-		fmt->flag[star] = 0;
-		return (0);
-	}
-	if(ft_parse_nbr_nonestar(fmt, flg) == ERROR)
-		return (ERROR);
-	return (0);
-}
-
-int			ft_parse_flag(t_fmt *fmt)
+int				ft_parse_flag(t_fmt *fmt)
 {
 	while (ft_strchr("-+ #0*", *fmt->str) && *fmt->str)
 	{
@@ -94,7 +35,7 @@ int			ft_parse_flag(t_fmt *fmt)
 	return (0);
 }
 
-int			ft_parse_prec(t_fmt *fmt)
+int				ft_parse_prec(t_fmt *fmt)
 {
 	while (ft_strchr(".*", *fmt->str) && *fmt->str)
 	{
@@ -109,7 +50,7 @@ int			ft_parse_prec(t_fmt *fmt)
 	return (0);
 }
 
-int			ft_parse_len(t_fmt *fmt)
+int				ft_parse_len(t_fmt *fmt)
 {
 	while (ft_strchr("lh", *fmt->str) && *fmt->str)
 	{
@@ -137,7 +78,7 @@ int			ft_parse_len(t_fmt *fmt)
 	return (0);
 }
 
-char		ft_strchr_notpnt(const char *s, int c)
+static char		ft_strchr_notpnt(const char *s, int c)
 {
 	size_t		len;
 
@@ -151,7 +92,7 @@ char		ft_strchr_notpnt(const char *s, int c)
 	return (0);
 }
 
-int			ft_parse_spec(t_fmt *fmt)
+int				ft_parse_spec(t_fmt *fmt)
 {
 	fmt->spec = ft_strchr_notpnt("diuoxXfegcspn%", *fmt->str);
 	if (fmt->spec == 0)

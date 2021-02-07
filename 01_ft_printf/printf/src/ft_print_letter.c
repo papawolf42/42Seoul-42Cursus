@@ -6,16 +6,16 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 00:29:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 03:53:00 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		ft_print_character_unicode(t_fmt *fmt, char *wc, int *len)
+void		ft_print_character_uni(t_fmt *fmt, char *wc, int *len)
 {
 	wchar_t		uni;
-	
+
 	uni = va_arg(fmt->ap, wchar_t);
 	ft_bzero(wc, 5);
 	*len = ft_encoding_utf8(wc, uni);
@@ -30,7 +30,7 @@ int			ft_print_character(t_fmt *fmt)
 	int		rpad;
 
 	if (fmt->len == 'l')
-		ft_print_character_unicode(fmt, wc, &len);
+		ft_print_character_uni(fmt, wc, &len);
 	else if ((len = 1))
 		c = (char)va_arg(fmt->ap, int);
 	fmt->size = ft_max(1, fmt->wid);
@@ -77,7 +77,8 @@ int			ft_print_letter(t_fmt *fmt)
 	{
 		if (fmt->len == 'l')
 		{
-			if (ft_print_string_unicode(fmt, va_arg(fmt->ap, wchar_t *), 0, 0) == ERROR)
+			if (ft_print_string_uni(fmt, va_arg(fmt->ap, wchar_t *), 0, 0)
+			== ERROR)
 				return (ERROR);
 		}
 		else

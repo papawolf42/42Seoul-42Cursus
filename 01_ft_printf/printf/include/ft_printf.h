@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 01:01:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 12:17:00 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,24 @@ typedef	unsigned char			t_uchar;
 **  '*' : 너비가 지정되지 않고, 추가적인 정수의 가변인자를 받어 너비를 지정합니다.
 */
 
-typedef enum
+typedef enum	e_flg
 {
-	minus, // 0
-	plus,  // 1
-	space, // 2
-	hash,  // 3
-	zero,  // 4
-	star,  // 5
-	dot    // 6
-}	e_flg;
+	minus,
+	plus,
+	space,
+	hash,
+	zero,
+	star,
+	dot
+}				t_flg;
 
-typedef enum
+typedef enum	e_len
 {
 	l,
 	ll,
 	h,
 	hh
-}	e_len;
+}				t_len;
 
 typedef struct	s_fmt
 {
@@ -88,13 +88,12 @@ typedef struct	s_fmt
 	t_ullint	unbr;
 	int			base;
 	char		*cbase;
-	char		buff[21];
 	int			rtn;
 }				t_fmt;
 
 /*
-** (left padding)(pre : prefix or sign or space)(zero)(precision)(number)(right padding)
-**                            (round : 1)(integer)(point)(fraction)(more precision)
+** (left pad)(pre : prefix or sign or space)(zero)(precision)(number)(right pad)
+**                         (round : 1)(integer)(point)(fraction)(more precision)
 */
 
 typedef struct	s_blk
@@ -108,7 +107,7 @@ typedef struct	s_blk
 	int			space;
 	int			minus;
 	int			plus;
-	int			prefix;// must implement later
+	int			prefix;
 	int			pre;
 	int			lpad;
 }				t_blk;
@@ -157,7 +156,6 @@ void			ft_initialize_fmt(t_fmt *fmt, const char *format);
 void			ft_info_fmt(t_fmt *fmt);
 int				ft_print_iterative(t_fmt *fmt);
 int				ft_printf(const char *format, ...);
-int				main(void);
 
 /*
 ** ft_iterative
@@ -168,22 +166,21 @@ int				ft_parse_format(t_fmt *fmt);
 int				ft_print_format(t_fmt *fmt);
 
 /*
+** ft_parce2.c
+*/
+
+int				ft_parse_nbr_nonestar(t_fmt *fmt, t_flg flg);
+int				ft_atoi_nonstar(t_fmt *fmt);
+int				ft_parse_nbr(t_fmt *fmt, t_flg flg);
+
+/*
 ** ft_parce.c
 */
 
-int				ft_parse_nbr_nonestar(t_fmt *fmt, e_flg flg);
-int				ft_atoi_parse_star(t_fmt *fmt);
-char			ft_strchr_notpnt(const char *s, int c);
-
-int				ft_parse_nbr(t_fmt *fmt, e_flg flg);
 int				ft_parse_flag(t_fmt *fmt);
 int				ft_parse_prec(t_fmt *fmt);
 int				ft_parse_len(t_fmt *fmt);
 int				ft_parse_spec(t_fmt *fmt);
-
-/*
-** ft_parce2.c
-*/
 
 /*
 ** ft_print_integer.c
@@ -199,7 +196,7 @@ int				ft_print_integer(t_fmt *fmt);
 ** ft_print_integer2.c
 */
 
-int         	ft_base_unsigned(t_fmt *fmt);
+int				ft_base_unsigned(t_fmt *fmt);
 int				ft_count_digit_signed(t_llint nbr);
 int				ft_count_digit_unsigned(t_ullint nbr, t_ullint base);
 void			ft_itoa_signed(t_fmt *fmt, t_blk *blk);
@@ -209,72 +206,79 @@ void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 ** ft_print_letter.c
 */
 
-void			ft_print_character_unicode(t_fmt *fmt, char *wc, int *len);
+void			ft_print_character_uni(t_fmt *fmt, char *wc, int *len);
 int				ft_print_character(t_fmt *fmt);
 int				ft_print_string(t_fmt *fmt, char *s);
 int				ft_print_letter(t_fmt *fmt);
 
+/*
+** ft_print_unicode.c
+*/
 
 int				ft_encoding_utf8(char *utf8, wchar_t s);
-int				ft_print_unicode(t_fmt *fmt, wchar_t **s, t_uint *len);
-int				ft_print_string_unicode(t_fmt *fmt, wchar_t *s, int lpad, int rpad);
+int				ft_print_uni(t_fmt *fmt, wchar_t **s, t_uint *len);
+int				ft_print_string_uni(t_fmt *fmt, wchar_t *s, int lpad, int rpad);
 
 /*
 ** ft_print_floating.c
 */
 
-void			ft_get_52_bit(t_dbl *dbl, t_big *big);
 int				ft_is_inf_or_nan(t_fmt *fmt, t_dbl *dbl, t_big *big, int expo);
-
-int				ft_make_intg_dp(char intg_dp[][309], int max, int expo);
-void			ft_sum_intg_dp(t_big *big, char intg_dp[][309], int limit, int toggle);
-void			ft_get_integer(t_big *big);
-
-int				ft_make_frac_dp(char frac_dp[][1077], int max, int expo);
-void			ft_sum_frac_dp(t_big *big, char frac_dp[][1077], int limit, int toggle);
-void			ft_get_fraction(t_big *big);
-
-void			ft_get_output(t_big *big, int len_i, int len_f);
-
-/*
-** %g
-*/
-
-void			ft_redirect_to_fe(t_fmt *fmt, t_big *big);
-
-/*
-** %f
-*/
-
-void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head);
-void			ft_trailing_zero_f(t_big *big, t_fmt *fmt);
-void			ft_decide_block_nbr(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
-int				ft_decide_block_floating(t_fmt *fmt, t_blk *blk);
-void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
-void			ft_write_f(t_big *big, t_fmt *fmt);
+void			ft_get_52_bit(t_dbl *dbl, t_big *big);
 int				ft_print_f(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
-
-/*
-** %e
-*/
-
-int				ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head);
-void			ft_make_e_part(t_big *big);
-void			ft_trailing_zero_e(t_big *big, t_fmt *fmt);
-void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
-void			ft_write_e(t_big *big, t_fmt *fmt);
 int				ft_print_e(t_fmt *fmt, t_dbl *dbl, t_big *big, t_blk *blk);
 int				ft_print_floating(t_fmt *fmt);
 
 /*
-** %p
+** ft_print_floating_bigint.c
+*/
+
+int				ft_make_intg_dp(char intg_dp[][309], int max, int expo);
+void			ft_sum_intg_dp(t_big *big, char intg_dp[][309],
+								int limit, int toggle);
+int				ft_make_frac_dp(char frac_dp[][1077], int max, int expo);
+void			ft_sum_frac_dp(t_big *big, char frac_dp[][1077],
+								int limit, int toggle);
+void			ft_get_decimal_from_52bit(t_big *big);
+
+/*
+** ft_print_floating_common.c
+*/
+
+int				ft_zerolen(char *str);
+void			ft_get_output(t_big *big, int len_i, int len_f);
+void			ft_redirect_to_fe(t_fmt *fmt, t_big *big);
+int				ft_decide_block_floating(t_fmt *fmt, t_blk *blk);
+void			ft_write_floating(t_big *big, t_fmt *fmt, t_blk *blk);
+
+/*
+** ft_print__floating_f.c
+*/
+
+void			ft_round_up_f(t_big *big, t_fmt *fmt, int up, int head);
+void			ft_trailing_zero_f(t_big *big, t_fmt *fmt);
+void			ft_decide_block_f(t_fmt *fmt, t_big *big, t_blk *blk,
+									int sign);
+void			ft_write_f(t_big *big, t_fmt *fmt);
+
+/*
+** ft_print_floating_e.c
+*/
+
+int				ft_rount_up_e(t_big *big, t_fmt *fmt, int up, int head);
+void			ft_trailing_zero_e(t_big *big, t_fmt *fmt);
+void			ft_get_output_e(t_big *big);
+void			ft_decide_block_e(t_fmt *fmt, t_big *big, t_blk *blk, int sign);
+void			ft_write_e(t_big *big, t_fmt *fmt);
+
+/*
+** ft_print_etc.c
 */
 
 int				ft_print_address(t_fmt *fmt);
 int				ft_print_count(t_fmt *fmt);
 int				ft_print_percent(t_fmt *fmt);
 int				ft_print_etc(t_fmt *fmt);
-
 
 /*
 ** ft_utils.c
@@ -283,11 +287,5 @@ int				ft_print_etc(t_fmt *fmt);
 int				ft_abs(int nbr);
 int				ft_max(int a, int b);
 int				ft_min(int a, int b);
-
-/*
-** spec_s.c
-*/
-
-int				ft_print_s(t_fmt *fmt);
 
 #endif

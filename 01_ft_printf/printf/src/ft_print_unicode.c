@@ -6,13 +6,13 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 00:31:23 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/07 02:37:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int					ft_encoding_utf8(char *utf8, wchar_t uni)
+int				ft_encoding_utf8(char *utf8, wchar_t uni)
 {
 	int			len;
 
@@ -39,7 +39,7 @@ int					ft_encoding_utf8(char *utf8, wchar_t uni)
 	return (len);
 }
 
-static t_uint		ft_strlen_unicode(wchar_t *s)
+static t_uint	ft_strlen_uni(wchar_t *s)
 {
 	t_uint		idx;
 	t_uint		len;
@@ -61,14 +61,14 @@ static t_uint		ft_strlen_unicode(wchar_t *s)
 	return (len);
 }
 
-int					ft_print_unicode(t_fmt *fmt, wchar_t **s, t_uint *len)
+int				ft_print_uni(t_fmt *fmt, wchar_t **s, t_uint *len)
 {
 	char		*temp;
 	t_uint		idx_s;
 	t_uint		idx_t;
 
 	fmt->len = 'l';
-	*len = ft_strlen_unicode(*s);
+	*len = ft_strlen_uni(*s);
 	if (!(temp = (char *)malloc(sizeof(char) * (*len + 1))))
 		return (ERROR);
 	idx_s = 0;
@@ -79,14 +79,14 @@ int					ft_print_unicode(t_fmt *fmt, wchar_t **s, t_uint *len)
 	return (0);
 }
 
-int					ft_print_string_unicode(t_fmt *fmt, wchar_t *s, int lpad, int rpad)
+int				ft_print_string_uni(t_fmt *fmt, wchar_t *s, int lpad, int rpad)
 {
 	t_uint		len;
 	int			zpad;
 
 	if (s == NULL && !(fmt->len = 0))
 		return (ft_print_string(fmt, NULL));
-	else if (ft_print_unicode(fmt, &s, &len) == ERROR)
+	else if (ft_print_uni(fmt, &s, &len) == ERROR)
 		return (ERROR);
 	len = fmt->flag[dot] ? ft_min(len, fmt->prec) : len;
 	fmt->size = ft_max(len, fmt->wid);
