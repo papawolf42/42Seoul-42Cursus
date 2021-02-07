@@ -70,6 +70,8 @@ ERCR    := $(ER)$(CR)
 
 all : $(NAME)
 
+bonus : $(NAME)
+
 clean :
 	@$(MAKE) clean -C $(DIR_LIBFT)
 	@$(MAKE) clean -C $(DIR_PRINTF)
