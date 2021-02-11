@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/11 14:59:33 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:23:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void		ft_print_character_uni(t_fmt *fmt, char *wc, int *len)
 	*len = ft_encoding_utf8(wc, uni);
 }
 
-int			ft_print_character(t_fmt *fmt)
+int			ft_print_character(t_fmt *fmt, int len)
 {
 	char	c;
 	char	wc[5];
-	int		len;
 	int		lpad;
 	int		zpad;
 	int		rpad;
@@ -76,7 +75,7 @@ int			ft_print_string(t_fmt *fmt, char *s)
 int			ft_print_letter(t_fmt *fmt)
 {
 	if (fmt->spec == 'c')
-		if (ft_print_character(fmt) == ERROR)
+		if (ft_print_character(fmt, 0) == ERROR)
 			return (ERROR);
 	if (fmt->spec == 's')
 	{

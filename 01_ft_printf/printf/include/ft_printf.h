@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/08 17:14:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/11 15:45:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 */
 
 void			ft_print_character_uni(t_fmt *fmt, char *wc, int *len);
-int				ft_print_character(t_fmt *fmt);
+int				ft_print_character(t_fmt *fmt, int len);
 int				ft_print_string(t_fmt *fmt, char *s);
 int				ft_print_letter(t_fmt *fmt);
 
