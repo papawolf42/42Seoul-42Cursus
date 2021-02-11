@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/08 14:21:54 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/11 14:59:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ int			ft_print_character(t_fmt *fmt)
 	else if ((len = 1))
 		c = (char)va_arg(fmt->ap, int);
 	fmt->size = ft_max(1, fmt->wid);
-	lpad = !fmt->flag[minus] && !fmt->flag[zero] ? fmt->size - len : 0;
-	zpad = !fmt->flag[minus] && fmt->flag[zero] ? fmt->size - len : 0;
-	rpad = fmt->flag[minus] ? fmt->size - len : 0;
+	fmt->size = ft_max(0, fmt->size - len);
+	lpad = !fmt->flag[minus] && !fmt->flag[zero] ? fmt->size : 0;
+	zpad = !fmt->flag[minus] && fmt->flag[zero] ? fmt->size : 0;
+	rpad = fmt->flag[minus] ? fmt->size : 0;
 	while (lpad--)
 		fmt->rtn += write(1, " ", 1);
 	while (zpad--)

@@ -32,30 +32,6 @@ int			ft_base_unsigned(t_fmt *fmt)
 	return (1);
 }
 
-// int			ft_count_digit_signed(t_llint nbr)
-// {
-// 	int			digit;
-// 	t_ullint	multi;
-// 	int			sign;
-
-// 	digit = 0;
-// 	multi = 1;
-// 	sign = 0;
-// 	if (nbr == 0)
-// 		return (1);
-// 	if (nbr < 0)
-// 	{
-// 		nbr *= -1;
-// 		sign++;
-// 	}
-// 	while ((t_ullint)nbr >= multi)
-// 	{
-// 		multi *= 10;
-// 		digit++;
-// 	}
-// 	return (sign + digit);
-// }
-
 int			ft_count_digit(t_ullint nbr, t_ullint base)
 {
 	int			digit;
