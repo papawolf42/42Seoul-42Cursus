@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 22:27:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 12:14:45 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/08 17:13:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void			ft_get_output_e(t_big *big)
 	sign = 0;
 	if (nbr < 0 && (sign = 1))
 		nbr *= -1;
-	digit = ft_count_digit_signed(nbr);
+	digit = ft_count_digit(nbr, 10);
 	big->out_e[0] = 'e';
 	big->out_e[1] = sign == 0 ? '+' : '-';
 	big->out_e[2] = '0';

@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 11:48:08 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 12:47:34 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/08 17:14:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,8 +199,7 @@ int				ft_print_integer(t_fmt *fmt);
 */
 
 int				ft_base_unsigned(t_fmt *fmt);
-int				ft_count_digit_signed(t_llint nbr);
-int				ft_count_digit_unsigned(t_ullint nbr, t_ullint base);
+int				ft_count_digit(t_ullint nbr, t_ullint base);
 void			ft_itoa_signed(t_fmt *fmt, t_blk *blk);
 void			ft_itoa_unsigned(t_fmt *fmt, t_blk *blk);
 
