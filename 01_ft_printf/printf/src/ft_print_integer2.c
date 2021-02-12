@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/08 17:13:18 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/13 01:49:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,11 @@ void		ft_itoa_unsigned(t_fmt *fmt, t_blk *blk)
 		unbr /= fmt->base;
 	if (fmt->spec == 'u' && fmt->flag[hash])
 		blk->prefix = 0;
-	else if (fmt->spec == 'o' && fmt->flag[hash])
+	else if (fmt->spec == 'o' && fmt->flag[hash] && fmt->unbr != 0)
 		blk->prefix = 1;
 	else if ((fmt->flag[hash] && fmt->unbr != 0) || fmt->spec == 'p')
 		blk->prefix = 2;
 	blk->pre = blk->prefix;
-	blk->nbr = !fmt->unbr && fmt->flag[dot] && fmt->prec == 0 ? 0 : blk->nbr;
+	blk->nbr = !fmt->unbr && fmt->flag[dot] && fmt->prec == 0
+	&& (fmt->spec != 'o' || !fmt->flag[hash]) ? 0 : blk->nbr;
 }
