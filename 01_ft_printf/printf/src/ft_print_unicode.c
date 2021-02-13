@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 01:11:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/07 02:37:18 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/02/13 11:24:40 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,27 @@ int				ft_encoding_utf8(char *utf8, wchar_t uni)
 	return (len);
 }
 
-static t_uint	ft_strlen_uni(wchar_t *s)
+static t_uint	ft_strlen_uni(wchar_t *s, int exist, int max)
 {
 	t_uint		idx;
 	t_uint		len;
+	t_uint		tmp;
 
 	idx = 0;
 	len = 0;
+	tmp = 0;
 	while (s[idx] != 0)
 	{
 		if (s[idx] < 0x000080)
-			len += 1;
+			tmp += 1;
 		else if (s[idx] < 0x000800)
-			len += 2;
+			tmp += 2;
 		else if (s[idx] < 0x010000)
-			len += 3;
+			tmp += 3;
 		else if (s[idx] < 0x200000)
-			len += 4;
+			tmp += 4;
+		if (!exist || (int)tmp <= max)
+			len = tmp;
 		idx++;
 	}
 	return (len);
@@ -68,12 +72,12 @@ int				ft_print_uni(t_fmt *fmt, wchar_t **s, t_uint *len)
 	t_uint		idx_t;
 
 	fmt->len = 'l';
-	*len = ft_strlen_uni(*s);
+	*len = ft_strlen_uni(*s, fmt->flag[dot], fmt->prec);
 	if (!(temp = (char *)malloc(sizeof(char) * (*len + 1))))
 		return (ERROR);
 	idx_s = 0;
 	idx_t = 0;
-	while (s[idx_s] != 0)
+	while (idx_t < *len)
 		idx_t += ft_encoding_utf8(temp + idx_t, *(*s + idx_s++));
 	*s = (wchar_t *)temp;
 	return (0);
