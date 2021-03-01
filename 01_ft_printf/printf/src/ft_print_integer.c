@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 01:00:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/02/05 15:01:35 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/03/02 07:34:28 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			ft_decide_block(t_fmt *fmt, t_blk *blk)
 		blk->prefix--;
 		blk->pre--;
 	}
-	fmt->size = ft_max(blk->nbr + blk->prec, ft_max(fmt->wid, fmt->prec));
+	fmt->size = ft_max(blk->nbr, ft_max(fmt->wid, fmt->prec));
 	blk->pad = ft_max(0, fmt->size - blk->pre - blk->prec - blk->nbr);
 	if (!fmt->flag[minus])
 	{
