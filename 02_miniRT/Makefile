@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/08 19:47:18 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/21 23:42:04 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,14 +42,15 @@ NAME_GET_NEXT_LINE  := $(DIR_GET_NEXT_LINE)/$(LIB_GET_NEXT_LINE)
 # =========================
 
 CC        := gcc
-CFLAGS    :=
+CFLAGS    := -g
 CFLAGS    += -Wall
 CFLAGS    += -Wextra
 CFLAGS    += -Werror
 
-INCLUDES   := -I $(DIR_MLX) \
-			 -I $(DIR_LIBFT)/inc \
-			 -I $(DIR_GET_NEXT_LINE)/inc
+INCLUDES  := -I $(DIR_MLX) \
+			 -I $(DIR_LIBFT)/include \
+			 -I $(DIR_GET_NEXT_LINE) \
+			 -I include
 LIBFLAGS  := -L $(DIR_MLX) -lmlx -framework OpenGL -framework AppKit \
 			 -L $(DIR_LIBFT) -lft \
 			 -L $(DIR_GET_NEXT_LINE) -lgnl
@@ -69,8 +70,20 @@ DIR_SRC := src
 # source files
 # =========================
 
+DIR_SRC_PARSE := parse
+SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
+	parse.c \
+)
+
+DIR_SRC_UTIL := utils
+SRCS_UTIL := $(addprefix $(DIR_SRC_UTIL)/, \
+	utils_str.c \
+)
+
 SRCS := $(addprefix $(DIR_SRC)/, \
 	main.c \
+	$(SRCS_PARSE) \
+	$(SRCS_UTIL) \
 )
 
 # =========================
@@ -78,7 +91,9 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 # =========================
 
 vpath %.c \
-	$(DIR_SRC)
+	$(DIR_SRC) \
+	$(DIR_SRC)/$(DIR_SRC_UTIL) \
+	$(DIR_SRC)/$(DIR_SRC_PARSE)
 
 # =========================
 # object files
@@ -138,7 +153,7 @@ clean_depend :
 	@printf "[$(NAME)] 🧹 Cleaned dependency files$(LF)"
 
 %.d : %.c
-	@$(CC) -MM $< -I $(DIR_INC) -I $(DIR_MLX) | sed 's|^|$(DIR_OBJ)/|' | sed 's|$(DIR_OBJ)/  ||' >> depend_file
+	@$(CC) $(INCLUDES) -MM $< | sed 's|^|$(DIR_OBJ)/|' | sed 's|$(DIR_OBJ)/  ||' >> depend_file
 
 $(NAME) : $(DIR_OBJ) $(NAME_MLX) $(NAME_LIBFT) $(NAME_GET_NEXT_LINE) $(OBJS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFLAGS) $(OBJS) -o $(NAME)
@@ -165,4 +180,7 @@ $(NAME_GET_NEXT_LINE) :
 # DO NOT DELETE
 
 obj/main.o: src/main.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+include/struct.h
+obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
 include/struct.h
