@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/21 23:42:04 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/22 00:23:17 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,15 +75,16 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	parse.c \
 )
 
-DIR_SRC_UTIL := utils
-SRCS_UTIL := $(addprefix $(DIR_SRC_UTIL)/, \
+DIR_SRC_UTILS := utils
+SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	utils_str.c \
+	utils_color.c \
 )
 
 SRCS := $(addprefix $(DIR_SRC)/, \
 	main.c \
 	$(SRCS_PARSE) \
-	$(SRCS_UTIL) \
+	$(SRCS_UTILS) \
 )
 
 # =========================
@@ -92,7 +93,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 
 vpath %.c \
 	$(DIR_SRC) \
-	$(DIR_SRC)/$(DIR_SRC_UTIL) \
+	$(DIR_SRC)/$(DIR_SRC_UTILS) \
 	$(DIR_SRC)/$(DIR_SRC_PARSE)
 
 # =========================

@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/21 23:33:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/22 17:24:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define STRUCT_H
 
 typedef struct s_vec3		t_vec3;
+typedef struct s_vec3		t_point3;
+typedef struct s_vec3		t_color;
 typedef struct s_matrix		t_matrix;
 typedef struct s_image		t_image;
 typedef struct s_scene		t_scene;

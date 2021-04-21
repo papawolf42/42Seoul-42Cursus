@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/21 23:43:52 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/22 01:14:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,10 @@ void		ft_read_rt(t_ctrl *ctrl, char *rt_file);
 ** utils_str.c
 */
 int			ft_is_endstr(char *big, char *little);
+
+/*
+** utils_color.c
+*/
+int			ft_get_rgb_int(t_color *color);
 
 #endif
