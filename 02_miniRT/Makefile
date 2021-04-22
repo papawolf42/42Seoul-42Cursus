@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/22 00:23:17 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/22 19:02:30 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,9 @@ DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	utils_str.c \
 	utils_color.c \
+	utils_vec.c \
+	utils_vec2.c \
+	utils_vec3.c \
 )
 
 SRCS := $(addprefix $(DIR_SRC)/, \
