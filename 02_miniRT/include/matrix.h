@@ -1,43 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/23 18:20:56 by gunkim           ###   ########.fr       */
+/*   Created: 2021/04/23 18:20:15 by gunkim            #+#    #+#             */
+/*   Updated: 2021/04/23 18:20:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#include "vector.h"
 
-typedef struct s_image		t_image;
-typedef struct s_scene		t_scene;
-typedef struct s_ctrl		t_ctrl;
+typedef struct s_matrix		t_matrix;
 
-struct				s_image
+struct				s_matrix
 {
-	void		*img_ptr;
-	char		*data;
-	int			bit_per_pixel;
-	int			size_line;
-	int			endian;
+	t_vec3		vx;
+	t_vec3		vy;
+	t_vec3		vz;
 };
-
-struct				s_scene
-{
-	int			width;
-	int			height;
-};
-
-struct				s_ctrl
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_image		img;
-	t_scene		scene;
-};
-
-#endif
