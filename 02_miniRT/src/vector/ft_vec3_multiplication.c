@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:32:32 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/25 22:51:58 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/26 05:25:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ t_vec3		ft_vec3_unit(t_vec3 vec)
 	{
 		//ft_error_handler(ERROR_DIVIDE_ZERO);
 	}
-	ft_vec3_scalar(vec, 1 / veclen);
-	return (vec);
+	return (ft_vec3_scalar(vec, (double)1 / veclen));
 }

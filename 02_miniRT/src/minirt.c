@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/26 03:25:36 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/26 06:51:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@
 #include "ray.h"
 #include "object.h"
 
-t_bool		ft_hit_sphere(t_sphere *sp, t_ray *ray)
+t_vec3		ft_ray_at(t_ray ray, double t)
+{
+	ray.org = V_PLUS(ray.org, V_SCALAR(ray.dir, t));
+	return (ray.org);
+}
+
+double		ft_hit_sphere(t_sphere *sp, t_ray *ray)
 {
 	t_vec3		oc;
 	double		a;
@@ -31,17 +37,24 @@ t_bool		ft_hit_sphere(t_sphere *sp, t_ray *ray)
 	b = 2.0 * V_DOT(ray->dir, oc);
 	c = V_DOT(oc, oc) - sp->radius * sp->radius;
 	discriminant = b * b - 4 * a * c;
-	return (discriminant > 0);
+	if (discriminant < 0)
+		return (-1.0);
+	return ((-1 * b - sqrt(discriminant)) / (2.0 * a));
 }
 
 t_color		ft_ray_to_color(t_ray ray, t_sphere *sp)
 {
 	t_vec3		unit_direction;
+	t_vec3		n;
 	double		t;
 	t_color		rtn;
 
-	if (ft_hit_sphere(sp, &ray))
-		return (V_SET(1, 0, 0));
+	t = ft_hit_sphere(sp, &ray);
+	if (t > 0.0)
+	{
+		n = V_UNIT(V_MINUS(ft_ray_at(ray, t), sp->center));
+		return (V_SCALAR(V_SET(n.x + 1, n.y + 1, n.z + 1), 0.5));
+	}
 	unit_direction = V_UNIT(ray.dir);
 	t = 0.5 * (unit_direction.y + 1.0);
 	rtn = V_PLUS(V_SCALAR(V_SET(1.0, 1.0, 1.0), (1.0 - t)), V_SCALAR(V_SET(0.5, 0.7, 1.0), t));
@@ -52,7 +65,7 @@ void		ft_render(t_ctrl *ctrl)
 {
 	char		*data;
 	int			y, x;
-	
+
 	//camera
 	double		viewport_height = 2.0;
 	double		viewport_width = ctrl->scene->aspect_ratio * viewport_height;
@@ -82,6 +95,10 @@ void		ft_render(t_ctrl *ctrl)
 		x = 0;
 		while (x < ctrl->scene->width)
 		{
+			if ((x == ctrl->scene->width / 2) && (y == ctrl->scene->height / 2))
+			{
+				ray.org.x = 1;
+			}
 			u = (double)x / (ctrl->scene->width - 1);
 			v = (double)y / (ctrl->scene->height - 1);
 			ray.org = origin;
