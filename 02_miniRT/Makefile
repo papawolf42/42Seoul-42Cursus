@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/26 03:27:00 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/26 06:58:41 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,6 +187,7 @@ $(DIR_OBJ)/%.o : %.c
 	@printf "$(ERCR)[$(NAME)] 🔧 Compiling object file $@"
 
 $(NAME_MLX) :
+	@printf "$(ERCR)[$(LIB_MLX)] 🔧 Making mlx library"
 	@$(MAKE) all -C $(DIR_MLX)
 
 $(NAME_LIBFT) :

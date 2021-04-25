@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/26 06:51:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/26 06:54:29 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ double		ft_hit_sphere(t_sphere *sp, t_ray *ray)
 {
 	t_vec3		oc;
 	double		a;
-	double		b;
+	double		half_b;
 	double		c;
 	double		discriminant;
 
 	oc = V_MINUS(ray->org, sp->center);
 	a = V_DOT(ray->dir, ray->dir);
-	b = 2.0 * V_DOT(ray->dir, oc);
+	half_b = V_DOT(ray->dir, oc);
 	c = V_DOT(oc, oc) - sp->radius * sp->radius;
-	discriminant = b * b - 4 * a * c;
+	discriminant = half_b * half_b - a * c;
 	if (discriminant < 0)
 		return (-1.0);
-	return ((-1 * b - sqrt(discriminant)) / (2.0 * a));
+	return ((-1 * half_b - sqrt(discriminant)) / a);
 }
 
 t_color		ft_ray_to_color(t_ray ray, t_sphere *sp)
