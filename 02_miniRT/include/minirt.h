@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/23 18:24:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/23 21:15:57 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINIRT_H
 
 # include <stdio.h>
-# include <stdlib.h>
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"

@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_1.c                                         :+:      :+:    :+:   */
+/*   ft_vec3_plus_minus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 17:02:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/22 20:25:46 by gunkim           ###   ########.fr       */
+/*   Created: 2021/04/22 17:21:34 by gunkim            #+#    #+#             */
+/*   Updated: 2021/04/25 20:25:53 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "vector.h"
 
 /*
-** vec3 생성자
+** Add vectors.c
 */
-void		ft_vec_set(t_vec3 *vec3, double x, double y, double z)
+t_vec3		ft_vec3_plus(t_vec3 one, t_vec3 two)
 {
-	vec3->x = x;
-	vec3->y = y;
-	vec3->z = z;
+	one.x += two.x;
+	one.y += two.y;
+	one.z += two.z;
+	return (one);
 }
 
 /*
-** vec3 길이의 제곱 (물리적 의미는 없지만, 계산상 제곱을 구할 필요가 있을 때)
+** Subtract vectors
 */
-double		ft_vec_len2(t_vec3 *vec)
+t_vec3		ft_vec3_minus(t_vec3 one, t_vec3 two)
 {
-	return (vec->x * vec->x + vec->y * vec->y + vec->z * vec->z);
+	one.x -= two.x;
+	one.y -= two.y;
+	one.z -= two.z;
+	return (one);
 }
-
-/*
-** vec3 길이
-*/
-double		ft_vec_len(t_vec3 *vec)
-{
-	return (sqrt(ft_vec_len2(vec)));
-}
-

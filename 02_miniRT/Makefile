@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/22 19:02:30 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/25 19:10:45 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,11 @@ DIR_SRC := src
 # source files
 # =========================
 
+DIR_SRC_COLOR := color
+SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
+	ft_rgb_to_data.c \
+)
+
 DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	parse.c \
@@ -79,15 +84,22 @@ DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	utils_str.c \
 	utils_color.c \
-	utils_vec.c \
-	utils_vec2.c \
-	utils_vec3.c \
+)
+
+DIR_SRC_VECTOR := vector
+SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
+	ft_vec3_length.c \
+	ft_vec3_multiplication.c \
+	ft_vec3_plus_minus.c \
+	ft_vec3_set.c \
 )
 
 SRCS := $(addprefix $(DIR_SRC)/, \
 	main.c \
+	$(SRCS_COLOR) \
 	$(SRCS_PARSE) \
 	$(SRCS_UTILS) \
+	$(SRCS_VECTOR) \
 )
 
 # =========================
@@ -96,8 +108,11 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 
 vpath %.c \
 	$(DIR_SRC) \
+	$(DIR_SRC)/$(DIR_SRC_COLOR) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
-	$(DIR_SRC)/$(DIR_SRC_PARSE)
+	$(DIR_SRC)/$(DIR_SRC_PARSE) \
+	$(DIR_SRC)/$(DIR_SRC_VECTOR)
+
 
 # =========================
 # object files
