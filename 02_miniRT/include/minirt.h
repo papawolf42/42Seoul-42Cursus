@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/23 21:15:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/26 02:56:08 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef enum
 {
 	err_divided_zero
 }		t_err;
+
+typedef enum
+{
+	false = 0,
+	true = 1
+}		t_bool;
 
 /*
 ** main.c

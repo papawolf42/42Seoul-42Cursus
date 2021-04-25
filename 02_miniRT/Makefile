@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/25 19:10:45 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/26 03:27:00 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,6 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	utils_str.c \
-	utils_color.c \
 )
 
 DIR_SRC_VECTOR := vector
@@ -95,7 +94,7 @@ SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
 )
 
 SRCS := $(addprefix $(DIR_SRC)/, \
-	main.c \
+	minirt.c \
 	$(SRCS_COLOR) \
 	$(SRCS_PARSE) \
 	$(SRCS_UTILS) \
@@ -198,8 +197,18 @@ $(NAME_GET_NEXT_LINE) :
 
 # DO NOT DELETE
 
-obj/main.o: src/main.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
-include/struct.h
+obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+lib/libft/include/libft.h include/struct.h include/scene.h \
+include/color.h include/vector.h include/ray.h include/object.h
+obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
+include/vector.h include/ray.h
+obj/parse.o: src/parse/parse.c include/struct.h include/scene.h
 obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
-include/struct.h
+include/struct.h include/scene.h include/color.h include/vector.h \
+include/ray.h
+obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
+obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
+include/vector.h
+obj/ft_vec3_plus_minus.o: src/vector/ft_vec3_plus_minus.c include/vector.h
+obj/ft_vec3_set.o: src/vector/ft_vec3_set.c include/vector.h
