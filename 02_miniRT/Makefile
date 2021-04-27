@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/26 06:58:41 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/28 05:49:07 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,13 @@ SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
 	ft_rgb_to_data.c \
 )
 
+DIR_SRC_OBJECT := object
+SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
+	camera.c \
+	object.c \
+	sphere.c \
+)
+
 DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	parse.c \
@@ -96,6 +103,7 @@ SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
 SRCS := $(addprefix $(DIR_SRC)/, \
 	minirt.c \
 	$(SRCS_COLOR) \
+	$(SRCS_OBJECT) \
 	$(SRCS_PARSE) \
 	$(SRCS_UTILS) \
 	$(SRCS_VECTOR) \
@@ -108,10 +116,10 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 vpath %.c \
 	$(DIR_SRC) \
 	$(DIR_SRC)/$(DIR_SRC_COLOR) \
+	$(DIR_SRC)/$(DIR_SRC_OBJECT) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
 	$(DIR_SRC)/$(DIR_SRC_PARSE) \
 	$(DIR_SRC)/$(DIR_SRC_VECTOR)
-
 
 # =========================
 # object files
@@ -208,6 +216,28 @@ obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
 include/struct.h include/scene.h include/color.h include/vector.h \
 include/ray.h
+obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
+obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
+include/vector.h
+obj/ft_vec3_plus_minus.o: src/vector/ft_vec3_plus_minus.c include/vector.h
+obj/ft_vec3_set.o: src/vector/ft_vec3_set.c include/vector.h
+obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+lib/libft/include/libft.h include/struct.h include/vector.h \
+include/ray.h include/object.h include/alias.h include/color.h
+obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
+include/vector.h include/ray.h
+obj/camera.o: src/object/camera.c lib/libft/include/libft.h include/struct.h \
+include/vector.h include/ray.h include/object.h include/alias.h
+obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
+include/vector.h include/ray.h include/object.h include/alias.h
+obj/sphere.o: src/object/sphere.c include/struct.h include/vector.h \
+include/ray.h include/object.h include/alias.h
+obj/parse.o: src/parse/parse.c lib/libft/include/libft.h include/struct.h \
+include/vector.h include/ray.h include/object.h include/alias.h
+obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/struct.h include/vector.h include/ray.h include/object.h \
+include/alias.h include/color.h
 obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
 obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
 include/vector.h

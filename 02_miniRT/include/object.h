@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 02:40:54 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/26 02:51:44 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/28 01:38:52 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 # define OBJECT_H
 
 # include "ray.h"
-
-typedef struct s_sphere		t_sphere;
-
-struct s_sphere
-{
-	t_point3		center;
-	double			radius;
-};
+# include "alias.h"
 
 #endif

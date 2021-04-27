@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_str.c                                        :+:      :+:    :+:   */
+/*   alias.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/20 17:06:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/28 01:17:55 by gunkim           ###   ########.fr       */
+/*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
+/*   Updated: 2021/04/28 01:21:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-#include "alias.h"
+#ifndef ALIAS_H
+# define ALIAS_H
 
-int			ft_is_endstr(char *big, char *little)
+# include <float.h>
+
+# define M_EPSILON 1e-8
+# define M_INFINITY 1.797683e308
+# define M_PI2 6.283185307179586231995926937088
+# define NUL (void *)0
+
+typedef enum
 {
-	char	*endstr;
+	false = 0,
+	true = 1
+}		t_bool;
 
-	endstr = ft_strnstr(big, little, ft_strlen(big));
-	if (endstr != NUL)
-	{
-		endstr += ft_strlen(endstr);
-		if (*endstr == '\0')
-		{
-			return (1);
-		}
-	}
-	return (0);
-}
+#endif

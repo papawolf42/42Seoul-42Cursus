@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/26 02:56:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/27 17:36:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ typedef enum
 	err_divided_zero
 }		t_err;
 
-typedef enum
-{
-	false = 0,
-	true = 1
-}		t_bool;
-
 /*
 ** main.c
 */
@@ -41,7 +35,7 @@ int			main(int argc, char *argv[]);
 /*
 ** parse.c
 */
-void		ft_read_rt(t_ctrl *ctrl, char *rt_file);
+void		ft_parse_rt(t_ctrl *ctrl, char *rt_file);
 
 /*
 ** utils_str.c

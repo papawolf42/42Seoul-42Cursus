@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/23 19:32:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/23 21:13:19 by gunkim           ###   ########.fr       */
+/*   Created: 2021/04/27 17:27:48 by gunkim            #+#    #+#             */
+/*   Updated: 2021/04/28 05:33:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#include <stdlib.h>
+#include "struct.h"
 
-typedef struct s_scene		t_scene;
-
-struct			s_scene
+t_sphere		*ft_sphere(t_point3 center, double radius)
 {
-	int			width;
-	int			height;
-	double		aspect_ratio;
-};
+	t_sphere *sp;
 
-#endif
+	sp = (t_sphere *)malloc(sizeof(t_sphere));
+	sp->center = center;
+	sp->radius = radius;
+	return (sp);
+}
