@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/28 05:49:07 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/28 06:08:49 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,7 +166,7 @@ fclean :
 	@$(MAKE) fclean -C $(DIR_LIBFT)
 	@$(MAKE) fclean -C $(DIR_GET_NEXT_LINE)
 	@$(RM) $(RFLAGS) $(NAME)
-	@printf "[$(NAME)] ✔️  Cleaned all !!\n"
+	@printf "[$(NAME)] ✔️  Cleaned all !!$(LF)"
 
 re : fclean all
 
@@ -184,7 +184,7 @@ clean_depend :
 $(NAME) : $(DIR_OBJ) $(NAME_MLX) $(NAME_LIBFT) $(NAME_GET_NEXT_LINE) $(OBJS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFLAGS) $(OBJS) -o $(NAME)
 	@install_name_tool -change $(LIB_MLX) $(DIR_MLX)/$(LIB_MLX) $(NAME)
-	@printf "[$(NAME)] ✔️  Make complete !!\n"
+	@printf "$(ERCR)[$(NAME)] ✔️  Make complete !!"
 
 $(DIR_OBJ) :
 	@mkdir -p $(DIR_OBJ)
@@ -195,8 +195,9 @@ $(DIR_OBJ)/%.o : %.c
 	@printf "$(ERCR)[$(NAME)] 🔧 Compiling object file $@"
 
 $(NAME_MLX) :
-	@printf "$(ERCR)[$(LIB_MLX)] 🔧 Making mlx library"
+	@printf "$(ERCR)[$(LIB_MLX)] 🔧 Compiling mlx library, Please wait..."
 	@$(MAKE) all -C $(DIR_MLX)
+	@printf "$(ERCR)[$(LIB_MLX)] ✔️  Compiled done$(LF)"
 
 $(NAME_LIBFT) :
 	@$(MAKE) -s all -C $(DIR_LIBFT)
@@ -206,21 +207,6 @@ $(NAME_GET_NEXT_LINE) :
 
 # DO NOT DELETE
 
-obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
-lib/libft/include/libft.h include/struct.h include/scene.h \
-include/color.h include/vector.h include/ray.h include/object.h
-obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
-include/vector.h include/ray.h
-obj/parse.o: src/parse/parse.c include/struct.h include/scene.h
-obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
-lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
-include/struct.h include/scene.h include/color.h include/vector.h \
-include/ray.h
-obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
-obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
-include/vector.h
-obj/ft_vec3_plus_minus.o: src/vector/ft_vec3_plus_minus.c include/vector.h
-obj/ft_vec3_set.o: src/vector/ft_vec3_set.c include/vector.h
 obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/ray.h include/object.h include/alias.h include/color.h
