@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:32:32 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/26 05:25:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/29 20:41:09 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ t_vec3		ft_vec3_scalar(t_vec3 vec, double t)
 	vec.y *= t;
 	vec.z *= t;
 	return (vec);
+}
+
+t_vec3		ft_vec3_mult(t_vec3 one, t_vec3 two)
+{
+	one.x *= two.x;
+	one.y *= two.y;
+	one.z *= two.z;
+	return (one);
 }
 
 double		ft_vec3_dot(t_vec3 one, t_vec3 two)

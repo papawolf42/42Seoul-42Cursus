@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/28 05:50:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/29 21:56:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ double		ft_hit_sphere(t_sphere *sp, t_ray *ray, t_hit_rec *rec)
 	rec->p = ft_ray_at(ray, root);
 	rec->normal = V_SCALAR(V_MINUS(rec->p, sp->center), (double)1 / sp->radius);
 	rec->front_face = ft_determine_front(ray, rec);
+	rec->color = sp->color;
 	return (true);
 }
 
@@ -99,6 +100,49 @@ t_bool		ft_hit(t_object_list *obj, t_ray *ray, t_hit_rec *rec)
 	return (bool_hit);
 }
 
+t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
+{
+	t_color		ambient;
+	t_color		diffuse;
+	t_color		specular;
+
+	t_vec3		to_light;
+	t_vec3		to_view;
+	t_vec3		reflect;
+
+	double		ka;
+	double		kd;
+	double		ks;
+	double		ksn;
+
+	to_light = V_UNIT(V_MINUS(light->p, rec->p));
+	to_view = V_UNIT(V_MINUS(ray->org, rec->p));
+	reflect = V_UNIT(V_REFLECT(V_SCALAR(to_light, -1), rec->normal));
+
+	ka = 0.1;
+	kd = V_DOT(rec->normal, to_light);
+	ks = 0.5;
+	ksn = 256;
+	ambient = V_SCALAR(light->color, ka);
+	diffuse = V_SCALAR(light->color, kd);
+	specular = V_SCALAR(light->color, pow(V_DOT(rec->normal, to_light), ksn));
+	return (V_MAX(V_PLUS(V_PLUS(ambient, diffuse), specular), V_SET(0, 0, 0)));
+	// return (specular);
+}
+
+t_color		ft_phong_color(t_light_list *lights, t_ray *ray, t_hit_rec *rec)
+{
+	t_color		light_stack;
+
+	light_stack = V_COLOR(0, 0, 0);
+	while (lights)
+	{
+		light_stack = V_PLUS(light_stack, ft_phong_color_compute(lights->light, ray, rec));
+		lights = lights->next;
+	}
+	return (V_MIN(V_MULT(light_stack, rec->color), V_SET(0.999, 0.999, 0.999)));
+}
+
 t_color		ft_ray_to_color(t_ray ray, t_ctrl *c)
 {
 	t_vec3		unit_direction;
@@ -110,7 +154,7 @@ t_color		ft_ray_to_color(t_ray ray, t_ctrl *c)
 
 	if (ft_hit(c->scene->object_list, &ray, &rec))
 	{
-		return (V_SCALAR(V_SET(rec.normal.x + 1, rec.normal.y + 1, rec.normal.z + 1), 0.5));
+		return (ft_phong_color(c->scene->light_list, &ray, &rec));
 	}
 	else
 	{
@@ -134,7 +178,8 @@ void		ft_render(t_ctrl *c)
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			if ((x == (int)(c->scene->canv.width * 0.68)) && (y == (int)(c->scene->canv.height * 0.5)))
+			// if ((x == (int)(c->scene->canv.width * 0.68)) && (y == (int)(c->scene->canv.height * 0.5)))
+			if ((x == 250) && (y == 250))
 			{
 				ray.org.x = 1;
 			}
@@ -154,6 +199,14 @@ void		ft_render(t_ctrl *c)
 	}
 }
 
+int		ft_get_position_clicked(int click, int x, int y, t_scene *s)
+{
+	(void)click;
+	s->canv.height = s->canv.height;// meaningless
+	printf("x:%d, y:%d\n", x, y);
+	return (0);
+}
+
 void		ft_minirt(t_ctrl *ctrl)
 {
 	ctrl->mlx_ptr = mlx_init();
@@ -163,6 +216,7 @@ void		ft_minirt(t_ctrl *ctrl)
 					&ctrl->img.size_line, &ctrl->img.endian);
 	ft_render(ctrl);
 	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
+	mlx_hook(ctrl->win_ptr, MOUSE_PRESSED, 1L << 0, ft_get_position_clicked, ctrl->scene);
 	mlx_loop(ctrl->mlx_ptr);
 }
 
