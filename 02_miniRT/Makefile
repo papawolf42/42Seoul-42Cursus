@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/30 00:51:30 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/30 22:21:12 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,7 @@ SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	object.c \
 	plane.c \
 	sphere.c \
+	square.c \
 )
 
 DIR_SRC_PARSE := parse
@@ -221,7 +222,11 @@ obj/light.o: src/object/light.c lib/libft/include/libft.h include/struct.h \
 include/ray.h include/vector.h include/alias.h include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
 include/ray.h include/vector.h include/alias.h include/color.h
+obj/plane.o: src/object/plane.c include/struct.h include/ray.h \
+include/vector.h include/alias.h include/color.h
 obj/sphere.o: src/object/sphere.c include/struct.h include/ray.h \
+include/vector.h include/alias.h include/color.h
+obj/square.o: src/object/square.c include/struct.h include/ray.h \
 include/vector.h include/alias.h include/color.h
 obj/parse.o: src/parse/parse.c lib/libft/include/libft.h include/struct.h \
 include/ray.h include/vector.h include/alias.h include/color.h
@@ -229,6 +234,7 @@ obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
 include/struct.h include/ray.h include/vector.h include/alias.h \
 include/color.h
+obj/ft_vec3_geometry.o: src/vector/ft_vec3_geometry.c include/vector.h
 obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
 obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
 include/vector.h

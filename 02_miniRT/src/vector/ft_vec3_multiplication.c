@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:32:32 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/29 20:41:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/30 11:59:39 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ double		ft_vec3_dot(t_vec3 one, t_vec3 two)
 	return (one.x * two.x + one.y * two.y + one.z * two.z);
 }
 
-t_vec3		ft_vec3_vcross(t_vec3 one, t_vec3 two)
+t_vec3		ft_vec3_cross(t_vec3 one, t_vec3 two)
 {
 	t_vec3	new;
 

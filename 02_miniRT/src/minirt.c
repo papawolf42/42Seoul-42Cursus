@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/30 01:53:33 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/30 21:59:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,38 @@ t_bool		ft_determine_front(t_ray *ray, t_hit_rec *rec)
 	}
 }
 
+t_vec3		ft_get_point(t_point3 org, t_vec3 dir, double t)
+{
+	return (V_PLUS(org, V_SCALAR(dir, t)));
+}
+
+double		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
+{
+	double		proj_unit;
+	double		proj_len;
+	double		root;
+	t_point3	point_t;
+	t_vec3		diff;
+
+	proj_unit = V_DOT(ray->dir, sq->normal);
+	if (fabs(proj_unit) < 0.0001)
+		return (false);
+	proj_len = V_DOT(V_MINUS(sq->center, ray->org), sq->normal);
+	root = proj_len / proj_unit;
+	if (root < rec->t_min || rec->t_max < root)
+		return (false);
+	point_t = ft_ray_at(ray, root);
+	diff = V_MINUS(point_t, sq->center);
+	if (fabs(V_DOT(sq->span_a, diff)) > sq->side_size / 2 || fabs(V_DOT(sq->span_b, diff)) > sq->side_size / 2)
+		return (false);
+	rec->t = root;
+	rec->p = point_t;
+	rec->normal = sq->normal;
+	rec->front_face = ft_determine_front(ray, rec);
+	rec->color = sq->color;
+	return (true);
+}
+
 double		ft_hit_plane(t_plane *pl, t_ray *ray, t_hit_rec *rec)
 {
 	double	proj_unit;
@@ -58,7 +90,8 @@ double		ft_hit_plane(t_plane *pl, t_ray *ray, t_hit_rec *rec)
 	rec->normal = pl->normal;
 	rec->front_face = ft_determine_front(ray, rec);
 	rec->color = pl->color;
-	return (true);}
+	return (true);
+}
 
 double		ft_hit_sphere(t_sphere *sp, t_ray *ray, t_hit_rec *rec)
 {
@@ -102,6 +135,8 @@ t_bool		ft_hit_obj(t_object_list *obj, t_ray *ray,t_hit_rec *rec)
 		bool_hit = ft_hit_sphere(obj->object, ray, rec);
 	if (obj->type == pl)
 		bool_hit = ft_hit_plane(obj->object, ray, rec);
+	if (obj->type == sq)
+		bool_hit = ft_hit_square(obj->object, ray, rec);
 	return (bool_hit);
 }
 
@@ -201,7 +236,7 @@ void		ft_render(t_ctrl *c)
 		while (x < c->scene->canv.width)
 		{
 			// if ((x == (int)(c->scene->canv.width * 0.68)) && (y == (int)(c->scene->canv.height * 0.5)))
-			if ((x == 946) && (y == 308))
+			if ((x == 267) && (y == 545))
 			{
 				ray.org.x = 1;
 			}
