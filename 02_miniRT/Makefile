@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/29 21:46:27 by gunkim           ###   ########.fr        #
+#    Updated: 2021/04/30 00:51:30 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	camera.c \
 	light.c \
 	object.c \
+	plane.c \
 	sphere.c \
 )
 

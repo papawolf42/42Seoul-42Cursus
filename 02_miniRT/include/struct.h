@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/29 20:39:51 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/04/30 00:40:25 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ typedef struct s_camera_list	t_camera_list;
 typedef struct s_light_list		t_light_list;
 
 typedef struct s_camera			t_camera;
-typedef struct s_sphere			t_sphere;
 typedef struct s_light			t_light;
+typedef struct s_sphere			t_sphere;
+typedef struct s_plane			t_plane;
 
 typedef enum e_object_type		t_object_type;
 
 enum e_object_type
 {
-	sp = 1
+	sp = 1,
+	pl = 2
 };
 
 struct				s_image
@@ -100,10 +102,23 @@ struct s_hit_record
 	t_color			color;
 };
 
+struct s_plane
+{
+	t_point3		point;
+	t_vec3			normal;
+	t_color			color;
+};
+
 struct s_sphere
 {
 	t_point3		center;
 	double			radius;
+	t_color			color;
+};
+
+struct				s_light
+{
+	t_point3		p;
 	t_color			color;
 };
 
@@ -118,16 +133,10 @@ struct				s_camera
 	t_point3		left_top;
 };
 
-struct				s_light
-{
-	t_point3		p;
-	t_color			color;
-};
-
-
 void			ft_object_list_init(t_scene *s);
 void			ft_object_list(t_object_type type, void *object, t_scene *s);
 t_sphere		*ft_sphere(t_point3 center, double radius, t_color color);
+t_plane			*ft_plane(t_point3 point, t_vec3 normal, t_color color);
 
 void			ft_camera_list_init(t_scene *s);
 void			ft_camera_list(void *camera, t_scene *s);
