@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/30 21:59:59 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/01 13:45:56 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,14 +187,14 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	// return (specular);
 }
 
-t_color		ft_phong_color(t_light_list *lights, t_ray *ray, t_hit_rec *rec)
+t_color		ft_phong_color(t_object_list *lights, t_ray *ray, t_hit_rec *rec)
 {
 	t_color		light_stack;
 
 	light_stack = V_COLOR(0, 0, 0);
 	while (lights)
 	{
-		light_stack = V_PLUS(light_stack, ft_phong_color_compute(lights->light, ray, rec));
+		light_stack = V_PLUS(light_stack, ft_phong_color_compute(lights->object, ray, rec));
 		lights = lights->next;
 	}
 	return (V_MIN(V_MULT(light_stack, rec->color), V_SET(0.999, 0.999, 0.999)));
@@ -228,7 +228,9 @@ void		ft_render(t_ctrl *c)
 	double		u, v;
 	t_ray		ray;
 	t_color		color;
+	t_camera	*cam;
 	
+	cam = c->scene->camera_list->object;
 	y = c->scene->canv.height - 1;
 	while (y >= 0)
 	{
@@ -242,11 +244,11 @@ void		ft_render(t_ctrl *c)
 			}
 			u = (double)x / (c->scene->canv.width - 1);
 			v = (double)y / (c->scene->canv.height - 1);
-			ray.org = c->scene->camera_list->camera->origin;
-			ray.dir = V_MINUS(V_MINUS(V_PLUS(c->scene->camera_list->camera->left_top,
-						V_SCALAR(c->scene->camera_list->camera->horizontal, u)),
-						V_SCALAR(c->scene->camera_list->camera->vertical, v)),
-						c->scene->camera_list->camera->origin);
+			ray.org = cam->origin;
+			ray.dir = V_MINUS(V_MINUS(V_PLUS(cam->left_top,
+						V_SCALAR(cam->horizontal, u)),
+						V_SCALAR(cam->vertical, v)),
+						cam->origin);
 			color = ft_ray_to_color(ray, c);
 			data = c->img.data + (y * c->img.size_line + x * (c->img.bit_per_pixel / 8));
 			*(unsigned int *)data = ft_rgb_to_data(color);

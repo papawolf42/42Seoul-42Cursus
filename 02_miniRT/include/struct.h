@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/30 11:58:38 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/01 13:58:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef struct s_scene			t_scene;
 
 typedef struct s_hit_record		t_hit_rec;
 typedef struct s_object_list	t_object_list;
-typedef struct s_camera_list	t_camera_list;
-typedef struct s_light_list		t_light_list;
+// typedef struct s_camera_list	t_camera_list;
+// typedef struct s_light_list		t_light_list;
 
 typedef struct s_camera			t_camera;
 typedef struct s_light			t_light;
@@ -37,9 +37,11 @@ typedef enum e_object_type		t_object_type;
 
 enum e_object_type
 {
-	sp = 1,
-	pl = 2,
-	sq = 3
+	cam = 1,
+	l = 2,
+	sp = 3,
+	pl = 4,
+	sq = 5
 };
 
 struct				s_image
@@ -70,8 +72,8 @@ struct				s_scene
 {
 	t_canvas		canv;
 	t_object_list	*object_list;
-	t_camera_list	*camera_list;
-	t_light_list	*light_list;
+	t_object_list	*camera_list;
+	t_object_list	*light_list;
 };
 
 struct s_object_list
@@ -79,18 +81,6 @@ struct s_object_list
 	void			*object;
 	t_object_type	type;
 	t_object_list	*next;
-};
-
-struct s_camera_list
-{
-	t_camera		*camera;
-	void			*next;
-};
-
-struct s_light_list
-{
-	t_light			*light;
-	t_light_list	*next;
 };
 
 struct s_hit_record
@@ -146,7 +136,7 @@ struct				s_camera
 };
 
 void			ft_object_list_init(t_scene *s);
-void			ft_object_list(t_object_type type, void *object, t_scene *s);
+void			ft_object_list(t_object_type type, void *object, t_object_list *list);
 t_sphere		*ft_sphere(t_point3 center, double radius, t_color color);
 t_plane			*ft_plane(t_point3 point, t_vec3 normal, t_color color);
 t_square		*ft_square(t_point3 center, t_vec3 normal, double side_size, t_color color);
