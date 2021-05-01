@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/01 13:59:14 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/01 15:35:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 void		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 {
 	ctrl->scene = (t_scene *)malloc(sizeof(t_scene));
-	ctrl->scene->canv.width = 300;
-	ctrl->scene->canv.height = 300;
-	ctrl->scene->canv.aspect_ratio = (double)300 / (double)300;
+	ctrl->scene->canv.width = 1500;
+	ctrl->scene->canv.height = 1500;
+	ctrl->scene->canv.aspect_ratio = (double)1500 / (double)1500;
 	ft_object_list_init(ctrl->scene);
 	ft_object_list(cam, ft_camera(V_SET(0, 0, 0), 2.0, 1.0, ctrl->scene->canv.aspect_ratio), ctrl->scene->camera_list);
 	

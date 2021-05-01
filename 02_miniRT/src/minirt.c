@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/01 13:45:56 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/01 15:34:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,27 @@ t_bool		ft_hit(t_object_list *obj, t_ray *ray, t_hit_rec *rec)
 	return (bool_hit);
 }
 
+t_bool		ft_is_not_shadow(t_object_list *obj, t_light *light, t_hit_rec *rec)
+{
+	t_ray		back_track_ray;
+	t_hit_rec	rec_light;
+	
+	back_track_ray.org = rec->p;
+	back_track_ray.dir = V_MINUS(light->p, rec->p);
+
+	rec_light.t_min = M_EPSILON;
+	rec_light.t_max = 1;
+	while (obj)
+	{
+		if (ft_hit_obj(obj, &back_track_ray, &rec_light))
+		{
+			return (false);
+		}
+		obj = obj->next;
+	}
+	return (true);
+}
+
 t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 {
 	t_color		ambient;
@@ -187,12 +208,14 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	// return (specular);
 }
 
-t_color		ft_phong_color(t_object_list *lights, t_ray *ray, t_hit_rec *rec)
+t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
 {
-	t_color		light_stack;
+	t_color			light_stack;
+	t_object_list	*lights;
 
+	lights = s->light_list;
 	light_stack = V_COLOR(0, 0, 0);
-	while (lights)
+	while (lights && ft_is_not_shadow(s->object_list, lights->object, rec))
 	{
 		light_stack = V_PLUS(light_stack, ft_phong_color_compute(lights->object, ray, rec));
 		lights = lights->next;
@@ -206,12 +229,12 @@ t_color		ft_ray_to_color(t_ray ray, t_ctrl *c)
 	double		t;
 	t_hit_rec	rec;
 
-	rec.t_min = 0;
+	rec.t_min = M_EPSILON;
 	rec.t_max = M_INFINITY;
 
 	if (ft_hit(c->scene->object_list, &ray, &rec))
 	{
-		return (ft_phong_color(c->scene->light_list, &ray, &rec));
+		return (ft_phong_color(c->scene, &ray, &rec));
 	}
 	else
 	{
@@ -238,7 +261,7 @@ void		ft_render(t_ctrl *c)
 		while (x < c->scene->canv.width)
 		{
 			// if ((x == (int)(c->scene->canv.width * 0.68)) && (y == (int)(c->scene->canv.height * 0.5)))
-			if ((x == 267) && (y == 545))
+			if ((x == 287) && (y == 193))
 			{
 				ray.org.x = 1;
 			}
