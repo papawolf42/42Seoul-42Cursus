@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/01 15:34:43 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/02 04:25:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ t_vec3		ft_ray_at(t_ray *ray, double t)
 	return (at);
 }
 
-t_bool		ft_determine_front(t_ray *ray, t_hit_rec *rec)
+t_front	ft_determine_front(t_ray *ray, t_hit_rec *rec)
 {
 	double		dot;
 	dot = V_DOT(ray->dir, rec->normal);
 	if (dot < 0)
 	{
-		return (true);
+		return (front);
 	}
 	else
 	{
-		rec->p = V_SCALAR(rec->p, -1);
-		return (false);
+		rec->normal = V_SCALAR(rec->normal, -1);
+		return (back);
 	}
 }
 
@@ -183,6 +183,7 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	t_color		ambient;
 	t_color		diffuse;
 	t_color		specular;
+	t_color		light_intensity;
 
 	t_vec3		to_light;
 	t_vec3		to_view;
@@ -193,19 +194,31 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	double		ks;
 	double		ksn;
 
+	double		attenuation_radius;
+	double		attenuation_distance;
+	double		radius_attenuation;
+	double		distance;
+
+	radius_attenuation = 2.2;
+	distance = V_LEN(V_MINUS(light->p, rec->p));
+	if (radius_attenuation < distance)
+		return (V_COLOR(0, 0, 0));
+
 	to_light = V_UNIT(V_MINUS(light->p, rec->p));
 	to_view = V_UNIT(V_MINUS(ray->org, rec->p));
 	reflect = V_UNIT(V_REFLECT(V_SCALAR(to_light, -1), rec->normal));
 
-	ka = 0.1;
-	kd = V_DOT(rec->normal, to_light);
-	ks = 0.5;
+	ka = 0.05;
+	kd = ft_max(V_DOT(rec->normal, to_light), 0.0);
+	ks = 0.3;
 	ksn = 256;
 	ambient = V_SCALAR(light->color, ka);
 	diffuse = V_SCALAR(light->color, kd);
-	specular = V_SCALAR(light->color, pow(V_DOT(rec->normal, to_light), ksn));
-	return (V_MAX(V_PLUS(V_PLUS(ambient, diffuse), specular), V_SET(0, 0, 0)));
-	// return (specular);
+	specular = V_SCALAR(light->color, ks * pow(fmax(V_DOT(reflect, to_view), 0.0), ksn));
+	attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
+	attenuation_distance = 1 / (pow(distance, 2) + 1);
+	light_intensity = V_PLUS(V_PLUS(ambient, diffuse), specular);
+	return (V_SCALAR(light_intensity, attenuation_distance * attenuation_radius));
 }
 
 t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
@@ -215,9 +228,10 @@ t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
 
 	lights = s->light_list;
 	light_stack = V_COLOR(0, 0, 0);
-	while (lights && ft_is_not_shadow(s->object_list, lights->object, rec))
+	while (lights)
 	{
-		light_stack = V_PLUS(light_stack, ft_phong_color_compute(lights->object, ray, rec));
+		if (ft_is_not_shadow(s->object_list, lights->object, rec))
+			light_stack = V_PLUS(light_stack, ft_phong_color_compute(lights->object, ray, rec));
 		lights = lights->next;
 	}
 	return (V_MIN(V_MULT(light_stack, rec->color), V_SET(0.999, 0.999, 0.999)));
@@ -261,7 +275,7 @@ void		ft_render(t_ctrl *c)
 		while (x < c->scene->canv.width)
 		{
 			// if ((x == (int)(c->scene->canv.width * 0.68)) && (y == (int)(c->scene->canv.height * 0.5)))
-			if ((x == 287) && (y == 193))
+			if ((x == 1523) && (y == 224))
 			{
 				ray.org.x = 1;
 			}

@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/29 17:23:20 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/02 04:12:53 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,11 @@ typedef enum
 	false = 0,
 	true = 1
 }		t_bool;
+
+typedef enum
+{
+	front = 1,
+	back = -1
+}		t_front;
 
 #endif

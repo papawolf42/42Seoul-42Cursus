@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/01 13:58:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/02 04:13:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ struct s_hit_record
 	double			t_min;
 	double			t_max;
 	double			t;
-	t_bool			front_face;
+	t_front			front_face;
 	t_color			color;
 };
 

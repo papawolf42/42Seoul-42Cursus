@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/04/30 22:21:12 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/02 03:50:17 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,6 +92,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 
 DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
+	utils_cmp.c \
 	utils_str.c \
 )
 
@@ -230,6 +231,7 @@ obj/square.o: src/object/square.c include/struct.h include/ray.h \
 include/vector.h include/alias.h include/color.h
 obj/parse.o: src/parse/parse.c lib/libft/include/libft.h include/struct.h \
 include/ray.h include/vector.h include/alias.h include/color.h
+obj/utils_cmp.o: src/utils/utils_cmp.c
 obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
 include/struct.h include/ray.h include/vector.h include/alias.h \
