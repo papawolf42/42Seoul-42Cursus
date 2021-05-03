@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/02 03:50:17 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/03 14:58:30 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	camera.c \
+	cylinder.c \
 	light.c \
 	object.c \
 	plane.c \
@@ -219,6 +220,9 @@ obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
 obj/camera.o: src/object/camera.c lib/libft/include/libft.h include/struct.h \
 include/ray.h include/vector.h include/alias.h include/color.h
+obj/cylinder.o: src/object/cylinder.c lib/libft/include/libft.h \
+include/struct.h include/ray.h include/vector.h include/alias.h \
+include/color.h
 obj/light.o: src/object/light.c lib/libft/include/libft.h include/struct.h \
 include/ray.h include/vector.h include/alias.h include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \

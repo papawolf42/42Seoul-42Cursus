@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/02 04:25:43 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/03 14:57:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,55 @@ t_front	ft_determine_front(t_ray *ray, t_hit_rec *rec)
 t_vec3		ft_get_point(t_point3 org, t_vec3 dir, double t)
 {
 	return (V_PLUS(org, V_SCALAR(dir, t)));
+}
+
+t_bool		ft_hit_cylinder_in_height(t_cylinder *cy, t_ray *ray, double root)
+{
+	double		height;
+
+	height = V_DOT(cy->axis, V_MINUS(ft_ray_at(ray, root), cy->center_bottom));
+	return ((0 <= height) && (height <= cy->height));
+}
+
+double		ft_hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_rec *rec)
+{
+	t_vec3		v;
+	t_vec3		w;
+	t_vec3		h;
+	double		a;
+	double		half_b;
+	double		c;
+	double		discriminant;// 판별식
+	double		root;// 근
+	double		sqrtd;// 근의 제곱근
+
+	v = ray->dir;
+	w = V_MINUS(ray->org, cy->center_bottom);
+	h = cy->axis;
+
+	a = V_DOT(v, v) - pow(V_DOT(v, h), 2);
+	half_b = V_DOT(v, w) - V_DOT(v, h) * V_DOT(w, h);
+	c = V_DOT(w, w) - pow(V_DOT(w, h), 2) - pow(cy->radius, 2);
+	discriminant = half_b * half_b - a * c;
+	if (discriminant < 0)
+		return (false);
+	sqrtd = sqrt(discriminant);
+	root = (-1 * half_b - sqrtd) / a;
+	if (!ft_hit_cylinder_in_height(cy, ray, root) || root < rec->t_min || rec->t_max < root)
+	{
+		root = (-1 * half_b + sqrtd) / a;
+		if (root < rec->t_min || rec->t_max < root)
+			return (false);
+	}
+	if (!ft_hit_cylinder_in_height(cy, ray, root))
+		return (false);
+	rec->t = root;
+	rec->p = ft_ray_at(ray, root);
+	
+	rec->normal = V_UNIT(V_MINUS(rec->p, V_PLUS(cy->center_bottom, V_SCALAR(cy->axis, V_DOT(V_MINUS(rec->p, cy->center_bottom), cy->axis)))));
+	rec->front_face = ft_determine_front(ray, rec);
+	rec->color = cy->color;
+	return (true);
 }
 
 double		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
@@ -137,6 +186,8 @@ t_bool		ft_hit_obj(t_object_list *obj, t_ray *ray,t_hit_rec *rec)
 		bool_hit = ft_hit_plane(obj->object, ray, rec);
 	if (obj->type == sq)
 		bool_hit = ft_hit_square(obj->object, ray, rec);
+	if (obj->type == cy)
+		bool_hit = ft_hit_cylinder(obj->object, ray, rec);
 	return (bool_hit);
 }
 
@@ -194,31 +245,32 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	double		ks;
 	double		ksn;
 
-	double		attenuation_radius;
-	double		attenuation_distance;
-	double		radius_attenuation;
-	double		distance;
+	// double		attenuation_radius;
+	// double		attenuation_distance;
+	// double		radius_attenuation;
+	// double		distance;
 
-	radius_attenuation = 2.2;
-	distance = V_LEN(V_MINUS(light->p, rec->p));
-	if (radius_attenuation < distance)
-		return (V_COLOR(0, 0, 0));
+	// radius_attenuation = 8;
+	// distance = V_LEN(V_MINUS(light->p, rec->p));
+	// if (radius_attenuation < distance)
+	// 	return (V_COLOR(0, 0, 0));
 
 	to_light = V_UNIT(V_MINUS(light->p, rec->p));
 	to_view = V_UNIT(V_MINUS(ray->org, rec->p));
 	reflect = V_UNIT(V_REFLECT(V_SCALAR(to_light, -1), rec->normal));
 
-	ka = 0.05;
+	ka = 0.1;
 	kd = ft_max(V_DOT(rec->normal, to_light), 0.0);
 	ks = 0.3;
 	ksn = 256;
 	ambient = V_SCALAR(light->color, ka);
 	diffuse = V_SCALAR(light->color, kd);
-	specular = V_SCALAR(light->color, ks * pow(fmax(V_DOT(reflect, to_view), 0.0), ksn));
-	attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
-	attenuation_distance = 1 / (pow(distance, 2) + 1);
+	specular = V_SCALAR(light->color, ks * pow(ft_max(V_DOT(reflect, to_view), 0.0), ksn));
+	// attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
+	// attenuation_distance = 1 / (pow(distance, 2) + 1);
 	light_intensity = V_PLUS(V_PLUS(ambient, diffuse), specular);
-	return (V_SCALAR(light_intensity, attenuation_distance * attenuation_radius));
+	// return (V_SCALAR(light_intensity, attenuation_distance * attenuation_radius));
+	return (light_intensity);
 }
 
 t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
@@ -274,8 +326,7 @@ void		ft_render(t_ctrl *c)
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			// if ((x == (int)(c->scene->canv.width * 0.68)) && (y == (int)(c->scene->canv.height * 0.5)))
-			if ((x == 1523) && (y == 224))
+			if ((x == 760) && (y == 539))
 			{
 				ray.org.x = 1;
 			}

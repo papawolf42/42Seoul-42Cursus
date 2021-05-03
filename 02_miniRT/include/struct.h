@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/02 04:13:03 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/02 14:05:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@ typedef struct s_scene			t_scene;
 
 typedef struct s_hit_record		t_hit_rec;
 typedef struct s_object_list	t_object_list;
-// typedef struct s_camera_list	t_camera_list;
-// typedef struct s_light_list		t_light_list;
 
 typedef struct s_camera			t_camera;
 typedef struct s_light			t_light;
 typedef struct s_sphere			t_sphere;
 typedef struct s_plane			t_plane;
 typedef struct s_square			t_square;
+typedef struct s_cylinder		t_cylinder;
 
 typedef enum e_object_type		t_object_type;
 
@@ -41,7 +40,8 @@ enum e_object_type
 	l = 2,
 	sp = 3,
 	pl = 4,
-	sq = 5
+	sq = 5,
+	cy = 6
 };
 
 struct				s_image
@@ -94,6 +94,16 @@ struct s_hit_record
 	t_color			color;
 };
 
+struct s_cylinder
+{
+	t_point3		center_bottom;
+	t_point3		center_top;
+	t_vec3			axis;
+	double			radius;
+	double			height;
+	t_color			color;
+};
+
 struct s_square
 {
 	t_point3		center;
@@ -140,6 +150,8 @@ void			ft_object_list(t_object_type type, void *object, t_object_list *list);
 t_sphere		*ft_sphere(t_point3 center, double radius, t_color color);
 t_plane			*ft_plane(t_point3 point, t_vec3 normal, t_color color);
 t_square		*ft_square(t_point3 center, t_vec3 normal, double side_size, t_color color);
+t_cylinder		*ft_cylinder(t_point3 center_bottom, t_vec3 axis, double diameter, double height, t_color color);
+
 
 void			ft_camera_list_init(t_scene *s);
 void			ft_camera_list(void *camera, t_scene *s);
