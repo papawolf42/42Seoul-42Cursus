@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/03 14:58:30 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/04 17:41:20 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	plane.c \
 	sphere.c \
 	square.c \
+	triangle.c \
 )
 
 DIR_SRC_PARSE := parse

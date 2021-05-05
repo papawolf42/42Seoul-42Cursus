@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/03 14:57:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/05 11:35:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,40 @@ t_vec3		ft_get_point(t_point3 org, t_vec3 dir, double t)
 	return (V_PLUS(org, V_SCALAR(dir, t)));
 }
 
+t_bool		ft_hit_triangle(t_triangle *tr, t_ray *ray, t_hit_rec *rec)
+{
+	double	proj_unit;
+	double	proj_len;
+	double	root;
+	t_vec3	p;
+
+	t_vec3	na;
+	t_vec3	nb;
+	t_vec3	nc;
+
+	proj_unit = V_DOT(ray->dir, tr->normal);
+	if (fabs(proj_unit) < 0.0001)
+		return (false);
+	proj_len = V_DOT(V_MINUS(tr->a, ray->org), tr->normal);
+	root = proj_len / proj_unit;
+	if (root < rec->t_min || rec->t_max < root)
+		return (false);
+	p = ft_ray_at(ray, root);
+
+	na = V_CROSS(V_MINUS(p, tr->a), tr->ab);
+	nb = V_CROSS(V_MINUS(p, tr->b), tr->bc);
+	nc = V_CROSS(V_MINUS(p, tr->c), tr->ca);
+
+	if (V_DOT(na, nb) < 0 || V_DOT(nb, nc) < 0 || V_DOT(nc, na) < 0)
+		return (false);
+	rec->t = root;
+	rec->p = p;
+	rec->normal = tr->normal;
+	rec->front_face = ft_determine_front(ray, rec);
+	rec->color = tr->color;
+	return (true);
+}
+
 t_bool		ft_hit_cylinder_in_height(t_cylinder *cy, t_ray *ray, double root)
 {
 	double		height;
@@ -53,7 +87,7 @@ t_bool		ft_hit_cylinder_in_height(t_cylinder *cy, t_ray *ray, double root)
 	return ((0 <= height) && (height <= cy->height));
 }
 
-double		ft_hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_rec *rec)
+t_bool		ft_hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_rec *rec)
 {
 	t_vec3		v;
 	t_vec3		w;
@@ -94,7 +128,7 @@ double		ft_hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_rec *rec)
 	return (true);
 }
 
-double		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
+t_bool		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
 {
 	double		proj_unit;
 	double		proj_len;
@@ -121,7 +155,7 @@ double		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
 	return (true);
 }
 
-double		ft_hit_plane(t_plane *pl, t_ray *ray, t_hit_rec *rec)
+t_bool		ft_hit_plane(t_plane *pl, t_ray *ray, t_hit_rec *rec)
 {
 	double	proj_unit;
 	double	proj_len;
@@ -142,7 +176,7 @@ double		ft_hit_plane(t_plane *pl, t_ray *ray, t_hit_rec *rec)
 	return (true);
 }
 
-double		ft_hit_sphere(t_sphere *sp, t_ray *ray, t_hit_rec *rec)
+t_bool		ft_hit_sphere(t_sphere *sp, t_ray *ray, t_hit_rec *rec)
 {
 	t_vec3		oc;
 	double		a;
@@ -188,6 +222,8 @@ t_bool		ft_hit_obj(t_object_list *obj, t_ray *ray,t_hit_rec *rec)
 		bool_hit = ft_hit_square(obj->object, ray, rec);
 	if (obj->type == cy)
 		bool_hit = ft_hit_cylinder(obj->object, ray, rec);
+	if (obj->type == tr)
+		bool_hit = ft_hit_triangle(obj->object, ray, rec);
 	return (bool_hit);
 }
 
@@ -260,9 +296,9 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	reflect = V_UNIT(V_REFLECT(V_SCALAR(to_light, -1), rec->normal));
 
 	ka = 0.1;
-	kd = ft_max(V_DOT(rec->normal, to_light), 0.0);
+	kd = ft_max(V_DOT(V_UNIT(rec->normal), to_light), 0.0);
 	ks = 0.3;
-	ksn = 256;
+	ksn = 32;
 	ambient = V_SCALAR(light->color, ka);
 	diffuse = V_SCALAR(light->color, kd);
 	specular = V_SCALAR(light->color, ks * pow(ft_max(V_DOT(reflect, to_view), 0.0), ksn));
@@ -326,7 +362,7 @@ void		ft_render(t_ctrl *c)
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			if ((x == 760) && (y == 539))
+			if ((x == 874) && (y == 337))
 			{
 				ray.org.x = 1;
 			}
