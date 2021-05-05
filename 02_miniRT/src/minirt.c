@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/05 11:35:41 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/05 12:46:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,15 +281,15 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	double		ks;
 	double		ksn;
 
-	// double		attenuation_radius;
-	// double		attenuation_distance;
-	// double		radius_attenuation;
-	// double		distance;
+	double		attenuation_radius;
+	double		attenuation_distance;
+	double		radius_attenuation;
+	double		distance;
 
-	// radius_attenuation = 8;
-	// distance = V_LEN(V_MINUS(light->p, rec->p));
-	// if (radius_attenuation < distance)
-	// 	return (V_COLOR(0, 0, 0));
+	radius_attenuation = 8;
+	distance = V_LEN(V_MINUS(light->p, rec->p));
+	if (radius_attenuation < distance)
+		return (V_COLOR(0, 0, 0));
 
 	to_light = V_UNIT(V_MINUS(light->p, rec->p));
 	to_view = V_UNIT(V_MINUS(ray->org, rec->p));
@@ -302,11 +302,11 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec)
 	ambient = V_SCALAR(light->color, ka);
 	diffuse = V_SCALAR(light->color, kd);
 	specular = V_SCALAR(light->color, ks * pow(ft_max(V_DOT(reflect, to_view), 0.0), ksn));
-	// attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
-	// attenuation_distance = 1 / (pow(distance, 2) + 1);
+	attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
+	attenuation_distance = 1 / (pow(distance, 2) + 1);
 	light_intensity = V_PLUS(V_PLUS(ambient, diffuse), specular);
-	// return (V_SCALAR(light_intensity, attenuation_distance * attenuation_radius));
-	return (light_intensity);
+	return (V_SCALAR(light_intensity, attenuation_distance * attenuation_radius));
+	// return (light_intensity);
 }
 
 t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
@@ -362,7 +362,7 @@ void		ft_render(t_ctrl *c)
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			if ((x == 874) && (y == 337))
+			if ((x == 819) && (y == 583))
 			{
 				ray.org.x = 1;
 			}
