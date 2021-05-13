@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/13 22:01:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/14 17:23:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,12 +353,16 @@ t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y)
 	t_ray		ray;
 	t_point3	screen;
 
-	screen.x = (2 * (x + 0.5) / canv->width - 1) * cam->fov * canv->aspect_ratio;
-	screen.y = (2 * (canv->height - y + 0.5) / canv->height - 1) * cam->fov;
+	screen.x = (2 * ((x + 0.5) / canv->width) - 1);
+	screen.x *= FISH_EYE_INDEX;// FISH_EYE
+	screen.y = (2 * ((canv->height - y + 0.5) / canv->height) - 1);
+	screen.y *= FISH_EYE_INDEX;// FISH_EYE
 	screen.z = -1;
+	screen.z *= sqrt(1 - screen.x * screen.x - screen.y * screen.y);// FISH_EYE
+	screen.x *= cam->fov * canv->aspect_ratio;
+	screen.y *= cam->fov;
 	cam->mat_c2w = ft_getmat_c2w(cam, V_SET(0, 1, 0));
 	ray.org = cam->origin;
-	// ray.org = ft_linear_transform(cam->mat_c2w, cam->origin);
 	ray.dir = V_MINUS(ft_linear_transform(cam->mat_c2w, screen), ray.org);
 	return (ray);
 }
@@ -379,7 +383,7 @@ void		ft_render(t_ctrl *c)
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			if ((x == 300) && (y == 310))
+			if ((x == 214) && (y == 340))
 			{
 				ray.org.x = 1;
 			}
