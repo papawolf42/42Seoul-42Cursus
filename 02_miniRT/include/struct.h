@@ -6,13 +6,15 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/04 17:01:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/12 20:53:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "vector.h"
+# include "matrix.h"
 # include "ray.h"
 # include "alias.h"
 # include "color.h"
@@ -78,14 +80,14 @@ struct				s_scene
 	t_object_list	*light_list;
 };
 
-struct s_object_list
+struct				s_object_list
 {
 	void			*object;
 	t_object_type	type;
 	t_object_list	*next;
 };
 
-struct s_hit_record
+struct				s_hit_record
 {
 	t_point3		p;
 	t_vec3			normal;
@@ -96,7 +98,7 @@ struct s_hit_record
 	t_color			color;
 };
 
-struct s_triangle
+struct				s_triangle
 {
 	t_point3		a;
 	t_point3		b;
@@ -108,7 +110,7 @@ struct s_triangle
 	t_color			color;
 };
 
-struct s_cylinder
+struct				s_cylinder
 {
 	t_point3		center_bottom;
 	t_point3		center_top;
@@ -118,7 +120,7 @@ struct s_cylinder
 	t_color			color;
 };
 
-struct s_square
+struct				s_square
 {
 	t_point3		center;
 	t_vec3			normal;
@@ -128,14 +130,14 @@ struct s_square
 	t_vec3			span_b;
 };
 
-struct s_plane
+struct				s_plane
 {
 	t_point3		point;
 	t_vec3			normal;
 	t_color			color;
 };
 
-struct s_sphere
+struct				s_sphere
 {
 	t_point3		center;
 	double			radius;
@@ -148,11 +150,17 @@ struct				s_light
 	t_color			color;
 };
 
+/*
+** mat_c2w : camera to world matrix
+*/
 struct				s_camera
 {
+	t_point3		origin;
+	t_vec3			normal;
+	double			fov;
+	t_mat44			mat_c2w;
 	double			view_h;
 	double			view_w;
-	t_point3		origin;
 	t_vec3			vertical;
 	t_vec3			horizontal;
 	double			focal_len;
@@ -170,10 +178,13 @@ t_triangle		*ft_triangle(t_point3 a, t_point3 b, t_point3 c, t_color color);
 
 void			ft_camera_list_init(t_scene *s);
 void			ft_camera_list(void *camera, t_scene *s);
-t_camera		*ft_camera(t_point3 orig, double v_height, double focal_length, double ratio);
-
+t_camera		*ft_camera(t_point3 origin, t_vec3 normal, double fov, double v_height, double focal_length, double ratio);
 void			ft_light_list_init(t_scene *s);
 void			ft_light_list(void *light, t_scene *s);
 t_light			*ft_light(t_point3 point, t_color color);
+
+t_mat44		ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans);
+t_mat44		ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
+t_vec3		ft_linear_transform(t_mat44 mat, t_vec3 vec);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/04 17:41:20 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/12 22:23:24 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,11 @@ SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
 	ft_rgb_to_data.c \
 )
 
+DIR_SRC_MATRIX := matrix
+SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
+	matrix.c \
+)
+
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	camera.c \
@@ -110,6 +115,7 @@ SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
 SRCS := $(addprefix $(DIR_SRC)/, \
 	minirt.c \
 	$(SRCS_COLOR) \
+	$(SRCS_MATRIX) \
 	$(SRCS_OBJECT) \
 	$(SRCS_PARSE) \
 	$(SRCS_UTILS) \
@@ -123,6 +129,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 vpath %.c \
 	$(DIR_SRC) \
 	$(DIR_SRC)/$(DIR_SRC_COLOR) \
+	$(DIR_SRC)/$(DIR_SRC_MATRIX) \
 	$(DIR_SRC)/$(DIR_SRC_OBJECT) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
 	$(DIR_SRC)/$(DIR_SRC_PARSE) \

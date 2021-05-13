@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:20:15 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/29 00:15:07 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/12 20:53:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 # define MATRIX_H
 
 # include "vector.h"
+// # include "struct.h"
 
-typedef struct s_matrix		t_matrix;
+typedef struct s_mat44			t_mat44;
 
-struct				s_matrix
+struct				s_mat44
 {
-	t_vec3		vx;
-	t_vec3		vy;
-	t_vec3		vz;
+	t_vec3			x;
+	t_vec3			y;
+	t_vec3			z;
+	t_vec3			trans;
+	double			scale;
 };
 
 #endif

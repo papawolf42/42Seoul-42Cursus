@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/05 12:46:18 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/13 22:01:57 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -314,8 +314,10 @@ t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
 	t_color			light_stack;
 	t_object_list	*lights;
 
+	// ray->org = ray->org;
 	lights = s->light_list;
 	light_stack = V_COLOR(0, 0, 0);
+	// light_stack = V_COLOR(1, 1, 1);
 	while (lights)
 	{
 		if (ft_is_not_shadow(s->object_list, lights->object, rec))
@@ -346,11 +348,26 @@ t_color		ft_ray_to_color(t_ray ray, t_ctrl *c)
 	}
 }
 
+t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y)
+{
+	t_ray		ray;
+	t_point3	screen;
+
+	screen.x = (2 * (x + 0.5) / canv->width - 1) * cam->fov * canv->aspect_ratio;
+	screen.y = (2 * (canv->height - y + 0.5) / canv->height - 1) * cam->fov;
+	screen.z = -1;
+	cam->mat_c2w = ft_getmat_c2w(cam, V_SET(0, 1, 0));
+	ray.org = cam->origin;
+	// ray.org = ft_linear_transform(cam->mat_c2w, cam->origin);
+	ray.dir = V_MINUS(ft_linear_transform(cam->mat_c2w, screen), ray.org);
+	return (ray);
+}
+
 void		ft_render(t_ctrl *c)
 {
 	char		*data;
 	int			y, x;
-	double		u, v;
+	// double		u, v;
 	t_ray		ray;
 	t_color		color;
 	t_camera	*cam;
@@ -362,17 +379,18 @@ void		ft_render(t_ctrl *c)
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			if ((x == 819) && (y == 583))
+			if ((x == 300) && (y == 310))
 			{
 				ray.org.x = 1;
 			}
-			u = (double)x / (c->scene->canv.width - 1);
-			v = (double)y / (c->scene->canv.height - 1);
-			ray.org = cam->origin;
-			ray.dir = V_MINUS(V_MINUS(V_PLUS(cam->left_top,
-						V_SCALAR(cam->horizontal, u)),
-						V_SCALAR(cam->vertical, v)),
-						cam->origin);
+			ray = ft_ray_init(&c->scene->canv, cam, x, y);
+			// u = (double)x / (c->scene->canv.width - 1);
+			// v = (double)y / (c->scene->canv.height - 1);
+			// ray.org = cam->origin;
+			// ray.dir = V_MINUS(V_MINUS(V_PLUS(cam->left_top,
+			// 			V_SCALAR(cam->horizontal, u)),
+			// 			V_SCALAR(cam->vertical, v)),
+			// 			cam->origin);
 			color = ft_ray_to_color(ray, c);
 			data = c->img.data + (y * c->img.size_line + x * (c->img.bit_per_pixel / 8));
 			*(unsigned int *)data = ft_rgb_to_data(color);
