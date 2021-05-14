@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 20:24:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/13 19:52:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/14 20:35:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ t_mat44		ft_getmat_c2w(t_camera *cam, t_vec3 axis_up)
 	{
 		// right = V_UNIT(V_CROSS(forward, axis_up));
 		// up = V_UNIT(V_CROSS(right, forward));
-		right = V_UNIT(V_CROSS(axis_up, forward));
-		up = V_UNIT(V_CROSS(forward, right));
+		right = V_UNIT(V_CROSS(forward, axis_up));
+		up = V_UNIT(V_CROSS(right, forward));
 	}
 	return (ft_mat_set(right, up, forward, cam->origin));
 }
