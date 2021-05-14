@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/12 22:23:24 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/14 21:25:12 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,11 @@ SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
 	ft_rgb_to_data.c \
 )
 
+DIR_SRC_ERROR := error
+SRCS_ERROR := $(addprefix $(DIR_SRC_ERROR)/, \
+	error.c \
+)
+
 DIR_SRC_MATRIX := matrix
 SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 	matrix.c \
@@ -115,6 +120,7 @@ SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
 SRCS := $(addprefix $(DIR_SRC)/, \
 	minirt.c \
 	$(SRCS_COLOR) \
+	$(SRCS_ERROR) \
 	$(SRCS_MATRIX) \
 	$(SRCS_OBJECT) \
 	$(SRCS_PARSE) \
@@ -129,6 +135,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 vpath %.c \
 	$(DIR_SRC) \
 	$(DIR_SRC)/$(DIR_SRC_COLOR) \
+	$(DIR_SRC)/$(DIR_SRC_ERROR) \
 	$(DIR_SRC)/$(DIR_SRC_MATRIX) \
 	$(DIR_SRC)/$(DIR_SRC_OBJECT) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
@@ -222,32 +229,44 @@ $(NAME_GET_NEXT_LINE) :
 # DO NOT DELETE
 
 obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
-lib/libft/include/libft.h include/struct.h include/ray.h \
-include/vector.h include/alias.h include/color.h
+lib/libft/include/libft.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h \
+include/error.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
+obj/error.o: src/error/error.c include/alias.h include/error.h \
+lib/libft/include/libft.h
+obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
 obj/camera.o: src/object/camera.c lib/libft/include/libft.h include/struct.h \
-include/ray.h include/vector.h include/alias.h include/color.h
-obj/cylinder.o: src/object/cylinder.c lib/libft/include/libft.h \
-include/struct.h include/ray.h include/vector.h include/alias.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
+obj/cylinder.o: src/object/cylinder.c lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
 obj/light.o: src/object/light.c lib/libft/include/libft.h include/struct.h \
-include/ray.h include/vector.h include/alias.h include/color.h
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
-include/ray.h include/vector.h include/alias.h include/color.h
-obj/plane.o: src/object/plane.c include/struct.h include/ray.h \
-include/vector.h include/alias.h include/color.h
-obj/sphere.o: src/object/sphere.c include/struct.h include/ray.h \
-include/vector.h include/alias.h include/color.h
-obj/square.o: src/object/square.c include/struct.h include/ray.h \
-include/vector.h include/alias.h include/color.h
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
+obj/plane.o: src/object/plane.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
+obj/sphere.o: src/object/sphere.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
+obj/square.o: src/object/square.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
+obj/triangle.o: src/object/triangle.c lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
 obj/parse.o: src/parse/parse.c lib/libft/include/libft.h include/struct.h \
-include/ray.h include/vector.h include/alias.h include/color.h
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
 obj/utils_cmp.o: src/utils/utils_cmp.c
 obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
-include/struct.h include/ray.h include/vector.h include/alias.h \
-include/color.h
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
 obj/ft_vec3_geometry.o: src/vector/ft_vec3_geometry.c include/vector.h
 obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
 obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
