@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 11:36:36 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 23:00:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 # define GNL_SUCCESS 1
 # define GNL_EOF 0
 # define GNL_FAIL -1
-
-# define EMPTY_LINE 1
 
 # define WHITE_SPACE "\t\n\v\f\r "
 

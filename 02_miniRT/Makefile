@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/15 16:17:08 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/15 22:56:39 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,7 @@ DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_break_parse.c \
 	ft_parse_resolution.c \
+	ft_pass_line.c \
 	parse.c \
 )
 

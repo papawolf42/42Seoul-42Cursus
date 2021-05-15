@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 22:21:25 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 23:06:46 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 #include "alias.h"
 #include "error.h"
 #include "utils.h"
+#include "parse.h"
 
 t_bool		ft_parse_line(t_scene *scene, char *line)
 {
 	char				**splits;
 	int					i;
 	static t_pft_parse	pft_parse[] = {
+		{"", ft_pass_line}, {"#", ft_pass_line},
 		{"R", ft_parse_resolution},
 		// {"A", ft_parse_ambience},
 		// {"c", ft_parse_camera},
@@ -39,13 +41,13 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 
 	i = 0;
 	splits = ft_split_rt(line, WHITE_SPACE);
-	if (splits == NUL)
-		return (EMPTY_LINE);
-	while (pft_parse[i].id && ft_strncmp(pft_parse[i].id, splits[0], 4))
+	while (pft_parse[i].id && *splits && ft_strncmp(pft_parse[i].id, splits[0], 4))
 		i++;
 	if (pft_parse[i].id == NUL)
 		return (ft_err_msg(ERR_PAR_NOID));// 여기서 이제껏 malloc했던 scene들을 모두 free해주어야함.
-	return (pft_parse[i].parse(scene, splits));
+	pft_parse[i].parse(scene, splits);
+	ft_destroy_splits(splits);
+	return (true);
 }
 
 t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
