@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/02 00:34:27 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 16:18:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ typedef enum
 void		ft_render(t_ctrl *ctrl);
 void		ft_minirt(t_ctrl *ctrl);
 int			main(int argc, char *argv[]);
-
-/*
-** parse.c
-*/
-void		ft_parse_rt(t_ctrl *ctrl, char *rt_file);
 
 /*
 ** utils_cmp.c

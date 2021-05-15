@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/14 21:21:54 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 16:25:48 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "ray.h"
 #include "alias.h"
 #include "error.h"
+#include "parse.h"
 
 t_vec3		ft_ray_at(t_ray *ray, double t)
 {
@@ -434,16 +435,16 @@ int			main(int argc, char *argv[])
 	{
 		if (ft_is_endstr(argv[1], ".rt"))
 		{
-			ft_parse_rt(&ctrl, argv[2]);
+			ft_parse_rt(&ctrl, argv[1]);
 			if (argc == 2)
 				ft_minirt(&ctrl);
 			// else if (argc == 3 && ft_strncmp(argv[3], "--save", 7) == 0)
 				// ft_save_bmp();
 		}
 		else
-			ft_error_message(ERR_2ND_ARG_NOT_END_RT);
+			ft_err_msg(ERR_2ND_ARG_NOT_END_RT);
 	}
 	else
-		ft_error_message(ERR_WRONG_NUMBERS_ARG);
+		ft_err_msg(ERR_WRONG_NUMBERS_ARG);
 	return (0);
 }

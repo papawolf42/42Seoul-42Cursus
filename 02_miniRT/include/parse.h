@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 21:05:11 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 15:33:52 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/15 16:24:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "alias.h"
-#include "error.h"
-#include "libft.h"
+#ifndef PARSE_H
+# define PARSE_H
 
-t_bool		ft_err_msg(char *err_msg)
-{
-	ft_putstr_fd("\033[1;31mError\033[0m\n  ", 1);
-	ft_putstr_fd(err_msg, 1);
-	ft_putchar_fd('\n', 1);
-	return (false);
-}
+# include "struct.h"
 
+t_bool		ft_break_parse(t_scene *s, char **splits);
+t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file);
+t_bool		ft_parse_line(t_scene *scene, char *line);
+
+#endif

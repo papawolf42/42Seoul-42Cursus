@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/14 17:12:39 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 11:36:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@
 
 # define MAX(A, B) (((A) < (B)) && ((A) = (B))) || (((A) > (B)) && ((B) = (A)))
 # define MIN(A, B) (((A) > (B)) && ((A) = (B))) || (((A) < (B)) && ((B) = (A)))
+
+# define GNL_SUCCESS 1
+# define GNL_EOF 0
+# define GNL_FAIL -1
+
+# define EMPTY_LINE 1
+
+# define WHITE_SPACE "\t\n\v\f\r "
 
 typedef enum
 {

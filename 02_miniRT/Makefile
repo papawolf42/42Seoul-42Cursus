@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/14 21:25:12 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/15 16:17:08 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,11 +99,16 @@ SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 
 DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
+	ft_break_parse.c \
+	ft_parse_resolution.c \
 	parse.c \
 )
 
 DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
+	ft_is_integer.c \
+	ft_split_rt.c \
+	ft_strslen.c \
 	utils_cmp.c \
 	utils_str.c \
 )

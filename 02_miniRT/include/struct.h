@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/12 20:53:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 16:07:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ typedef struct s_cylinder		t_cylinder;
 typedef struct s_triangle		t_triangle;
 
 typedef enum e_object_type		t_object_type;
+
+typedef struct s_pft_parse		t_pft_parse;
+
+struct				s_pft_parse
+{
+	char			*id;
+	t_bool			(*parse)(t_scene *scene, char **splits);
+};
 
 enum e_object_type
 {
@@ -186,5 +194,7 @@ t_light			*ft_light(t_point3 point, t_color color);
 t_mat44		ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans);
 t_mat44		ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
 t_vec3		ft_linear_transform(t_mat44 mat, t_vec3 vec);
+
+t_bool			ft_parse_resolution(t_scene *scene, char **splits);
 
 #endif
