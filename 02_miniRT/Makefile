@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
+#    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/16 18:19:18 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/16 22:05:48 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,8 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_parse_real.c \
 	ft_parse_resolution.c \
 	ft_pass_line.c \
+	ft_range_integer.c \
+	ft_range_real.c \
 	parse.c \
 )
 
@@ -294,6 +296,8 @@ include/utils.h include/error.h include/parse.h
 obj/ft_pass_line.o: src/parse/ft_pass_line.c include/alias.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/color.h \
 include/error.h
+obj/ft_range_integer.o: src/parse/ft_range_integer.c include/alias.h
+obj/ft_range_real.o: src/parse/ft_range_real.c include/alias.h
 obj/parse.o: src/parse/parse.c lib/libft/include/libft.h \
 lib/get_next_line/get_next_line.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \

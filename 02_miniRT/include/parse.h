@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 18:02:40 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 21:55:08 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ t_bool		ft_parse_color_integer(double *dst, char *src);
 t_bool		ft_parse_real(double *dst, char *src);
 
 t_bool		ft_parse_color(t_color *dst, char *src);
+
+t_bool		ft_range_integer(int *value, int min, int max);
+t_bool		ft_range_real(double *value, double min, double max);
 
 t_bool		ft_parse_resolution(t_scene *s, char **splits);
 t_bool		ft_parse_ambient(t_scene *s, char **splits);

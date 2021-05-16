@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 17:34:39 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 21:15:47 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	char	*line;
 
 	ctrl->scene = (t_scene *)malloc(sizeof(t_scene));
+	ft_object_list_init(ctrl->scene);
 	fd = open(rt_file, O_RDONLY);
 	while (1)
 	{
@@ -72,7 +73,6 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	}
 	free(line);
 
-	ft_object_list_init(ctrl->scene);
 	ft_object_list(cam, ft_camera(V_POINT(0, 0, 0), V_SET(0, 0, 1), 100, 2.0, 1.0, ctrl->scene->canv.aspect_ratio), ctrl->scene->camera_list);
 
 	ft_object_list(sp, ft_sphere(V_POINT(-1, -0.5, 2), 0.5, V_COLOR(0.933, 0.682, 0.639)), ctrl->scene->object_list);
@@ -84,7 +84,7 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	ft_object_list(pl, ft_plane(V_POINT(1.5, 0, 0), V_SET(-1, 0, 0), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
 	ft_object_list(pl, ft_plane(V_POINT(0, 0, 5), V_SET(0, 0, 1), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
 	ft_object_list(pl, ft_plane(V_POINT(0, 2, 0), V_SET(0, -1, 0), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
-	ft_object_list(l, ft_light(V_SET(0, 1.5, -1), V_COLOR(10, 10, 10)), ctrl->scene->light_list);
+	ft_object_list(l, ft_light(V_SET(0, 1.5, -1), V_COLOR(5, 5, 5)), ctrl->scene->light_list);
 
 	// ft_object_list(l, ft_light(V_POINT(0, 1, -2.8), V_COLOR(0.6, 1, 1)), ctrl->scene->light_list);
 	// ft_object_list(l, ft_light(V_POINT(1, 1.5, 0), V_COLOR(12, 12, 12)), ctrl->scene->light_list);
