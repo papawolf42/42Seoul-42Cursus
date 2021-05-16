@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_is_real.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 21:05:11 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 15:28:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/15 23:29:03 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/16 18:14:48 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "alias.h"
-#include "error.h"
 #include "libft.h"
+#include "alias.h"
 
-t_bool		ft_err_msg(char *err_msg)
+t_bool			ft_is_real(char *s)
 {
-	ft_putstr_fd("\033[1;31mError\033[0m\n  ", 1);
-	ft_putstr_fd(err_msg, 1);
-	ft_putchar_fd('\n', 1);
-	return (fail);
+	if (*s != '\0' && (*s == '-' || *s == '+'))
+		s++;
+	while (*s != '\0' && *s != '.')
+	{
+		if (ft_isdigit(*s) == false)
+			return (fail);
+		s++;
+	}
+	if (*s == '.')
+	{
+		s++;
+		while (*s != '\0' && *s != '.')
+		{
+			if (ft_isdigit(*s) == false)
+				return (fail);
+			s++;
+		}
+	}
+	return (success);
 }
-

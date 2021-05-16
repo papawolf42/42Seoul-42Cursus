@@ -6,7 +6,7 @@
 #    By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/15 22:56:39 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/16 18:19:18 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,10 @@ SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_break_parse.c \
+	ft_parse_ambient.c \
+	ft_parse_color.c \
+	ft_parse_integer.c \
+	ft_parse_real.c \
 	ft_parse_resolution.c \
 	ft_pass_line.c \
 	parse.c \
@@ -107,7 +111,10 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 
 DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
+	ft_atof.c \
+	ft_is_color.c \
 	ft_is_integer.c \
+	ft_is_real.c \
 	ft_split_rt.c \
 	ft_strslen.c \
 	utils_cmp.c \
@@ -237,7 +244,7 @@ $(NAME_GET_NEXT_LINE) :
 obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
-include/error.h
+include/error.h include/parse.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
 obj/error.o: src/error/error.c include/alias.h include/error.h \
@@ -265,9 +272,44 @@ include/matrix.h include/ray.h include/alias.h include/color.h
 obj/triangle.o: src/object/triangle.c lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
-obj/parse.o: src/parse/parse.c lib/libft/include/libft.h include/struct.h \
+obj/ft_break_parse.o: src/parse/ft_break_parse.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
+obj/ft_parse_ambient.o: src/parse/ft_parse_ambient.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/error.h include/utils.h include/parse.h
+obj/ft_parse_color.o: src/parse/ft_parse_color.c lib/libft/include/libft.h \
+include/alias.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/color.h include/utils.h include/error.h \
+include/parse.h
+obj/ft_parse_integer.o: src/parse/ft_parse_integer.c \
+lib/libft/include/libft.h include/alias.h include/error.h \
+include/utils.h
+obj/ft_parse_real.o: src/parse/ft_parse_real.c lib/libft/include/libft.h \
+include/alias.h include/error.h include/utils.h
+obj/ft_parse_resolution.o: src/parse/ft_parse_resolution.c \
+lib/libft/include/libft.h include/alias.h include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/color.h \
+include/utils.h include/error.h include/parse.h
+obj/ft_pass_line.o: src/parse/ft_pass_line.c include/alias.h include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/color.h \
+include/error.h
+obj/parse.o: src/parse/parse.c lib/libft/include/libft.h \
+lib/get_next_line/get_next_line.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h \
+include/error.h include/utils.h include/parse.h
+obj/ft_atof.o: src/utils/ft_atof.c lib/libft/include/libft.h include/alias.h \
+include/parse.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/color.h
+obj/ft_is_color.o: src/utils/ft_is_color.c include/alias.h include/utils.h \
+include/error.h include/parse.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h
+obj/ft_is_integer.o: src/utils/ft_is_integer.c lib/libft/include/libft.h \
+include/alias.h
+obj/ft_is_real.o: src/utils/ft_is_real.c lib/libft/include/libft.h \
+include/alias.h
+obj/ft_split_rt.o: src/utils/ft_split_rt.c lib/libft/include/libft.h
+obj/ft_strslen.o: src/utils/ft_strslen.c
 obj/utils_cmp.o: src/utils/utils_cmp.c
 obj/utils_str.o: src/utils/utils_str.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \

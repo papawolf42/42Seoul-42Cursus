@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_parse_integer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/14 21:05:11 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 15:28:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/16 00:02:24 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/16 18:04:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "alias.h"
 #include "error.h"
-#include "libft.h"
+#include "utils.h"
 
-t_bool		ft_err_msg(char *err_msg)
+t_bool		ft_parse_integer(int *dst, char *src)
 {
-	ft_putstr_fd("\033[1;31mError\033[0m\n  ", 1);
-	ft_putstr_fd(err_msg, 1);
-	ft_putchar_fd('\n', 1);
-	return (fail);
+	if (ft_is_integer(src))
+		return (fail);
+	*dst = ft_atoi(src);
+	return (success);
 }
 
+t_bool		ft_parse_color_integer(double *dst, char *src)
+{
+	if (ft_is_integer(src))
+		return (fail);
+	*dst = (double)ft_atoi(src) / 255.0;
+	return (success);
+}

@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 11:58:33 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 15:21:48 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 18:13:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 t_bool			ft_is_integer(char *s)
 {
-	while (*s)
+	if (*s != '\0' && (*s == '-' || *s == '+'))
+		s++;
+	while (*s != '\0')
 	{
 		if (ft_isdigit(*s) == false)
-			return (false);
+			return (fail);
 		s++;
 	}
-	return (true);
+	return (success);
 }

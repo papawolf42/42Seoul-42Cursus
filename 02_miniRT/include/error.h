@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:07:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 16:36:56 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 17:51:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 # define ERR_GNL "Problem happens while working get_next_line"
 # define ERR_PAR_NOID "Parsing liny by line, found Bad Identifier"
 # define ERR_PAR_NOT_MATCH_ARG_NUM "Above line has wrong numbers of argument"
-# define ERR_NOT_INT "Bad Integer found"
+# define ERR_BAD_INT "Bad integer found"
+# define ERR_BAD_REAL "Bad real found"
+# define ERR_BAD_COLOR "Bad color found"
 
 t_bool		ft_err_msg(char *err_msg);
 

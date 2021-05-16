@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 16:07:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/15 23:34:30 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_image			t_image;
 typedef struct s_ctrl			t_ctrl;
 typedef struct s_canvas			t_canvas;
+typedef struct s_ambient		t_ambient;
 typedef struct s_scene			t_scene;
 
 typedef struct s_hit_record		t_hit_rec;
@@ -80,9 +81,16 @@ struct				s_canvas
 	double			aspect_ratio;
 };
 
+struct				s_ambient
+{
+	double			ratio;
+	t_color			color;
+};
+
 struct				s_scene
 {
 	t_canvas		canv;
+	t_ambient		ambient;
 	t_object_list	*object_list;
 	t_object_list	*camera_list;
 	t_object_list	*light_list;

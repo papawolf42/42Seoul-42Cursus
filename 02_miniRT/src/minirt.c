@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 16:25:48 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:26:10 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -436,6 +436,8 @@ int			main(int argc, char *argv[])
 		if (ft_is_endstr(argv[1], ".rt"))
 		{
 			ft_parse_rt(&ctrl, argv[1]);
+			// if (ft_parse_rt(&ctrl, argv[1]))
+				// ft_destroy_and_exit(ctrl);
 			if (argc == 2)
 				ft_minirt(&ctrl);
 			// else if (argc == 3 && ft_strncmp(argv[3], "--save", 7) == 0)

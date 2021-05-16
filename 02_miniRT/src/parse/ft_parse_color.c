@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_resolution.c                              :+:      :+:    :+:   */
+/*   ft_parse_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 09:47:34 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 17:50:56 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/15 23:47:37 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/16 18:03:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 #include "error.h"
 #include "parse.h"
 
-t_bool			ft_parse_resolution(t_scene *s, char **splits)
+t_bool			ft_parse_color(t_color *dst, char *src)
 {
+	char		**splits;
+
+	splits = ft_split_rt(src, COMMA);
 	if (ft_strslen(splits) != 3)
-		return (ft_err_msg(ERR_PAR_NOT_MATCH_ARG_NUM));
-	if (ft_parse_integer(&s->canv.width, splits[1]))
-		return (ft_err_msg(ERR_BAD_INT));
-	if (ft_parse_integer(&s->canv.height, splits[2]))
-		return (ft_err_msg(ERR_BAD_INT));
-	s->canv.aspect_ratio = (double)s->canv.width / (double)s->canv.height;
-	// if resolution parsed is bigger than max of current screen, set as max value
-	// if resolution is lower than 0, throw as error
+		return (ft_destroy_splits(splits));
+	if (ft_parse_color_integer(&dst->x, splits[0])
+		|| ft_parse_color_integer(&dst->y, splits[1])
+		|| ft_parse_color_integer(&dst->z, splits[2]))
+		return (ft_err_msg(ERR_BAD_INT) && ft_destroy_splits(splits));
+	ft_destroy_splits(splits);
 	return (success);
 }

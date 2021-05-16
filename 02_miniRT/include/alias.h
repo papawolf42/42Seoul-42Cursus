@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 23:00:47 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:27:14 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,14 @@
 # define GNL_FAIL -1
 
 # define WHITE_SPACE "\t\n\v\f\r "
+# define COMMA ","
 
 typedef enum
 {
 	false = 0,
-	true = 1
+	true = 1,
+	success = 0,
+	fail = 1
 }		t_bool;
 
 typedef enum

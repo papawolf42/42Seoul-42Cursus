@@ -6,7 +6,7 @@
 /*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 15:35:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 22:58:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 15:33:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void			ft_destroy_scene(t_scene *s)
 	s->canv.width = s->canv.width;// avoid error
 }
 
-void				ft_destroy_splits(char **splits)
+t_bool				ft_destroy_splits(char **splits)
 {
 	size_t		i;
 
@@ -33,11 +33,12 @@ void				ft_destroy_splits(char **splits)
 		i++;
 	}
 	free(splits);
+	return (fail);
 }
 
 t_bool				ft_break_parse(t_scene *s, char **splits)
 {
 	ft_destroy_scene(s);
 	ft_destroy_splits(splits);
-	return (false);
+	return (fail);
 }
