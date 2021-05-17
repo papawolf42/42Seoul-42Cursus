@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 13:02:40 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 15:33:24 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ t_bool		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
 		return (false);
 	point_t = ft_ray_at(ray, root);
 	diff = V_MINUS(point_t, sq->center);
-	if (fabs(V_DOT(sq->span_a, diff)) > sq->side_size / 2 || fabs(V_DOT(sq->span_b, diff)) > sq->side_size / 2)
+	if (fabs(V_DOT(sq->span_a, diff)) > sq->side_len / 2 || fabs(V_DOT(sq->span_b, diff)) > sq->side_len / 2)
 		return (false);
 	rec->t = root;
 	rec->p = point_t;

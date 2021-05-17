@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 23:18:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 12:26:46 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 15:43:52 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utils.h"
 #include "parse.h"
 
-t_bool			ft_parse_ambient(t_scene *s, char **splits)
+t_bool				ft_parse_ambient(t_scene *s, char **splits)
 {
 	if (ft_strslen(splits) != 3)
 		return (ft_err_msg(ERR_WORNG_ARG));
