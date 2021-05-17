@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/17 16:19:12 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/17 21:03:53 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,6 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	object.c \
-	triangle.c \
 )
 
 DIR_SRC_PARSE := parse
@@ -106,6 +105,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_parse_resolution.c \
 	ft_parse_sphere.c \
 	ft_parse_square.c \
+	ft_parse_triangle.c \
 	ft_parse_vector.c \
 	ft_pass_line.c \
 	ft_range_integer.c \
@@ -215,7 +215,7 @@ re : fclean all
 depend : $(DEPS)
 
 clean_depend :
-	@$(RFLAGS) depend_file
+	@$(RM) $(RFLAGS) depend_file
 	@printf "[$(NAME)] 🧹 Cleaned dependency files$(LF)"
 
 %.d : %.c
@@ -260,9 +260,6 @@ include/matrix.h include/ray.h include/alias.h include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
-obj/triangle.o: src/object/triangle.c lib/libft/include/libft.h \
-include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/alias.h include/color.h
 obj/ft_break_parse.o: src/parse/ft_break_parse.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
@@ -302,6 +299,9 @@ obj/ft_parse_sphere.o: src/parse/ft_parse_sphere.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/error.h include/utils.h include/parse.h
 obj/ft_parse_square.o: src/parse/ft_parse_square.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/error.h include/utils.h include/parse.h
+obj/ft_parse_triangle.o: src/parse/ft_parse_triangle.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h
 obj/ft_parse_vector.o: src/parse/ft_parse_vector.c lib/libft/include/libft.h \

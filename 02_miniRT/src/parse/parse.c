@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 15:52:10 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:08:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 		{"pl", ft_parse_plane},
 		{"sq", ft_parse_square},
 		{"cy", ft_parse_cylinder},
-		// {"tr", ft_parse_triangle},
+		{"tr", ft_parse_triangle},
 		{NUL, NUL}
 	};
 
@@ -46,7 +46,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 	if (pft_parse[i].id == NUL)
 		return (ft_err_msg(ERR_PAR_NOID) && ft_destroy_splits(splits));// 여기서 이제껏 malloc했던 scene들을 모두 free해주어야함.
 	if (pft_parse[i].parse(scene, splits))
-		return (ft_destroy_splits(splits));
+		return (ft_err_line(line) && ft_destroy_splits(splits));
 	ft_destroy_splits(splits);
 	return (success);
 }

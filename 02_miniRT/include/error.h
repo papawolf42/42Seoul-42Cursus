@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:07:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 13:06:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:08:25 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 # define ERR_MALLOC_FAIL "Allocating memory failed"
 
+t_bool		ft_err_line(char *line);
 t_bool		ft_err_msg(char *err_msg);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:30:28 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 22:22:10 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 16:31:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ void			ft_object_list_init(t_scene *s)
 	ft_bzero(s->light_list, sizeof(t_object_list));
 }
 
-/*
-** 첫 노드일때는 이미 malloc되어있으므로, 대입
-** 다음 노드일때부터는 끝노드로 이동 후, next에 모든 값을 대입.
-*/
 void			ft_object_list(t_object_type type, void *object, t_object_list *list)
 {
 	t_object_list	*node;

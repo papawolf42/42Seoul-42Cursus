@@ -3,16 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:05:11 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 15:28:22 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:08:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alias.h"
 #include "error.h"
 #include "libft.h"
+
+t_bool		ft_err_line(char *line)
+{
+	ft_putstr_fd(line, 1);
+	ft_putchar_fd('\n', 1);
+	return (fail);
+}
 
 t_bool		ft_err_msg(char *err_msg)
 {
@@ -21,4 +28,3 @@ t_bool		ft_err_msg(char *err_msg)
 	ft_putchar_fd('\n', 1);
 	return (fail);
 }
-

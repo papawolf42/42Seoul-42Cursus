@@ -29,9 +29,13 @@ sq				-1,0.5,2			0,0,-1				1				0,192,53
 # cylinder		center_bottom		axis				diameter		height		RGB
 cy				-0.5,0,2			1,1,0				0.25			1.414		250,180,6
 
+# triangle		point_a				point_b				point_c			RGB
+tr				1,1,2				0.5,0,2				1.5,0,2			46,158,73
+
 # iPURPLE	162,163,196
 # iBLUE		157,181,204
 # iGREEN	153,182,172
 # iRED		238,174,163
 
 # gYELLOW	250,180,6
+# gGREEN	46,158,73

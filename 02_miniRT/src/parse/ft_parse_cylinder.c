@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 16:15:54 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 17:04:39 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 #include "utils.h"
 #include "parse.h"
 
-static t_cylinder		*ft_cylinder_set(t_cylinder *cyl)
+static void		ft_cylinder_set(t_cylinder *cyl)
 {
 	cyl->center_top = V_PLUS(cyl->center_top, V_SCALAR(cyl->axis, cyl->height));
 	cyl->axis = V_UNIT(cyl->axis);
 	cyl->radius = cyl->radius / 2;
-	return (cyl);
 }
 
 t_bool					ft_parse_cylinder(t_scene *s, char **splits)
