@@ -1,3 +1,4 @@
+sp				-1,-0.5,2			0.5					238,174,163
 # Resolution	width	height
 R				800		500
 
@@ -9,6 +10,11 @@ c				0,0,1				0,-0.2,1			90
 
 # Light			point				ratio				RGB
 l				0,1.5,-1			1					255,255,255
+
+# sphere		center				radius				RGB
+sp				-1,-0.5,2			0.5					238,174,163
+sp				0,-0.5,2			0.5					153,182,172
+sp				1,-0.5,2			0.5					157,181,204
 
 # plane			point				normal				RGB
 pl				0,-1,0				0,1,0				162,163,196

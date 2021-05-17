@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/17 14:58:08 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/17 15:16:12 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,6 @@ DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	cylinder.c \
 	object.c \
-	sphere.c \
 	square.c \
 	triangle.c \
 )
@@ -106,6 +105,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_parse_plane.c \
 	ft_parse_real.c \
 	ft_parse_resolution.c \
+	ft_parse_sphere.c \
 	ft_parse_vector.c \
 	ft_pass_line.c \
 	ft_range_integer.c \

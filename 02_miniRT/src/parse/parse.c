@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 15:01:33 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 15:16:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 		{"A", ft_parse_ambient},
 		{"c", ft_parse_camera},
 		{"l", ft_parse_light},
-		// {"sp", ft_parse_sphere},
+		{"sp", ft_parse_sphere},
 		{"pl", ft_parse_plane},
 		// {"sq", ft_parse_square},
 		// {"cy", ft_parse_cylinder},
@@ -72,10 +72,5 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 		free(line);
 	}
 	free(line);
-
-	ft_object_list(sp, ft_sphere(V_POINT(-1, -0.5, 2), 0.5, V_COLOR(0.933, 0.682, 0.639)), ctrl->scene->object_list);
-	ft_object_list(sp, ft_sphere(V_POINT(0, -0.5, 2), 0.5, V_COLOR(0.6, 0.714, 0.675)), ctrl->scene->object_list);
-	ft_object_list(sp, ft_sphere(V_POINT(1, -0.5, 2), 0.5, V_COLOR(0.616, 0.710, 0.800)), ctrl->scene->object_list);
-
 	return (0);
 }

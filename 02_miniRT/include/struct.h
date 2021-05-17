@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 12:14:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 15:12:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,23 +180,18 @@ struct				s_camera
 
 void			ft_object_list_init(t_scene *s);
 void			ft_object_list(t_object_type type, void *object, t_object_list *list);
-t_sphere		*ft_sphere(t_point3 center, double radius, t_color color);
-t_plane			*ft_plane(t_point3 point, t_vec3 normal, t_color color);
+void			ft_camera_list_init(t_scene *s);
+void			ft_camera_list(void *camera, t_scene *s);
+void			ft_light_list_init(t_scene *s);
+void			ft_light_list(void *light, t_scene *s);
+
 t_square		*ft_square(t_point3 center, t_vec3 normal, double side_size, t_color color);
 t_cylinder		*ft_cylinder(t_point3 center_bottom, t_vec3 axis, double diameter, double height, t_color color);
 t_triangle		*ft_triangle(t_point3 a, t_point3 b, t_point3 c, t_color color);
 
-
-void			ft_camera_list_init(t_scene *s);
-void			ft_camera_list(void *camera, t_scene *s);
-t_camera		*ft_camera(t_point3 origin, t_vec3 normal, double fov, double v_height, double focal_length, double ratio);
-void			ft_light_list_init(t_scene *s);
-void			ft_light_list(void *light, t_scene *s);
-t_light			*ft_light(t_point3 point, t_color color);
-
-t_mat44		ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans);
-t_mat44		ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
-t_vec3		ft_linear_transform(t_mat44 mat, t_vec3 vec);
+t_mat44			ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans);
+t_mat44			ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
+t_vec3			ft_linear_transform(t_mat44 mat, t_vec3 vec);
 
 t_bool			ft_parse_resolution(t_scene *scene, char **splits);
 
