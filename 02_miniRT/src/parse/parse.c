@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 13:07:37 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 15:01:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 		{"c", ft_parse_camera},
 		{"l", ft_parse_light},
 		// {"sp", ft_parse_sphere},
-		// {"pl", ft_parse_plane},
+		{"pl", ft_parse_plane},
 		// {"sq", ft_parse_square},
 		// {"cy", ft_parse_cylinder},
 		// {"tr", ft_parse_triangle},
@@ -76,12 +76,6 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	ft_object_list(sp, ft_sphere(V_POINT(-1, -0.5, 2), 0.5, V_COLOR(0.933, 0.682, 0.639)), ctrl->scene->object_list);
 	ft_object_list(sp, ft_sphere(V_POINT(0, -0.5, 2), 0.5, V_COLOR(0.6, 0.714, 0.675)), ctrl->scene->object_list);
 	ft_object_list(sp, ft_sphere(V_POINT(1, -0.5, 2), 0.5, V_COLOR(0.616, 0.710, 0.800)), ctrl->scene->object_list);
-
-	ft_object_list(pl, ft_plane(V_POINT(0, -1, 0), V_SET(0, 1, 0), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
-	ft_object_list(pl, ft_plane(V_POINT(-1.5, 0, 0), V_SET(1, 0, 0), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
-	ft_object_list(pl, ft_plane(V_POINT(1.5, 0, 0), V_SET(-1, 0, 0), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
-	ft_object_list(pl, ft_plane(V_POINT(0, 0, 5), V_SET(0, 0, 1), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
-	ft_object_list(pl, ft_plane(V_POINT(0, 2, 0), V_SET(0, -1, 0), V_COLOR(0.635, 0.639, 0.769)), ctrl->scene->object_list);
 
 	return (0);
 }

@@ -4,8 +4,20 @@ R				800		500
 # Ambient		lighting ratio		RGB
 A				0.2					255,255,255
 
-# camera		point				direction			FOV
+# camera		point				normal				FOV
 c				0,0,1				0,-0.2,1			90
 
 # Light			point				ratio				RGB
 l				0,1.5,-1			1					255,255,255
+
+# plane			point				normal				RGB
+pl				0,-1,0				0,1,0				162,163,196
+pl				-1.5,0,0			1,0,0				162,163,196
+pl				1.5,0,0				-1,0,0				162,163,196
+pl				0,-1,5				0,0,1				162,163,196
+pl				0,2,0				0,-1,0				162,163,196
+
+# iPURPLE	162,163,196
+# iBLUE		157,181,204
+# iGREEN	153,182,172
+# iRED		238,174,163

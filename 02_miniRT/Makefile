@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/17 13:05:36 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/17 14:58:08 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,9 +88,7 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 	cylinder.c \
-	light.c \
 	object.c \
-	plane.c \
 	sphere.c \
 	square.c \
 	triangle.c \
@@ -105,6 +103,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_parse_integer.c \
 	ft_parse_light.c \
 	ft_parse_normal.c \
+	ft_parse_plane.c \
 	ft_parse_real.c \
 	ft_parse_resolution.c \
 	ft_parse_vector.c \
@@ -117,6 +116,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	ft_atof.c \
+	ft_atoi_plus.c \
 	ft_destroy.c \
 	ft_is_color.c \
 	ft_is_integer.c \
@@ -260,14 +260,9 @@ include/matrix.h include/ray.h include/alias.h include/color.h
 obj/cylinder.o: src/object/cylinder.c lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
-obj/light.o: src/object/light.c lib/libft/include/libft.h include/struct.h \
-include/vector.h include/matrix.h include/ray.h include/alias.h \
-include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
-obj/plane.o: src/object/plane.c include/struct.h include/vector.h \
-include/matrix.h include/ray.h include/alias.h include/color.h
 obj/sphere.o: src/object/sphere.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/square.o: src/object/square.c include/struct.h include/vector.h \
@@ -298,6 +293,9 @@ obj/ft_parse_normal.o: src/parse/ft_parse_normal.c lib/libft/include/libft.h \
 include/alias.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h include/error.h \
 include/parse.h
+obj/ft_parse_plane.o: src/parse/ft_parse_plane.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/error.h include/utils.h include/parse.h
 obj/ft_parse_real.o: src/parse/ft_parse_real.c lib/libft/include/libft.h \
 include/alias.h include/error.h include/utils.h
 obj/ft_parse_resolution.o: src/parse/ft_parse_resolution.c \
@@ -319,7 +317,8 @@ include/matrix.h include/ray.h include/alias.h include/color.h \
 include/error.h include/utils.h include/parse.h
 obj/ft_atof.o: src/utils/ft_atof.c lib/libft/include/libft.h include/alias.h \
 include/parse.h include/struct.h include/vector.h include/matrix.h \
-include/ray.h include/color.h
+include/ray.h include/color.h include/utils.h
+obj/ft_atoi_plus.o: src/utils/ft_atoi_plus.c
 obj/ft_destroy.o: src/utils/ft_destroy.c include/alias.h
 obj/ft_is_color.o: src/utils/ft_is_color.c include/alias.h include/utils.h \
 include/error.h include/parse.h include/struct.h include/vector.h \

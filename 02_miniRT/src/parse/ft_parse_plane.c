@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_light.c                                   :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/29 00:15:53 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 13:24:32 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/17 14:49:19 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/17 15:04:22 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,21 @@
 #include "utils.h"
 #include "parse.h"
 
-t_bool			ft_parse_light(t_scene *s, char **splits)
+t_bool			ft_parse_plane(t_scene *s, char **splits)
 {
-	t_light		*light;
+	t_plane		*plane;
 
-	light = (t_light *)malloc(sizeof(t_light));
-	if (light == NUL)
+	plane = (t_plane *)malloc(sizeof(t_plane));
+	if (plane == NUL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	if (ft_strslen(splits) != 4)
-		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(light));
-	if (ft_parse_vector(&light->p, splits[1]))
-		return (ft_destroy(light));
-	if (ft_parse_real(&light->ratio, splits[2]))
-		return (ft_destroy(light));
-	if (ft_range_real(&light->ratio, 0, 1.0))
-		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(light));
-	if (ft_parse_color(&light->color, splits[3]))
-		return (ft_destroy(light));
-	ft_object_list(l, light, s->light_list);
+		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(plane));
+	if (ft_parse_vector(&plane->point, splits[1]))
+		return (ft_destroy(plane));
+	if (ft_parse_normal(&plane->normal, splits[2]))
+		return (ft_destroy(plane));
+	if (ft_parse_color(&plane->color, splits[3]))
+		return (ft_destroy(plane));
+	ft_object_list(pl, plane, s->object_list);
 	return (success);
 }
