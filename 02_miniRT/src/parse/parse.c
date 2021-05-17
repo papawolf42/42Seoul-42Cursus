@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 15:27:41 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 15:52:10 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 		{"sp", ft_parse_sphere},
 		{"pl", ft_parse_plane},
 		{"sq", ft_parse_square},
-		// {"cy", ft_parse_cylinder},
+		{"cy", ft_parse_cylinder},
 		// {"tr", ft_parse_triangle},
 		{NUL, NUL}
 	};

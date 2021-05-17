@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/17 15:47:12 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/17 16:19:12 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,6 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
-	cylinder.c \
 	object.c \
 	triangle.c \
 )
@@ -98,6 +97,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_parse_ambient.c \
 	ft_parse_camera.c \
 	ft_parse_color.c \
+	ft_parse_cylinder.c \
 	ft_parse_integer.c \
 	ft_parse_light.c \
 	ft_parse_normal.c \
@@ -257,9 +257,6 @@ obj/error.o: src/error/error.c include/alias.h include/error.h \
 lib/libft/include/libft.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
-obj/cylinder.o: src/object/cylinder.c lib/libft/include/libft.h \
-include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/alias.h include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
@@ -279,6 +276,9 @@ obj/ft_parse_color.o: src/parse/ft_parse_color.c lib/libft/include/libft.h \
 include/alias.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h include/error.h \
 include/parse.h
+obj/ft_parse_cylinder.o: src/parse/ft_parse_cylinder.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/error.h include/utils.h include/parse.h
 obj/ft_parse_integer.o: src/parse/ft_parse_integer.c \
 lib/libft/include/libft.h include/alias.h include/error.h \
 include/utils.h
