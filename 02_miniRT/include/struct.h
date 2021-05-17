@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 18:44:35 by gunkim           ###   ########seoul.kr  */
+/*   Updated: 2021/05/16 23:36:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,12 +175,6 @@ struct				s_camera
 	t_vec3			normal;
 	double			fov;
 	t_mat44			mat_c2w;
-	double			view_h;
-	double			view_w;
-	t_vec3			vertical;
-	t_vec3			horizontal;
-	double			focal_len;
-	t_point3		left_top;
 };
 
 void			ft_object_list_init(t_scene *s);

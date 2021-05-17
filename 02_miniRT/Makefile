@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/16 22:05:48 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/17 12:46:08 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,6 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
-	camera.c \
 	cylinder.c \
 	light.c \
 	object.c \
@@ -101,10 +100,13 @@ DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_break_parse.c \
 	ft_parse_ambient.c \
+	ft_parse_camera.c \
 	ft_parse_color.c \
 	ft_parse_integer.c \
+	ft_parse_normal.c \
 	ft_parse_real.c \
 	ft_parse_resolution.c \
+	ft_parse_vector.c \
 	ft_pass_line.c \
 	ft_range_integer.c \
 	ft_range_real.c \
@@ -114,6 +116,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 DIR_SRC_UTILS := utils
 SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	ft_atof.c \
+	ft_destroy.c \
 	ft_is_color.c \
 	ft_is_integer.c \
 	ft_is_real.c \

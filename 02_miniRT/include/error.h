@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:07:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 21:19:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 23:32:46 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 # define ERR_WRONG_NUMBERS_ARG "Wrong argument, 1st argument is .rt file path, 2nd argument can be '--save' option to save image as bmp file"
 # define ERR_GNL "Problem happens while working get_next_line"
 # define ERR_PAR_NOID "Parsing liny by line, found Bad Identifier"
-# define ERR_PAR_NOT_MATCH_ARG_NUM "Above line has wrong numbers of argument"
+
+# define ERR_WORNG_ARG "Wrong numbers of argument"
+# define ERR_WRONG_ELEMENT "Wrong Numbers of element"
 # define ERR_BAD_RANGE "Bad range found"
 # define ERR_BAD_INT "Bad integer found"
 # define ERR_BAD_REAL "Bad real found"
+// # define ERR_BAD_VECTOR "Bad vector found"
 # define ERR_BAD_COLOR "Bad color found"
+
+# define ERR_MALLOC_FAIL "Allocating memory failed"
 
 t_bool		ft_err_msg(char *err_msg);
 

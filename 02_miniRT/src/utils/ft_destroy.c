@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_integer.c                                 :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 00:02:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:29:58 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/16 22:56:26 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/16 22:57:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 #include "alias.h"
-#include "error.h"
-#include "utils.h"
 
-t_bool		ft_parse_integer(int *dst, char *src)
+t_bool			ft_destroy(void *something)
 {
-	if (ft_is_integer(src))
-		return (ft_err_msg(ERR_BAD_INT));
-	*dst = ft_atoi(src);
-	return (success);
-}
-
-t_bool		ft_parse_color_integer(double *dst, char *src)
-{
-	if (ft_is_integer(src))
-		return (fail);
-	*dst = (double)ft_atoi(src) / 255.0;
-	return (success);
+	free(something);
+	return (fail);
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 23:18:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 21:59:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/16 23:28:00 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 t_bool			ft_parse_ambient(t_scene *s, char **splits)
 {
 	if (ft_strslen(splits) != 3)
-		return (ft_err_msg(ERR_PAR_NOT_MATCH_ARG_NUM));
+		return (ft_err_msg(ERR_WORNG_ARG));
 	if (ft_parse_real(&s->ambient.ratio, splits[1]))
 		return (ft_err_msg(ERR_BAD_REAL));
 	if (ft_range_real(&s->ambient.ratio, 0, 1.0))

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_resolution.c                              :+:      :+:    :+:   */
+/*   ft_parse_vector.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/15 09:47:34 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:28:00 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/16 23:06:28 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/16 23:08:51 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@
 #include "error.h"
 #include "parse.h"
 
-t_bool			ft_parse_resolution(t_scene *s, char **splits)
+t_bool			ft_parse_vector(t_vec3 *dst, char *src)
 {
+	char		**splits;
+
+	splits = ft_split_rt(src, COMMA);
 	if (ft_strslen(splits) != 3)
-		return (ft_err_msg(ERR_WORNG_ARG));
-	if (ft_parse_integer(&s->canv.width, splits[1]))
-		return (ft_err_msg(ERR_BAD_INT));
-	if (ft_parse_integer(&s->canv.height, splits[2]))
-		return (ft_err_msg(ERR_BAD_INT));
-	s->canv.aspect_ratio = (double)s->canv.width / (double)s->canv.height;
-	// if resolution parsed is bigger than max of current screen, set as max value
-	// if resolution is lower than 0, throw as error
+		return (ft_destroy_splits(splits));
+	if (ft_parse_real(&dst->x, splits[0])
+		|| ft_parse_real(&dst->y, splits[1])
+		|| ft_parse_real(&dst->z, splits[2]))
+		return (ft_err_msg(ERR_BAD_REAL) && ft_destroy_splits(splits));
+	ft_destroy_splits(splits);
 	return (success);
 }
