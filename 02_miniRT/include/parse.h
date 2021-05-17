@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:41:40 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 12:36:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ t_bool			ft_range_real(double *value, double min, double max);
 t_bool			ft_parse_resolution(t_scene *s, char **splits);
 t_bool			ft_parse_ambient(t_scene *s, char **splits);
 t_bool			ft_parse_camera(t_scene *s, char **splits);
-
+t_bool			ft_parse_light(t_scene *s, char **splits);
 
 #endif

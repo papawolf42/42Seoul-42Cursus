@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/17 12:46:08 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/17 13:05:36 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
 	ft_parse_camera.c \
 	ft_parse_color.c \
 	ft_parse_integer.c \
+	ft_parse_light.c \
 	ft_parse_normal.c \
 	ft_parse_real.c \
 	ft_parse_resolution.c \
@@ -256,9 +257,6 @@ obj/error.o: src/error/error.c include/alias.h include/error.h \
 lib/libft/include/libft.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
-obj/camera.o: src/object/camera.c lib/libft/include/libft.h include/struct.h \
-include/vector.h include/matrix.h include/ray.h include/alias.h \
-include/color.h
 obj/cylinder.o: src/object/cylinder.c lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
@@ -283,6 +281,9 @@ include/color.h
 obj/ft_parse_ambient.o: src/parse/ft_parse_ambient.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h
+obj/ft_parse_camera.o: src/parse/ft_parse_camera.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/error.h include/parse.h include/utils.h
 obj/ft_parse_color.o: src/parse/ft_parse_color.c lib/libft/include/libft.h \
 include/alias.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h include/error.h \
@@ -290,12 +291,23 @@ include/parse.h
 obj/ft_parse_integer.o: src/parse/ft_parse_integer.c \
 lib/libft/include/libft.h include/alias.h include/error.h \
 include/utils.h
+obj/ft_parse_light.o: src/parse/ft_parse_light.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/error.h include/utils.h include/parse.h
+obj/ft_parse_normal.o: src/parse/ft_parse_normal.c lib/libft/include/libft.h \
+include/alias.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/color.h include/utils.h include/error.h \
+include/parse.h
 obj/ft_parse_real.o: src/parse/ft_parse_real.c lib/libft/include/libft.h \
 include/alias.h include/error.h include/utils.h
 obj/ft_parse_resolution.o: src/parse/ft_parse_resolution.c \
 lib/libft/include/libft.h include/alias.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/color.h \
 include/utils.h include/error.h include/parse.h
+obj/ft_parse_vector.o: src/parse/ft_parse_vector.c lib/libft/include/libft.h \
+include/alias.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/color.h include/utils.h include/error.h \
+include/parse.h
 obj/ft_pass_line.o: src/parse/ft_pass_line.c include/alias.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/color.h \
 include/error.h
@@ -308,6 +320,7 @@ include/error.h include/utils.h include/parse.h
 obj/ft_atof.o: src/utils/ft_atof.c lib/libft/include/libft.h include/alias.h \
 include/parse.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h
+obj/ft_destroy.o: src/utils/ft_destroy.c include/alias.h
 obj/ft_is_color.o: src/utils/ft_is_color.c include/alias.h include/utils.h \
 include/error.h include/parse.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h

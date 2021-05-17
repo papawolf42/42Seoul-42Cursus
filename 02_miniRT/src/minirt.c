@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:58:03 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 13:02:40 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_vec3		ft_ray_at(t_ray *ray, double t)
 	return (at);
 }
 
-t_front	ft_determine_front(t_ray *ray, t_hit_rec *rec)
+t_front		ft_determine_front(t_ray *ray, t_hit_rec *rec)
 {
 	double		dot;
 	dot = V_DOT(ray->dir, rec->normal);
@@ -287,8 +287,8 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec, t_am
 	double		radius_attenuation;
 	double		distance;
 
-	radius_attenuation = 8;
-	distance = V_LEN(V_MINUS(light->p, rec->p));
+	radius_attenuation = 4;
+	distance = V_LEN(V_MINUS(light->p, rec->p)) / 3;
 	if (radius_attenuation < distance)
 		return (V_COLOR(0, 0, 0));
 
@@ -302,10 +302,13 @@ t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *rec, t_am
 	ambient = V_SCALAR(a.color, a.ratio);
 	diffuse = V_SCALAR(light->color, kd);
 	specular = V_SCALAR(light->color, ks * pow(ft_max(V_DOT(reflect, to_view), 0.0), ksn));
-	attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
-	attenuation_distance = 1 / (pow(distance, 2) + 1);
-	light_intensity = V_PLUS(diffuse, specular);
-	return (V_PLUS(ambient, V_SCALAR(light_intensity, attenuation_distance * attenuation_radius)));
+	// attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
+	attenuation_radius = 1;
+	// attenuation_distance = 1 / (pow(distance, 2) + 1);
+	attenuation_distance = 1;
+	light_intensity = V_SCALAR(V_PLUS(diffuse, specular), light->ratio);
+	// return (V_PLUS(ambient, V_SCALAR(light_intensity, attenuation_distance * attenuation_radius)));
+	return (V_PLUS(ambient, V_MULT(light->color, light_intensity)));
 }
 
 t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)

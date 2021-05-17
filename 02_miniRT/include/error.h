@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:07:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:32:46 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 13:06:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # define ERR_BAD_RANGE "Bad range found"
 # define ERR_BAD_INT "Bad integer found"
 # define ERR_BAD_REAL "Bad real found"
-// # define ERR_BAD_VECTOR "Bad vector found"
-# define ERR_BAD_COLOR "Bad color found"
 
 # define ERR_MALLOC_FAIL "Allocating memory failed"
 

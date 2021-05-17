@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:36:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 12:14:09 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ struct				s_sphere
 struct				s_light
 {
 	t_point3		p;
+	double			ratio;
 	t_color			color;
 };
 
