@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 21:43:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 23:42:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PARSE_H
 
 # include "struct.h"
+
+# define OPEN_FAIL -1
 
 # define GNL_SUCCESS 1
 # define GNL_EOF 0
