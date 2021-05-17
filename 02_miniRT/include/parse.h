@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 17:01:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 21:43:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define PARSE_H
 
 # include "struct.h"
+
+# define GNL_SUCCESS 1
+# define GNL_EOF 0
+# define GNL_FAIL -1
+
+# define STR_SAME 0
+
+# define WHITE_SPACE "\t\n\v\f\r "
+# define COMMA ","
 
 t_bool			ft_pass_line(t_scene *s, char **splits);
 t_bool			ft_destroy_splits(char **splits);

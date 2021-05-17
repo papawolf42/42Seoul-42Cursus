@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:07:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 17:08:25 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 23:37:50 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define ERR_3RD_ARG_WRONG "2nd argument can be --save"
 # define ERR_WRONG_NUMBERS_ARG "Wrong argument, 1st argument is .rt file path, 2nd argument can be '--save' option to save image as bmp file"
 # define ERR_GNL "Problem happens while working get_next_line"
+# define ERR_NOT_ENOUGH_DECLARE "Element declared not enough"
+# define ERR_ENOUGH_DECLARE "Capital Element must be declared only once"
 # define ERR_PAR_NOID "Parsing liny by line, found Bad Identifier"
 
 # define ERR_WORNG_ARG "Wrong numbers of argument"

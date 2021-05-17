@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 16:20:03 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 21:53:28 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ struct				s_scene
 {
 	t_canvas		canv;
 	t_ambient		ambient;
+	int				flag_declare;
 	t_object_list	*object_list;
 	t_object_list	*camera_list;
 	t_object_list	*light_list;

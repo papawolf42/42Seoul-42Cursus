@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 17:08:37 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/17 23:36:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,25 @@
 #include "utils.h"
 #include "parse.h"
 
+static t_bool	ft_check_declare_at_least(t_scene *s)
+{
+	if ((s->flag_declare & 0x1)
+		&& (s->flag_declare & 0x10)
+		&& (s->flag_declare >= 0x100))
+		return (success);
+	return (ft_err_msg(ERR_NOT_ENOUGH_DECLARE));
+}
+
 t_bool		ft_parse_line(t_scene *scene, char *line)
 {
 	char				**splits;
 	int					i;
 	static t_pft_parse	pft_parse[] = {
-		{"", ft_pass_line}, {"#", ft_pass_line},
-		{"R", ft_parse_resolution},
-		{"A", ft_parse_ambient},
-		{"c", ft_parse_camera},
-		{"l", ft_parse_light},
-		{"sp", ft_parse_sphere},
-		{"pl", ft_parse_plane},
-		{"sq", ft_parse_square},
-		{"cy", ft_parse_cylinder},
-		{"tr", ft_parse_triangle},
+		{"", ft_pass_line}, {"#", ft_pass_line}, {"R", ft_parse_resolution},
+		{"A", ft_parse_ambient}, {"c", ft_parse_camera},
+		{"l", ft_parse_light}, {"sp", ft_parse_sphere},
+		{"pl", ft_parse_plane}, {"sq", ft_parse_square},
+		{"cy", ft_parse_cylinder}, {"tr", ft_parse_triangle},
 		{NUL, NUL}
 	};
 
@@ -44,7 +48,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 	while (pft_parse[i].id && *splits && ft_strncmp(pft_parse[i].id, splits[0], 4))
 		i++;
 	if (pft_parse[i].id == NUL)
-		return (ft_err_msg(ERR_PAR_NOID) && ft_destroy_splits(splits));// 여기서 이제껏 malloc했던 scene들을 모두 free해주어야함.
+		return (ft_err_msg(ERR_PAR_NOID) && ft_destroy_splits(splits));
 	if (pft_parse[i].parse(scene, splits))
 		return (ft_err_line(line) && ft_destroy_splits(splits));
 	ft_destroy_splits(splits);
@@ -58,6 +62,7 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	char	*line;
 
 	ctrl->scene = (t_scene *)malloc(sizeof(t_scene));
+	ft_bzero(ctrl->scene, sizeof(t_scene));
 	ft_object_list_init(ctrl->scene);
 	fd = open(rt_file, O_RDONLY);
 	while (1)
@@ -68,9 +73,10 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 		if (ret == GNL_EOF)
 			break;
 		if (ft_parse_line(ctrl->scene, line))
-			return (fail);
+			return (ft_destroy(line));
 		free(line);
 	}
 	free(line);
-	return (0);
+	ft_check_declare_at_least(ctrl->scene);
+	return (success);
 }
