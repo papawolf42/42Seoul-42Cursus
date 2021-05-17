@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:53:34 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 21:01:42 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ t_bool					ft_parse_triangle(t_scene *s, char **splits)
 	if (ft_parse_color(&triangle->color, splits[4]))
 		return (ft_destroy(triangle));
 	ft_triangle_set(triangle);
-	ft_object_list(tr, triangle, s->object_list);
+	ft_addback_object_list(tr, triangle, s->object_list);
 	return (success);
 }

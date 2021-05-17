@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 21:53:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,8 @@ struct				s_camera
 	t_mat44			mat_c2w;
 };
 
-void			ft_object_list_init(t_scene *s);
-void			ft_object_list(t_object_type type, void *object, t_object_list *list);
+void			ft_init_object_list(t_scene *s);
+void			ft_addback_object_list(t_object_type type, void *object, t_object_list *list);
 void			ft_camera_list_init(t_scene *s);
 void			ft_camera_list(void *camera, t_scene *s);
 void			ft_light_list_init(t_scene *s);

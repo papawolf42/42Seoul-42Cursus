@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:23:38 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 21:53:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool			ft_parse_camera(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(c));
 	c->normal = V_UNIT(c->normal);
 	c->fov = 2 * tan((c->fov / 2) * (M_PI / 180));
-	ft_object_list(cam, c, s->camera_list);
+	ft_addback_object_list(cam, c, s->camera_list);
 	s->flag_declare += 0x100;
 	return (success);
 }

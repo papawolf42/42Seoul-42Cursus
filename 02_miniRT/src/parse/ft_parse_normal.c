@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 23:10:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 23:28:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:28:52 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_bool			ft_parse_normal(t_vec3 *dst, char *src)
 	if (ft_parse_real(&dst->x, splits[0])
 		|| ft_parse_real(&dst->y, splits[1])
 		|| ft_parse_real(&dst->z, splits[2]))
-		return (ft_err_msg(ERR_BAD_REAL) && ft_destroy_splits(splits));
+		return (ft_destroy_splits(splits));
 	if (ft_range_real(&dst->x, -1.0, 1.0)
 		|| ft_range_real(&dst->y, -1.0, 1.0)
 		|| ft_range_real(&dst->z, -1.0, 1.0)

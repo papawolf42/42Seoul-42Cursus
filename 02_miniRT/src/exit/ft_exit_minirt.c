@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_real.c                                    :+:      :+:    :+:   */
+/*   ft_exit_minirt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 00:25:37 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:40:19 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/18 00:56:54 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/18 01:20:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 #include "alias.h"
-#include "error.h"
-#include "utils.h"
+#include "struct.h"
+#include "exit.h"
 
-t_bool		ft_parse_real(double *dst, char *src)
+void			ft_exit_minirt(t_ctrl *ctrl)
 {
-	if (ft_is_real(src))
-		return (ft_err_msg(ERR_BAD_REAL));
-	*dst = ft_atof(src);
-	return (success);
+	ft_destroy_mlx(ctrl);
+	ft_free_scene(ctrl->scene);
+	exit (1);
 }

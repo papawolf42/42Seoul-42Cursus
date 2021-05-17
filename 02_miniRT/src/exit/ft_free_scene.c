@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_real.c                                    :+:      :+:    :+:   */
+/*   ft_free_scene.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 00:25:37 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:40:19 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/18 01:07:49 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/18 01:20:50 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "alias.h"
-#include "error.h"
-#include "utils.h"
+#include <stdlib.h>
+#include "struct.h"
 
-t_bool		ft_parse_real(double *dst, char *src)
+static void		ft_free_object_list(t_object_list **lst)
 {
-	if (ft_is_real(src))
-		return (ft_err_msg(ERR_BAD_REAL));
-	*dst = ft_atof(src);
-	return (success);
+	t_object_list	*next;
+
+	if (*lst == NUL)
+		return;
+	while (*lst)
+	{
+		next = (*lst)->next;
+		free(*lst);
+		*lst = next;
+	}
+	*lst = NUL;
+}
+
+void			ft_free_scene(t_scene *scene)
+{
+	ft_free_object_list(&scene->camera_list);
+	ft_free_object_list(&scene->light_list);
+	ft_free_object_list(&scene->object_list);
 }

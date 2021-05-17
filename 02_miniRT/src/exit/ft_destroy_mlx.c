@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_real.c                                    :+:      :+:    :+:   */
+/*   ft_destroy_mlx.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/16 00:25:37 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:40:19 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/18 01:04:17 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/18 01:06:42 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "alias.h"
-#include "error.h"
-#include "utils.h"
+#include "struct.h"
+#include "mlx.h"
 
-t_bool		ft_parse_real(double *dst, char *src)
+void		ft_destroy_mlx(t_ctrl *ctrl)
 {
-	if (ft_is_real(src))
-		return (ft_err_msg(ERR_BAD_REAL));
-	*dst = ft_atof(src);
-	return (success);
+	if (ctrl->img.img_ptr)
+		mlx_destroy_image(ctrl->mlx_ptr, ctrl->img.img_ptr);
+	if (ctrl->win_ptr)
+		mlx_destroy_window(ctrl->mlx_ptr, ctrl->win_ptr);
 }

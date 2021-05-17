@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 16:12:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:25:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "alias.h"
 #include "error.h"
 #include "parse.h"
+#include "exit.h"
 
 t_vec3		ft_ray_at(t_ray *ray, double t)
 {
@@ -423,13 +424,13 @@ int			main(int argc, char *argv[])
 {
 	t_ctrl		ctrl;
 
+	ft_bzero(&ctrl, sizeof(ctrl));
 	if (2 <= argc && argc <= 3)
 	{
 		if (ft_is_endstr(argv[1], ".rt"))
 		{
-			ft_parse_rt(&ctrl, argv[1]);
-			// if (ft_parse_rt(&ctrl, argv[1]))
-				// ft_destroy_and_exit(ctrl);
+			if (ft_parse_rt(&ctrl, argv[1]))
+				ft_exit_minirt(&ctrl);
 			if (argc == 2)
 				ft_minirt(&ctrl);
 			// else if (argc == 3 && ft_strncmp(argv[3], "--save", 7) == 0)

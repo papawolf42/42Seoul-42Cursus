@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/17 21:03:53 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/18 01:49:09 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,13 @@ SRCS_ERROR := $(addprefix $(DIR_SRC_ERROR)/, \
 	error.c \
 )
 
+DIR_SRC_EXIT := exit
+SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
+	ft_destroy_mlx.c \
+	ft_exit_minirt.c \
+	ft_free_scene.c \
+)
+
 DIR_SRC_MATRIX := matrix
 SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 	matrix.c \
@@ -140,6 +147,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	minirt.c \
 	$(SRCS_COLOR) \
 	$(SRCS_ERROR) \
+	$(SRCS_EXIT) \
 	$(SRCS_MATRIX) \
 	$(SRCS_OBJECT) \
 	$(SRCS_PARSE) \
@@ -155,6 +163,7 @@ vpath %.c \
 	$(DIR_SRC) \
 	$(DIR_SRC)/$(DIR_SRC_COLOR) \
 	$(DIR_SRC)/$(DIR_SRC_ERROR) \
+	$(DIR_SRC)/$(DIR_SRC_EXIT) \
 	$(DIR_SRC)/$(DIR_SRC_MATRIX) \
 	$(DIR_SRC)/$(DIR_SRC_OBJECT) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
@@ -250,11 +259,20 @@ $(NAME_GET_NEXT_LINE) :
 obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
-include/error.h include/parse.h
+include/error.h include/parse.h include/exit.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
 obj/error.o: src/error/error.c include/alias.h include/error.h \
 lib/libft/include/libft.h
+obj/ft_destroy_mlx.o: src/exit/ft_destroy_mlx.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h lib/minilibx_mms_20200219/mlx.h
+obj/ft_exit_minirt.o: src/exit/ft_exit_minirt.c include/alias.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/color.h include/exit.h
+obj/ft_free_scene.o: src/exit/ft_free_scene.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \

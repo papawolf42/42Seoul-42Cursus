@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:15:53 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 13:24:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ t_bool			ft_parse_light(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(light));
 	if (ft_parse_color(&light->color, splits[3]))
 		return (ft_destroy(light));
-	ft_object_list(l, light, s->light_list);
+	ft_addback_object_list(l, light, s->light_list);
 	return (success);
 }
