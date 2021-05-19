@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:13:43 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
-#include "scene.h"
+#include "object.h"
 
 static void		ft_cylinder_set(t_cylinder *cyl)
 {

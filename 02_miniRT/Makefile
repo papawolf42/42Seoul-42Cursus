@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/19 17:51:01 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/19 23:35:16 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,14 +82,16 @@ SRCS_ERROR := $(addprefix $(DIR_SRC_ERROR)/, \
 
 DIR_SRC_EVENT := event
 SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
+	event_mode.c \
+	event_move_x.c \
+	event_move_y.c \
+	event_move_z.c \
 	ft_console_msg.c \
 	ft_handle_key.c \
 	ft_init_hook.c \
 	ft_list_after.c \
 	ft_list_before.c \
 	ft_trigger_event.c \
-	mode.c \
-	move_x.c \
 )
 
 DIR_SRC_EXIT := exit
@@ -101,6 +103,7 @@ SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
 
 DIR_SRC_MATRIX := matrix
 SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
+	ft_matrix_identity.c \
 	matrix.c \
 )
 
@@ -274,13 +277,27 @@ $(NAME_GET_NEXT_LINE) :
 obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
-include/error.h include/parse.h include/exit.h include/scene.h \
+include/error.h include/parse.h include/exit.h include/object.h \
 include/event.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
 obj/error.o: src/error/error.c include/alias.h include/error.h \
 lib/libft/include/libft.h
-obj/ft_console_msg.o: src/event/ft_console_msg.c lib/libft/include/libft.h
+obj/event_mode.o: src/event/event_mode.c include/alias.h include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/color.h \
+include/event.h
+obj/event_move_x.o: src/event/event_move_x.c lib/libft/include/libft.h \
+include/alias.h include/event.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
+obj/event_move_y.o: src/event/event_move_y.c lib/libft/include/libft.h \
+include/alias.h include/event.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
+obj/event_move_z.o: src/event/event_move_z.c lib/libft/include/libft.h \
+include/alias.h include/event.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
+obj/ft_console_msg.o: src/event/ft_console_msg.c lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
 obj/ft_handle_key.o: src/event/ft_handle_key.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/event.h include/exit.h include/minirt.h \
@@ -297,10 +314,6 @@ include/color.h include/event.h
 obj/ft_trigger_event.o: src/event/ft_trigger_event.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/event.h include/exit.h
-obj/mode.o: src/event/mode.c include/alias.h include/struct.h \
-include/vector.h include/matrix.h include/ray.h include/color.h \
-include/event.h
-obj/move_x.o: src/event/move_x.c
 obj/ft_destroy_mlx.o: src/exit/ft_destroy_mlx.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h lib/minilibx_mms_20200219/mlx.h
@@ -310,6 +323,8 @@ include/color.h include/exit.h
 obj/ft_free_scene.o: src/exit/ft_free_scene.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
+obj/ft_matrix_identity.o: src/matrix/ft_matrix_identity.c include/matrix.h \
+include/vector.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_return_object_list.o: src/object/ft_return_object_list.c \
@@ -327,7 +342,7 @@ include/color.h include/error.h include/utils.h include/parse.h
 obj/ft_parse_camera.o: src/parse/ft_parse_camera.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/parse.h include/utils.h \
-include/scene.h
+include/object.h
 obj/ft_parse_color.o: src/parse/ft_parse_color.c lib/libft/include/libft.h \
 include/alias.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h include/error.h \
@@ -335,14 +350,14 @@ include/parse.h
 obj/ft_parse_cylinder.o: src/parse/ft_parse_cylinder.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h \
-include/scene.h
+include/object.h
 obj/ft_parse_integer.o: src/parse/ft_parse_integer.c \
 lib/libft/include/libft.h include/alias.h include/error.h \
 include/utils.h
 obj/ft_parse_light.o: src/parse/ft_parse_light.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h \
-include/scene.h
+include/object.h
 obj/ft_parse_normal.o: src/parse/ft_parse_normal.c lib/libft/include/libft.h \
 include/alias.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h include/error.h \
@@ -350,7 +365,7 @@ include/parse.h
 obj/ft_parse_plane.o: src/parse/ft_parse_plane.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h \
-include/scene.h
+include/object.h
 obj/ft_parse_real.o: src/parse/ft_parse_real.c lib/libft/include/libft.h \
 include/alias.h include/error.h include/utils.h
 obj/ft_parse_resolution.o: src/parse/ft_parse_resolution.c \
@@ -360,15 +375,15 @@ include/utils.h include/error.h include/parse.h
 obj/ft_parse_sphere.o: src/parse/ft_parse_sphere.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/error.h include/utils.h include/parse.h \
-include/scene.h
+include/object.h
 obj/ft_parse_square.o: src/parse/ft_parse_square.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h \
-include/scene.h
+include/object.h
 obj/ft_parse_triangle.o: src/parse/ft_parse_triangle.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h include/utils.h include/parse.h \
-include/scene.h
+include/object.h
 obj/ft_parse_vector.o: src/parse/ft_parse_vector.c lib/libft/include/libft.h \
 include/alias.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h include/error.h \
@@ -381,7 +396,7 @@ obj/ft_range_real.o: src/parse/ft_range_real.c include/alias.h
 obj/parse.o: src/parse/parse.c lib/libft/include/libft.h \
 lib/get_next_line/get_next_line.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
-include/error.h include/utils.h include/parse.h include/scene.h
+include/error.h include/utils.h include/parse.h include/object.h
 obj/ft_atof.o: src/utils/ft_atof.c lib/libft/include/libft.h include/alias.h \
 include/parse.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/color.h include/utils.h

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:15:53 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 17:26:37 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
-#include "scene.h"
+#include "object.h"
 
 t_bool			ft_parse_light(t_scene *s, char **splits)
 {

@@ -14,6 +14,7 @@
 # define EVENT_H
 
 # include "alias.h"
+# include "struct.h"
 
 # define MASK_BUTTON		0L
 # define MASK_KEYPRESS		1L<<0
@@ -21,6 +22,7 @@
 
 # define EVENT_KEYPRESS		2
 # define EVENT_KEYRELEASE	3
+# define EVENT_BUTTONPRESS	4
 # define EVENT_EXIT_WINDOW	17
 
 # define NO_KEY				-1
@@ -94,9 +96,7 @@
 ** unit
 */
 
-# define UNIT_MOVE 1
-
-void			ft_console_msg(char *message);
+void			ft_console_msg(t_ctrl *ctrl, char *message);
 
 void			ft_init_hook(t_ctrl *ctrl);
 
@@ -109,6 +109,13 @@ int				ft_mode_object(t_ctrl *ctrl);
 
 int				ft_list_before(t_ctrl *ctrl);
 int				ft_list_after(t_ctrl *ctrl);
+
+int				ft_move_forward(t_ctrl *ctrl);
+int				ft_move_back(t_ctrl *ctrl);
+int				ft_move_left(t_ctrl *ctrl);
+int				ft_move_right(t_ctrl *ctrl);
+int				ft_move_down(t_ctrl *ctrl);
+int				ft_move_up(t_ctrl *ctrl);
 
 
 typedef struct s_trigger_event	t_trigger_event;

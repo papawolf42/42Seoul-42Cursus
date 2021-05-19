@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:23:38 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 17:26:33 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:28:46 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "error.h"
 #include "parse.h"
 #include "utils.h"
-#include "scene.h"
+#include "object.h"
 
 t_bool			ft_parse_camera(t_scene *s, char **splits)
 {

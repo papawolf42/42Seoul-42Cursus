@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 17:21:53 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:51:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "error.h"
 #include "parse.h"
 #include "exit.h"
-#include "scene.h"
+#include "object.h"
 #include "event.h"
 
 t_vec3		ft_ray_at(t_ray *ray, double t)
@@ -366,7 +366,7 @@ t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y)
 	screen.z *= sqrt(1 - screen.x * screen.x - screen.y * screen.y);// FISH_EYE
 	screen.x *= cam->fov * canv->aspect_ratio;
 	screen.y *= cam->fov;
-	cam->mat_c2w = ft_getmat_c2w(cam, V_SET(0, 1, 0));
+	cam->mat_c2w = ft_getmat_c2w(cam, AXIS_UP);
 	ray.org = cam->origin;
 	ray.dir = V_MINUS(ft_linear_transform(cam->mat_c2w, screen), ray.org);
 	return (ray);
@@ -419,7 +419,7 @@ void		ft_minirt(t_ctrl *ctrl)
 					&ctrl->img.size_line, &ctrl->img.endian);
 	ft_render(ctrl);
 	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
-	mlx_hook(ctrl->win_ptr, MOUSE_PRESSED, 1L << 0, ft_get_position_clicked, ctrl->scene);
+	mlx_hook(ctrl->win_ptr, EVENT_BUTTONPRESS, 1L << 0, ft_get_position_clicked, ctrl->scene);
 	ft_init_hook(ctrl);
 	// mlx_loop(ctrl->mlx_ptr);
 }
@@ -429,6 +429,7 @@ int			main(int argc, char *argv[])
 	t_ctrl		ctrl;
 
 	ft_bzero(&ctrl, sizeof(ctrl));
+	ctrl.mode = 'C';
 	if (argc < 2 || 3 < argc)
 		return (ft_err_msg(ERR_WRONG_NUMBERS_ARG));
 	if (ft_is_endstr(argv[1], ".rt") == fail)

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:17:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
-#include "scene.h"
+#include "object.h"
 
 static t_bool	ft_check_declare_at_least(t_scene *s)
 {
@@ -73,13 +73,14 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	{
 		ret = get_next_line(fd, &line);
 		if (ret == GNL_FAIL)
-			return (ft_err_msg(ERR_GNL));
+			return (!close(fd) && ft_err_msg(ERR_GNL));
 		if (ret == GNL_EOF)
-			break;
+			break ;
 		if (ft_parse_line(ctrl->scene, line))
-			return (ft_destroy(line));
+			return (!close(fd) && ft_destroy(line));
 		free(line);
 	}
 	free(line);
+	close(fd);
 	return (ft_check_declare_at_least(ctrl->scene));
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:49:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:15:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
-#include "scene.h"
+#include "object.h"
 
 t_bool			ft_parse_plane(t_scene *s, char **splits)
 {
@@ -33,6 +33,6 @@ t_bool			ft_parse_plane(t_scene *s, char **splits)
 	if (ft_parse_color(&plane->color, splits[3]))
 		return (ft_destroy(plane));
 	if (ft_addback_object_list(pl, plane, s))
-		return (ft_destroy(plane));		
+		return (ft_destroy(plane));
 	return (success);
 }

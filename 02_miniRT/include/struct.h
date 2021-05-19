@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 15:50:03 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 21:24:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,9 +187,7 @@ struct				s_camera
 	t_mat44			mat_c2w;
 };
 
-t_mat44			ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans);
 t_mat44			ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
-t_vec3			ft_linear_transform(t_mat44 mat, t_vec3 vec);
 
 t_bool			ft_parse_resolution(t_scene *scene, char **splits);
 

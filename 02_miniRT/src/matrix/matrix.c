@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 20:24:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/14 20:35:58 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 21:13:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 #include "matrix.h"
 
-t_mat44		ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans)
+t_mat44				ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans)
 {
 	t_mat44		mat;
 
@@ -25,7 +25,7 @@ t_mat44		ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans)
 	return (mat);
 }
 
-t_mat44		ft_getmat_c2w(t_camera *cam, t_vec3 axis_up)
+t_mat44				ft_getmat_c2w(t_camera *cam, t_vec3 axis_up)
 {
 	t_vec3		up;
 	t_vec3		right;

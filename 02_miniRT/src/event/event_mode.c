@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mode.c                                             :+:      :+:    :+:   */
+/*   event_mode.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 01:31:02 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 17:35:40 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:47:46 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 
 int				ft_mode_light(t_ctrl *ctrl)
 {
-	ft_console_msg("mode: Light mode");
+	ft_console_msg(ctrl, "mode: Light mode");
 	ctrl->mode = 'L';
 	return (success);
 }
 
 int				ft_mode_camera(t_ctrl *ctrl)
 {
-	ft_console_msg("mode: Camera mode");
+	ft_console_msg(ctrl, "mode: Camera mode");
 	ctrl->mode = 'C';
 	return (success);
 }
 
 int				ft_mode_object(t_ctrl *ctrl)
 {
-	ft_console_msg("mode: Object mode");
-	ctrl->mode = '\0';
+	ft_console_msg(ctrl, "mode: Object mode");
+	ctrl->mode = 'O';
 	return (success);
 }

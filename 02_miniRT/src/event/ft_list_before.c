@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 01:38:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 17:38:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 22:49:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,37 @@
 #include "struct.h"
 #include "event.h"
 
-static void		ft_light_before(t_scene *scene)
+static void		ft_light_before(t_ctrl *ctrl)
 {
-	if (scene->idx_l == 0)
-		scene->idx_l = scene->count_l;
-	scene->idx_l--;
+	ft_console_msg(ctrl, "Before light selected");
+	if (ctrl->scene->idx_l == 0)
+		ctrl->scene->idx_l = ctrl->scene->count_l;
+	ctrl->scene->idx_l--;
 }
 
-static void		ft_camera_before(t_scene *scene)
+static void		ft_camera_before(t_ctrl *ctrl)
 {
-	ft_console_msg("Before camera selected");
-	if (scene->idx_c == 0)
-		scene->idx_c = scene->count_c;
-	scene->idx_c--;
+	ft_console_msg(ctrl, "Before camera selected");
+	if (ctrl->scene->idx_c == 0)
+		ctrl->scene->idx_c = ctrl->scene->count_c;
+	ctrl->scene->idx_c--;
 }
 
-static void		ft_object_before(t_scene *scene)
+static void		ft_object_before(t_ctrl *ctrl)
 {
-	if (scene->idx_o == 0)
-		scene->idx_o = scene->count_o;
-	scene->idx_o--;
+	ft_console_msg(ctrl, "Before object selected");
+	if (ctrl->scene->idx_o == 0)
+		ctrl->scene->idx_o = ctrl->scene->count_o;
+	ctrl->scene->idx_o--;
 }
 
 int				ft_list_before(t_ctrl *ctrl)
 {
 	if (ctrl->mode == 'L')
-		ft_light_before(ctrl->scene);
+		ft_light_before(ctrl);
 	else if (ctrl->mode == 'C')
-		ft_camera_before(ctrl->scene);
+		ft_camera_before(ctrl);
 	else if (ctrl->mode == '\0')
-		ft_object_before(ctrl->scene);
+		ft_object_before(ctrl);
 	return (success);
 }

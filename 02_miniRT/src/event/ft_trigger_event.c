@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:56:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 17:22:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 23:34:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int			ft_trigger_event(t_ctrl *ctrl, int key)
 		{KEY_ESC, ft_exit_minirt},
 		// {KEY_TAB, ft_next_list},
 
-		// {KEY_W, ft_move_forward},
-		// {KEY_S, ft_move_back},
-		// {KEY_A, ft_move_left},
-		// {KEY_D, ft_move_right},
-		// {KEY_Q, ft_move_down},
-		// {KEY_E, ft_move_up},
+		{KEY_W, ft_move_up},
+		{KEY_S, ft_move_down},
+		{KEY_A, ft_move_left},
+		{KEY_D, ft_move_right},
+		{KEY_Q, ft_move_back},
+		{KEY_E, ft_move_forward},
 		// {KEY_T, ft_pitch_up},
 		// {KEY_G, ft_pitch_down},
 		// {KEY_F, ft_yaw_left},
 		// {KEY_H, ft_yaw_right},
 		// {KEY_R, ft_roll_left},
 		// {KEY_Y, ft_roll_right},
-		
+
 		{KEY_L, ft_mode_light},
 		{KEY_C, ft_mode_camera},
 		{KEY_O, ft_mode_object},
