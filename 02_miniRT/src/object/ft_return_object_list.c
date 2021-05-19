@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_minirt.c                                   :+:      :+:    :+:   */
+/*   ft_return_object.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 00:56:54 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:25:38 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/19 14:21:25 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/19 14:43:30 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "alias.h"
 #include "struct.h"
-#include "exit.h"
 
-int				ft_exit_minirt(t_ctrl *ctrl)
+void			*ft_return_object(t_object_list *list, int idx)
 {
-	ft_destroy_mlx(ctrl);
-	ft_free_scene(ctrl->scene);
-	exit (1);
-	return (fail);
+	while (idx-- && list->next)
+		list = list->next;
+	return (list->object);
 }

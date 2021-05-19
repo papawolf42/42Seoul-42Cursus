@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 08:19:48 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:16:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
+#include "scene.h"
 
 static void			ft_square_set(t_square *square)
 {
@@ -48,6 +49,7 @@ t_bool			ft_parse_square(t_scene *s, char **splits)
 	if (ft_parse_color(&square->color, splits[4]))
 		return (ft_destroy(square));
 	ft_square_set(square);
-	ft_addback_object_list(sq, square, s->object_list);
+	if (ft_addback_object_list(sq, square, s))
+		return (ft_destroy(square));
 	return (success);
 }

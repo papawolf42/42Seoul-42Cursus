@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_minirt.c                                   :+:      :+:    :+:   */
+/*   ft_console_msg.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 00:56:54 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:25:38 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/19 17:32:09 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/19 17:32:59 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "alias.h"
-#include "struct.h"
-#include "exit.h"
+#include "libft.h"
 
-int				ft_exit_minirt(t_ctrl *ctrl)
+void			ft_console_msg(char *message)
 {
-	ft_destroy_mlx(ctrl);
-	ft_free_scene(ctrl->scene);
-	exit (1);
-	return (fail);
+	ft_putstr_fd("[\033[1;32mminiRT\033[0m]: ", 1);
+	ft_putstr_fd(message, 1);
+	ft_putchar_fd('\n', 1);
 }

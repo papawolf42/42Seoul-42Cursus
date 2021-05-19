@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 15:50:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ struct				s_ctrl
 	void			*win_ptr;
 	t_image			img;
 	t_scene			*scene;
+	char			mode;
 };
 
 struct				s_canvas
@@ -92,9 +93,16 @@ struct				s_scene
 	t_canvas		canv;
 	t_ambient		ambient;
 	int				flag_declare;
-	t_object_list	*object_list;
-	t_object_list	*camera_list;
 	t_object_list	*light_list;
+	int				idx_l;
+	int				count_l;
+	t_object_list	*camera_list;
+	t_camera		*camera;
+	int				idx_c;
+	int				count_c;
+	t_object_list	*object_list;
+	int				idx_o;
+	int				count_o;
 };
 
 struct				s_object_list
@@ -178,15 +186,6 @@ struct				s_camera
 	double			fov;
 	t_mat44			mat_c2w;
 };
-
-void			ft_init_object_list(t_scene *s);
-void			ft_addback_object_list(t_object_type type, void *object, t_object_list *list);
-void			ft_camera_list_init(t_scene *s);
-void			ft_camera_list(void *camera, t_scene *s);
-void			ft_light_list_init(t_scene *s);
-void			ft_light_list(void *light, t_scene *s);
-
-t_triangle		*ft_triangle(t_point3 a, t_point3 b, t_point3 c, t_color color);
 
 t_mat44			ft_mat_set(t_vec3 x, t_vec3 y, t_vec3 z, t_vec3 trans);
 t_mat44			ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);

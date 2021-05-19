@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 16:18:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:23:57 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef enum
 /*
 ** main.c
 */
-void		ft_render(t_ctrl *ctrl);
+t_bool		ft_render(t_ctrl *ctrl);
 void		ft_minirt(t_ctrl *ctrl);
 int			main(int argc, char *argv[]);
 

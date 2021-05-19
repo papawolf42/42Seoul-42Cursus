@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:27:48 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:15:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
+#include "scene.h"
 
 t_bool			ft_parse_sphere(t_scene *s, char **splits)
 {
@@ -34,6 +35,7 @@ t_bool			ft_parse_sphere(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(sphere));
 	if (ft_parse_color(&sphere->color, splits[3]))
 		return (ft_destroy(sphere));
-	ft_addback_object_list(sp, sphere, s->object_list);
+	if (ft_addback_object_list(sp, sphere, s))
+		return (ft_destroy(sphere));
 	return (success);
 }

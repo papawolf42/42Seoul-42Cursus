@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_minirt.c                                   :+:      :+:    :+:   */
+/*   move_x.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 00:56:54 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:25:38 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/19 01:24:12 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/19 01:29:58 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "alias.h"
-#include "struct.h"
-#include "exit.h"
+// #include "event.h"
+// #include "struct.h"
 
-int				ft_exit_minirt(t_ctrl *ctrl)
-{
-	ft_destroy_mlx(ctrl);
-	ft_free_scene(ctrl->scene);
-	exit (1);
-	return (fail);
-}
+// t_bool			ft_move_right(t_ctrl *ctrl)
+// {
+	
+// }

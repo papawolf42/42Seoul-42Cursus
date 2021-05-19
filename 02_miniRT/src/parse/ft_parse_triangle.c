@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:53:34 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:16:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
+#include "scene.h"
 
 static void				ft_triangle_set(t_triangle *triangle)
 {
@@ -42,6 +43,7 @@ t_bool					ft_parse_triangle(t_scene *s, char **splits)
 	if (ft_parse_color(&triangle->color, splits[4]))
 		return (ft_destroy(triangle));
 	ft_triangle_set(triangle);
-	ft_addback_object_list(tr, triangle, s->object_list);
+	if (ft_addback_object_list(tr, triangle, s))
+		return (ft_destroy(triangle));
 	return (success);
 }

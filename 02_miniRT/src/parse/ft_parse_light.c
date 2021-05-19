@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:15:53 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 17:26:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
+#include "scene.h"
 
 t_bool			ft_parse_light(t_scene *s, char **splits)
 {
@@ -33,6 +34,7 @@ t_bool			ft_parse_light(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(light));
 	if (ft_parse_color(&light->color, splits[3]))
 		return (ft_destroy(light));
-	ft_addback_object_list(l, light, s->light_list);
+	if (ft_addback_object_list(l, light, s))
+		return (ft_destroy(light));
 	return (success);
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:25:18 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 17:21:53 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include "error.h"
 #include "parse.h"
 #include "exit.h"
+#include "scene.h"
+#include "event.h"
 
 t_vec3		ft_ray_at(t_ray *ray, double t)
 {
@@ -370,7 +372,7 @@ t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y)
 	return (ray);
 }
 
-void		ft_render(t_ctrl *c)
+t_bool		ft_render(t_ctrl *c)
 {
 	char		*data;
 	int			y, x;
@@ -378,7 +380,7 @@ void		ft_render(t_ctrl *c)
 	t_color		color;
 	t_camera	*cam;
 	
-	cam = c->scene->camera_list->object;
+	cam = (t_camera *)ft_return_object(c->scene->camera_list, c->scene->idx_c);
 	y = c->scene->canv.height - 1;
 	while (y >= 0)
 	{
@@ -397,6 +399,7 @@ void		ft_render(t_ctrl *c)
 		}
 		y--;
 	}
+	return (success);
 }
 
 int		ft_get_position_clicked(int click, int x, int y, t_scene *s)
@@ -417,7 +420,8 @@ void		ft_minirt(t_ctrl *ctrl)
 	ft_render(ctrl);
 	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
 	mlx_hook(ctrl->win_ptr, MOUSE_PRESSED, 1L << 0, ft_get_position_clicked, ctrl->scene);
-	mlx_loop(ctrl->mlx_ptr);
+	ft_init_hook(ctrl);
+	// mlx_loop(ctrl->mlx_ptr);
 }
 
 int			main(int argc, char *argv[])
@@ -425,21 +429,15 @@ int			main(int argc, char *argv[])
 	t_ctrl		ctrl;
 
 	ft_bzero(&ctrl, sizeof(ctrl));
-	if (2 <= argc && argc <= 3)
-	{
-		if (ft_is_endstr(argv[1], ".rt"))
-		{
-			if (ft_parse_rt(&ctrl, argv[1]))
-				ft_exit_minirt(&ctrl);
-			if (argc == 2)
-				ft_minirt(&ctrl);
-			// else if (argc == 3 && ft_strncmp(argv[3], "--save", 7) == 0)
-				// ft_save_bmp();
-		}
-		else
-			ft_err_msg(ERR_2ND_ARG_NOT_END_RT);
-	}
-	else
-		ft_err_msg(ERR_WRONG_NUMBERS_ARG);
+	if (argc < 2 || 3 < argc)
+		return (ft_err_msg(ERR_WRONG_NUMBERS_ARG));
+	if (ft_is_endstr(argv[1], ".rt") == fail)
+		return (ft_err_msg(ERR_2ND_ARG_NOT_END_RT) == fail);
+	if (ft_parse_rt(&ctrl, argv[1]))
+		return (ft_exit_minirt(&ctrl));
+	if (argc == 2)
+		ft_minirt(&ctrl);
+	else if (argc == 3 && ft_strncmp(argv[3], "--save", 8) == 0)
+		// ft_save_bmp();
 	return (0);
 }

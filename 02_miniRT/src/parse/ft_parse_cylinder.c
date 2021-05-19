@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:02:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:13:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
+#include "scene.h"
 
 static void		ft_cylinder_set(t_cylinder *cyl)
 {
@@ -47,6 +48,7 @@ t_bool					ft_parse_cylinder(t_scene *s, char **splits)
 	if (ft_parse_color(&cylinder->color, splits[5]))
 		return (ft_destroy(cylinder));
 	ft_cylinder_set(cylinder);
-	ft_addback_object_list(cy, cylinder, s->object_list);
+	if (ft_addback_object_list(cy, cylinder, s))
+		return (ft_destroy(cylinder));
 	return (success);
 }

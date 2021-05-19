@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:06:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/28 01:17:55 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/18 17:03:11 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int			ft_is_endstr(char *big, char *little)
 		endstr += ft_strlen(endstr);
 		if (*endstr == '\0')
 		{
-			return (1);
+			return (success);
 		}
 	}
-	return (0);
+	return (fail);
 }

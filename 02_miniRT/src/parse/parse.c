@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 01:23:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/19 16:17:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@
 #include "error.h"
 #include "utils.h"
 #include "parse.h"
+#include "scene.h"
 
 static t_bool	ft_check_declare_at_least(t_scene *s)
 {
 	if ((s->flag_declare & 0x1)
 		&& (s->flag_declare & 0x10)
-		&& (s->flag_declare >= 0x100))
+		&& (s->count_c > 0))
 		return (success);
 	return (ft_err_msg(ERR_NOT_ENOUGH_DECLARE));
 }
@@ -80,6 +81,5 @@ t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 		free(line);
 	}
 	free(line);
-	ft_check_declare_at_least(ctrl->scene);
-	return (success);
+	return (ft_check_declare_at_least(ctrl->scene));
 }
