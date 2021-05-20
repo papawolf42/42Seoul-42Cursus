@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 20:24:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 21:13:20 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 17:44:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ t_mat44				ft_getmat_c2w(t_camera *cam, t_vec3 axis_up)
 	}
 	else
 	{
-		// right = V_UNIT(V_CROSS(forward, axis_up));
-		// up = V_UNIT(V_CROSS(right, forward));
 		right = V_UNIT(V_CROSS(forward, axis_up));
 		up = V_UNIT(V_CROSS(right, forward));
+		// right = V_UNIT(V_CROSS(axis_up, forward));
+		// up = V_UNIT(V_CROSS(forward, right));
 	}
 	return (ft_mat_set(right, up, forward, cam->origin));
 }
@@ -59,11 +59,18 @@ t_vec3		ft_linear_transform(t_mat44 mat, t_vec3 vec)
 {
 	t_vec3		rtn;
 
-	// rtn.x = mat.x.x * vec.x + mat.x.y * vec.y + mat.x.z * vec.z;
-	// rtn.y = mat.y.x * vec.x + mat.y.y * vec.y + mat.y.z * vec.z;
-	// rtn.z = mat.z.x * vec.x + mat.z.y * vec.y + mat.z.z * vec.z;
 	rtn.x = mat.x.x * vec.x + mat.x.y * vec.y + mat.x.z * vec.z + mat.trans.x;
 	rtn.y = mat.y.x * vec.x + mat.y.y * vec.y + mat.y.z * vec.z + mat.trans.y;
 	rtn.z = mat.z.x * vec.x + mat.z.y * vec.y + mat.z.z * vec.z + mat.trans.z;
+	return (rtn);
+}
+
+t_vec3		ft_linear_transform_rotate(t_mat44 mat, t_vec3 vec)
+{
+	t_vec3		rtn;
+
+	rtn.x = mat.x.x * vec.x + mat.x.y * vec.y + mat.x.z * vec.z;
+	rtn.y = mat.y.x * vec.x + mat.y.y * vec.y + mat.y.z * vec.z;
+	rtn.z = mat.z.x * vec.x + mat.z.y * vec.y + mat.z.z * vec.z;
 	return (rtn);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_matrix_identity.c                               :+:      :+:    :+:   */
+/*   ft_mat_identity.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "matrix.h"
 
-t_mat44				ft_matrix_identity(void)
+t_mat44				ft_mat_identity(void)
 {
 	return (ft_mat_set(V_SET(1, 0, 0),
 						V_SET(0, 1, 0),

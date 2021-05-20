@@ -16,9 +16,10 @@
 # include "alias.h"
 # include "struct.h"
 
-# define MASK_BUTTON		0L
 # define MASK_KEYPRESS		1L<<0
 # define MASK_KEYRELEASE	1L<<1
+# define MASK_BUTTONPRESS	1L<<2
+# define MASK_EXITWINDOW	1L<<2
 
 # define EVENT_KEYPRESS		2
 # define EVENT_KEYRELEASE	3
@@ -116,6 +117,13 @@ int				ft_move_left(t_ctrl *ctrl);
 int				ft_move_right(t_ctrl *ctrl);
 int				ft_move_down(t_ctrl *ctrl);
 int				ft_move_up(t_ctrl *ctrl);
+
+int				ft_pitch_up(t_ctrl *ctrl);
+int				ft_pitch_down(t_ctrl *ctrl);
+int				ft_yaw_left(t_ctrl *ctrl);
+int				ft_yaw_right(t_ctrl *ctrl);
+int				ft_roll_right(t_ctrl *ctrl);
+int				ft_roll_left(t_ctrl *ctrl);
 
 
 typedef struct s_trigger_event	t_trigger_event;

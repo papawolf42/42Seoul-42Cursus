@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/19 23:35:16 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/20 20:28:14 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,9 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	event_move_x.c \
 	event_move_y.c \
 	event_move_z.c \
+	event_rotate_x.c \
+	event_rotate_y.c \
+	event_rotate_z.c \
 	ft_console_msg.c \
 	ft_handle_key.c \
 	ft_init_hook.c \
@@ -103,7 +106,9 @@ SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
 
 DIR_SRC_MATRIX := matrix
 SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
-	ft_matrix_identity.c \
+	ft_mat_identity.c \
+	ft_mat_mult.c \
+	ft_mat_rotate.c \
 	matrix.c \
 )
 
@@ -295,6 +300,15 @@ include/matrix.h include/ray.h include/color.h include/object.h
 obj/event_move_z.o: src/event/event_move_z.c lib/libft/include/libft.h \
 include/alias.h include/event.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h include/object.h
+obj/event_rotate_x.o: src/event/event_rotate_x.c lib/libft/include/libft.h \
+include/alias.h include/event.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
+obj/event_rotate_y.o: src/event/event_rotate_y.c lib/libft/include/libft.h \
+include/alias.h include/event.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
+obj/event_rotate_z.o: src/event/event_rotate_z.c lib/libft/include/libft.h \
+include/alias.h include/event.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
 obj/ft_console_msg.o: src/event/ft_console_msg.c lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
@@ -323,7 +337,10 @@ include/color.h include/exit.h
 obj/ft_free_scene.o: src/exit/ft_free_scene.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
-obj/ft_matrix_identity.o: src/matrix/ft_matrix_identity.c include/matrix.h \
+obj/ft_mat_identity.o: src/matrix/ft_mat_identity.c include/matrix.h \
+include/vector.h
+obj/ft_mat_mult.o: src/matrix/ft_mat_mult.c include/matrix.h include/vector.h
+obj/ft_mat_rotate.o: src/matrix/ft_mat_rotate.c include/matrix.h \
 include/vector.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h

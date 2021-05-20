@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 22:51:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 19:39:35 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,14 +360,14 @@ t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y)
 
 	screen.x = (2 * ((x + 0.5) / canv->width) - 1);
 	screen.x *= FISH_EYE_INDEX;// FISH_EYE
-	screen.y = (2 * ((canv->height - y + 0.5) / canv->height) - 1);
+	screen.y = (2 * ((y + 0.5) / canv->height) - 1);
 	screen.y *= FISH_EYE_INDEX;// FISH_EYE
 	screen.z = -1;
 	screen.z *= sqrt(1 - screen.x * screen.x - screen.y * screen.y);// FISH_EYE
 	screen.x *= cam->fov * canv->aspect_ratio;
-	screen.y *= cam->fov;
-	cam->mat_c2w = ft_getmat_c2w(cam, AXIS_UP);
-	ray.org = cam->origin;
+	screen.y *= -1 * cam->fov;
+	// cam->mat_c2w = ft_getmat_c2w(cam, AXIS_UP);
+	ray.org = cam->mat_c2w.trans;
 	ray.dir = V_MINUS(ft_linear_transform(cam->mat_c2w, screen), ray.org);
 	return (ray);
 }
@@ -381,13 +381,13 @@ t_bool		ft_render(t_ctrl *c)
 	t_camera	*cam;
 	
 	cam = (t_camera *)ft_return_object(c->scene->camera_list, c->scene->idx_c);
-	y = c->scene->canv.height - 1;
-	while (y >= 0)
+	y = 0;
+	while (y < c->scene->canv.height)
 	{
 		x = 0;
 		while (x < c->scene->canv.width)
 		{
-			if ((x == 400) && (y == 250))
+			if ((x == 129) && (y == 367))
 			{
 				ray.org.x = 1;
 			}
@@ -397,7 +397,7 @@ t_bool		ft_render(t_ctrl *c)
 			*(unsigned int *)data = ft_rgb_to_data(color);
 			x++;
 		}
-		y--;
+		y++;
 	}
 	return (success);
 }
@@ -419,7 +419,7 @@ void		ft_minirt(t_ctrl *ctrl)
 					&ctrl->img.size_line, &ctrl->img.endian);
 	ft_render(ctrl);
 	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
-	mlx_hook(ctrl->win_ptr, EVENT_BUTTONPRESS, 1L << 0, ft_get_position_clicked, ctrl->scene);
+	mlx_hook(ctrl->win_ptr, EVENT_BUTTONPRESS, (1L<<2), ft_get_position_clicked, ctrl->scene);
 	ft_init_hook(ctrl);
 	// mlx_loop(ctrl->mlx_ptr);
 }

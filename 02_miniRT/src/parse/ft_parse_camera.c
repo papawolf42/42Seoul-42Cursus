@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:23:38 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 22:28:46 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 00:53:08 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_bool			ft_parse_camera(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(c));
 	c->normal = V_UNIT(c->normal);
 	c->fov = 2 * tan((c->fov / 2) * (M_PI / 180));
+	c->mat_c2w = ft_getmat_c2w(c, AXIS_UP);
 	if (ft_addback_object_list(cam, c, s))
 		return (ft_destroy(c));
 	return (success);
