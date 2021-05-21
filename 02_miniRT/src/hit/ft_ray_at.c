@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_scene.c                                    :+:      :+:    :+:   */
+/*   ft_ray_at.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 01:07:49 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:37:13 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/21 22:05:37 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/21 22:05:56 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "struct.h"
 
-static void		ft_free_object_list(t_object_list **lst)
+t_vec3		ft_ray_at(t_ray *ray, double t)
 {
-	t_object_list	*next;
+	t_point3	at;
 
-	if (*lst == NUL)
-		return;
-	while (*lst)
-	{
-		next = (*lst)->next;
-		free(*lst);
-		*lst = next;
-	}
-	*lst = NUL;
-}
-
-void			ft_free_scene(t_scene *scene)
-{
-	ft_free_object_list(&scene->camera_list);
-	ft_free_object_list(&scene->light_list);
-	ft_free_object_list(&scene->object_list);
-	free(scene);
+	at = V_PLUS(ray->org, V_SCALAR(ray->dir, t));
+	return (at);
 }

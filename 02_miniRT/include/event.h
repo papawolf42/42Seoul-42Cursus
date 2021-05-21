@@ -133,19 +133,33 @@ int				ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
 int				ft_select_object(t_ctrl *c, int x, int y);
 int				ft_deselect(t_ctrl *c, int x, int y);
 
-typedef struct s_trigger_key	t_trigger_key;
-typedef struct s_trigger_mouse	t_trigger_mouse;
+typedef struct s_pft_key		t_pft_key;
+typedef struct s_pft_mouse		t_pft_mouse;
+typedef struct s_pft_move		t_pft_move;
+typedef struct s_pft_rotate		t_pft_rotate;
 
-struct			s_trigger_key
+struct				s_pft_key
 {
-	int			key;
-	int			(*event)(t_ctrl *ctrl);
+	int				key;
+	int				(*event)(t_ctrl *ctrl);
 };
 
-struct			s_trigger_mouse
+struct				s_pft_mouse
 {
-	int			btn;
-	int			(*event)(t_ctrl *ctrl, int x, int y);
+	int				btn;
+	int				(*event)(t_ctrl *ctrl, int x, int y);
+};
+
+struct				s_pft_move
+{
+	t_object_type	type;
+	int				(*move)(t_ctrl *ctrl);
+};
+
+struct				s_pft_rotate
+{
+	t_object_type	type;
+	int				(*rotate)(t_ctrl *ctrl, int x, int y);
 };
 
 #endif

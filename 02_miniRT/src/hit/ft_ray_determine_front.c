@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_scene.c                                    :+:      :+:    :+:   */
+/*   ft_ray_determine_front.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 01:07:49 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:37:13 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/21 22:10:38 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/21 22:10:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "struct.h"
 
-static void		ft_free_object_list(t_object_list **lst)
+t_front		ft_ray_determine_front(t_ray *ray, t_hit_rec *rec)
 {
-	t_object_list	*next;
-
-	if (*lst == NUL)
-		return;
-	while (*lst)
+	double		dot;
+	dot = V_DOT(ray->dir, rec->normal);
+	if (dot < 0)
 	{
-		next = (*lst)->next;
-		free(*lst);
-		*lst = next;
+		return (front);
 	}
-	*lst = NUL;
-}
-
-void			ft_free_scene(t_scene *scene)
-{
-	ft_free_object_list(&scene->camera_list);
-	ft_free_object_list(&scene->light_list);
-	ft_free_object_list(&scene->object_list);
-	free(scene);
+	else
+	{
+		rec->normal = V_SCALAR(rec->normal, -1);
+		return (back);
+	}
 }

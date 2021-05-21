@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 23:27:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/21 20:30:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 
 void					ft_cylinder_set(t_cylinder *cyl)
 {
-	cyl->center_top = V_PLUS(cyl->center_top, V_SCALAR(cyl->axis, cyl->height));
 	cyl->axis = V_UNIT(cyl->axis);
-	cyl->radius = cyl->radius / 2;
+	cyl->center_top = V_PLUS(cyl->center_top, V_SCALAR(cyl->axis, cyl->height));
 }
 
 t_bool					ft_parse_cylinder(t_scene *s, char **splits)
@@ -47,6 +46,7 @@ t_bool					ft_parse_cylinder(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(cylinder));
 	if (ft_parse_color(&cylinder->color, splits[5]))
 		return (ft_destroy(cylinder));
+	cylinder->radius = cylinder->radius / 2;
 	ft_cylinder_set(cylinder);
 	if (ft_addback_object_list(cy, cylinder, s))
 		return (ft_destroy(cylinder));

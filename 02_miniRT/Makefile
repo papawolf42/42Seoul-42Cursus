@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/21 19:06:53 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/22 01:05:32 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,22 @@ SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
 	ft_free_scene.c \
 )
 
+DIR_SRC_HIT := hit
+SRCS_HIT := $(addprefix $(DIR_SRC_HIT)/, \
+	ft_hit.c \
+	ft_hit_cylinder.c \
+	ft_hit_object.c \
+	ft_hit_plane.c \
+	ft_hit_sphere.c \
+	ft_hit_square.c \
+	ft_hit_triangle.c \
+	ft_phong_color.c \
+	ft_ray_at.c \
+	ft_ray_determine_front.c \
+	ft_ray_init.c \
+	ft_ray_to_color.c \
+)
+
 DIR_SRC_MATRIX := matrix
 SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 	ft_mat_identity.c \
@@ -115,6 +131,7 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 	ft_mat_rotate.c \
 	matrix.c \
 )
+
 
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
@@ -124,7 +141,7 @@ SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
 
 DIR_SRC_PARSE := parse
 SRCS_PARSE := $(addprefix $(DIR_SRC_PARSE)/, \
-	ft_break_parse.c \
+	ft_destroy_splits.c \
 	ft_parse_ambient.c \
 	ft_parse_camera.c \
 	ft_parse_color.c \
@@ -174,6 +191,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	$(SRCS_ERROR) \
 	$(SRCS_EVENT) \
 	$(SRCS_EXIT) \
+	$(SRCS_HIT) \
 	$(SRCS_MATRIX) \
 	$(SRCS_OBJECT) \
 	$(SRCS_PARSE) \
@@ -191,6 +209,7 @@ vpath %.c \
 	$(DIR_SRC)/$(DIR_SRC_ERROR) \
 	$(DIR_SRC)/$(DIR_SRC_EVENT) \
 	$(DIR_SRC)/$(DIR_SRC_EXIT) \
+	$(DIR_SRC)/$(DIR_SRC_HIT) \
 	$(DIR_SRC)/$(DIR_SRC_MATRIX) \
 	$(DIR_SRC)/$(DIR_SRC_OBJECT) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
@@ -283,11 +302,11 @@ $(NAME_GET_NEXT_LINE) :
 
 # DO NOT DELETE
 
-obj/minirt.o: src/minirt.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
-lib/libft/include/libft.h include/struct.h include/vector.h \
+obj/minirt.o: src/minirt.c lib/libft/include/libft.h \
+lib/minilibx_mms_20200219/mlx.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
-include/error.h include/parse.h include/exit.h include/object.h \
-include/event.h
+include/utils.h include/error.h include/parse.h include/object.h \
+include/hit.h include/event.h include/exit.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
 obj/error.o: src/error/error.c include/alias.h include/error.h \
@@ -337,7 +356,8 @@ include/color.h include/parse.h
 obj/ft_select_object.o: src/event/ft_select_object.c include/alias.h \
 include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
-include/matrix.h include/ray.h include/color.h include/object.h
+include/matrix.h include/ray.h include/color.h include/object.h \
+include/hit.h
 obj/ft_trigger_key.o: src/event/ft_trigger_key.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/event.h include/exit.h
@@ -353,6 +373,40 @@ include/color.h include/exit.h
 obj/ft_free_scene.o: src/exit/ft_free_scene.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
+obj/ft_hit.o: src/hit/ft_hit.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h \
+include/hit.h
+obj/ft_hit_cylinder.o: src/hit/ft_hit_cylinder.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/hit.h
+obj/ft_hit_object.o: src/hit/ft_hit_object.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/hit.h
+obj/ft_hit_plane.o: src/hit/ft_hit_plane.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h \
+include/hit.h
+obj/ft_hit_sphere.o: src/hit/ft_hit_sphere.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/hit.h
+obj/ft_hit_square.o: src/hit/ft_hit_square.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/hit.h
+obj/ft_hit_triangle.o: src/hit/ft_hit_triangle.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/hit.h
+obj/ft_phong_color.o: src/hit/ft_phong_color.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/utils.h include/hit.h
+obj/ft_ray_at.o: src/hit/ft_ray_at.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
+obj/ft_ray_determine_front.o: src/hit/ft_ray_determine_front.c \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
+obj/ft_ray_init.o: src/hit/ft_ray_init.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
+obj/ft_ray_to_color.o: src/hit/ft_ray_to_color.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/hit.h
 obj/ft_mat_identity.o: src/matrix/ft_mat_identity.c include/matrix.h \
 include/vector.h
 obj/ft_mat_mult_rotate.o: src/matrix/ft_mat_mult_rotate.c include/matrix.h \
@@ -367,7 +421,7 @@ include/alias.h include/color.h
 obj/object.o: src/object/object.c lib/libft/include/libft.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/error.h
-obj/ft_break_parse.o: src/parse/ft_break_parse.c include/struct.h \
+obj/ft_destroy_splits.o: src/parse/ft_destroy_splits.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
 obj/ft_parse_ambient.o: src/parse/ft_parse_ambient.c include/struct.h \

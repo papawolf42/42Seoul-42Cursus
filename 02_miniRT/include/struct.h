@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 23:16:30 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/21 22:23:55 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct s_plane			t_plane;
 typedef struct s_square			t_square;
 typedef struct s_cylinder		t_cylinder;
 typedef struct s_triangle		t_triangle;
+
+typedef struct s_var_render		t_var_render;
+
 
 typedef enum e_object_type		t_object_type;
 
@@ -92,18 +95,17 @@ struct				s_ambient
 
 struct				s_scene
 {
+	int				flag_declare;
 	t_canvas		canv;
 	t_ambient		ambient;
-	int				flag_declare;
 	t_object_list	*light_list;
-	int				idx_l;
-	int				count_l;
 	t_object_list	*camera_list;
-	t_camera		*camera;
-	int				idx_c;
-	int				count_c;
 	t_object_list	*object_list;
+	int				idx_l;
+	int				idx_c;
 	int				idx_o;
+	int				count_l;
+	int				count_c;
 	int				count_o;
 };
 
@@ -198,6 +200,17 @@ struct				s_camera
 	double			fov;
 	t_mat44			mat_c2w;
 };
+
+struct				s_var_render
+{
+	int				x;
+	int				y;
+	t_ray			ray;
+	t_color			color;
+	t_camera		*camera;
+	char			*data;
+};
+
 
 t_mat44			ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
 

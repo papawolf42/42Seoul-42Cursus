@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 23:11:15 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 19:03:52 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/21 20:37:45 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				ft_move_object(t_object_list *list, t_vec3 trans)
 		objs.trinagle = (t_triangle *)list->object;
 		objs.trinagle->a = V_PLUS(objs.trinagle->a, trans);
 		objs.trinagle->b = V_PLUS(objs.trinagle->b, trans);
-		objs.trinagle->b = V_PLUS(objs.trinagle->c, trans);
+		objs.trinagle->c = V_PLUS(objs.trinagle->c, trans);
 		ft_triangle_set(objs.trinagle);
 	}
 	return (0);

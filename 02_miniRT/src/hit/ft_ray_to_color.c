@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_select_object.c                                 :+:      :+:    :+:   */
+/*   ft_ray_to_color.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 21:17:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:41:05 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/21 21:52:56 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/21 22:19:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "alias.h"
-#include "minirt.h"
 #include "struct.h"
-#include "object.h"
 #include "hit.h"
 
-int				ft_select_object(t_ctrl *c, int x, int y)
+t_color		ft_ray_to_color(t_ray ray, t_ctrl *c)
 {
-	t_ray		ray;
-	t_camera	*cam;
+	t_vec3		unit_direction;
+	double		t;
 	t_hit_rec	rec;
 
-	cam = (t_camera *)ft_return_object(c->scene->camera_list, c->scene->idx_c);
-	ray = ft_ray_init(&c->scene->canv, cam, x, y);
 	rec.t_min = M_EPSILON;
 	rec.t_max = M_INFINITY;
-	if (ft_hit(c->scene->object_list, &ray, &rec) == false)
+
+	if (ft_hit(c->scene->object_list, &ray, &rec))
 	{
-		c->mode = 'C';
-		return (false);
+		return (ft_phong_color(c->scene, &ray, &rec));
 	}
-	c->object_selected = rec.object_list;
-	c->mode = 'O';
-	return (true);
+	else
+	{
+		unit_direction = V_UNIT(ray.dir);
+		t = 0.5 * (unit_direction.y + 1.0);
+		return (V_PLUS(V_SCALAR(V_SET(1.0, 1.0, 1.0), (1.0 - t)), V_SCALAR(V_SET(0.5, 0.7, 1.0), t)));
+	}
 }

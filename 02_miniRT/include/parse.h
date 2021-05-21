@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 23:27:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 00:35:45 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 
 t_bool			ft_pass_line(t_scene *s, char **splits);
 t_bool			ft_destroy_splits(char **splits);
-t_bool			ft_break_parse(t_scene *s, char **splits);
 t_bool			ft_parse_rt(t_ctrl *ctrl, char *rt_file);
 t_bool			ft_parse_line(t_scene *scene, char *line);
 

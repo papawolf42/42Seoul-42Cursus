@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_break_parse.c                                   :+:      :+:    :+:   */
+/*   ft_destroy_splits.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 15:35:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/16 15:33:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 00:35:27 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "struct.h"
 #include "alias.h"
-
-static void			ft_destroy_scene(t_scene *s)
-{
-	//objects linked list free function
-	//camera linked list free function
-	//light linked list free function
-	s->canv.width = s->canv.width;// avoid error
-}
 
 t_bool				ft_destroy_splits(char **splits)
 {
@@ -33,12 +25,5 @@ t_bool				ft_destroy_splits(char **splits)
 		i++;
 	}
 	free(splits);
-	return (fail);
-}
-
-t_bool				ft_break_parse(t_scene *s, char **splits)
-{
-	ft_destroy_scene(s);
-	ft_destroy_splits(splits);
 	return (fail);
 }

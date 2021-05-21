@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 01:06:53 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 00:51:31 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@
 # define UNIT_ROTATE_DEGREE 45
 # define UNIT_ROTATE (UNIT_ROTATE_DEGREE * DEGREE_TO_RADIAN)
 # define AXIS_UP V_SET(0, 1, 0)
-
-# define MAX(A, B) (((A) < (B)) && ((A) = (B))) || (((A) > (B)) && ((B) = (A)))
-# define MIN(A, B) (((A) > (B)) && ((A) = (B))) || (((A) < (B)) && ((B) = (A)))
 
 typedef enum
 {

@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_scene.c                                    :+:      :+:    :+:   */
+/*   ft_hit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 01:07:49 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:37:13 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/21 22:02:45 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/22 00:47:26 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "struct.h"
+#include "hit.h"
 
-static void		ft_free_object_list(t_object_list **lst)
+t_bool				ft_hit(t_object_list *obj, t_ray *ray, t_hit_rec *rec)
 {
-	t_object_list	*next;
+	t_bool		bool_hit;
 
-	if (*lst == NUL)
-		return;
-	while (*lst)
+	bool_hit = false;
+	while (obj)
 	{
-		next = (*lst)->next;
-		free(*lst);
-		*lst = next;
+		if (ft_hit_object(obj, ray, rec))
+		{
+			bool_hit = true;
+			rec->t_max = rec->t;
+		}
+		obj = obj->next;
 	}
-	*lst = NUL;
-}
-
-void			ft_free_scene(t_scene *scene)
-{
-	ft_free_object_list(&scene->camera_list);
-	ft_free_object_list(&scene->light_list);
-	ft_free_object_list(&scene->object_list);
-	free(scene);
+	return (bool_hit);
 }

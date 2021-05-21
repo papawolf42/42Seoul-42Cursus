@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 00:29:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_bool	ft_check_declare_at_least(t_scene *s)
 	return (ft_err_msg(ERR_NOT_ENOUGH_DECLARE));
 }
 
-t_bool		ft_parse_line(t_scene *scene, char *line)
+t_bool			ft_parse_line(t_scene *scene, char *line)
 {
 	char				**splits;
 	int					i;
@@ -46,7 +46,8 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 
 	i = 0;
 	splits = ft_split_rt(line, WHITE_SPACE);
-	while (pft_parse[i].id && *splits && ft_strncmp(pft_parse[i].id, splits[0], 4))
+	while (pft_parse[i].id && *splits
+			&& ft_strncmp(pft_parse[i].id, splits[0], 4))
 		i++;
 	if (pft_parse[i].id == NUL)
 		return (ft_err_msg(ERR_PAR_NOID) && ft_destroy_splits(splits));
@@ -56,7 +57,7 @@ t_bool		ft_parse_line(t_scene *scene, char *line)
 	return (success);
 }
 
-t_bool		ft_parse_rt(t_ctrl *ctrl, char *rt_file)
+t_bool			ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 {
 	int		fd;
 	int		ret;

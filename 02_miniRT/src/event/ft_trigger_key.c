@@ -21,7 +21,7 @@
 int			ft_trigger_key(t_ctrl *ctrl, int key)
 {
 	int						idx;
-	static t_trigger_key	pft_event[] = {
+	static t_pft_key		pft_event[] = {
 		{KEY_ESC, ft_exit_minirt},
 		// {KEY_TAB, ft_next_list},
 
