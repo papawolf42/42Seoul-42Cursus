@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_move_object.c                                   :+:      :+:    :+:   */
+/*   ft_move_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 23:11:15 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:16:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/22 01:36:29 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/22 01:39:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 #include "parse.h"
-#include "event.h"
+#include "object.h"
 
-int				ft_move_object(t_object_list *list, t_vec3 trans)
+int				ft_move_light(t_scene *scene, t_vec3 trans)
 {
-	int				idx;
-	t_pft_move		pft_move[] = {
-		{sp, ft_move_sphere},
-		{pl, ft_move_plane},
-		{sq, ft_move_square},
-		{cy, ft_move_cylinder},
-		{tr, ft_move_triangle},
-		{no, NUL}
-	};
+	t_light		*light;
 
-	idx = 0;
-	while (pft_move[idx].type != no && pft_move[idx].type != list->type)
-		idx++;
-	if (pft_move[idx].type == no)
-		return (false);
-	return (pft_move[idx].move(list, trans));
+	light = (t_light *)ft_return_object(scene->light_list, scene->idx_l);
+	light->p = V_PLUS(light->p, trans);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/22 01:05:32 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/22 02:22:22 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,14 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	ft_init_hook.c \
 	ft_list_after.c \
 	ft_list_before.c \
+	ft_move_camera.c \
+	ft_move_cylinder.c \
+	ft_move_light.c \
 	ft_move_object.c \
+	ft_move_plane.c \
+	ft_move_sphere.c \
+	ft_move_square.c \
+	ft_move_triangle.c \
 	ft_select_object.c \
 	ft_trigger_key.c \
 	ft_trigger_mouse.c \
@@ -350,7 +357,28 @@ include/color.h include/event.h
 obj/ft_list_before.o: src/event/ft_list_before.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/event.h
+obj/ft_move_camera.o: src/event/ft_move_camera.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h include/object.h
+obj/ft_move_cylinder.o: src/event/ft_move_cylinder.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h
+obj/ft_move_light.o: src/event/ft_move_light.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h include/object.h
 obj/ft_move_object.o: src/event/ft_move_object.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h include/event.h
+obj/ft_move_plane.o: src/event/ft_move_plane.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
+obj/ft_move_sphere.o: src/event/ft_move_sphere.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
+obj/ft_move_square.o: src/event/ft_move_square.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h
+obj/ft_move_triangle.o: src/event/ft_move_triangle.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/parse.h
 obj/ft_select_object.o: src/event/ft_select_object.c include/alias.h \
@@ -509,4 +537,5 @@ obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
 obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
 include/vector.h
 obj/ft_vec3_plus_minus.o: src/vector/ft_vec3_plus_minus.c include/vector.h
-obj/ft_vec3_set.o: src/vector/ft_vec3_set.c include/vector.h include/alias.h
+obj/ft_vec3_set.o: src/vector/ft_vec3_set.c include/vector.h include/alias.h \
+include/utils.h

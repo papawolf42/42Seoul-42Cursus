@@ -125,7 +125,15 @@ int				ft_yaw_right(t_ctrl *ctrl);
 int				ft_roll_right(t_ctrl *ctrl);
 int				ft_roll_left(t_ctrl *ctrl);
 
+int				ft_move_light(t_scene *scene, t_vec3 trans);
+int				ft_move_camera(t_camera *cam, t_vec3 trans);
 int				ft_move_object(t_object_list *list, t_vec3 trans);
+int				ft_move_sphere(t_object_list *list, t_vec3 trans);
+int				ft_move_plane(t_object_list *list, t_vec3 trans);
+int				ft_move_square(t_object_list *list, t_vec3 trans);
+int				ft_move_cylinder(t_object_list *list, t_vec3 trans);
+int				ft_move_triangle(t_object_list *list, t_vec3 trans);
+
 
 int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl);
 int				ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
@@ -153,13 +161,13 @@ struct				s_pft_mouse
 struct				s_pft_move
 {
 	t_object_type	type;
-	int				(*move)(t_ctrl *ctrl);
+	int				(*move)(t_object_list *list, t_vec3 trans);
 };
 
 struct				s_pft_rotate
 {
 	t_object_type	type;
-	int				(*rotate)(t_ctrl *ctrl, int x, int y);
+	int				(*rotate)(t_object_list *list, int x, int y);
 };
 
 #endif

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_trigger_mouse.c                                 :+:      :+:    :+:   */
+/*   ft_move_plane.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 20:47:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:00:43 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/22 02:02:39 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/22 02:09:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "alias.h"
 #include "struct.h"
-#include "event.h"
-#include "exit.h"
+#include "vector.h"
 
-int			ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl)
+int				ft_move_plane(t_object_list *list, t_vec3 trans)
 {
-	int						idx;
-	static t_pft_mouse		pft_event[] = {
-		{BTN_LEFT, ft_select_object},
-		// {BTN_LEFT, ft_deselect},
-		{END, NUL}
-	};
+	t_plane		*plane;
 
-	idx = 0;
-	while (pft_event[idx].btn != END && pft_event[idx].btn != btn)
-		idx++;
-	if (pft_event[idx].btn == END)
-		return (false);
-	return (pft_event[idx].event(ctrl, x, y));
+	plane = (t_plane *)list->object;
+	plane->point = V_PLUS(plane->point, trans);
+	return (0);
 }

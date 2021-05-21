@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_move_object.c                                   :+:      :+:    :+:   */
+/*   ft_move_square.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 23:11:15 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:16:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/22 02:03:32 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/22 02:09:12 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
+#include "vector.h"
 #include "parse.h"
-#include "event.h"
 
-int				ft_move_object(t_object_list *list, t_vec3 trans)
+int				ft_move_square(t_object_list *list, t_vec3 trans)
 {
-	int				idx;
-	t_pft_move		pft_move[] = {
-		{sp, ft_move_sphere},
-		{pl, ft_move_plane},
-		{sq, ft_move_square},
-		{cy, ft_move_cylinder},
-		{tr, ft_move_triangle},
-		{no, NUL}
-	};
+	t_square		*square;
 
-	idx = 0;
-	while (pft_move[idx].type != no && pft_move[idx].type != list->type)
-		idx++;
-	if (pft_move[idx].type == no)
-		return (false);
-	return (pft_move[idx].move(list, trans));
+	square = (t_square *)list->object;
+	square->center = V_PLUS(square->center, trans);
+	ft_square_set(square);
+	return (0);
 }
