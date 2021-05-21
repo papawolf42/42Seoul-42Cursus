@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 21:24:58 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 23:16:30 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_scene			t_scene;
 
 typedef struct s_hit_record		t_hit_rec;
 typedef struct s_object_list	t_object_list;
+typedef struct s_object_var		t_object_var;
 
 typedef struct s_camera			t_camera;
 typedef struct s_light			t_light;
@@ -73,6 +74,7 @@ struct				s_ctrl
 	t_image			img;
 	t_scene			*scene;
 	char			mode;
+	t_object_list	*object_selected;
 };
 
 struct				s_canvas
@@ -105,6 +107,15 @@ struct				s_scene
 	int				count_o;
 };
 
+struct				s_object_var
+{
+	t_sphere		*sphere;
+	t_plane			*plane;
+	t_square		*square;
+	t_cylinder		*cylinder;
+	t_triangle		*trinagle;
+};
+
 struct				s_object_list
 {
 	void			*object;
@@ -121,6 +132,7 @@ struct				s_hit_record
 	double			t;
 	t_front			front_face;
 	t_color			color;
+	t_object_list	*object_list;
 };
 
 struct				s_triangle

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 23:27:15 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "parse.h"
 #include "object.h"
 
-static void		ft_cylinder_set(t_cylinder *cyl)
+void					ft_cylinder_set(t_cylinder *cyl)
 {
 	cyl->center_top = V_PLUS(cyl->center_top, V_SCALAR(cyl->axis, cyl->height));
 	cyl->axis = V_UNIT(cyl->axis);

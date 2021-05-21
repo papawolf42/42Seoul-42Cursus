@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 16:13:58 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 23:42:59 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 23:27:16 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ t_bool			ft_parse_light(t_scene *s, char **splits);
 t_bool			ft_parse_sphere(t_scene *s, char **splits);
 t_bool			ft_parse_plane(t_scene *s, char **splits);
 t_bool			ft_parse_square(t_scene *s, char **splits);
+void			ft_square_set(t_square *square);
 t_bool			ft_parse_cylinder(t_scene *s, char **splits);
+void			ft_cylinder_set(t_cylinder *cyl);
 t_bool			ft_parse_triangle(t_scene *s, char **splits);
+void			ft_triangle_set(t_triangle *triangle);
+
 
 t_bool			ft_parse_vector(t_vec3 *dst, char *src);
 t_bool			ft_parse_normal(t_vec3 *dst, char *src);

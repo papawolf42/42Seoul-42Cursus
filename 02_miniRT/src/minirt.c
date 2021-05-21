@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 19:39:35 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:19:51 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,14 +221,16 @@ t_bool		ft_hit_obj(t_object_list *obj, t_ray *ray,t_hit_rec *rec)
 	bool_hit = false;
 	if (obj->type == sp)
 		bool_hit = ft_hit_sphere(obj->object, ray, rec);
-	if (obj->type == pl)
+	else if (obj->type == pl)
 		bool_hit = ft_hit_plane(obj->object, ray, rec);
-	if (obj->type == sq)
+	else if (obj->type == sq)
 		bool_hit = ft_hit_square(obj->object, ray, rec);
-	if (obj->type == cy)
+	else if (obj->type == cy)
 		bool_hit = ft_hit_cylinder(obj->object, ray, rec);
-	if (obj->type == tr)
+	else if (obj->type == tr)
 		bool_hit = ft_hit_triangle(obj->object, ray, rec);
+	if (bool_hit == true)
+		rec->object_list = obj;
 	return (bool_hit);
 }
 
@@ -360,12 +362,12 @@ t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y)
 
 	screen.x = (2 * ((x + 0.5) / canv->width) - 1);
 	screen.x *= FISH_EYE_INDEX;// FISH_EYE
-	screen.y = (2 * ((y + 0.5) / canv->height) - 1);
+	screen.y = (-2 * ((y + 0.5) / canv->height) + 1);
 	screen.y *= FISH_EYE_INDEX;// FISH_EYE
 	screen.z = -1;
 	screen.z *= sqrt(1 - screen.x * screen.x - screen.y * screen.y);// FISH_EYE
 	screen.x *= cam->fov * canv->aspect_ratio;
-	screen.y *= -1 * cam->fov;
+	screen.y *= cam->fov;
 	// cam->mat_c2w = ft_getmat_c2w(cam, AXIS_UP);
 	ray.org = cam->mat_c2w.trans;
 	ray.dir = V_MINUS(ft_linear_transform(cam->mat_c2w, screen), ray.org);

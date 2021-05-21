@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 16:23:57 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 22:04:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ double		ft_saturate(double a);
 ** utils_str.c
 */
 int			ft_is_endstr(char *big, char *little);
+
+t_ray		ft_ray_init(t_canvas *canv, t_camera *cam, int x, int y);
+t_bool		ft_hit(t_object_list *obj, t_ray *ray, t_hit_rec *rec);
+
 
 #endif

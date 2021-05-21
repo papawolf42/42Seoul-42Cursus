@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/20 20:28:14 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/21 19:06:53 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,11 +90,15 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	event_rotate_y.c \
 	event_rotate_z.c \
 	ft_console_msg.c \
+	ft_deselect.c \
 	ft_handle_key.c \
 	ft_init_hook.c \
 	ft_list_after.c \
 	ft_list_before.c \
-	ft_trigger_event.c \
+	ft_move_object.c \
+	ft_select_object.c \
+	ft_trigger_key.c \
+	ft_trigger_mouse.c \
 )
 
 DIR_SRC_EXIT := exit
@@ -107,7 +111,7 @@ SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
 DIR_SRC_MATRIX := matrix
 SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 	ft_mat_identity.c \
-	ft_mat_mult.c \
+	ft_mat_mult_rotate.c \
 	ft_mat_rotate.c \
 	matrix.c \
 )
@@ -312,6 +316,8 @@ include/matrix.h include/ray.h include/color.h include/object.h
 obj/ft_console_msg.o: src/event/ft_console_msg.c lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
+obj/ft_deselect.o: src/event/ft_deselect.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_handle_key.o: src/event/ft_handle_key.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/event.h include/exit.h include/minirt.h \
@@ -325,7 +331,17 @@ include/color.h include/event.h
 obj/ft_list_before.o: src/event/ft_list_before.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/event.h
-obj/ft_trigger_event.o: src/event/ft_trigger_event.c include/alias.h \
+obj/ft_move_object.o: src/event/ft_move_object.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h
+obj/ft_select_object.o: src/event/ft_select_object.c include/alias.h \
+include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+lib/libft/include/libft.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/color.h include/object.h
+obj/ft_trigger_key.o: src/event/ft_trigger_key.c include/alias.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/color.h include/event.h include/exit.h
+obj/ft_trigger_mouse.o: src/event/ft_trigger_mouse.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/event.h include/exit.h
 obj/ft_destroy_mlx.o: src/exit/ft_destroy_mlx.c include/struct.h \
@@ -339,7 +355,8 @@ include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h
 obj/ft_mat_identity.o: src/matrix/ft_mat_identity.c include/matrix.h \
 include/vector.h
-obj/ft_mat_mult.o: src/matrix/ft_mat_mult.c include/matrix.h include/vector.h
+obj/ft_mat_mult_rotate.o: src/matrix/ft_mat_mult_rotate.c include/matrix.h \
+include/vector.h
 obj/ft_mat_rotate.o: src/matrix/ft_mat_rotate.c include/matrix.h \
 include/vector.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \

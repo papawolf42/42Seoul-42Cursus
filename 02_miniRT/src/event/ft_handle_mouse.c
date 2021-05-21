@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_hook.c                                     :+:      :+:    :+:   */
+/*   ft_handle_mouse.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 17:07:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 23:35:45 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/20 20:37:45 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/21 00:11:34 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "exit.h"
-#include "event.h"
+// #include <stdio.h>
 #include "struct.h"
+// #include "event.h"
+// #include "exit.h"
+// need refactoring
+// #include "minirt.h"
 
-void			ft_init_hook(t_ctrl *ctrl)
+int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl)
 {
-	mlx_hook(ctrl->win_ptr, EVENT_EXIT_WINDOW, MASK_EXITWINDOW, ft_exit_minirt, ctrl);
-	mlx_hook(ctrl->win_ptr, EVENT_KEYPRESS, MASK_KEYPRESS, ft_handle_key, ctrl);
-	mlx_hook(ctrl->win_ptr, EVENT_BUTTONPRESS, 1L << 0, ft_trigger_mouse, ctrl);
-	mlx_loop(ctrl->mlx_ptr);
+	ft_console_msg(ctrl, "mouse clicked");
+	ft_trigger_mouse(ctrl, btn);
+	if (ft_render(ctrl))
+		ft_exit_minirt(ctrl);
+	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
+	return (0);
 }

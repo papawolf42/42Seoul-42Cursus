@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 08:19:48 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 23:24:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "parse.h"
 #include "object.h"
 
-static void			ft_square_set(t_square *square)
+void			ft_square_set(t_square *square)
 {
 	if (V_DOT(square->normal, V_SET(0, 0, 1)) == 1)
 		square->span_a = V_UNIT(V_CROSS(square->normal, V_SET(0, -1, 0)));

@@ -26,7 +26,7 @@
 # define EVENT_BUTTONPRESS	4
 # define EVENT_EXIT_WINDOW	17
 
-# define NO_KEY				-1
+# define END				-1
 
 /*
 ** Keyboard LETTERS
@@ -89,35 +89,35 @@
 ** Keyboard MISC
 */
 
-# define KEY_SP 49
-# define KEY_ESC 53
-# define KEY_TAB 48
+# define KEY_SP				49
+# define KEY_ESC			53
+# define KEY_TAB			48
 
 /*
-** unit
+** Mouse
 */
+
+# define BTN_LEFT			1
+# define BTN_RIGHT			2
 
 void			ft_console_msg(t_ctrl *ctrl, char *message);
 
 void			ft_init_hook(t_ctrl *ctrl);
 
 int				ft_handle_key(int key, t_ctrl *ctrl);
-int				ft_trigger_event(t_ctrl *ctrl, int key);
+int				ft_trigger_key(t_ctrl *ctrl, int key);
 
 int				ft_mode_light(t_ctrl *ctrl);
 int				ft_mode_camera(t_ctrl *ctrl);
 int				ft_mode_object(t_ctrl *ctrl);
-
 int				ft_list_before(t_ctrl *ctrl);
 int				ft_list_after(t_ctrl *ctrl);
-
 int				ft_move_forward(t_ctrl *ctrl);
 int				ft_move_back(t_ctrl *ctrl);
 int				ft_move_left(t_ctrl *ctrl);
 int				ft_move_right(t_ctrl *ctrl);
 int				ft_move_down(t_ctrl *ctrl);
 int				ft_move_up(t_ctrl *ctrl);
-
 int				ft_pitch_up(t_ctrl *ctrl);
 int				ft_pitch_down(t_ctrl *ctrl);
 int				ft_yaw_left(t_ctrl *ctrl);
@@ -125,13 +125,27 @@ int				ft_yaw_right(t_ctrl *ctrl);
 int				ft_roll_right(t_ctrl *ctrl);
 int				ft_roll_left(t_ctrl *ctrl);
 
+int				ft_move_object(t_object_list *list, t_vec3 trans);
 
-typedef struct s_trigger_event	t_trigger_event;
+int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl);
+int				ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
 
-struct			s_trigger_event
+int				ft_select_object(t_ctrl *c, int x, int y);
+int				ft_deselect(t_ctrl *c, int x, int y);
+
+typedef struct s_trigger_key	t_trigger_key;
+typedef struct s_trigger_mouse	t_trigger_mouse;
+
+struct			s_trigger_key
 {
 	int			key;
 	int			(*event)(t_ctrl *ctrl);
+};
+
+struct			s_trigger_mouse
+{
+	int			btn;
+	int			(*event)(t_ctrl *ctrl, int x, int y);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:53:34 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/20 23:21:52 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "parse.h"
 #include "object.h"
 
-static void				ft_triangle_set(t_triangle *triangle)
+void					ft_triangle_set(t_triangle *triangle)
 {
 	triangle->ab = V_MINUS(triangle->b, triangle->a);
 	triangle->bc = V_MINUS(triangle->c, triangle->b);

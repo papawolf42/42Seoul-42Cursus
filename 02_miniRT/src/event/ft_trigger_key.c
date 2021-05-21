@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_trigger_event.c                                 :+:      :+:    :+:   */
+/*   ft_trigger_key.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -18,10 +18,10 @@
 /*
 ** https://en.wikipedia.org/wiki/Flight_control_surfaces
 */
-int			ft_trigger_event(t_ctrl *ctrl, int key)
+int			ft_trigger_key(t_ctrl *ctrl, int key)
 {
 	int						idx;
-	static t_trigger_event	pft_event[] = {
+	static t_trigger_key	pft_event[] = {
 		{KEY_ESC, ft_exit_minirt},
 		// {KEY_TAB, ft_next_list},
 
@@ -55,13 +55,13 @@ int			ft_trigger_event(t_ctrl *ctrl, int key)
 
 		{KEY_MINUS, ft_list_before},
 		{KEY_EQUAL, ft_list_after},
-		{NO_KEY, NUL}
+		{END, NUL}
 	};
 
 	idx = 0;
-	while (pft_event[idx].key != NO_KEY && key != pft_event[idx].key)
+	while (pft_event[idx].key != END && key != pft_event[idx].key)
 		idx++;
-	if (pft_event[idx].key == NO_KEY)
+	if (pft_event[idx].key == END)
 		return (false);
 	return (pft_event[idx].event(ctrl));
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 19:56:54 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 20:02:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/21 18:31:39 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					ft_roll_right(t_ctrl *ctrl)
 
 	mat = ft_mat_rotate_z(-UNIT_ROTATE);
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list, ctrl->scene->idx_c);
-	cam->mat_c2w = ft_mat_mult(mat, cam->mat_c2w);
+	cam->mat_c2w = ft_mat_mult_rotate(mat, cam->mat_c2w);
 	return (success);
 }
 
@@ -35,6 +35,6 @@ int					ft_roll_left(t_ctrl *ctrl)
 
 	mat = ft_mat_rotate_z(UNIT_ROTATE);
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list, ctrl->scene->idx_c);
-	cam->mat_c2w = ft_mat_mult(mat, cam->mat_c2w);
+	cam->mat_c2w = ft_mat_mult_rotate(mat, cam->mat_c2w);
 	return (success);
 }
