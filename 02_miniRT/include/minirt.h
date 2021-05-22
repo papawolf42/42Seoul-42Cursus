@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 21:57:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 19:08:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef enum
 int			main(int argc, char *argv[]);
 void		ft_minirt(t_ctrl *ctrl);
 t_bool		ft_render(t_ctrl *ctrl);
+t_bool		ft_render_multi_thread(t_ctrl *ctrl);
 
 t_color		ft_ray_to_color(t_ray ray, t_ctrl *c);
 

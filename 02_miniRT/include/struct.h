@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 09:21:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 18:52:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_ctrl			t_ctrl;
 typedef struct s_canvas			t_canvas;
 typedef struct s_ambient		t_ambient;
 typedef struct s_scene			t_scene;
+typedef struct s_pth_data		t_pth_data;
 
 typedef struct s_hit_record		t_hit_rec;
 typedef struct s_object_list	t_object_list;
@@ -107,6 +108,14 @@ struct				s_scene
 	int				count_l;
 	int				count_c;
 	int				count_o;
+};
+
+struct				s_pth_data
+{
+	int				lane;
+	int				count;
+	int				progress;
+	t_ctrl			*ctrl;
 };
 
 struct				s_object_list

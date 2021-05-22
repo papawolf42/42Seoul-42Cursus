@@ -6,11 +6,12 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:40:07 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 19:26:04 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <pthread.h>
 #include "libft.h"
 #include "mlx.h"
 #include "struct.h"
@@ -37,6 +38,60 @@
 **				ray.org.x = 1;
 **			}
 */
+
+static void	*ft_render_multi_thread_each(void *pth_data)
+{
+	t_pth_data		*d;
+	t_ctrl			c;
+	t_var_render	v;
+
+	d = (t_pth_data *)pth_data;
+	c = *d->ctrl;
+	v.camera = (t_camera *)ft_return_object(c.scene->camera_list,
+											c.scene->idx_c);
+	v.y = d->ctrl->scene->canv.height - 1 - d->lane;
+	while (v.y >= 0)
+	{
+		v.x = 0;
+		while (v.x < d->ctrl->scene->canv.width)
+		{
+			v.ray = ft_ray_init(&c.scene->canv, v.camera, v.x, v.y);
+			v.color = ft_ray_to_color(v.ray, &c);
+			v.data = c.img.data + (v.y * c.img.size_line +
+									v.x * (c.img.bit_per_pixel / 8));
+			*(unsigned int *)v.data = ft_rgb_to_data(v.color);
+			v.x++;
+		}
+		v.y -= d->count;
+	}
+	return (NULL);
+}
+
+t_bool		ft_render_multi_thread(t_ctrl *ctrl)
+{
+	pthread_t		pthread[NUM_THREAD];
+	t_pth_data		data[NUM_THREAD];
+	int				i;
+
+	i = -1;
+	while (++i < NUM_THREAD)
+	{
+		data[i].count = NUM_THREAD;
+		data[i].ctrl = ctrl;
+	}
+	i = -1;
+	while (++i < NUM_THREAD)
+	{
+		data[i].lane = i;
+		if (pthread_create(&pthread[i], NULL, ft_render_multi_thread_each,
+											(void *)&data[i]) < 0)
+			return (ft_err_msg("pthread create failed"));
+	}
+	i = -1;
+	while (++i < NUM_THREAD)
+		pthread_join(pthread[i], NULL);
+	return (success);
+}
 
 t_bool		ft_render(t_ctrl *c)
 {
@@ -86,7 +141,8 @@ void		ft_minirt(t_ctrl *ctrl)
 										&ctrl->img.bit_per_pixel,
 										&ctrl->img.size_line,
 										&ctrl->img.endian);
-	ft_render(ctrl);
+	// ft_render(ctrl);
+	ft_render_multi_thread(ctrl);
 	mlx_put_image_to_window(ctrl->mlx_ptr,
 							ctrl->win_ptr,
 							ctrl->img.img_ptr, 0, 0);

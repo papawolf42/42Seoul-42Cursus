@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 22:04:07 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 22:10:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 19:20:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool		ft_hit_sphere(t_sphere *sp, t_ray *ray, t_hit_rec *rec)
 	double		root;// 근
 	double		sqrtd;// 근의 제곱근
 
-	oc = V_MINUS(ray->org, sp->center);
+	oc = ft_vec3_minus(ray->org, sp->center);
 	a = V_DOT(ray->dir, ray->dir);
 	half_b = V_DOT(ray->dir, oc);
 	c = V_DOT(oc, oc) - sp->radius * sp->radius;

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 20:37:45 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 16:10:44 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 19:08:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl)
 {
 	ft_console_msg(ctrl, "mouse clicked");
 	ft_trigger_mouse(ctrl, btn);
-	if (ft_render(ctrl))
+	if (ft_render_multi_thread(ctrl))
 		ft_exit_minirt(ctrl);
 	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
 	return (0);
