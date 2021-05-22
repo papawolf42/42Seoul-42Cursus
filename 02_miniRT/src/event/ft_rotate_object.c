@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_move_square.c                                   :+:      :+:    :+:   */
+/*   ft_rotate_object.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/22 02:03:32 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 09:48:34 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/22 02:25:13 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/22 08:59:50 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
-#include "vector.h"
 #include "parse.h"
+#include "event.h"
 
-int				ft_move_square(t_object_list *list, t_vec3 trans)
+int				ft_rotate_object(t_object_list *list, t_mat44 mat)
 {
-	t_square		*square;
+	int				idx;
+	t_pft_rotate		pft_rotate[] = {
+		{pl, ft_rotate_plane},
+		{sq, ft_rotate_square},
+		{cy, ft_rotate_cylinder},
+		{no, NUL}
+	};
 
-	square = (t_square *)list->object;
-	square->center = V_PLUS(square->center, trans);
-	return (0);
+	idx = 0;
+	while (pft_rotate[idx].type != no && pft_rotate[idx].type != list->type)
+		idx++;
+	if (pft_rotate[idx].type == no)
+		return (false);
+	return (pft_rotate[idx].rotate(list, mat));
 }

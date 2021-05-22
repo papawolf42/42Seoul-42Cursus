@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/22 02:22:22 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/22 09:55:38 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,10 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	ft_move_sphere.c \
 	ft_move_square.c \
 	ft_move_triangle.c \
+	ft_rotate_cylinder.c \
+	ft_rotate_object.c \
+	ft_rotate_plane.c \
+	ft_rotate_square.c \
 	ft_select_object.c \
 	ft_trigger_key.c \
 	ft_trigger_mouse.c \
@@ -379,6 +383,18 @@ obj/ft_move_square.o: src/event/ft_move_square.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/parse.h
 obj/ft_move_triangle.o: src/event/ft_move_triangle.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h
+obj/ft_rotate_cylinder.o: src/event/ft_rotate_cylinder.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h
+obj/ft_rotate_object.o: src/event/ft_rotate_object.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/parse.h include/event.h
+obj/ft_rotate_plane.o: src/event/ft_rotate_plane.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
+obj/ft_rotate_square.o: src/event/ft_rotate_square.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/parse.h
 obj/ft_select_object.o: src/event/ft_select_object.c include/alias.h \

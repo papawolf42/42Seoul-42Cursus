@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 23:44:45 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 00:36:14 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 02:37:53 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int					ft_yaw_left(t_ctrl *ctrl)
 
 	mat = ft_mat_rotate_y(-UNIT_ROTATE);
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list, ctrl->scene->idx_c);
-	cam->mat_c2w = ft_mat_mult_rotate(mat, cam->mat_c2w);
+	if (ctrl->mode == 'C')
+		cam->mat_c2w = ft_mat_mult_rotate(mat, cam->mat_c2w);
+	if (ctrl->mode == 'O')
+		ft_rotate_object(ctrl->object_selected, mat);
 	return (success);
 }
 
@@ -35,6 +38,9 @@ int					ft_yaw_right(t_ctrl *ctrl)
 
 	mat = ft_mat_rotate_y(UNIT_ROTATE);
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list, ctrl->scene->idx_c);
-	cam->mat_c2w = ft_mat_mult_rotate(mat, cam->mat_c2w);
+	if (ctrl->mode == 'C')
+		cam->mat_c2w = ft_mat_mult_rotate(mat, cam->mat_c2w);
+	if (ctrl->mode == 'O')
+		ft_rotate_object(ctrl->object_selected, mat);
 	return (success);
 }

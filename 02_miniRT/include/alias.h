@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:51:31 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 12:00:31 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define DEGREE_TO_RADIAN (M_PI / 180)
 
 # define UNIT_MOVE 0.3
-# define UNIT_ROTATE_DEGREE 45
+# define UNIT_ROTATE_DEGREE 30
 # define UNIT_ROTATE (UNIT_ROTATE_DEGREE * DEGREE_TO_RADIAN)
 # define AXIS_UP V_SET(0, 1, 0)
 

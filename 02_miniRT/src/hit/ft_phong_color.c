@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:54:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:57:00 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 02:49:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *re
 	double		radius_attenuation;
 	double		distance;
 
-	radius_attenuation = 4;
+	radius_attenuation = 30;
 	distance = V_LEN(V_MINUS(light->p, rec->p)) / 3;
 	if (radius_attenuation < distance)
 		return (V_COLOR(0, 0, 0));

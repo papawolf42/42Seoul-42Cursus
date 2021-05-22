@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 01:58:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 09:21:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ struct				s_square
 {
 	t_point3		center;
 	t_vec3			normal;
+	t_vec3			axis_up;
 	double			side_len;
 	t_color			color;
 	t_vec3			span_a;
