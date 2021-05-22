@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 20:37:45 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 00:11:34 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 16:10:44 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // #include "exit.h"
 // need refactoring
 // #include "minirt.h"
+#include "console.h"
 
 int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl)
 {

@@ -100,8 +100,6 @@
 # define BTN_LEFT			1
 # define BTN_RIGHT			2
 
-void			ft_console_msg(t_ctrl *ctrl, char *message);
-
 void			ft_init_hook(t_ctrl *ctrl);
 
 int				ft_handle_key(int key, t_ctrl *ctrl);

@@ -6,13 +6,14 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 01:31:02 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 22:47:46 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 16:10:35 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alias.h"
 #include "struct.h"
 #include "event.h"
+#include "console.h"
 
 int				ft_mode_light(t_ctrl *ctrl)
 {

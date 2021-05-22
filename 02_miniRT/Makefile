@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/22 09:55:38 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/22 17:24:29 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ NAME_GET_NEXT_LINE  := $(DIR_GET_NEXT_LINE)/$(LIB_GET_NEXT_LINE)
 
 CC        := gcc
 CFLAGS    := -g
+# CFLAGS    := -g3 -fsanitize=address
 CFLAGS    += -Wall
 CFLAGS    += -Wextra
 CFLAGS    += -Werror
@@ -75,6 +76,11 @@ SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
 	ft_rgb_to_data.c \
 )
 
+DIR_SRC_CONSOLE := console
+SRCS_CONSOLE := $(addprefix $(DIR_SRC_CONSOLE)/, \
+	ft_console_msg.c \
+)
+
 DIR_SRC_ERROR := error
 SRCS_ERROR := $(addprefix $(DIR_SRC_ERROR)/, \
 	error.c \
@@ -89,7 +95,6 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	event_rotate_x.c \
 	event_rotate_y.c \
 	event_rotate_z.c \
-	ft_console_msg.c \
 	ft_deselect.c \
 	ft_handle_key.c \
 	ft_init_hook.c \
@@ -199,6 +204,7 @@ SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
 SRCS := $(addprefix $(DIR_SRC)/, \
 	minirt.c \
 	$(SRCS_COLOR) \
+	$(SRCS_CONSOLE) \
 	$(SRCS_ERROR) \
 	$(SRCS_EVENT) \
 	$(SRCS_EXIT) \
@@ -217,6 +223,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 vpath %.c \
 	$(DIR_SRC) \
 	$(DIR_SRC)/$(DIR_SRC_COLOR) \
+	$(DIR_SRC)/$(DIR_SRC_CONSOLE) \
 	$(DIR_SRC)/$(DIR_SRC_ERROR) \
 	$(DIR_SRC)/$(DIR_SRC_EVENT) \
 	$(DIR_SRC)/$(DIR_SRC_EXIT) \
@@ -320,11 +327,14 @@ include/utils.h include/error.h include/parse.h include/object.h \
 include/hit.h include/event.h include/exit.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
+obj/ft_console_msg.o: src/console/ft_console_msg.c lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
 obj/error.o: src/error/error.c include/alias.h include/error.h \
 lib/libft/include/libft.h
 obj/event_mode.o: src/event/event_mode.c include/alias.h include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/color.h \
-include/event.h
+include/event.h include/console.h
 obj/event_move_x.o: src/event/event_move_x.c lib/libft/include/libft.h \
 include/alias.h include/event.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h include/object.h
@@ -343,24 +353,22 @@ include/matrix.h include/ray.h include/color.h include/object.h
 obj/event_rotate_z.o: src/event/event_rotate_z.c lib/libft/include/libft.h \
 include/alias.h include/event.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h include/object.h
-obj/ft_console_msg.o: src/event/ft_console_msg.c lib/libft/include/libft.h \
-include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/alias.h include/color.h
 obj/ft_deselect.o: src/event/ft_deselect.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_handle_key.o: src/event/ft_handle_key.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/event.h include/exit.h include/minirt.h \
-lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/console.h
 obj/ft_init_hook.o: src/event/ft_init_hook.c lib/minilibx_mms_20200219/mlx.h \
 include/exit.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/alias.h include/color.h include/event.h
 obj/ft_list_after.o: src/event/ft_list_after.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/color.h include/event.h
+include/color.h include/event.h include/console.h
 obj/ft_list_before.o: src/event/ft_list_before.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/color.h include/event.h
+include/color.h include/event.h include/console.h
 obj/ft_move_camera.o: src/event/ft_move_camera.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/parse.h include/object.h

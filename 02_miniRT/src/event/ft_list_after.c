@@ -6,13 +6,14 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:47:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 22:49:19 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 16:10:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "alias.h"
 #include "struct.h"
 #include "event.h"
+#include "console.h"
 
 static void		ft_light_after(t_ctrl *ctrl)
 {
