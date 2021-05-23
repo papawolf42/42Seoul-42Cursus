@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vec3_multiplication.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:32:32 by gunkim            #+#    #+#             */
-/*   Updated: 2021/04/30 11:59:39 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 01:21:35 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
+#include "error.h"
 
 t_vec3		ft_vec3_scalar(t_vec3 vec, double t)
 {
@@ -49,8 +50,6 @@ t_vec3		ft_vec3_unit(t_vec3 vec)
 
 	veclen = ft_vec3_len(vec);
 	if (veclen == 0)
-	{
-		//ft_error_handler(ERROR_DIVIDE_ZERO);
-	}
-	return (ft_vec3_scalar(vec, (double)1 / veclen));
+		ft_err_msg("cannot be devieded 0");
+	return (ft_vec3_scalar(vec, 1.0 / veclen));
 }

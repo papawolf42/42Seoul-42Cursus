@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 01:07:49 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 15:51:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 00:10:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		ft_free_object_list(t_object_list **lst)
 	t_object_list	*next;
 
 	if (*lst == NUL)
-		return;
+		return ;
 	while (*lst)
 	{
 		next = (*lst)->next;

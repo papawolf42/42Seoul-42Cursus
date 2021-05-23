@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 23:52:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 00:13:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 00:12:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_mat44				ft_mat_rotate_y(double a)
 {
 	return (ft_mat_set(V_SET(cos(a), 0, sin(a)),
 						V_SET(0, 1, 0),
-						V_SET(-sin(a), 0,cos(a)),
+						V_SET(-sin(a), 0, cos(a)),
 						V_SET(0, 0, 0)));
 }
 

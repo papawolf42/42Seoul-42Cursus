@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strslen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 14:55:27 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 16:17:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 01:18:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stddef.h>
+#include <stddef.h>
 
 size_t			ft_strslen(char **strs)
 {

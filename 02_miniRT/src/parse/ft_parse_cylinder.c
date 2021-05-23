@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 20:30:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 01:16:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 #include "parse.h"
 #include "object.h"
 
-void					ft_cylinder_set(t_cylinder *cyl)
+void					ft_cylinder_set(t_cylinder *cyl, t_bool bool_first)
 {
 	cyl->axis = V_UNIT(cyl->axis);
 	cyl->center_top = V_PLUS(cyl->center_top, V_SCALAR(cyl->axis, cyl->height));
+	if (bool_first)
+		cyl->radius = cyl->radius / 2;
 }
 
 t_bool					ft_parse_cylinder(t_scene *s, char **splits)
@@ -46,8 +48,7 @@ t_bool					ft_parse_cylinder(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(cylinder));
 	if (ft_parse_color(&cylinder->color, splits[5]))
 		return (ft_destroy(cylinder));
-	cylinder->radius = cylinder->radius / 2;
-	ft_cylinder_set(cylinder);
+	ft_cylinder_set(cylinder, true);
 	if (ft_addback_object_list(cy, cylinder, s))
 		return (ft_destroy(cylinder));
 	return (success);

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:02:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 01:26:22 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 01:22:11 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 #include "alias.h"
 #include "utils.h"
 
-/*
-** vec3 constructor
-*/
 t_vec3		ft_vec3_set(double x, double y, double z)
 {
 	t_vec3		vec;
-	
+
 	vec.x = x;
 	vec.y = y;
 	vec.z = z;

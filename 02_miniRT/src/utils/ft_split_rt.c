@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_rt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gunkim <gunkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 10:07:29 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/15 11:31:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 01:18:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
+#include "libft.h"
 
 static char		ft_strnchr(char *s, char c, size_t len)
 {

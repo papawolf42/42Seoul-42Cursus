@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 23:11:15 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:16:22 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 00:09:26 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int				ft_move_object(t_object_list *list, t_vec3 trans)
 {
-	int				idx;
-	t_pft_move		pft_move[] = {
+	int						idx;
+	static t_pft_move		pft_move[] = {
 		{sp, ft_move_sphere},
 		{pl, ft_move_plane},
 		{sq, ft_move_square},

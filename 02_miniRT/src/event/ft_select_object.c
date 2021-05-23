@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 21:17:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 14:53:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 00:06:08 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				ft_select_object(t_ctrl *c, int x, int y)
 	c->object_selected = rec.object_list;
 	if (c->mode == 'C')
 		c->mode = 'c';
-	else if (c-> mode == 'L')
+	else if (c->mode == 'L')
 		c->mode = 'l';
 	return (true);
 }

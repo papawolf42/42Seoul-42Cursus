@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 02:25:13 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 08:59:50 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 00:08:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int				ft_rotate_object(t_object_list *list, t_mat44 mat)
 {
-	int				idx;
-	t_pft_rotate		pft_rotate[] = {
+	int						idx;
+	static t_pft_rotate		pft_rotate[] = {
 		{pl, ft_rotate_plane},
 		{sq, ft_rotate_square},
 		{cy, ft_rotate_cylinder},
