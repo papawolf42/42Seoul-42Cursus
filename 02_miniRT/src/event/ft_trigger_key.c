@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:56:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 14:57:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 16:39:44 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			ft_trigger_key(t_ctrl *ctrl, int key)
 		{KEY_Y, ft_roll_right}, {KEY_4, ft_mode_light}, {KEY_5, ft_mode_camera},
 		{KEY_MINUS, ft_list_before}, {KEY_EQUAL, ft_list_after},
 		{KEY_1, ft_toggle_mt},
-		// {KEY_1, ft_toggle_mt},
+		{KEY_2, ft_toggle_aa},
 		{KEY_3, ft_toggle_fe},
 		{END, NUL}
 	};

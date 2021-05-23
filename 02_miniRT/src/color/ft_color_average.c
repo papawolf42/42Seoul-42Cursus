@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_scene.c                                    :+:      :+:    :+:   */
+/*   ft_color_average.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/18 01:07:49 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 15:51:21 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/23 19:05:47 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 19:06:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "alias.h"
 #include "struct.h"
 
-static void		ft_free_object_list(t_object_list **lst)
+t_color			ft_color_average(t_color *data, int x, int y, int width)
 {
-	t_object_list	*next;
+	t_color		c;
+	int			dx;
+	int			dy;
 
-	if (*lst == NUL)
-		return;
-	while (*lst)
+	c = V_SET(0, 0, 0);
+	dy = 0;
+	while (dy < SAMPLING)
 	{
-		next = (*lst)->next;
-		free(*lst);
-		*lst = next;
+		dx = 0;
+		while (dx < SAMPLING)
+		{
+			c = V_PLUS(c, data[((y + dy) * width) + (x + dx)]);
+			dx++;
+		}
+		dy++;
 	}
-	*lst = NUL;
-}
-
-void			ft_free_scene(t_scene *scene)
-{
-	free(scene->data_aa);
-	ft_free_object_list(&scene->camera_list);
-	ft_free_object_list(&scene->light_list);
-	ft_free_object_list(&scene->object_list);
-	free(scene);
+	c = V_SCALAR(c, 1.0 / (SAMPLING * SAMPLING));
+	return (c);
 }

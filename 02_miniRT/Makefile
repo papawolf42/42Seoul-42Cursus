@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/23 15:39:20 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/23 19:28:32 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ DIR_SRC := src
 
 DIR_SRC_COLOR := color
 SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
+	ft_color_average.c \
 	ft_rgb_to_data.c \
 )
 
@@ -130,6 +131,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	ft_rotate_plane.c \
 	ft_rotate_square.c \
 	ft_select_object.c \
+	ft_toggle_aa.c \
 	ft_toggle_fe.c \
 	ft_toggle_mt.c \
 	ft_trigger_key.c \
@@ -155,6 +157,7 @@ SRCS_HIT := $(addprefix $(DIR_SRC_HIT)/, \
 	ft_phong_color.c \
 	ft_ray_at.c \
 	ft_ray_determine_front.c \
+	ft_ray_init_aa.c \
 	ft_ray_init.c \
 	ft_ray_to_color.c \
 )
@@ -169,10 +172,13 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 
 DIR_SRC_MINIRT := minirt
 SRCS_MINIRT := $(addprefix $(DIR_SRC_MINIRT)/, \
-	ft_render.c \
+	ft_fill_data_aa.c \
+	ft_render_aa.c \
+	ft_render_mt_aa.c \
 	ft_render_multi_thread.c \
+	ft_render.c \
+	ft_switch.c \
 	ft_minirt.c \
-	ft_switch_multi_thread.c \
 )
 
 DIR_SRC_OBJECT := object
@@ -347,12 +353,14 @@ $(NAME_GET_NEXT_LINE) :
 	@$(MAKE) -s all -C $(DIR_GET_NEXT_LINE)
 
 # DO NOT DELETE
-
 obj/main.o: src/main.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
 include/utils.h include/error.h include/parse.h include/object.h \
 include/hit.h include/event.h include/exit.h
+obj/ft_color_average.o: src/color/ft_color_average.c include/alias.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/color.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
 obj/ft_console_camera.o: src/console/ft_console_camera.c include/console.h \
@@ -491,6 +499,9 @@ include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h include/object.h \
 include/hit.h include/event.h
+obj/ft_toggle_aa.o: src/event/ft_toggle_aa.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/console.h
 obj/ft_toggle_fe.o: src/event/ft_toggle_fe.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/console.h
@@ -543,6 +554,9 @@ include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_ray_determine_front.o: src/hit/ft_ray_determine_front.c \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
+obj/ft_ray_init_aa.o: src/hit/ft_ray_init_aa.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h
 obj/ft_ray_init.o: src/hit/ft_ray_init.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_ray_to_color.o: src/hit/ft_ray_to_color.c include/struct.h \
@@ -556,21 +570,33 @@ obj/ft_mat_rotate.o: src/matrix/ft_mat_rotate.c include/matrix.h \
 include/vector.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
-obj/ft_render.o: src/minirt/ft_render.c include/struct.h include/vector.h \
-include/matrix.h include/ray.h include/alias.h include/color.h \
-include/object.h include/hit.h
+obj/ft_fill_data_aa.o: src/minirt/ft_fill_data_aa.c include/alias.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/color.h
+obj/ft_render_aa.o: src/minirt/ft_render_aa.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/object.h include/hit.h include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h
+obj/ft_render_mt_aa.o: src/minirt/ft_render_mt_aa.c include/hit.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/error.h
 obj/ft_render_multi_thread.o: src/minirt/ft_render_multi_thread.c \
 include/hit.h include/struct.h include/vector.h include/matrix.h \
 include/ray.h include/alias.h include/color.h include/object.h \
 include/error.h
+obj/ft_render.o: src/minirt/ft_render.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h \
+include/object.h include/hit.h
+obj/ft_switch.o: src/minirt/ft_switch.c include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
 obj/ft_minirt.o: src/minirt/ft_minirt.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h include/event.h include/console.h
-obj/ft_switch_multi_thread.o: src/minirt/ft_switch_multi_thread.c \
-include/minirt.h lib/minilibx_mms_20200219/mlx.h \
-lib/libft/include/libft.h include/struct.h include/vector.h \
-include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_return_object_list.o: src/object/ft_return_object_list.c \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h

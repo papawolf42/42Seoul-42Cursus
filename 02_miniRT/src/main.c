@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 15:08:17 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 19:13:23 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	ft_init_ctrl(t_ctrl *ctrl)
 	ft_bzero(ctrl, sizeof(ctrl));
 	ctrl->mode = 'C';
 	ctrl->bool_multi_threading = true;
-	ctrl->bool_fish_eye = true;
+	ctrl->bool_anti_aliasing = false;
+	ctrl->bool_fish_eye = false;
 }
 
 static void	ft_save_bmp(void)

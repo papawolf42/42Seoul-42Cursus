@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:54:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:49:38 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 19:25:14 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ static t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *re
 	double		ks;
 	double		ksn;
 
-	double		attenuation_radius;
-	double		attenuation_distance;
-	double		radius_attenuation;
-	double		distance;
+	// double		attenuation_radius;
+	// double		attenuation_distance;
+	// double		radius_attenuation;
+	// double		distance;
 
-	radius_attenuation = 30;
-	distance = V_LEN(V_MINUS(light->p, rec->p)) / 3;
-	if (radius_attenuation < distance)
-		return (V_COLOR(0, 0, 0));
+	// radius_attenuation = 30;
+	// distance = V_LEN(V_MINUS(light->p, rec->p)) / 3;
+	// if (radius_attenuation < distance)
+		// return (V_COLOR(0, 0, 0));
 
 	to_light = V_UNIT(V_MINUS(light->p, rec->p));
 	to_view = V_UNIT(V_MINUS(ray->org, rec->p));
@@ -50,9 +50,9 @@ static t_color		ft_phong_color_compute(t_light *light, t_ray *ray, t_hit_rec *re
 	diffuse = V_SCALAR(light->color, kd);
 	specular = V_SCALAR(light->color, ks * pow(ft_max(V_DOT(reflect, to_view), 0.0), ksn));
 	// attenuation_radius = pow(ft_saturate(1 - pow(distance / radius_attenuation, 4)), 2);
-	attenuation_radius = 1;
+	// attenuation_radius = 1;
 	// attenuation_distance = 1 / (pow(distance, 2) + 1);
-	attenuation_distance = 1;
+	// attenuation_distance = 1;
 	light_intensity = V_SCALAR(V_PLUS(diffuse, specular), light->ratio);
 	// return (V_PLUS(ambient, V_SCALAR(light_intensity, attenuation_distance * attenuation_radius)));
 	return (V_PLUS(ambient, V_MULT(light->color, light_intensity)));

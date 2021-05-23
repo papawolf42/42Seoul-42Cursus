@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:22:44 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 22:00:30 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 19:11:20 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@
 
 typedef struct s_vec3		t_color;
 
-/*
-** utils_color.c
-*/
-
-int			ft_rgb_to_data(t_color color);
-int			ft_pixel_color(t_ray *ray);
+int				ft_rgb_to_data(t_color color);
+t_color			ft_color_average(t_color *data, int x, int y, int width);
 
 #endif

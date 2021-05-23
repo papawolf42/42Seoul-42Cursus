@@ -121,6 +121,7 @@ int				ft_yaw_left(t_ctrl *ctrl);
 int				ft_yaw_right(t_ctrl *ctrl);
 int				ft_roll_right(t_ctrl *ctrl);
 int				ft_roll_left(t_ctrl *ctrl);
+int				ft_toggle_aa(t_ctrl *ctrl);
 int				ft_toggle_mt(t_ctrl *ctrl);
 int				ft_toggle_fe(t_ctrl *ctrl);
 
