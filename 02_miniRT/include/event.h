@@ -122,6 +122,7 @@ int				ft_yaw_right(t_ctrl *ctrl);
 int				ft_roll_right(t_ctrl *ctrl);
 int				ft_roll_left(t_ctrl *ctrl);
 int				ft_toggle_mt(t_ctrl *ctrl);
+int				ft_toggle_fe(t_ctrl *ctrl);
 
 int				ft_move_light(t_scene *scene, t_vec3 trans);
 int				ft_move_camera(t_camera *cam, t_vec3 trans);

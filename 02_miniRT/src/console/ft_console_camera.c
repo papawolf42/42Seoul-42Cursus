@@ -6,10 +6,11 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 12:06:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 13:37:38 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 15:36:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "console.h"
 #include "object.h"
 
@@ -23,6 +24,6 @@ void			ft_console_camera(t_ctrl *ctrl)
 	ft_console_numberof(ctrl, cam);
 	ft_console_vec(TC_POINT, camera->origin);
 	ft_console_vec(TC_NORMAL, camera->normal);
-	ft_console_real(TC_FOV, camera->fov);
+	ft_console_real(TC_FOV, 2 * atan(camera->fov / 2) * (180 / M_PI));
 	printf("\n\n");
 }

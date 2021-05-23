@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 22:44:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 13:28:50 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 14:01:14 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,3 @@ void			ft_console_sphere(t_ctrl *ctrl)
 	ft_console_color(sphere->color);
 	printf("\n\n");
 }
-  
-//   "Light mode"
-//   "type		point				ratio		rgb"
-//   "light    0.00, 0.00, 0.00    0.0         255, 255, 255"
-  
-//   "object mode"
-//   "type           point				axis		diameter		height		RGB"
-//   "cylinder       0.00, 0.00, 0.00    0.0         255, 255, 255"

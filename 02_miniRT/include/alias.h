@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 13:40:35 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 15:10:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define M_INFINITY 1.797683e308
 # define M_PI2 6.283185307179586231995926937088
 # define NUL (void *)0
-# define FISH_EYE_INDEX 0.70710678118
+# define INDEX_FISH_EYE 0.70710678118
 # define DEGREE_TO_RADIAN (M_PI / 180)
 
 # define UNIT_MOVE 0.25

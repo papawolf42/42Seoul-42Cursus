@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/23 13:39:51 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/23 15:39:20 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,6 +130,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	ft_rotate_plane.c \
 	ft_rotate_square.c \
 	ft_select_object.c \
+	ft_toggle_fe.c \
 	ft_toggle_mt.c \
 	ft_trigger_key.c \
 	ft_trigger_mouse.c \
@@ -490,6 +491,9 @@ include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h include/object.h \
 include/hit.h include/event.h
+obj/ft_toggle_fe.o: src/event/ft_toggle_fe.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/console.h
 obj/ft_toggle_mt.o: src/event/ft_toggle_mt.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/console.h
@@ -552,15 +556,13 @@ obj/ft_mat_rotate.o: src/matrix/ft_mat_rotate.c include/matrix.h \
 include/vector.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
-obj/ft_render.o: src/minirt/ft_render.c include/minirt.h \
-lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
-include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/alias.h include/color.h include/object.h
-obj/ft_render_multi_thread.o: src/minirt/ft_render_multi_thread.c \
-include/minirt.h lib/minilibx_mms_20200219/mlx.h \
-lib/libft/include/libft.h include/struct.h include/vector.h \
+obj/ft_render.o: src/minirt/ft_render.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
-include/object.h include/error.h
+include/object.h include/hit.h
+obj/ft_render_multi_thread.o: src/minirt/ft_render_multi_thread.c \
+include/hit.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/alias.h include/color.h include/object.h \
+include/error.h
 obj/ft_minirt.o: src/minirt/ft_minirt.c include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
