@@ -107,7 +107,6 @@ int				ft_trigger_key(t_ctrl *ctrl, int key);
 
 int				ft_mode_light(t_ctrl *ctrl);
 int				ft_mode_camera(t_ctrl *ctrl);
-int				ft_mode_object(t_ctrl *ctrl);
 int				ft_list_before(t_ctrl *ctrl);
 int				ft_list_after(t_ctrl *ctrl);
 int				ft_move_forward(t_ctrl *ctrl);
@@ -122,6 +121,7 @@ int				ft_yaw_left(t_ctrl *ctrl);
 int				ft_yaw_right(t_ctrl *ctrl);
 int				ft_roll_right(t_ctrl *ctrl);
 int				ft_roll_left(t_ctrl *ctrl);
+int				ft_toggle_mt(t_ctrl *ctrl);
 
 int				ft_move_light(t_scene *scene, t_vec3 trans);
 int				ft_move_camera(t_camera *cam, t_vec3 trans);

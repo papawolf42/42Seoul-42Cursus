@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:47:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 16:10:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 12:19:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static void		ft_light_after(t_ctrl *ctrl)
 {
-	ft_console_msg(ctrl, "Next light selected");
+	ft_console_msg(ctrl, NUL);
 	if (ctrl->scene->idx_l == ctrl->scene->count_l - 1)
 		ctrl->scene->idx_l = -1;
 	ctrl->scene->idx_l++;
@@ -25,7 +25,7 @@ static void		ft_light_after(t_ctrl *ctrl)
 
 static void		ft_camera_after(t_ctrl *ctrl)
 {
-	ft_console_msg(ctrl, "Next camera selected");
+	ft_console_msg(ctrl, NUL);
 	if (ctrl->scene->idx_c == ctrl->scene->count_c - 1)
 		ctrl->scene->idx_c = -1;
 	ctrl->scene->idx_c++;
@@ -33,7 +33,7 @@ static void		ft_camera_after(t_ctrl *ctrl)
 
 static void		ft_object_after(t_ctrl *ctrl)
 {
-	ft_console_msg(ctrl, "Next object selected");
+	ft_console_msg(ctrl, NUL);
 	if (ctrl->scene->idx_o == ctrl->scene->count_o - 1)
 		ctrl->scene->idx_o = -1;
 	ctrl->scene->idx_o++;
@@ -47,5 +47,5 @@ int				ft_list_after(t_ctrl *ctrl)
 		ft_camera_after(ctrl);
 	else if (ctrl->mode == '\0')
 		ft_object_after(ctrl);
-	return (success);
+	return (true);
 }

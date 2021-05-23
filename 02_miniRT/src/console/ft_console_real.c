@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deselect.c                                      :+:      :+:    :+:   */
+/*   ft_console_real.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 21:59:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:59:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/22 23:32:37 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 11:54:56 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "console.h"
 
-int				ft_deselect(t_ctrl *c, int x, int y)
+void			ft_console_real(char *title, double real)
 {
-	if (c->mode == 'c')
-		c->mode = 'C';
-	else if (c->mode == 'l')
-		c->mode = 'L';
-	(void)x;
-	(void)y;
-	return (false);
+	printf("%-10s%.2f\n", title, real);
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 18:52:13 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 22:11:24 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ struct				s_ctrl
 	t_scene			*scene;
 	char			mode;
 	t_object_list	*object_selected;
+	t_bool			bool_multi_threading;
+	t_bool			bool_anti_aliasing;
+	t_bool			bool_fish_eye;
 };
 
 struct				s_canvas

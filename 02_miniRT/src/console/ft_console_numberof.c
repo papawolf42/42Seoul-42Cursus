@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deselect.c                                      :+:      :+:    :+:   */
+/*   ft_console_numberof.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 21:59:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:59:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/23 12:16:21 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 12:17:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "console.h"
+#include "object.h"
 
-int				ft_deselect(t_ctrl *c, int x, int y)
+void			ft_console_numberof(t_ctrl *ctrl, t_object_type type)
 {
-	if (c->mode == 'c')
-		c->mode = 'C';
-	else if (c->mode == 'l')
-		c->mode = 'L';
-	(void)x;
-	(void)y;
-	return (false);
+	if (type == l)
+		printf(TC_FORM_NUM_OF, ctrl->scene->idx_l + 1, ctrl->scene->count_l);
+	else if (type == cam)
+		printf(TC_FORM_NUM_OF, ctrl->scene->idx_c + 1, ctrl->scene->count_c);
 }

@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_mouse.c                                  :+:      :+:    :+:   */
+/*   ft_console_cylinder.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 20:37:45 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:54:00 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/23 11:57:09 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 11:58:56 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdio.h>
-#include "struct.h"
-#include "event.h"
-#include "exit.h"
-// need refactoring
-#include "minirt.h"
 #include "console.h"
+#include "object.h"
 
-int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl)
+void			ft_console_cylinder(t_ctrl *ctrl)
 {
-	if (y < 0)
-		return (0);
-	if (ft_trigger_mouse(btn, x, y, ctrl))
-		if (ft_switch_multi_thread(ctrl))
-			ft_exit_minirt(ctrl);
-	ft_console_msg(ctrl, NUL);
-	mlx_put_image_to_window(ctrl->mlx_ptr, ctrl->win_ptr, ctrl->img.img_ptr, 0, 0);
-	return (0);
+	t_cylinder		*cylinder;
+
+	cylinder = (t_cylinder *)ctrl->object_selected->object;
+	ft_console_type(ctrl->object_selected->type);
+	ft_console_vec(TC_POINT, cylinder->center_bottom);
+	ft_console_vec(TC_AXIS, cylinder->axis);
+	ft_console_real(TC_RADIUS, cylinder->radius);
+	ft_console_real(TC_SIDE_LEN, cylinder->height);
+	ft_console_color(cylinder->color);
 }

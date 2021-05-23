@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deselect.c                                      :+:      :+:    :+:   */
+/*   ft_console_triangle.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 21:59:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:59:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/23 11:59:56 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 13:29:26 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "console.h"
+#include "object.h"
 
-int				ft_deselect(t_ctrl *c, int x, int y)
+void			ft_console_triangle(t_ctrl *ctrl)
 {
-	if (c->mode == 'c')
-		c->mode = 'C';
-	else if (c->mode == 'l')
-		c->mode = 'L';
-	(void)x;
-	(void)y;
-	return (false);
+	t_triangle		*triangle;
+
+	triangle = (t_triangle *)ctrl->object_selected->object;
+	ft_console_type(ctrl->object_selected->type);
+	ft_console_vec(TC_POINT, triangle->a);
+	ft_console_vec(TC_POINT, triangle->b);
+	ft_console_vec(TC_POINT, triangle->c);
+	ft_console_color(triangle->color);
+	printf("\n");
 }

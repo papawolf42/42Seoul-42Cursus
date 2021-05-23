@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/22 17:24:29 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/23 13:39:51 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,23 @@ SRCS_COLOR := $(addprefix $(DIR_SRC_COLOR)/, \
 
 DIR_SRC_CONSOLE := console
 SRCS_CONSOLE := $(addprefix $(DIR_SRC_CONSOLE)/, \
+	ft_console_camera.c \
+	ft_console_clear.c \
+	ft_console_color.c \
+	ft_console_cylinder.c \
+	ft_console_light.c \
+	ft_console_logo.c \
+	ft_console_mode_and_object.c \
 	ft_console_msg.c \
+	ft_console_numberof.c \
+	ft_console_plane.c \
+	ft_console_real.c \
+	ft_console_sphere.c \
+	ft_console_square.c \
+	ft_console_status.c \
+	ft_console_triangle.c \
+	ft_console_type.c \
+	ft_console_vec.c \
 )
 
 DIR_SRC_ERROR := error
@@ -97,6 +113,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	event_rotate_z.c \
 	ft_deselect.c \
 	ft_handle_key.c \
+	ft_handle_mouse.c \
 	ft_init_hook.c \
 	ft_list_after.c \
 	ft_list_before.c \
@@ -113,6 +130,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	ft_rotate_plane.c \
 	ft_rotate_square.c \
 	ft_select_object.c \
+	ft_toggle_mt.c \
 	ft_trigger_key.c \
 	ft_trigger_mouse.c \
 )
@@ -148,6 +166,13 @@ SRCS_MATRIX := $(addprefix $(DIR_SRC_MATRIX)/, \
 	matrix.c \
 )
 
+DIR_SRC_MINIRT := minirt
+SRCS_MINIRT := $(addprefix $(DIR_SRC_MINIRT)/, \
+	ft_render.c \
+	ft_render_multi_thread.c \
+	ft_minirt.c \
+	ft_switch_multi_thread.c \
+)
 
 DIR_SRC_OBJECT := object
 SRCS_OBJECT := $(addprefix $(DIR_SRC_OBJECT)/, \
@@ -202,7 +227,7 @@ SRCS_VECTOR := $(addprefix $(DIR_SRC_VECTOR)/, \
 )
 
 SRCS := $(addprefix $(DIR_SRC)/, \
-	minirt.c \
+	main.c \
 	$(SRCS_COLOR) \
 	$(SRCS_CONSOLE) \
 	$(SRCS_ERROR) \
@@ -210,6 +235,7 @@ SRCS := $(addprefix $(DIR_SRC)/, \
 	$(SRCS_EXIT) \
 	$(SRCS_HIT) \
 	$(SRCS_MATRIX) \
+	$(SRCS_MINIRT) \
 	$(SRCS_OBJECT) \
 	$(SRCS_PARSE) \
 	$(SRCS_UTILS) \
@@ -229,6 +255,7 @@ vpath %.c \
 	$(DIR_SRC)/$(DIR_SRC_EXIT) \
 	$(DIR_SRC)/$(DIR_SRC_HIT) \
 	$(DIR_SRC)/$(DIR_SRC_MATRIX) \
+	$(DIR_SRC)/$(DIR_SRC_MINIRT) \
 	$(DIR_SRC)/$(DIR_SRC_OBJECT) \
 	$(DIR_SRC)/$(DIR_SRC_UTILS) \
 	$(DIR_SRC)/$(DIR_SRC_PARSE) \
@@ -320,14 +347,62 @@ $(NAME_GET_NEXT_LINE) :
 
 # DO NOT DELETE
 
-obj/minirt.o: src/minirt.c lib/libft/include/libft.h \
-lib/minilibx_mms_20200219/mlx.h include/struct.h include/vector.h \
+obj/main.o: src/main.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
 include/utils.h include/error.h include/parse.h include/object.h \
 include/hit.h include/event.h include/exit.h
 obj/ft_rgb_to_data.o: src/color/ft_rgb_to_data.c include/color.h \
 include/vector.h include/ray.h
+obj/ft_console_camera.o: src/console/ft_console_camera.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_console_clear.o: src/console/ft_console_clear.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
+obj/ft_console_color.o: src/console/ft_console_color.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
+obj/ft_console_cylinder.o: src/console/ft_console_cylinder.c \
+include/console.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/alias.h include/color.h include/object.h
+obj/ft_console_light.o: src/console/ft_console_light.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_console_logo.o: src/console/ft_console_logo.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
+obj/ft_console_mode_and_object.o: src/console/ft_console_mode_and_object.c \
+include/console.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/alias.h include/color.h
 obj/ft_console_msg.o: src/console/ft_console_msg.c lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/console.h
+obj/ft_console_numberof.o: src/console/ft_console_numberof.c \
+include/console.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/alias.h include/color.h include/object.h
+obj/ft_console_plane.o: src/console/ft_console_plane.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_console_real.o: src/console/ft_console_real.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
+obj/ft_console_sphere.o: src/console/ft_console_sphere.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_console_square.o: src/console/ft_console_square.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_console_status.o: src/console/ft_console_status.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h
+obj/ft_console_triangle.o: src/console/ft_console_triangle.c \
+include/console.h include/struct.h include/vector.h include/matrix.h \
+include/ray.h include/alias.h include/color.h include/object.h
+obj/ft_console_type.o: src/console/ft_console_type.c include/console.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_console_vec.o: src/console/ft_console_vec.c include/console.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/alias.h include/color.h
 obj/error.o: src/error/error.c include/alias.h include/error.h \
@@ -356,6 +431,11 @@ include/matrix.h include/ray.h include/color.h include/object.h
 obj/ft_deselect.o: src/event/ft_deselect.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_handle_key.o: src/event/ft_handle_key.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/event.h include/exit.h include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/console.h
+obj/ft_handle_mouse.o: src/event/ft_handle_mouse.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/event.h include/exit.h include/minirt.h \
 lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
@@ -409,13 +489,18 @@ obj/ft_select_object.o: src/event/ft_select_object.c include/alias.h \
 include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/color.h include/object.h \
-include/hit.h
+include/hit.h include/event.h
+obj/ft_toggle_mt.o: src/event/ft_toggle_mt.c include/struct.h \
+include/vector.h include/matrix.h include/ray.h include/alias.h \
+include/color.h include/console.h
 obj/ft_trigger_key.o: src/event/ft_trigger_key.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/event.h include/exit.h
 obj/ft_trigger_mouse.o: src/event/ft_trigger_mouse.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
-include/color.h include/event.h include/exit.h
+include/color.h include/event.h include/exit.h include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/error.h
 obj/ft_destroy_mlx.o: src/exit/ft_destroy_mlx.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h lib/minilibx_mms_20200219/mlx.h
@@ -466,6 +551,23 @@ include/vector.h
 obj/ft_mat_rotate.o: src/matrix/ft_mat_rotate.c include/matrix.h \
 include/vector.h
 obj/matrix.o: src/matrix/matrix.c include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h
+obj/ft_render.o: src/minirt/ft_render.c include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/object.h
+obj/ft_render_multi_thread.o: src/minirt/ft_render_multi_thread.c \
+include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+lib/libft/include/libft.h include/struct.h include/vector.h \
+include/matrix.h include/ray.h include/alias.h include/color.h \
+include/object.h include/error.h
+obj/ft_minirt.o: src/minirt/ft_minirt.c include/minirt.h \
+lib/minilibx_mms_20200219/mlx.h lib/libft/include/libft.h \
+include/struct.h include/vector.h include/matrix.h include/ray.h \
+include/alias.h include/color.h include/event.h include/console.h
+obj/ft_switch_multi_thread.o: src/minirt/ft_switch_multi_thread.c \
+include/minirt.h lib/minilibx_mms_20200219/mlx.h \
+lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_return_object_list.o: src/object/ft_return_object_list.c \
 include/struct.h include/vector.h include/matrix.h include/ray.h \

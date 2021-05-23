@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deselect.c                                      :+:      :+:    :+:   */
+/*   ft_console_plane.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 21:59:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:59:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/23 11:40:40 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 13:29:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "console.h"
+#include "object.h"
 
-int				ft_deselect(t_ctrl *c, int x, int y)
+void			ft_console_plane(t_ctrl *ctrl)
 {
-	if (c->mode == 'c')
-		c->mode = 'C';
-	else if (c->mode == 'l')
-		c->mode = 'L';
-	(void)x;
-	(void)y;
-	return (false);
+	t_plane		*plane;
+
+	plane = (t_plane *)ctrl->object_selected->object;
+	ft_console_type(ctrl->object_selected->type);
+	ft_console_vec(TC_POINT, plane->point);
+	ft_console_vec(TC_NORMAL, plane->normal);
+	ft_console_color(plane->color);
+	printf("\n\n");
 }

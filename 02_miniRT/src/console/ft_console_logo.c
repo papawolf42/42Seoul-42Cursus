@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deselect.c                                      :+:      :+:    :+:   */
+/*   ft_console_logo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/20 21:59:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:59:22 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/22 21:33:20 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/23 03:33:56 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#include "console.h"
 
-int				ft_deselect(t_ctrl *c, int x, int y)
+void			ft_console_logo(void)
 {
-	if (c->mode == 'c')
-		c->mode = 'C';
-	else if (c->mode == 'l')
-		c->mode = 'L';
-	(void)x;
-	(void)y;
-	return (false);
+	printf(TC_LOGO_1);
+	printf(TC_LOGO_2);
+	printf(TC_LOGO_3);
+	printf(TC_LOGO_4);
+	printf(TC_LOGO_5);
+	printf(TC_LOGO_6);
 }

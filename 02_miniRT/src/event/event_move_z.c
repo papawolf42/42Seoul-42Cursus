@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 01:24:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 01:39:42 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:34:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int					ft_move_forward(t_ctrl *ctrl)
 		ft_move_light(ctrl->scene, trans);
 	if (ctrl->mode == 'C')
 		ft_move_camera(cam, trans);
-	if (ctrl->mode == 'O')
+	if (ctrl->mode == 'c' || ctrl->mode == 'l')
 		ft_move_object(ctrl->object_selected, trans);
-	return (success);
+	return (true);
 }
 
 int					ft_move_back(t_ctrl *ctrl)
@@ -44,7 +44,7 @@ int					ft_move_back(t_ctrl *ctrl)
 		ft_move_light(ctrl->scene, trans);
 	if (ctrl->mode == 'C')
 		ft_move_camera(cam, trans);
-	if (ctrl->mode == 'O')
+	if (ctrl->mode == 'c' || ctrl->mode == 'l')
 		ft_move_object(ctrl->object_selected, trans);
-	return (success);
+	return (true);
 }

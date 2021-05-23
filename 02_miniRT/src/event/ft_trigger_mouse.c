@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 20:47:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:00:43 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:38:53 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 #include "struct.h"
 #include "event.h"
 #include "exit.h"
+#include "minirt.h"
+#include "error.h"
 
 int			ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl)
 {
 	int						idx;
 	static t_pft_mouse		pft_event[] = {
 		{BTN_LEFT, ft_select_object},
-		// {BTN_LEFT, ft_deselect},
+		{BTN_RIGHT, ft_deselect},
 		{END, NUL}
 	};
 

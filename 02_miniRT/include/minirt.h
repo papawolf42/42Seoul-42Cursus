@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:47:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 19:08:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/22 20:09:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef enum
 ** main.c
 */
 int			main(int argc, char *argv[]);
-void		ft_minirt(t_ctrl *ctrl);
+t_bool		ft_minirt(t_ctrl *ctrl);
+t_bool		ft_switch_multi_thread(t_ctrl *ctrl);
 t_bool		ft_render(t_ctrl *ctrl);
 t_bool		ft_render_multi_thread(t_ctrl *ctrl);
 

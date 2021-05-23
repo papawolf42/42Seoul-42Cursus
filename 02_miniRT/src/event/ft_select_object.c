@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 21:17:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 00:41:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:34:43 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "struct.h"
 #include "object.h"
 #include "hit.h"
+#include "event.h"
 
 int				ft_select_object(t_ctrl *c, int x, int y)
 {
@@ -28,10 +29,13 @@ int				ft_select_object(t_ctrl *c, int x, int y)
 	rec.t_max = M_INFINITY;
 	if (ft_hit(c->scene->object_list, &ray, &rec) == false)
 	{
-		c->mode = 'C';
-		return (false);
+		ft_deselect(c, x, y);
+		return (true);
 	}
 	c->object_selected = rec.object_list;
-	c->mode = 'O';
+	if (c->mode == 'C')
+		c->mode = 'c';
+	else if (c-> mode == 'L')
+		c->mode = 'l';
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:56:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 02:00:36 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 03:28:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int			ft_trigger_key(t_ctrl *ctrl, int key)
 		{KEY_A, ft_move_left}, {KEY_D, ft_move_right}, {KEY_Q, ft_move_back},
 		{KEY_E, ft_move_forward}, {KEY_T, ft_pitch_up}, {KEY_G, ft_pitch_down},
 		{KEY_F, ft_yaw_left}, {KEY_H, ft_yaw_right}, {KEY_R, ft_roll_left},
-		{KEY_Y, ft_roll_right}, {KEY_L, ft_mode_light}, {KEY_C, ft_mode_camera},
+		{KEY_Y, ft_roll_right}, {KEY_4, ft_mode_light}, {KEY_5, ft_mode_camera},
 		{KEY_MINUS, ft_list_before}, {KEY_EQUAL, ft_list_after},
+		{KEY_1, ft_toggle_mt},
 		{END, NUL}
 	};
 

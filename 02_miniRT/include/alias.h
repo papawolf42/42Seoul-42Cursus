@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 19:27:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/23 13:40:35 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define FISH_EYE_INDEX 0.70710678118
 # define DEGREE_TO_RADIAN (M_PI / 180)
 
-# define UNIT_MOVE 0.1
-# define UNIT_ROTATE_DEGREE 2
+# define UNIT_MOVE 0.25
+# define UNIT_ROTATE_DEGREE 15
 # define UNIT_ROTATE (UNIT_ROTATE_DEGREE * DEGREE_TO_RADIAN)
 # define AXIS_UP V_SET(0, 1, 0)
 
