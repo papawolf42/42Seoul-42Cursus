@@ -1,7 +1,9 @@
 # Resolution	width	height
-R				800		500
+R				0		0
+# R				800		500
 # R				1504	846
 # R				3008	1692
+# R				6016	3384
 
 # Ambient		lighting ratio		RGB
 A				0.2					255,255,255

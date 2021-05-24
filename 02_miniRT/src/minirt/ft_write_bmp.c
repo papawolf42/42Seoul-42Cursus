@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 15:32:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 16:40:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:33:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "alias.h"
 #include "libft.h"
 
-static void	ft_write_bmp_header(t_ctrl *ctrl, int fd)
+static void		ft_write_bmp_header(t_ctrl *ctrl, int fd)
 {
 	t_uchar		bmp_h[14];
 	int			size_file;
@@ -31,7 +31,7 @@ static void	ft_write_bmp_header(t_ctrl *ctrl, int fd)
 	write(fd, bmp_h, 14);
 }
 
-static void	ft_write_dib_header(t_ctrl *ctrl, int fd)
+static void		ft_write_dib_header(t_ctrl *ctrl, int fd)
 {
 	t_uchar		dib_h[40];
 	int			size_file;
@@ -52,7 +52,7 @@ static void	ft_write_dib_header(t_ctrl *ctrl, int fd)
 	write(fd, dib_h, 40);
 }
 
-static void	ft_wrtie_img_data(t_ctrl *c, int fd)
+static void		ft_wrtie_img_data(t_ctrl *c, int fd)
 {
 	t_canvas	canv;
 	int			i;

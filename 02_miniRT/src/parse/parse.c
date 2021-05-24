@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 22:07:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:21:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ t_bool			ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	int		ret;
 	char	*line;
 
-	ctrl->scene = (t_scene *)malloc(sizeof(t_scene));
-	if (ctrl->scene == NULL)
-		return (ft_err_msg(ERR_MALLOC_FAIL));
 	ft_init_object_list(ctrl->scene);
 	fd = open(rt_file, O_RDONLY);
 	if (fd == OPEN_FAIL)

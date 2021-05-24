@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 14:53:01 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 16:38:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:33:22 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 static void		ft_init_data(t_ctrl *ctrl)
 {
-	ctrl->mlx_ptr = mlx_init();
 	ctrl->img.img_ptr = mlx_new_image(ctrl->mlx_ptr,
 										ctrl->scene->canv.width,
 										ctrl->scene->canv.height);
@@ -60,7 +59,7 @@ static t_bool	ft_close(int fd)
 t_bool			ft_save_bmp(t_ctrl *ctrl, t_bool bool_minirt)
 {
 	int		fd;
-	
+
 	fd = 0;
 	if (bool_minirt == false)
 		ft_init_data(ctrl);

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 21:07:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 11:30:42 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:31:21 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define ERR_BAD_RANGE "Bad range found"
 # define ERR_BAD_INT "Bad integer found"
 # define ERR_BAD_REAL "Bad real found"
+
+# define ERR_RES_LOW_ZERO "Resolution must be bigger than zero"
 
 # define ERR_MALLOC_FAIL "Allocating memory failed"
 

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 19:47:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:09:24 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 t_bool		ft_minirt(t_ctrl *ctrl)
 {
-	ctrl->mlx_ptr = mlx_init();
 	ctrl->win_ptr = mlx_new_window(ctrl->mlx_ptr,
 									ctrl->scene->canv.width,
 									ctrl->scene->canv.height,

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 22:47:44 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 00:07:30 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ struct							s_canvas
 {
 	int				width;
 	int				height;
+	int				max_w;
+	int				max_h;
 	double			aspect_ratio;
 };
 
