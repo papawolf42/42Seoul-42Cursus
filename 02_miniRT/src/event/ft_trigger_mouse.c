@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 20:47:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 11:28:42 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 02:21:32 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl)
 	int						idx;
 	static t_pft_mouse		pft_event[] = {
 		{BTN_LEFT, ft_select_object},
-		{BTN_RIGHT, ft_deselect},
+		{BTN_RIGHT, ft_look_at},
 		{END, NULL}
 	};
 

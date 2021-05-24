@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 21:17:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:06:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:56:37 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int				ft_select_object(t_ctrl *c, int x, int y)
 	rec.t_max = M_INFINITY;
 	if (ft_hit(c->scene->object_list, &ray, &rec) == false)
 	{
-		ft_deselect(c, x, y);
-		return (true);
+		if (c->mode == 'c')
+			c->mode = 'C';
+		else if (c->mode == 'l')
+			c->mode = 'L';
 	}
 	c->object_selected = rec.object_list;
 	if (c->mode == 'C')

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:59:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 01:34:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:58:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ t_bool		ft_hit_triangle(t_triangle *tr, t_ray *ray, t_hit_rec *rec);
 
 t_color		ft_filter(t_scene *s, t_color color);
 t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec);
+
+t_point3	ft_switch_fisheye(t_ctrl *c, double fov, double x, double y);
 
 #endif

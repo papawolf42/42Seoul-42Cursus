@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 17:12:14 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 01:33:06 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 03:54:01 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "struct.h"
 
 # define UNIT_MOVE			1.0
-# define UNIT_ROTATE_DEGREE 1.0
+# define UNIT_ROTATE_DEGREE 15.0
 
 # define MASK_NOEVENT		0L
 # define MASK_EVENT			1L
@@ -150,7 +150,7 @@ int					ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl);
 int					ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
 
 int					ft_select_object(t_ctrl *c, int x, int y);
-int					ft_deselect(t_ctrl *c, int x, int y);
+int					ft_look_at(t_ctrl *c, int x, int y);
 
 typedef struct		s_pft_key
 {
