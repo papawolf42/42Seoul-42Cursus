@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 17:12:14 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 22:48:56 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 23:49:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,10 @@ int					ft_rotate_plane(t_object_list *list, t_mat44 mat);
 int					ft_rotate_square(t_object_list *list, t_mat44 mat);
 int					ft_rotate_cylinder(t_object_list *list, t_mat44 mat);
 
-int					ft_increase_radius(t_ctrl *ctrl);
-int					ft_decrease_radius(t_ctrl *ctrl);
-int					ft_increase_length(t_ctrl *ctrl);
-int					ft_decrease_length(t_ctrl *ctrl);
+int					ft_up_radius(t_ctrl *ctrl);
+int					ft_down_radius(t_ctrl *ctrl);
+int					ft_up_length_ratio(t_ctrl *ctrl);
+int					ft_down_length_ratio(t_ctrl *ctrl);
 
 int					ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl);
 int					ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
