@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 16:09:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 13:44:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:08:14 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,19 @@
 # define TC_LOGO_5			"██║ ╚═╝ ██║██║██║ ╚████║██║██║  ██║   ██║   \n"
 # define TC_LOGO_6			"╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝   ╚═╝   \n"
 
+# define TC_STATUS_0		"translate  rotate\n"
 # define TC_STATUS_1		"┌──┬──┬──┐ ┌──┬──┬──┐ ┌─────────────┐\n"
 # define TC_STATUS_2_1		"│Q∙│W↑│E×│ │R↶│T↑│Y↷│ │ 1. MT : "
 # define TC_STATUS_3_1		"├──┼──┼──┤ ├──┼──┼──┤ │ 2. AA : "
 # define TC_STATUS_4_1		"│A←│S↓│D→│ │F←│G↓│H→│ │ 3. FE : "
 # define TC_STATUS_CLOSE									   " │\n"
 # define TC_STATUS_5		"└──┴──┴──┘ └──┴──┴──┘ └─────────────┘\n"
+# define TC_STATUS_6		"up/down    before/after\n"
+# define TC_STATUS_7		"   ┌──┐    ┌──┬──┐\n"
+# define TC_STATUS_8		"   │↑ │    │- │+ │\n"
+# define TC_STATUS_9		"┌──┼──┼──┐ └──┴──┘\n"
+# define TC_STATUS_10		"│← │↓ │→ │        \n"
+# define TC_STATUS_11		"└──┴──┴──┘        \n"
 # define TC_STATUS_ON		"on "
 # define TC_STATUS_OFF		"off"
 

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 21:45:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 23:43:17 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:07:44 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,10 @@ void			ft_console_status(t_ctrl *ctrl)
 	ft_status_switch(ctrl, 4);
 	printf("%s", TC_STATUS_CLOSE);
 	printf("%s", TC_STATUS_5);
+	printf("%s", TC_STATUS_6);
+	printf("%s", TC_STATUS_7);
+	printf("%s", TC_STATUS_8);
+	printf("%s", TC_STATUS_9);
+	printf("%s", TC_STATUS_10);
+	printf("%s", TC_STATUS_11);
 }
