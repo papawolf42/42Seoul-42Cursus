@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 17:12:14 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 23:49:03 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:33:06 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int					ft_roll_left(t_ctrl *ctrl);
 int					ft_toggle_aa(t_ctrl *ctrl);
 int					ft_toggle_mt(t_ctrl *ctrl);
 int					ft_toggle_fe(t_ctrl *ctrl);
+int					ft_rotate_filter(t_ctrl *ctrl);
 
 int					ft_move_light(t_scene *scene, t_vec3 trans);
 int					ft_move_camera(t_camera *cam, t_vec3 trans);

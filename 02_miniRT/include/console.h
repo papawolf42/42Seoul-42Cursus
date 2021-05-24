@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 16:09:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 01:08:14 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:54:04 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@
 # define TC_STATUS_4_1		"│A←│S↓│D→│ │F←│G↓│H→│ │ 3. FE : "
 # define TC_STATUS_CLOSE									   " │\n"
 # define TC_STATUS_5		"└──┴──┴──┘ └──┴──┴──┘ └─────────────┘\n"
-# define TC_STATUS_6		"up/down    before/after\n"
-# define TC_STATUS_7		"   ┌──┐    ┌──┬──┐\n"
-# define TC_STATUS_8		"   │↑ │    │- │+ │\n"
-# define TC_STATUS_9		"┌──┼──┼──┐ └──┴──┘\n"
-# define TC_STATUS_10		"│← │↓ │→ │        \n"
-# define TC_STATUS_11		"└──┴──┴──┘        \n"
+# define TC_STATUS_6		"filter     resize     before/after\n"
+# define TC_STATUS_7		"┌─────────┐   ┌──┐    ┌──┬──┐\n"
+# define TC_STATUS_8_1		"│tab "
+# define TC_STATUS_8_2		"│   │↑ │    │- │+ │\n"
+# define TC_STATUS_9		"└─────────┘┌──┼──┼──┐ └──┴──┘\n"
+# define TC_STATUS_10		"           │← │↓ │→ │\n"
+# define TC_STATUS_11		"           └──┴──┴──┘\n"
 # define TC_STATUS_ON		"on "
 # define TC_STATUS_OFF		"off"
 
@@ -54,6 +55,7 @@
 # define TC_RED				"\033[31m"
 # define TC_GREEN			"\033[32m"
 # define TC_BLUE			"\033[34m"
+# define TC_BYELLOW			"\033[93m"
 
 # define TC_ERASE_UP		"\033[1J"
 

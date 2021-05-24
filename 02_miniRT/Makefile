@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/24 23:15:18 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/25 01:36:35 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,6 +128,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	ft_move_square.c \
 	ft_move_triangle.c \
 	ft_rotate_cylinder.c \
+	ft_rotate_filter.c \
 	ft_rotate_object.c \
 	ft_rotate_plane.c \
 	ft_rotate_square.c \
@@ -148,6 +149,7 @@ SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
 
 DIR_SRC_HIT := hit
 SRCS_HIT := $(addprefix $(DIR_SRC_HIT)/, \
+	ft_filter.c \
 	ft_hit.c \
 	ft_hit_cylinder.c \
 	ft_hit_object.c \

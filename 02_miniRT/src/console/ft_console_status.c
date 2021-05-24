@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 21:45:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 01:07:44 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:51:26 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ static void		ft_status_switch(t_ctrl *ctrl, int line)
 		ft_status_refer(ctrl->bool_fish_eye);
 }
 
+static void		ft_status_filter(char filter)
+{
+	if (filter == '\0')
+		printf("     ");
+	else if (filter == 's')
+		printf("%ssepia%s", TC_BYELLOW, TC_RESET);
+	else if (filter == 'r')
+		printf("%sred  %s", TC_RED, TC_RESET);
+	else if (filter == 'g')
+		printf("%sgreen%s", TC_GREEN, TC_RESET);
+	else if (filter == 'b')
+		printf("%sblue %s", TC_BLUE, TC_RESET);
+}
+
 void			ft_console_status(t_ctrl *ctrl)
 {
 	printf("translate  rotate\n");
@@ -46,7 +60,9 @@ void			ft_console_status(t_ctrl *ctrl)
 	printf("%s", TC_STATUS_5);
 	printf("%s", TC_STATUS_6);
 	printf("%s", TC_STATUS_7);
-	printf("%s", TC_STATUS_8);
+	printf("%s", TC_STATUS_8_1);
+	ft_status_filter(ctrl->scene->filter);
+	printf("%s", TC_STATUS_8_2);
 	printf("%s", TC_STATUS_9);
 	printf("%s", TC_STATUS_10);
 	printf("%s", TC_STATUS_11);

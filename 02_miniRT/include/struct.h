@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:07:30 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:17:26 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ struct							s_scene
 	int				count_l;
 	int				count_c;
 	int				count_o;
+	char			filter;
 	t_color			*data_aa;
 };
 

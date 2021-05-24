@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:59:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 12:12:16 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:34:49 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_bool		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec);
 t_bool		ft_hit_cylinder(t_cylinder *cy, t_ray *ray, t_hit_rec *rec);
 t_bool		ft_hit_triangle(t_triangle *tr, t_ray *ray, t_hit_rec *rec);
 
+t_color		ft_filter(t_scene *s, t_color color);
 t_color		ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec);
 
 #endif

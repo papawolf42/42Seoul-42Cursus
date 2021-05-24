@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:56:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:34:15 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 01:33:22 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			ft_trigger_key(t_ctrl *ctrl, int key)
 		{KEY_1, ft_toggle_mt}, {KEY_2, ft_toggle_aa}, {KEY_3, ft_toggle_fe},
 		{KEY_RIGHT, ft_up_radius}, {KEY_LEFT, ft_down_radius},
 		{KEY_UP, ft_up_length_ratio}, {KEY_DOWN, ft_down_length_ratio},
+		{KEY_TAB, ft_rotate_filter},
 		{END, NULL}
 	};
 
