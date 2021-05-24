@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:53:34 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/20 23:21:52 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 void					ft_triangle_set(t_triangle *triangle)
 {
-	triangle->ab = V_MINUS(triangle->b, triangle->a);
-	triangle->bc = V_MINUS(triangle->c, triangle->b);
-	triangle->ca = V_MINUS(triangle->a, triangle->c);
-	triangle->normal = V_UNIT(V_CROSS(triangle->ab, triangle->bc));
+	triangle->ab = ft_vminus(triangle->b, triangle->a);
+	triangle->bc = ft_vminus(triangle->c, triangle->b);
+	triangle->ca = ft_vminus(triangle->a, triangle->c);
+	triangle->normal = ft_vunit(ft_vcross(triangle->ab, triangle->bc));
 }
 
 t_bool					ft_parse_triangle(t_scene *s, char **splits)
@@ -30,7 +30,7 @@ t_bool					ft_parse_triangle(t_scene *s, char **splits)
 	t_triangle		*triangle;
 
 	triangle = (t_triangle *)malloc(sizeof(t_triangle));
-	if (triangle == NUL)
+	if (triangle == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	if (ft_strslen(splits) != 5)
 		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(triangle));

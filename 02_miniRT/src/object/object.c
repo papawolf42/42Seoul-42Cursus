@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 17:30:28 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:14:10 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ t_bool					ft_init_object_list(t_scene *s)
 {
 	ft_bzero(s, sizeof(t_scene));
 	s->object_list = (t_object_list *)malloc(sizeof(t_object_list));
-	if (s->object_list == NUL)
+	if (s->object_list == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	ft_bzero(s->object_list, sizeof(t_object_list));
 	s->camera_list = (t_object_list *)malloc(sizeof(t_object_list));
-	if (s->camera_list == NUL)
+	if (s->camera_list == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	ft_bzero(s->camera_list, sizeof(t_object_list));
 	s->light_list = (t_object_list *)malloc(sizeof(t_object_list));
-	if (s->light_list == NUL)
+	if (s->light_list == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	ft_bzero(s->light_list, sizeof(t_object_list));
 	return (success);
@@ -55,7 +55,7 @@ t_bool					ft_addback_object_list(t_object_type type,
 	t_object_list	*node;
 
 	node = ft_return_object_list(type, s);
-	if (node->object == NUL)
+	if (node->object == NULL)
 	{
 		node->type = type;
 		node->object = object;
@@ -67,7 +67,7 @@ t_bool					ft_addback_object_list(t_object_type type,
 			node = node->next;
 		}
 		node->next = (t_object_list *)malloc(sizeof(t_object_list));
-		if (node->next == NUL)
+		if (node->next == NULL)
 			return (ft_err_msg(ERR_MALLOC_FAIL));
 		ft_bzero(node->next, sizeof(t_object_list));
 		node->next->type = type;

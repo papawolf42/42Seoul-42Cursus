@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 13:47:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 12:19:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static void		ft_light_after(t_ctrl *ctrl)
 {
-	ft_console_msg(ctrl, NUL);
+	ft_console_msg(ctrl, NULL);
 	if (ctrl->scene->idx_l == ctrl->scene->count_l - 1)
 		ctrl->scene->idx_l = -1;
 	ctrl->scene->idx_l++;
@@ -25,7 +25,7 @@ static void		ft_light_after(t_ctrl *ctrl)
 
 static void		ft_camera_after(t_ctrl *ctrl)
 {
-	ft_console_msg(ctrl, NUL);
+	ft_console_msg(ctrl, NULL);
 	if (ctrl->scene->idx_c == ctrl->scene->count_c - 1)
 		ctrl->scene->idx_c = -1;
 	ctrl->scene->idx_c++;
@@ -33,7 +33,7 @@ static void		ft_camera_after(t_ctrl *ctrl)
 
 static void		ft_object_after(t_ctrl *ctrl)
 {
-	ft_console_msg(ctrl, NUL);
+	ft_console_msg(ctrl, NULL);
 	if (ctrl->scene->idx_o == ctrl->scene->count_o - 1)
 		ctrl->scene->idx_o = -1;
 	ctrl->scene->idx_o++;

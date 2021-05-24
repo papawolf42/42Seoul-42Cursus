@@ -6,10 +6,11 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:56:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 16:39:44 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 11:28:39 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "alias.h"
 #include "struct.h"
 #include "event.h"
@@ -28,7 +29,7 @@ int			ft_trigger_key(t_ctrl *ctrl, int key)
 		{KEY_1, ft_toggle_mt},
 		{KEY_2, ft_toggle_aa},
 		{KEY_3, ft_toggle_fe},
-		{END, NUL}
+		{END, NULL}
 	};
 
 	idx = 0;

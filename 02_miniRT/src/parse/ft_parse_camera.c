@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 18:23:38 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 14:46:26 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:57:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_bool			ft_parse_camera(t_scene *s, char **splits)
 	t_camera	*c;
 
 	c = (t_camera *)malloc(sizeof(t_camera));
-	if (c == NUL)
+	if (c == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	if (ft_strslen(splits) != 4)
 		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(c));
@@ -35,9 +35,9 @@ t_bool			ft_parse_camera(t_scene *s, char **splits)
 		return (ft_destroy(c));
 	if (!(0 < c->fov && c->fov < 180))
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(c));
-	c->normal = V_UNIT(c->normal);
+	c->normal = ft_vunit(c->normal);
 	c->fov = 2 * tan((c->fov / 2) * (M_PI / 180));
-	c->mat_c2w = ft_getmat_c2w(c, AXIS_UP);
+	c->mat_c2w = ft_getmat_c2w(c, ft_vset(0, 1, 0));
 	if (ft_addback_object_list(cam, c, s))
 		return (ft_destroy(c));
 	return (success);

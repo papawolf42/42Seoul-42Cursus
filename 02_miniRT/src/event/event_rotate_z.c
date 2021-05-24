@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 19:56:54 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:04:54 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 11:32:36 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int					ft_roll_right(t_ctrl *ctrl)
 	t_mat44			mat;
 	t_camera		*cam;
 
-	mat = ft_mat_rotate_z(-UNIT_ROTATE);
+	mat = ft_mat_rotate_z(ctrl->unit_rotate);
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list,
 											ctrl->scene->idx_c);
 	if (ctrl->mode == 'C')
@@ -37,7 +37,7 @@ int					ft_roll_left(t_ctrl *ctrl)
 	t_mat44			mat;
 	t_camera		*cam;
 
-	mat = ft_mat_rotate_z(UNIT_ROTATE);
+	mat = ft_mat_rotate_z(-ctrl->unit_rotate);
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list,
 											ctrl->scene->idx_c);
 	if (ctrl->mode == 'C')

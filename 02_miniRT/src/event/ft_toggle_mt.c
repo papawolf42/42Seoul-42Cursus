@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 20:51:41 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:08:00 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 int				ft_toggle_mt(t_ctrl *ctrl)
 {
 	ctrl->bool_multi_threading = !ctrl->bool_multi_threading;
-	ft_console_msg(ctrl, NUL);
+	ft_console_msg(ctrl, NULL);
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:54:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 16:23:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:20:23 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,22 @@ typedef struct s_cylinder		t_cylinder;
 typedef struct s_triangle		t_triangle;
 
 typedef struct s_var_render		t_var_render;
-
+typedef struct s_var_phong		t_var_phong;
+typedef struct s_var_sphere		t_var_sphere;
+typedef struct s_var_cylinder	t_var_cylinder;
+typedef struct s_var_triangle	t_var_triangle;
 
 typedef enum e_object_type		t_object_type;
 
 typedef struct s_pft_parse		t_pft_parse;
 
-struct				s_pft_parse
+struct							s_pft_parse
 {
 	char			*id;
 	t_bool			(*parse)(t_scene *scene, char **splits);
 };
 
-enum e_object_type
+enum							e_object_type
 {
 	no = 0,
 	cam = 1,
@@ -62,7 +65,7 @@ enum e_object_type
 	tr = 7
 };
 
-struct				s_image
+struct							s_image
 {
 	void			*img_ptr;
 	char			*data;
@@ -71,7 +74,7 @@ struct				s_image
 	int				endian;
 };
 
-struct				s_ctrl
+struct							s_ctrl
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -82,22 +85,24 @@ struct				s_ctrl
 	t_bool			bool_multi_threading;
 	t_bool			bool_anti_aliasing;
 	t_bool			bool_fish_eye;
+	double			unit_move;
+	double			unit_rotate;
 };
 
-struct				s_canvas
+struct							s_canvas
 {
 	int				width;
 	int				height;
 	double			aspect_ratio;
 };
 
-struct				s_ambient
+struct							s_ambient
 {
 	double			ratio;
 	t_color			color;
 };
 
-struct				s_scene
+struct							s_scene
 {
 	int				flag_declare;
 	t_canvas		canv;
@@ -114,7 +119,7 @@ struct				s_scene
 	t_color			*data_aa;
 };
 
-struct				s_pth_data
+struct							s_pth_data
 {
 	int				lane;
 	int				count;
@@ -122,14 +127,14 @@ struct				s_pth_data
 	t_ctrl			*ctrl;
 };
 
-struct				s_object_list
+struct							s_object_list
 {
 	void			*object;
 	t_object_type	type;
 	t_object_list	*next;
 };
 
-struct				s_hit_record
+struct							s_hit_record
 {
 	t_point3		p;
 	t_vec3			normal;
@@ -141,7 +146,7 @@ struct				s_hit_record
 	t_object_list	*object_list;
 };
 
-struct				s_triangle
+struct							s_triangle
 {
 	t_point3		a;
 	t_point3		b;
@@ -153,7 +158,7 @@ struct				s_triangle
 	t_color			color;
 };
 
-struct				s_cylinder
+struct							s_cylinder
 {
 	t_point3		center_bottom;
 	t_point3		center_top;
@@ -163,7 +168,7 @@ struct				s_cylinder
 	t_color			color;
 };
 
-struct				s_square
+struct							s_square
 {
 	t_point3		center;
 	t_vec3			normal;
@@ -174,31 +179,28 @@ struct				s_square
 	t_vec3			span_b;
 };
 
-struct				s_plane
+struct							s_plane
 {
 	t_point3		point;
 	t_vec3			normal;
 	t_color			color;
 };
 
-struct				s_sphere
+struct							s_sphere
 {
 	t_point3		center;
 	double			radius;
 	t_color			color;
 };
 
-struct				s_light
+struct							s_light
 {
 	t_point3		p;
 	double			ratio;
 	t_color			color;
 };
 
-/*
-** mat_c2w : camera to world matrix
-*/
-struct				s_camera
+struct							s_camera
 {
 	t_point3		origin;
 	t_vec3			normal;
@@ -206,7 +208,7 @@ struct				s_camera
 	t_mat44			mat_c2w;
 };
 
-struct				s_var_render
+struct							s_var_render
 {
 	int				x;
 	int				y;
@@ -216,9 +218,51 @@ struct				s_var_render
 	char			*data;
 };
 
+struct							s_var_phong
+{
+	t_color			diffuse;
+	t_color			specular;
+	t_color			light_intensity;
+	t_vec3			to_light;
+	t_vec3			to_view;
+	t_vec3			reflect;
+	double			kd;
+};
 
-t_mat44			ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
+struct							s_var_sphere
+{
+	t_vec3			oc;
+	double			a;
+	double			half_b;
+	double			c;
+	double			discriminant;
+	double			sqrtd;
+};
 
-t_bool			ft_parse_resolution(t_scene *scene, char **splits);
+struct							s_var_cylinder
+{
+	t_vec3			v;
+	t_vec3			w;
+	t_vec3			h;
+	double			a;
+	double			half_b;
+	double			c;
+	double			discriminant;
+	double			root;
+	double			sqrtd;
+};
+
+struct							s_var_triangle
+{
+	double			proj_unit;
+	double			proj_len;
+	double			root;
+	t_vec3			p;
+	t_vec3			na;
+	t_vec3			nb;
+	t_vec3			nc;
+};
+
+t_mat44							ft_getmat_c2w(t_camera *cam, t_vec3 axis_up);
 
 #endif

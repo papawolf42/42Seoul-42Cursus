@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/16 00:26:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 01:17:48 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double		ft_atof(char *s)
 	if (splits[0][0] == '-')
 		sign = -1;
 	fraction = 0;
-	if (splits[1] != NUL)
+	if (splits[1] != NULL)
 	{
 		fraction = (double)ft_atoi_plus(splits[1]);
 		fraction /= pow(10, ft_strlen(splits[1]));

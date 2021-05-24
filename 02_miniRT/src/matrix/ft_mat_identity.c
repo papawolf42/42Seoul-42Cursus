@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 21:08:38 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:12:32 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:44:48 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_mat44				ft_mat_identity(void)
 {
-	return (ft_mat_set(V_SET(1, 0, 0),
-						V_SET(0, 1, 0),
-						V_SET(0, 0, 1),
-						V_SET(0, 0, 0)));
+	return (ft_mat_set(ft_vset(1, 0, 0),
+						ft_vset(0, 1, 0),
+						ft_vset(0, 0, 1),
+						ft_vset(0, 0, 0)));
 }

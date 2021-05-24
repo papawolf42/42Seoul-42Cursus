@@ -6,10 +6,11 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/20 20:47:00 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 13:38:53 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 11:28:42 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "alias.h"
 #include "struct.h"
 #include "event.h"
@@ -23,7 +24,7 @@ int			ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl)
 	static t_pft_mouse		pft_event[] = {
 		{BTN_LEFT, ft_select_object},
 		{BTN_RIGHT, ft_deselect},
-		{END, NUL}
+		{END, NULL}
 	};
 
 	idx = 0;

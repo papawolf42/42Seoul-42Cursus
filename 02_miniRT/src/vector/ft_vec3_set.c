@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:02:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 01:22:11 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:05:40 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "alias.h"
 #include "utils.h"
 
-t_vec3		ft_vec3_set(double x, double y, double z)
+t_vec3		ft_vset(double x, double y, double z)
 {
 	t_vec3		vec;
 
@@ -24,7 +24,7 @@ t_vec3		ft_vec3_set(double x, double y, double z)
 	return (vec);
 }
 
-t_vec3		ft_vec3_maximum(t_vec3 one, t_vec3 two)
+t_vec3		ft_vmax(t_vec3 one, t_vec3 two)
 {
 	one.x = ft_max(one.x, two.x);
 	one.y = ft_max(one.y, two.y);
@@ -32,7 +32,7 @@ t_vec3		ft_vec3_maximum(t_vec3 one, t_vec3 two)
 	return (one);
 }
 
-t_vec3		ft_vec3_minimum(t_vec3 one, t_vec3 two)
+t_vec3		ft_vmin(t_vec3 one, t_vec3 two)
 {
 	one.x = ft_min(one.x, two.x);
 	one.y = ft_min(one.y, two.y);

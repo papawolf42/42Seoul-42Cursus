@@ -6,14 +6,14 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:32:32 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 01:21:35 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:05:33 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "error.h"
 
-t_vec3		ft_vec3_scalar(t_vec3 vec, double t)
+t_vec3		ft_vscalar(t_vec3 vec, double t)
 {
 	vec.x *= t;
 	vec.y *= t;
@@ -21,7 +21,7 @@ t_vec3		ft_vec3_scalar(t_vec3 vec, double t)
 	return (vec);
 }
 
-t_vec3		ft_vec3_mult(t_vec3 one, t_vec3 two)
+t_vec3		ft_vmult(t_vec3 one, t_vec3 two)
 {
 	one.x *= two.x;
 	one.y *= two.y;
@@ -29,12 +29,12 @@ t_vec3		ft_vec3_mult(t_vec3 one, t_vec3 two)
 	return (one);
 }
 
-double		ft_vec3_dot(t_vec3 one, t_vec3 two)
+double		ft_vdot(t_vec3 one, t_vec3 two)
 {
 	return (one.x * two.x + one.y * two.y + one.z * two.z);
 }
 
-t_vec3		ft_vec3_cross(t_vec3 one, t_vec3 two)
+t_vec3		ft_vcross(t_vec3 one, t_vec3 two)
 {
 	t_vec3	new;
 
@@ -44,12 +44,12 @@ t_vec3		ft_vec3_cross(t_vec3 one, t_vec3 two)
 	return (new);
 }
 
-t_vec3		ft_vec3_unit(t_vec3 vec)
+t_vec3		ft_vunit(t_vec3 vec)
 {
 	double		veclen;
 
-	veclen = ft_vec3_len(vec);
+	veclen = ft_vlen(vec);
 	if (veclen == 0)
 		ft_err_msg("cannot be devieded 0");
-	return (ft_vec3_scalar(vec, 1.0 / veclen));
+	return (ft_vscalar(vec, 1.0 / veclen));
 }

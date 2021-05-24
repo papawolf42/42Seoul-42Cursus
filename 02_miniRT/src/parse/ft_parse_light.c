@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:15:53 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/19 19:17:05 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_bool			ft_parse_light(t_scene *s, char **splits)
 	t_light		*light;
 
 	light = (t_light *)malloc(sizeof(t_light));
-	if (light == NUL)
+	if (light == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	if (ft_strslen(splits) != 4)
 		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(light));

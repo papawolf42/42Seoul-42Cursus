@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 19:05:47 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 19:06:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:48:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ t_color			ft_color_average(t_color *data, int x, int y, int width)
 	int			dx;
 	int			dy;
 
-	c = V_SET(0, 0, 0);
+	c = ft_vset(0, 0, 0);
 	dy = 0;
 	while (dy < SAMPLING)
 	{
 		dx = 0;
 		while (dx < SAMPLING)
 		{
-			c = V_PLUS(c, data[((y + dy) * width) + (x + dx)]);
+			c = ft_vplus(c, data[((y + dy) * width) + (x + dx)]);
 			dx++;
 		}
 		dy++;
 	}
-	c = V_SCALAR(c, 1.0 / (SAMPLING * SAMPLING));
+	c = ft_vscalar(c, 1.0 / (SAMPLING * SAMPLING));
 	return (c);
 }

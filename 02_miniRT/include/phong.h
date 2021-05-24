@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ray_at.c                                        :+:      :+:    :+:   */
+/*   phong.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/21 22:05:37 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 10:48:17 by gunkim           ###   ########.fr       */
+/*   Created: 2021/05/24 10:16:24 by gunkim            #+#    #+#             */
+/*   Updated: 2021/05/24 12:12:28 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "struct.h"
+#ifndef PHONG_H
+# define PHONG_H
 
-t_vec3		ft_ray_at(t_ray *ray, double t)
-{
-	t_point3	at;
+# define KS 		0.3
+# define KSN		32
 
-	at = ft_vplus(ray->org, ft_vscalar(ray->dir, t));
-	return (at);
-}
+#endif

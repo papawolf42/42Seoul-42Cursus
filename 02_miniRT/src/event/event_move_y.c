@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 01:24:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:06:46 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:44:48 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int					ft_move_down(t_ctrl *ctrl)
 
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list,
 												ctrl->scene->idx_c);
-	trans = ft_linear_transform_rotate(cam->mat_c2w, V_SET(0, -UNIT_MOVE, 0));
+	trans = ft_linear_transform_rotate(cam->mat_c2w, ft_vset(0, -UNIT_MOVE, 0));
 	if (ctrl->mode == 'L')
 		ft_move_light(ctrl->scene, trans);
 	if (ctrl->mode == 'C')
@@ -41,7 +41,7 @@ int					ft_move_up(t_ctrl *ctrl)
 
 	cam = (t_camera *)ft_return_object(ctrl->scene->camera_list,
 												ctrl->scene->idx_c);
-	trans = ft_linear_transform_rotate(cam->mat_c2w, V_SET(0, UNIT_MOVE, 0));
+	trans = ft_linear_transform_rotate(cam->mat_c2w, ft_vset(0, UNIT_MOVE, 0));
 	if (ctrl->mode == 'L')
 		ft_move_light(ctrl->scene, trans);
 	if (ctrl->mode == 'C')

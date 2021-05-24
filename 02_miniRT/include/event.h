@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.h                                           :+:      :+:    :+:   */
+/*   event.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 17:12:14 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/18 17:12:14 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:11:14 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 # include "alias.h"
 # include "struct.h"
 
-# define MASK_KEYPRESS		1L<<0
-# define MASK_KEYRELEASE	1L<<1
-# define MASK_BUTTONPRESS	1L<<2
-# define MASK_EXITWINDOW	1L<<2
+# define MASK_NOEVENT		0L
+# define MASK_EVENT			1L
 
 # define EVENT_KEYPRESS		2
 # define EVENT_KEYRELEASE	3
@@ -100,78 +98,73 @@
 # define BTN_LEFT			1
 # define BTN_RIGHT			2
 
-void			ft_init_hook(t_ctrl *ctrl);
+void				ft_init_hook(t_ctrl *ctrl);
 
-int				ft_handle_key(int key, t_ctrl *ctrl);
-int				ft_trigger_key(t_ctrl *ctrl, int key);
+int					ft_handle_key(int key, t_ctrl *ctrl);
+int					ft_trigger_key(t_ctrl *ctrl, int key);
 
-int				ft_mode_light(t_ctrl *ctrl);
-int				ft_mode_camera(t_ctrl *ctrl);
-int				ft_list_before(t_ctrl *ctrl);
-int				ft_list_after(t_ctrl *ctrl);
-int				ft_move_forward(t_ctrl *ctrl);
-int				ft_move_back(t_ctrl *ctrl);
-int				ft_move_left(t_ctrl *ctrl);
-int				ft_move_right(t_ctrl *ctrl);
-int				ft_move_down(t_ctrl *ctrl);
-int				ft_move_up(t_ctrl *ctrl);
-int				ft_pitch_up(t_ctrl *ctrl);
-int				ft_pitch_down(t_ctrl *ctrl);
-int				ft_yaw_left(t_ctrl *ctrl);
-int				ft_yaw_right(t_ctrl *ctrl);
-int				ft_roll_right(t_ctrl *ctrl);
-int				ft_roll_left(t_ctrl *ctrl);
-int				ft_toggle_aa(t_ctrl *ctrl);
-int				ft_toggle_mt(t_ctrl *ctrl);
-int				ft_toggle_fe(t_ctrl *ctrl);
+int					ft_mode_light(t_ctrl *ctrl);
+int					ft_mode_camera(t_ctrl *ctrl);
+int					ft_list_before(t_ctrl *ctrl);
+int					ft_list_after(t_ctrl *ctrl);
+int					ft_move_forward(t_ctrl *ctrl);
+int					ft_move_back(t_ctrl *ctrl);
+int					ft_move_left(t_ctrl *ctrl);
+int					ft_move_right(t_ctrl *ctrl);
+int					ft_move_down(t_ctrl *ctrl);
+int					ft_move_up(t_ctrl *ctrl);
+int					ft_pitch_up(t_ctrl *ctrl);
+int					ft_pitch_down(t_ctrl *ctrl);
+int					ft_yaw_left(t_ctrl *ctrl);
+int					ft_yaw_right(t_ctrl *ctrl);
+int					ft_roll_right(t_ctrl *ctrl);
+int					ft_roll_left(t_ctrl *ctrl);
+int					ft_toggle_aa(t_ctrl *ctrl);
+int					ft_toggle_mt(t_ctrl *ctrl);
+int					ft_toggle_fe(t_ctrl *ctrl);
 
-int				ft_move_light(t_scene *scene, t_vec3 trans);
-int				ft_move_camera(t_camera *cam, t_vec3 trans);
-int				ft_move_object(t_object_list *list, t_vec3 trans);
-int				ft_move_sphere(t_object_list *list, t_vec3 trans);
-int				ft_move_plane(t_object_list *list, t_vec3 trans);
-int				ft_move_square(t_object_list *list, t_vec3 trans);
-int				ft_move_cylinder(t_object_list *list, t_vec3 trans);
-int				ft_move_triangle(t_object_list *list, t_vec3 trans);
+int					ft_move_light(t_scene *scene, t_vec3 trans);
+int					ft_move_camera(t_camera *cam, t_vec3 trans);
+int					ft_move_object(t_object_list *list, t_vec3 trans);
+int					ft_move_sphere(t_object_list *list, t_vec3 trans);
+int					ft_move_plane(t_object_list *list, t_vec3 trans);
+int					ft_move_square(t_object_list *list, t_vec3 trans);
+int					ft_move_cylinder(t_object_list *list, t_vec3 trans);
+int					ft_move_triangle(t_object_list *list, t_vec3 trans);
 
-int				ft_rotate_object(t_object_list *list, t_mat44 mat);
-int				ft_rotate_plane(t_object_list *list, t_mat44 mat);
-int				ft_rotate_square(t_object_list *list, t_mat44 mat);
-int				ft_rotate_cylinder(t_object_list *list, t_mat44 mat);
+int					ft_rotate_object(t_object_list *list, t_mat44 mat);
+int					ft_rotate_plane(t_object_list *list, t_mat44 mat);
+int					ft_rotate_square(t_object_list *list, t_mat44 mat);
+int					ft_rotate_cylinder(t_object_list *list, t_mat44 mat);
 
-int				ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl);
-int				ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
+int					ft_handle_mouse(int btn, int x, int y, t_ctrl *ctrl);
+int					ft_trigger_mouse(int btn, int x, int y, t_ctrl *ctrl);
 
-int				ft_select_object(t_ctrl *c, int x, int y);
-int				ft_deselect(t_ctrl *c, int x, int y);
+int					ft_select_object(t_ctrl *c, int x, int y);
+int					ft_deselect(t_ctrl *c, int x, int y);
 
-typedef struct s_pft_key		t_pft_key;
-typedef struct s_pft_mouse		t_pft_mouse;
-typedef struct s_pft_move		t_pft_move;
-typedef struct s_pft_rotate		t_pft_rotate;
-
-struct				s_pft_key
+typedef struct		s_pft_key
 {
 	int				key;
 	int				(*event)(t_ctrl *ctrl);
-};
+}					t_pft_key;
 
-struct				s_pft_mouse
+typedef struct		s_pft_mouse
 {
 	int				btn;
 	int				(*event)(t_ctrl *ctrl, int x, int y);
-};
+}					t_pft_mouse;
 
-struct				s_pft_move
+typedef struct		s_pft_move
 {
 	t_object_type	type;
 	int				(*move)(t_object_list *list, t_vec3 trans);
-};
+}					t_pft_move;
 
-struct				s_pft_rotate
+typedef struct		s_pft_rotate
 {
 	t_object_type	type;
 	int				(*rotate)(t_object_list *list, t_mat44 mat);
-};
+}					t_pft_rotate;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:51:16 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 16:29:42 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:03:22 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_point3	ft_screen_fisheye_aa(t_ctrl *c, double fov, double x, double y)
 	return (screen);
 }
 
-
 t_point3	ft_switch_fisheye_aa(t_ctrl *c, double fov, double x, double y)
 {
 	if (c->bool_fish_eye == false)
@@ -55,6 +54,6 @@ t_ray		ft_ray_init_aa(t_ctrl *c, t_camera *cam, double x, double y)
 	canv = &c->scene->canv;
 	screen = ft_switch_fisheye_aa(c, cam->fov, x, y);
 	ray.org = cam->mat_c2w.trans;
-	ray.dir = V_MINUS(ft_linear_transform(cam->mat_c2w, screen), ray.org);
+	ray.dir = ft_vminus(ft_linear_transform(cam->mat_c2w, screen), ray.org);
 	return (ray);
 }

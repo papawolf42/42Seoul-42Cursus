@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 22:22:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:03:43 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			ft_console_object(t_ctrl *ctrl, t_object_type type)
 		{sq, ft_console_square},
 		{cy, ft_console_cylinder},
 		{tr, ft_console_triangle},
-		{no, NUL}
+		{no, NULL}
 	};
 
 	idx = 0;

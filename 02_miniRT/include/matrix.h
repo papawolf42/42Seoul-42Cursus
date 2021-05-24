@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 18:20:15 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 19:10:09 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 14:39:39 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "vector.h"
 
+typedef struct s_camera			t_camera;
 typedef struct s_mat44			t_mat44;
 
 struct				s_mat44

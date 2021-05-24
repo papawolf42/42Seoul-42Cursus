@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 22:07:29 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 22:10:21 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 11:58:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ t_bool		ft_hit_square(t_square *sq, t_ray *ray, t_hit_rec *rec)
 	t_point3	point_t;
 	t_vec3		diff;
 
-	proj_unit = V_DOT(ray->dir, sq->normal);
+	proj_unit = ft_vdot(ray->dir, sq->normal);
 	if (fabs(proj_unit) < 0.0001)
 		return (false);
-	proj_len = V_DOT(V_MINUS(sq->center, ray->org), sq->normal);
+	proj_len = ft_vdot(ft_vminus(sq->center, ray->org), sq->normal);
 	root = proj_len / proj_unit;
 	if (root < rec->t_min || rec->t_max < root)
 		return (false);
 	point_t = ft_ray_at(ray, root);
-	diff = V_MINUS(point_t, sq->center);
-	if (fabs(V_DOT(sq->span_a, diff)) > sq->side_len / 2 || fabs(V_DOT(sq->span_b, diff)) > sq->side_len / 2)
+	diff = ft_vminus(point_t, sq->center);
+	if (fabs(ft_vdot(sq->span_a, diff)) > sq->side_len / 2 ||
+		fabs(ft_vdot(sq->span_b, diff)) > sq->side_len / 2)
 		return (false);
 	rec->t = root;
 	rec->p = point_t;

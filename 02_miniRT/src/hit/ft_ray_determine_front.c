@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 22:10:38 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/21 22:10:49 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:03:03 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 t_front		ft_ray_determine_front(t_ray *ray, t_hit_rec *rec)
 {
 	double		dot;
-	dot = V_DOT(ray->dir, rec->normal);
+
+	dot = ft_vdot(ray->dir, rec->normal);
 	if (dot < 0)
-	{
 		return (front);
-	}
 	else
 	{
-		rec->normal = V_SCALAR(rec->normal, -1);
+		rec->normal = ft_vscalar(rec->normal, -1);
 		return (back);
 	}
 }

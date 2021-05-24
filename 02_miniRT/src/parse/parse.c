@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 21:23:30 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_bool			ft_parse_line(t_scene *scene, char *line)
 		{"l", ft_parse_light}, {"sp", ft_parse_sphere},
 		{"pl", ft_parse_plane}, {"sq", ft_parse_square},
 		{"cy", ft_parse_cylinder}, {"tr", ft_parse_triangle},
-		{NUL, NUL}
+		{NULL, NULL}
 	};
 
 	i = 0;
@@ -49,7 +49,7 @@ t_bool			ft_parse_line(t_scene *scene, char *line)
 	while (pft_parse[i].id && *splits
 			&& ft_strncmp(pft_parse[i].id, splits[0], 4))
 		i++;
-	if (pft_parse[i].id == NUL)
+	if (pft_parse[i].id == NULL)
 		return (ft_err_msg(ERR_PAR_NOID) && ft_destroy_splits(splits));
 	if (pft_parse[i].parse(scene, splits))
 		return (ft_err_line(line) && ft_destroy_splits(splits));
@@ -64,7 +64,7 @@ t_bool			ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 	char	*line;
 
 	ctrl->scene = (t_scene *)malloc(sizeof(t_scene));
-	if (ctrl->scene == NUL)
+	if (ctrl->scene == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	ft_init_object_list(ctrl->scene);
 	fd = open(rt_file, O_RDONLY);

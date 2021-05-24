@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 08:19:48 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/22 09:54:52 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 
 static void		ft_square_set_initial(t_square *square)
 {
-	if (V_DOT(square->normal, square->axis_up) == 1)
-		square->span_a = V_UNIT(V_CROSS(square->normal, square->axis_up));
+	if (ft_vdot(square->normal, square->axis_up) == 1)
+		square->span_a = ft_vunit(ft_vcross(square->normal, square->axis_up));
 	else
-		square->span_a = V_UNIT(V_CROSS(square->normal, square->axis_up));
-	square->span_b = V_UNIT(V_CROSS(square->normal, square->span_a));
+		square->span_a = ft_vunit(ft_vcross(square->normal, square->axis_up));
+	square->span_b = ft_vunit(ft_vcross(square->normal, square->span_a));
 }
 
 t_bool			ft_parse_square(t_scene *s, char **splits)
@@ -31,7 +31,7 @@ t_bool			ft_parse_square(t_scene *s, char **splits)
 	t_square	*square;
 
 	square = (t_square *)malloc(sizeof(t_square));
-	if (square == NUL)
+	if (square == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	if (ft_strslen(splits) != 5)
 		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(square));
@@ -45,7 +45,7 @@ t_bool			ft_parse_square(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE) && ft_destroy(square));
 	if (ft_parse_color(&square->color, splits[4]))
 		return (ft_destroy(square));
-	square->axis_up = V_SET(0, 1, 0);
+	square->axis_up = ft_vset(0, 1, 0);
 	ft_square_set_initial(square);
 	if (ft_addback_object_list(sq, square, s))
 		return (ft_destroy(square));

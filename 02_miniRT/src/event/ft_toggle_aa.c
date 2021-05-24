@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 16:37:37 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/23 16:37:46 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 int				ft_toggle_aa(t_ctrl *ctrl)
 {
 	ctrl->bool_anti_aliasing = !ctrl->bool_anti_aliasing;
-	ft_console_msg(ctrl, NUL);
+	ft_console_msg(ctrl, NULL);
 	return (true);
 }

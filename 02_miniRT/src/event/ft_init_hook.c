@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 17:07:52 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:05:45 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 11:20:56 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 
 void			ft_init_hook(t_ctrl *ctrl)
 {
-	mlx_hook(ctrl->win_ptr, EVENT_EXIT_WINDOW, MASK_EXITWINDOW,
-											ft_exit_minirt, ctrl);
-	mlx_hook(ctrl->win_ptr, EVENT_KEYPRESS, MASK_KEYPRESS, ft_handle_key, ctrl);
-	mlx_hook(ctrl->win_ptr, EVENT_BUTTONPRESS, 1L << 0, ft_handle_mouse, ctrl);
+	mlx_hook(ctrl->win_ptr, EVENT_EXIT_WINDOW, MASK_EVENT << 2,
+													ft_exit_minirt, ctrl);
+	mlx_hook(ctrl->win_ptr, EVENT_KEYPRESS, MASK_EVENT << 0,
+													ft_handle_key, ctrl);
+	mlx_hook(ctrl->win_ptr, EVENT_BUTTONPRESS, MASK_EVENT << 2,
+													ft_handle_mouse, ctrl);
 	mlx_loop(ctrl->mlx_ptr);
 }

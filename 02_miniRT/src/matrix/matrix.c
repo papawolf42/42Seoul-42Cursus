@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 20:24:50 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 00:13:06 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 10:49:19 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ t_mat44				ft_getmat_c2w(t_camera *cam, t_vec3 axis_up)
 	t_vec3		forward;
 	double		parallel;
 
-	parallel = V_DOT(cam->normal, axis_up);
-	forward = V_SCALAR(cam->normal, -1);
+	parallel = ft_vdot(cam->normal, axis_up);
+	forward = ft_vscalar(cam->normal, -1);
 	if (parallel == 1)
 	{
-		right = V_SET(1, 0, 0);
-		up = V_SET(0, 0, -1);
+		right = ft_vset(1, 0, 0);
+		up = ft_vset(0, 0, -1);
 	}
 	else if (parallel == -1)
 	{
-		right = V_SET(-1, 0, 0);
-		up = V_SET(0, 0, -1);
+		right = ft_vset(-1, 0, 0);
+		up = ft_vset(0, 0, -1);
 	}
 	else
 	{
-		right = V_UNIT(V_CROSS(forward, axis_up));
-		up = V_UNIT(V_CROSS(right, forward));
+		right = ft_vunit(ft_vcross(forward, axis_up));
+		up = ft_vunit(ft_vcross(right, forward));
 	}
 	return (ft_mat_set(right, up, forward, cam->origin));
 }

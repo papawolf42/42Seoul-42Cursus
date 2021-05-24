@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/23 19:28:32 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/24 12:22:29 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -353,6 +353,7 @@ $(NAME_GET_NEXT_LINE) :
 	@$(MAKE) -s all -C $(DIR_GET_NEXT_LINE)
 
 # DO NOT DELETE
+
 obj/main.o: src/main.c include/minirt.h lib/minilibx_mms_20200219/mlx.h \
 lib/libft/include/libft.h include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h \
@@ -548,7 +549,7 @@ include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h include/hit.h
 obj/ft_phong_color.o: src/hit/ft_phong_color.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
-include/color.h include/utils.h include/hit.h
+include/color.h include/utils.h include/hit.h include/phong.h
 obj/ft_ray_at.o: src/hit/ft_ray_at.c include/struct.h include/vector.h \
 include/matrix.h include/ray.h include/alias.h include/color.h
 obj/ft_ray_determine_front.o: src/hit/ft_ray_determine_front.c \
@@ -689,7 +690,7 @@ include/alias.h include/color.h
 obj/ft_vec3_geometry.o: src/vector/ft_vec3_geometry.c include/vector.h
 obj/ft_vec3_length.o: src/vector/ft_vec3_length.c include/vector.h
 obj/ft_vec3_multiplication.o: src/vector/ft_vec3_multiplication.c \
-include/vector.h
+include/vector.h include/error.h include/alias.h
 obj/ft_vec3_plus_minus.o: src/vector/ft_vec3_plus_minus.c include/vector.h
 obj/ft_vec3_set.o: src/vector/ft_vec3_set.c include/vector.h include/alias.h \
 include/utils.h

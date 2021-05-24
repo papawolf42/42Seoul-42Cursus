@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 13:53:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 01:16:36 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 12:04:44 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 void					ft_cylinder_set(t_cylinder *cyl, t_bool bool_first)
 {
-	cyl->axis = V_UNIT(cyl->axis);
-	cyl->center_top = V_PLUS(cyl->center_top, V_SCALAR(cyl->axis, cyl->height));
+	cyl->axis = ft_vunit(cyl->axis);
+	cyl->center_top = ft_vplus(cyl->center_top,
+										ft_vscalar(cyl->axis, cyl->height));
 	if (bool_first)
 		cyl->radius = cyl->radius / 2;
 }
@@ -30,7 +31,7 @@ t_bool					ft_parse_cylinder(t_scene *s, char **splits)
 	t_cylinder	*cylinder;
 
 	cylinder = (t_cylinder *)malloc(sizeof(t_cylinder));
-	if (cylinder == NUL)
+	if (cylinder == NULL)
 		return (ft_err_msg(ERR_MALLOC_FAIL));
 	if (ft_strslen(splits) != 6)
 		return (ft_err_msg(ERR_WORNG_ARG) && ft_destroy(cylinder));
