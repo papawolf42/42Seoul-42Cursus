@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 16:22:11 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 22:47:46 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,14 @@
 
 static void	ft_init_ctrl(t_ctrl *ctrl)
 {
-	ft_bzero(ctrl, sizeof(ctrl));
+	ft_bzero(ctrl, sizeof(t_ctrl));
 	ctrl->mode = 'C';
 	ctrl->bool_multi_threading = true;
 	ctrl->bool_anti_aliasing = false;
 	ctrl->bool_fish_eye = false;
 	ctrl->unit_move = UNIT_MOVE;
 	ctrl->unit_rotate = UNIT_ROTATE_DEGREE * (M_PI / 180.0);
+	ctrl->unit_resize = UNIT_MOVE / 4;
 }
 
 int			main(int argc, char *argv[])

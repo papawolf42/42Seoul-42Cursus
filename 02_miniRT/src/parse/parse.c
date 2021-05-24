@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 10:54:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 22:07:09 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool			ft_parse_line(t_scene *scene, char *line)
 	char				**splits;
 	int					i;
 	static t_pft_parse	pft_parse[] = {
-		{"", ft_pass_line}, {"#", ft_pass_line}, {"R", ft_parse_resolution},
+		{"#", ft_pass_line}, {"R", ft_parse_resolution},
 		{"A", ft_parse_ambient}, {"c", ft_parse_camera},
 		{"l", ft_parse_light}, {"sp", ft_parse_sphere},
 		{"pl", ft_parse_plane}, {"sq", ft_parse_square},
@@ -47,12 +47,12 @@ t_bool			ft_parse_line(t_scene *scene, char *line)
 	i = 0;
 	splits = ft_split_rt(line, WHITE_SPACE);
 	while (pft_parse[i].id && *splits
-			&& ft_strncmp(pft_parse[i].id, splits[0], 4))
+			&& ft_strncmp(pft_parse[i].id, splits[0], 2))
 		i++;
 	if (pft_parse[i].id == NULL)
 		return (ft_err_msg(ERR_PAR_NOID) && ft_destroy_splits(splits));
 	if (pft_parse[i].parse(scene, splits))
-		return (ft_err_line(line) && ft_destroy_splits(splits));
+		return (ft_destroy_splits(splits));
 	ft_destroy_splits(splits);
 	return (success);
 }
@@ -78,7 +78,7 @@ t_bool			ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 		if (ret == GNL_EOF)
 			break ;
 		if (ft_parse_line(ctrl->scene, line))
-			return (!close(fd) && ft_destroy(line));
+			return (ft_err_line(line) && !close(fd) && ft_destroy(line));
 		free(line);
 	}
 	free(line);

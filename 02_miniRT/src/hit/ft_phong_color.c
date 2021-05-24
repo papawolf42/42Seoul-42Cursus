@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:54:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 11:40:08 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 21:10:10 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_color				ft_phong_color(t_scene *s, t_ray *ray, t_hit_rec *rec)
 							ft_phong_color_compute(lights->object, ray, rec));
 		lights = lights->next;
 	}
+	light_stack = ft_vplus(light_stack, s->ambient.color);
 	return (ft_vmin(ft_vmult(light_stack, rec->color),
-												ft_vset(0.999, 0.999, 0.999)));
+												ft_vset(1.0, 1.0, 1.0)));
 }

@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 23:18:12 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 23:36:07 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 21:08:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_bool				ft_parse_ambient(t_scene *s, char **splits)
 		return (ft_err_msg(ERR_BAD_RANGE));
 	if (ft_parse_color(&s->ambient.color, splits[2]))
 		return (fail);
+	s->ambient.color = ft_vscalar(s->ambient.color, s->ambient.ratio);
 	s->flag_declare += 0x10;
 	return (success);
 }
