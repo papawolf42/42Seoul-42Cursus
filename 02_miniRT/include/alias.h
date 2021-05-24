@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 11:31:36 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 15:46:05 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define UNIT_ROTATE_DEGREE 15.0
 
 # define NUM_THREAD 8
+
+typedef unsigned char			t_uchar;
 
 typedef enum
 {

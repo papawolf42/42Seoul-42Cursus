@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 00:57:06 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 12:15:40 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 15:29:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "struct.h"
 
-int				ft_exit_minirt(t_ctrl *ctrl);
+int				ft_exit(t_ctrl *ctrl);
 
 void			ft_destroy_mlx(t_ctrl *ctrl);
 void			ft_free_scene(t_scene *scene);

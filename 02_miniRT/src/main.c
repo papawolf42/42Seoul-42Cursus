@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 11:25:40 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 16:22:11 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ static void	ft_init_ctrl(t_ctrl *ctrl)
 	ctrl->unit_rotate = UNIT_ROTATE_DEGREE * (M_PI / 180.0);
 }
 
-static void	ft_save_bmp(void)
-{
-}
-
 int			main(int argc, char *argv[])
 {
 	t_ctrl		ctrl;
@@ -49,13 +45,13 @@ int			main(int argc, char *argv[])
 	if (ft_is_endstr(argv[1], ".rt") == fail)
 		return (ft_err_msg(ERR_2ND_ARG_NOT_END_RT) == fail);
 	if (ft_parse_rt(&ctrl, argv[1]))
-		return (ft_exit_minirt(&ctrl));
+		return (ft_exit(&ctrl));
 	if (argc == 2)
 	{
 		if (ft_minirt(&ctrl))
-			return (ft_exit_minirt(&ctrl));
+			return (ft_exit(&ctrl));
 	}
-	else if (argc == 3 && ft_strncmp(argv[3], "--save", 8) == 0)
-		ft_save_bmp();
+	else if (argc == 3 && ft_strncmp(argv[2], "--save", 8) == 0)
+		ft_save_bmp(&ctrl, false);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/24 12:22:29 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/24 16:11:49 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,7 +141,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 DIR_SRC_EXIT := exit
 SRCS_EXIT := $(addprefix $(DIR_SRC_EXIT)/, \
 	ft_destroy_mlx.c \
-	ft_exit_minirt.c \
+	ft_exit.c \
 	ft_free_scene.c \
 )
 
@@ -177,7 +177,9 @@ SRCS_MINIRT := $(addprefix $(DIR_SRC_MINIRT)/, \
 	ft_render_mt_aa.c \
 	ft_render_multi_thread.c \
 	ft_render.c \
+	ft_save_bmp.c \
 	ft_switch.c \
+	ft_write_bmp.c \
 	ft_minirt.c \
 )
 
@@ -520,7 +522,7 @@ include/error.h
 obj/ft_destroy_mlx.o: src/exit/ft_destroy_mlx.c include/struct.h \
 include/vector.h include/matrix.h include/ray.h include/alias.h \
 include/color.h lib/minilibx_mms_20200219/mlx.h
-obj/ft_exit_minirt.o: src/exit/ft_exit_minirt.c include/alias.h \
+obj/ft_exit.o: src/exit/ft_exit.c include/alias.h \
 include/struct.h include/vector.h include/matrix.h include/ray.h \
 include/color.h include/exit.h
 obj/ft_free_scene.o: src/exit/ft_free_scene.c include/struct.h \

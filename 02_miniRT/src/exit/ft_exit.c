@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit_minirt.c                                   :+:      :+:    :+:   */
+/*   ft_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,7 @@
 #include "struct.h"
 #include "exit.h"
 
-int				ft_exit_minirt(t_ctrl *ctrl)
+int				ft_exit(t_ctrl *ctrl)
 {
 	ft_destroy_mlx(ctrl);
 	ft_free_scene(ctrl->scene);

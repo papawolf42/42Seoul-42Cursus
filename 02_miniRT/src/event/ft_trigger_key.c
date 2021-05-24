@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 19:56:04 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 11:28:39 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/24 15:29:13 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			ft_trigger_key(t_ctrl *ctrl, int key)
 {
 	int						idx;
 	static t_pft_key		pft_event[] = {
-		{KEY_ESC, ft_exit_minirt}, {KEY_W, ft_move_up}, {KEY_S, ft_move_down},
+		{KEY_ESC, ft_exit}, {KEY_W, ft_move_up}, {KEY_S, ft_move_down},
 		{KEY_A, ft_move_left}, {KEY_D, ft_move_right}, {KEY_Q, ft_move_back},
 		{KEY_E, ft_move_forward}, {KEY_T, ft_pitch_up}, {KEY_G, ft_pitch_down},
 		{KEY_F, ft_yaw_left}, {KEY_H, ft_yaw_right}, {KEY_R, ft_roll_left},
