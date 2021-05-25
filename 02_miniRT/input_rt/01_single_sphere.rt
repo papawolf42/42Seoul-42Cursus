@@ -1,0 +1,18 @@
+# Resolution	width	height
+# R				0		0
+R				800		500
+# R				1504	846
+# R				3008	1692
+# R				6016	3384
+
+# Ambient		lighting ratio		RGB
+A				0.5					255,255,255
+
+# camera		point				normal				FOV
+c				0,0,0				0,0,1				60
+
+# Light			point				ratio				RGB
+l				0,21,10				0.5					255,255,255
+
+# sphere		center				radius				RGB
+sp				0,0,42				21					0,0,255

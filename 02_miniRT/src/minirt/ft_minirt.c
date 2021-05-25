@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/22 19:47:40 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:09:24 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 09:22:38 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "mlx.h"
 #include "event.h"
 #include "console.h"
+#include "object.h"
 
 t_bool		ft_minirt(t_ctrl *ctrl)
 {

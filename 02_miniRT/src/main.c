@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 14:42:22 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:33:47 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 09:11:27 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "parse.h"
 #include "event.h"
 #include "exit.h"
+#include "object.h"
 
 static t_bool	ft_init_ctrl(t_ctrl *ctrl)
 {

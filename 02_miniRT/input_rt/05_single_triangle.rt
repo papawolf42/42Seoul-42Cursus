@@ -1,0 +1,26 @@
+# Resolution	width	height
+# R				0		0
+R				800		500
+# R				1504	846
+# R				3008	1692
+# R				6016	3384
+
+# Ambient		lighting ratio		RGB
+A				0.3					255,255,255
+
+# camera		point				normal				FOV
+c				0,0,0				0,0,1				60
+
+# Light			point				ratio				RGB
+l				0,0,5				1					255,255,255
+
+# triangle		point_a				point_b				point_c			RGB
+tr				0,5,10			-5,-5,10				5,-5,10			250,180,6
+
+# iPURPLE	162,163,196
+# iBLUE		157,181,204
+# iGREEN	153,182,172
+# iRED		238,174,163
+
+# gYELLOW	250,180,6
+# gGREEN	46,158,73

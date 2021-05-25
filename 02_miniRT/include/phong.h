@@ -6,13 +6,14 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 10:16:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 12:12:28 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 09:58:34 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONG_H
 # define PHONG_H
 
+# define KD			1
 # define KS 		0.3
 # define KSN		32
 

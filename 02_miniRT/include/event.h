@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/18 17:12:14 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 03:54:01 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 10:07:17 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "alias.h"
 # include "struct.h"
 
-# define UNIT_MOVE			1.0
+# define UNIT_MOVE			5.0
 # define UNIT_ROTATE_DEGREE 15.0
 
 # define MASK_NOEVENT		0L

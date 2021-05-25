@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:54:19 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 01:35:53 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 09:43:18 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_color		ft_phong_color_compute(t_light *light,
 	v.to_view = ft_vunit(ft_vminus(ray->org, rec->p));
 	v.reflect = ft_vunit(ft_vreflect(ft_vscalar(v.to_light, -1), rec->normal));
 	v.kd = ft_max(ft_vdot(ft_vunit(rec->normal), v.to_light), 0.0);
-	v.diffuse = ft_vscalar(light->color, v.kd);
+	v.diffuse = ft_vscalar(light->color, v.kd * KD);
 	v.specular = ft_vscalar(light->color,
 					KS * pow(ft_max(ft_vdot(v.reflect, v.to_view), 0.0), KSN));
 	v.light_intensity = ft_vscalar(ft_vplus(v.diffuse, v.specular),
