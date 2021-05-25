@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 17:31:51 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:21:41 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 15:18:41 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,10 @@ t_bool			ft_parse_rt(t_ctrl *ctrl, char *rt_file)
 		ret = get_next_line(fd, &line);
 		if (ret == GNL_FAIL)
 			return (!close(fd) && ft_err_msg(ERR_GNL));
-		if (ret == GNL_EOF)
-			break ;
 		if (ft_parse_line(ctrl->scene, line))
 			return (ft_err_line(line) && !close(fd) && ft_destroy(line));
+		if (ret == GNL_EOF)
+			break ;
 		free(line);
 	}
 	free(line);
