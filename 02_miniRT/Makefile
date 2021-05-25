@@ -6,7 +6,7 @@
 #    By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/07 16:42:32 by gunkim            #+#    #+#              #
-#    Updated: 2021/05/25 04:01:53 by gunkim           ###   ########.fr        #
+#    Updated: 2021/05/25 15:03:41 by gunkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ RFLAGS    := -rf
 DIR_INC := include
 DIR_OBJ := obj
 DIR_SRC := src
+DIR_BMP := output_bmp
 
 # =========================
 # source files
@@ -113,6 +114,7 @@ SRCS_EVENT := $(addprefix $(DIR_SRC_EVENT)/, \
 	event_rotate_x.c \
 	event_rotate_y.c \
 	event_rotate_z.c \
+	ft_capture.c \
 	ft_handle_key.c \
 	ft_handle_mouse.c \
 	ft_init_hook.c \
@@ -224,6 +226,8 @@ SRCS_UTILS := $(addprefix $(DIR_SRC_UTILS)/, \
 	ft_is_integer.c \
 	ft_is_real.c \
 	ft_split_rt.c \
+	ft_strcat.c \
+	ft_strcpy.c \
 	ft_strslen.c \
 	utils_cmp.c \
 	utils_str.c \
@@ -311,13 +315,13 @@ clean :
 	@$(MAKE) clean -C $(DIR_MLX)
 	@$(MAKE) clean -C $(DIR_LIBFT)
 	@$(MAKE) clean -C $(DIR_GET_NEXT_LINE)
-	@$(RM) $(RFLAGS) $(OJBS)
+	@$(RM) $(RFLAGS) $(OBJS)
 
 fclean :
 	@$(MAKE) clean -C $(DIR_MLX)
 	@$(MAKE) fclean -C $(DIR_LIBFT)
 	@$(MAKE) fclean -C $(DIR_GET_NEXT_LINE)
-	@$(RM) $(RFLAGS) $(NAME)
+	@$(RM) $(RFLAGS) $(NAME) $(OBJS)
 	@printf "[$(NAME)] ✔️  Cleaned all !!$(LF)"
 
 re : fclean all
@@ -333,7 +337,7 @@ clean_depend :
 %.d : %.c
 	@$(CC) $(INCLUDES) -MM $< | sed 's|^|$(DIR_OBJ)/|' | sed 's|$(DIR_OBJ)/  ||' >> depend_file
 
-$(NAME) : $(DIR_OBJ) $(NAME_MLX) $(NAME_LIBFT) $(NAME_GET_NEXT_LINE) $(OBJS)
+$(NAME) : $(DIR_OBJ) $(DIR_BMP) $(NAME_MLX) $(NAME_LIBFT) $(NAME_GET_NEXT_LINE) $(OBJS)
 	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBFLAGS) $(OBJS) -o $(NAME)
 	@install_name_tool -change $(LIB_MLX) $(DIR_MLX)/$(LIB_MLX) $(NAME)
 	@printf "$(ERCR)[$(NAME)] ✔️  Make complete !!"
@@ -341,6 +345,10 @@ $(NAME) : $(DIR_OBJ) $(NAME_MLX) $(NAME_LIBFT) $(NAME_GET_NEXT_LINE) $(OBJS)
 $(DIR_OBJ) :
 	@mkdir -p $(DIR_OBJ)
 	@printf "[$(NAME)] 📁 Created directory $(DIR_OBJ)$(LF)"
+
+$(DIR_BMP) :
+	@mkdir -p $(DIR_BMP)
+	@printf "[$(NAME)] 📁 Created directory $(DIR_BMP)$(LF)"
 
 $(DIR_OBJ)/%.o : %.c
 	@$(CC) -g $(CFLAGS) $(INCLUDES) -c $< -o $@ -I $(DIR_INC)

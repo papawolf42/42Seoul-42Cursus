@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 14:53:01 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:33:22 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:58:54 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "struct.h"
 #include "minirt.h"
 #include "exit.h"
+#include "utils.h"
 
 static void		ft_init_data(t_ctrl *ctrl)
 {
@@ -30,22 +31,23 @@ static void		ft_init_data(t_ctrl *ctrl)
 static t_bool	ft_open(int *fd)
 {
 	static int		num;
-	static char		*str1 = "screenshot";
+	static char		*str1 = "output_bmp/screenshot";
 	char			*str2;
 	static char		*str3 = ".bmp";
 	char			str[42];
 
 	ft_bzero(str, 42);
-	ft_strlcpy(str, str1, 11);
+	ft_strcpy(str, str1);
 	str2 = ft_itoa(num);
 	if (str2 == NULL)
 		return (fail);
-	ft_strlcat(str, str2, 11);
+	ft_strcat(str, str2);
 	free(str2);
-	ft_strlcat(str, str3, 20);
+	ft_strcat(str, str3);
 	*fd = open(str, O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0744);
 	if (*fd == -1)
 		return (fail);
+	num++;
 	return (success);
 }
 
@@ -68,7 +70,10 @@ t_bool			ft_save_bmp(t_ctrl *ctrl, t_bool bool_minirt)
 	if (ft_switch(ctrl))
 		return (ft_close(fd));
 	ft_write_bmp(ctrl, fd);
-	close(fd);
-	ft_exit(ctrl);
+	if (bool_minirt == false)
+	{
+		close(fd);
+		ft_exit(ctrl);
+	}
 	return (success);
 }

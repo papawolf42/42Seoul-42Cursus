@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 15:32:39 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 00:33:37 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 15:02:11 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,8 @@ static void		ft_wrtie_img_data(t_ctrl *c, int fd)
 
 t_bool			ft_write_bmp(t_ctrl *ctrl, int fd)
 {
-	static t_bool		bool_visited = false;
-
-	if (bool_visited == false)
-	{
-		ft_write_bmp_header(ctrl, fd);
-		ft_write_dib_header(ctrl, fd);
-	}
+	ft_write_bmp_header(ctrl, fd);
+	ft_write_dib_header(ctrl, fd);
 	ft_wrtie_img_data(ctrl, fd);
-	bool_visited = true;
 	return (success);
 }

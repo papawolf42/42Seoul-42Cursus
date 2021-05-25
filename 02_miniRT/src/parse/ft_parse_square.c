@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/30 08:19:48 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/25 10:45:50 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:15:40 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		ft_square_set_initial(t_square *square)
 {
 	if (ft_vdot(square->normal, square->axis_up) == 1 ||
 	ft_vdot(square->normal, square->axis_up) == -1)
-		square->span_a = ft_vunit(ft_vcross(square->normal, ft_vset(0,0,1)));
+		square->span_a = ft_vunit(ft_vcross(square->normal, ft_vset(0, 0, 1)));
 	else
 		square->span_a = ft_vunit(ft_vcross(square->normal, square->axis_up));
 	square->span_b = ft_vunit(ft_vcross(square->normal, square->span_a));

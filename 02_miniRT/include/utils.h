@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:01:24 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/17 14:54:58 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:49:09 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ double			ft_saturate(double a);
 ** utils_str.c
 */
 int				ft_is_endstr(char *big, char *little);
+void			ft_strcpy(char *dest, char *src);
+void			ft_strcat(char *dest, char *src);
 
 double			ft_atof(char *s);
 int				ft_atoi_plus(const char *nptr);

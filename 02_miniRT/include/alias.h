@@ -6,7 +6,7 @@
 /*   By: gunkim <papawolf@kakao.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/26 21:51:25 by gunkim            #+#    #+#             */
-/*   Updated: 2021/05/24 22:12:02 by gunkim           ###   ########.fr       */
+/*   Updated: 2021/05/25 14:05:27 by gunkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define INDEX_FISH_EYE			0.70710678118
 
 # define SAMPLING				2
-# define NUM_THREAD				8
+# define NUM_THREAD				12
 
 typedef unsigned char			t_uchar;
 
