@@ -1,0 +1,9 @@
+[submodule "00_Libft"]
+	path = 00_Libft
+	url = git@github.com:papawolf42/Libft.git
+[submodule "01_ft_printf/libft"]
+	path = 01_ft_printf/libft
+	url = git@github.com:papawolf42/Libft.git
+[submodule "02_miniRT/lib/libft"]
+	path = 02_miniRT/lib/libft
+	url = git@github.com:papawolf42/Libft.git
