@@ -7,3 +7,9 @@
 [submodule "02_miniRT/lib/libft"]
 	path = 02_miniRT/lib/libft
 	url = git@github.com:papawolf42/Libft.git
+[submodule "01_get_next_line"]
+	path = 01_get_next_line
+	url = git@github.com:papawolf42/get_next_line.git
+[submodule "02_miniRT/lib/get_next_line"]
+	path = 02_miniRT/lib/get_next_line
+	url = git@github.com:papawolf42/get_next_line.git
