@@ -16,3 +16,6 @@
 [submodule "02_push_swap"]
 	path = 02_push_swap
 	url = git@github.com:papawolf42/push_swap.git
+[submodule "03_Philosophers"]
+	path = 03_Philosophers
+	url = git@github.com:papawolf42/Philosophers.git
