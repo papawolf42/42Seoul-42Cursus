@@ -1,21 +1,28 @@
 [submodule "00_Libft"]
 	path = 00_Libft
-	url = git@github.com:papawolf42/Libft.git
+	url = ../Libft.git
+	# url = git@github.com:papawolf42/Libft.git
 [submodule "01_ft_printf/libft"]
 	path = 01_ft_printf/libft
-	url = git@github.com:papawolf42/Libft.git
+	url = ../Libft.git
+	# url = git@github.com:papawolf42/Libft.git
 [submodule "02_miniRT/lib/libft"]
 	path = 02_miniRT/lib/libft
-	url = git@github.com:papawolf42/Libft.git
+	url = ../Libft.git
+	# url = git@github.com:papawolf42/Libft.git
 [submodule "01_get_next_line"]
 	path = 01_get_next_line
-	url = git@github.com:papawolf42/get_next_line.git
+	url = ../get_next_line.git
+	# url = git@github.com:papawolf42/get_next_line.git
 [submodule "02_miniRT/lib/get_next_line"]
 	path = 02_miniRT/lib/get_next_line
-	url = git@github.com:papawolf42/get_next_line.git
+	url = ../get_next_line.git
+	# url = git@github.com:papawolf42/get_next_line.git
 [submodule "02_push_swap"]
 	path = 02_push_swap
-	url = git@github.com:papawolf42/push_swap.git
+	url = ../push_swap.git
+	# url = git@github.com:papawolf42/push_swap.git
 [submodule "03_Philosophers"]
 	path = 03_Philosophers
-	url = git@github.com:papawolf42/Philosophers.git
+	url = ../Philosophers.git
+	# url = git@github.com:papawolf42/Philosophers.git
